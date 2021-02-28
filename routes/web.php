@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('form');
 });
 
-Route::post('/formMasuk' , [EntriesController::class,'storeForm']);
+Route::post('/submit' , [EntriesController::class,'storeForm']);
 
 
 /* Auto-generated admin routes */
