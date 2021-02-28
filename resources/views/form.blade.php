@@ -578,7 +578,7 @@ button:hover {
                    <label class="inBlock" for="4">4</label>
                 </div>
                 <div class="rating">
-                   <input type="radio" id="5" name="B6" value="5" checked="checked">>
+                   <input type="radio" id="5" name="B6" value="5" checked="checked">
                    <label class="inBlock" for="5">5</label>
                 </div>
                 <div class="rating">

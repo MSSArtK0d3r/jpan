@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('form');
 });
 
+Route::get('/thank-you', function () {
+    return view('thankyou');
+});
+
 Route::post('/submit' , [EntriesController::class,'storeForm']);
 
 

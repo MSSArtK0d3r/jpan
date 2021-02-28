@@ -93,7 +93,7 @@ class EntriesController extends Controller
     public function storeForm(Request $req)
     {
         Entry::create($req->all());
-        return redirect('/');
+        return redirect('/thank-you');
     }
 
     /**
