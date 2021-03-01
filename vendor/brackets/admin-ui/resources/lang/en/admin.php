@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'page_title_suffix' => 'Craftable',
+    'page_title_suffix' => 'JPAN',
 
     'operation' => [
         'succeeded' => 'Operation successful',
@@ -113,7 +113,7 @@ return [
     ],
 
     'logo' => [
-        'title' => 'Craftable',
+        'title' => 'JPAN',
     ],
 
     'profile_dropdown' => [
