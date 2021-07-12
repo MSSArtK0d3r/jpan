@@ -47,7 +47,7 @@ trait InteractsWithMedia
             }
 
             if (in_array(SoftDeletes::class, class_uses_recursive($model))) {
-                if (!$model->forceDeleting) {
+                if (! $model->forceDeleting) {
                     return;
                 }
             }
@@ -120,7 +120,7 @@ trait InteractsWithMedia
      *
      * @return \Spatie\MediaLibrary\MediaCollections\FileAdder[]
      */
-    public function addMultipleMediaFromRequest(array $keys)
+    public function addMultipleMediaFromRequest(array $keys): Collection
     {
         return app(FileAdderFactory::class)->createMultipleFromRequest($this, $keys);
     }
@@ -147,7 +147,7 @@ trait InteractsWithMedia
      */
     public function addMediaFromUrl(string $url, ...$allowedMimeTypes): FileAdder
     {
-        if (!Str::startsWith($url, ['http://', 'https://'])) {
+        if (! Str::startsWith($url, ['http://', 'https://'])) {
             throw InvalidUrl::doesNotStartWithProtocol($url);
         }
 
@@ -162,9 +162,8 @@ trait InteractsWithMedia
             $filename = 'file';
         }
 
-        $mediaExtension = explode('/', mime_content_type($temporaryFile));
-
-        if (!Str::contains($filename, '.')) {
+        if (! Str::contains($filename, '.')) {
+            $mediaExtension = explode('/', mime_content_type($temporaryFile));
             $filename = "{$filename}.{$mediaExtension[1]}";
         }
 
@@ -215,16 +214,16 @@ trait InteractsWithMedia
         }
 
         // strict mode filters for non-base64 alphabet characters
-        if (base64_decode($base64data, true) === false) {
+        $binaryData = base64_decode($base64data, true);
+
+        if (false === $binaryData) {
             throw InvalidBase64Data::create();
         }
 
         // decoding and then reencoding should not change the data
-        if (base64_encode(base64_decode($base64data)) !== $base64data) {
+        if (base64_encode($binaryData) !== $base64data) {
             throw InvalidBase64Data::create();
         }
-
-        $binaryData = base64_decode($base64data);
 
         // temporarily store the decoded data on the filesystem to be able to pass it to the fileAdder
         $tmpFile = tempnam(sys_get_temp_dir(), 'media-library');
@@ -233,6 +232,26 @@ trait InteractsWithMedia
         $this->guardAgainstInvalidMimeType($tmpFile, $allowedMimeTypes);
 
         $file = app(FileAdderFactory::class)->create($this, $tmpFile);
+
+        return $file;
+    }
+
+    /**
+     * Add a file to the media library from a stream.
+     *
+     * @param $stream
+     *
+     * @return \Spatie\MediaLibrary\MediaCollections\FileAdder
+     */
+    public function addMediaFromStream($stream): FileAdder
+    {
+        $tmpFile = tempnam(sys_get_temp_dir(), 'media-library');
+
+        file_put_contents($tmpFile, $stream);
+
+        $file = app(FileAdderFactory::class)
+            ->create($this, $tmpFile)
+            ->usingFileName('text.txt');
 
         return $file;
     }
@@ -288,8 +307,12 @@ trait InteractsWithMedia
     {
         $media = $this->getFirstMedia($collectionName);
 
-        if (!$media) {
+        if (! $media) {
             return $this->getFallbackMediaUrl($collectionName) ?: '';
+        }
+
+        if ($conversionName !== '' && ! $media->hasGeneratedConversion($conversionName)) {
+            return $media->getUrl();
         }
 
         return $media->getUrl($conversionName);
@@ -308,8 +331,12 @@ trait InteractsWithMedia
     ): string {
         $media = $this->getFirstMedia($collectionName);
 
-        if (!$media) {
+        if (! $media) {
             return $this->getFallbackMediaUrl($collectionName) ?: '';
+        }
+
+        if ($conversionName !== '' && ! $media->hasGeneratedConversion($conversionName)) {
+            return $media->getTemporaryUrl($expiration);
         }
 
         return $media->getTemporaryUrl($expiration, $conversionName);
@@ -349,8 +376,12 @@ trait InteractsWithMedia
     {
         $media = $this->getFirstMedia($collectionName);
 
-        if (!$media) {
+        if (! $media) {
             return $this->getFallbackMediaPath($collectionName) ?: '';
+        }
+
+        if ($conversionName !== '' && ! $media->hasGeneratedConversion($conversionName)) {
+            return $media->getPath();
         }
 
         return $media->getPath($conversionName);
@@ -475,7 +506,7 @@ trait InteractsWithMedia
 
         $media = $this->media->find($mediaId);
 
-        if (!$media) {
+        if (! $media) {
             throw MediaCannotBeDeleted::doesNotBelongToModel($mediaId, $this);
         }
 

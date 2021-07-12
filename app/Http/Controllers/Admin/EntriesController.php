@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use App\Http\Controllers\ThankYouResult;
 
 class EntriesController extends Controller
 {
@@ -194,7 +195,8 @@ class EntriesController extends Controller
                 'Q3',
                 'Q4',
                 'komen',
-                'cadangan'
+                'cadangan',
+                'uuid'
             ],
 
             // set columns to searchIn
@@ -282,7 +284,10 @@ class EntriesController extends Controller
     public function storeForm(Request $req)
     {
         Entry::create($req->all());
-        return redirect('/thank-you');
+        //return redirect()->route('/result', ['uuid' => $req->uuid]);
+        return redirect()->action(
+            [ThankYouResult::class, 'index'], ['uuid' => $req->uuid]
+        );
     }
 
     /**

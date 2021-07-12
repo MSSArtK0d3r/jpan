@@ -3,7 +3,7 @@ title: Creating custom Vue components
 weight: 7
 ---
 
-Both the Vue and UI components are built on top of the same core, with a language-specific abstraction layer in between that exposes some helper functions. You can extend the core that the UI components are built on. This allow you to customize the UI. This page will go into detail about these abstraction layers.
+Both the Vue and UI components are built on top of the same core, with a language-specific abstraction layer in between that exposes some helper functions. You can extend the core that the UI components are built on. This allows you to customize the UI. This page will go into detail about these abstraction layers.
 
 The Vue implementation uses a renderless component that exposes all the functions and values through a slot scope.
 
@@ -175,6 +175,7 @@ props: {
     multiple: { default: false, type: Boolean },
     validationRules: { required: false, type: Object },
     maxItems: { required: false, type: Number },
+    fileTypeHelpText: { required: false, type: String },
 },
 ```
 
@@ -231,7 +232,7 @@ handleClass?: string
 | max-items                       |                              |                                                                                                                                                                        |
 | max-size-for-preview-in-bytes   |                              |                                                                                                                                                                        |
 | translations                    |                              | Refer to the ["Translations"](./handling-uploads-with-vue#translations) section                                                                                        |
-| vapor                           | `false`                      | Set to true if you will deploy your application to Vapor, this enables uploading of the files to S3. [Read more](./handling-uploads-with-vue#using-with-laravel-vapor) |
+| vapor                           | `false`                      | Set to true if you will deploy your application to Vapor, this enables uploading of the files to S3. [Read more](./handling-uploads-with-vue#usage-with-laravel-vapor) |
 | vapor-signed-storage-url        | `"vapor/signed-storage-url"` |                                                                                                                                                                        |
 | multiple                        | `true`                       |                                                                                                                                                                        |
 | before-upload                   |                              | A method that is run right before a temporary upload is started. You can throw an `Error` from this function with a custom validation message                          |

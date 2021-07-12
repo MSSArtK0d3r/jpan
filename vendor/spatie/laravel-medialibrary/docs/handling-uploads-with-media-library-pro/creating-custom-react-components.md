@@ -3,7 +3,7 @@ title: Creating custom React components
 weight: 8
 ---
 
-Both the Vue and React UI components are built on top of the same core, with a language-specific abstraction layer in between that exposes some helper functions. You can extend the core that the UI components are built on. This allow you to customize the UI. This page will go into detail about these abstraction layers.
+Both the Vue and React UI components are built on top of the same core, with a language-specific abstraction layer in between that exposes some helper functions. You can extend the core that the UI components are built on. This allows you to customize the UI. This page will go into detail about these abstraction layers.
 
 To create your own UI components that hook into the Media Library Pro JS core, you can use the `useMediaLibrary` hook in a functional component. If you are building a class component, there are several tutorials available online on how to wrap a custom hook in a higher-order component for use in class components.
 
@@ -169,6 +169,7 @@ Component used to upload new media objects, or to replace an existing object's f
     multiple: boolean;
     validationRules?: Partial<MediaLibrary.Config["validationRules"]>;
     maxItems?: number;
+    fileTypeHelpText?: string;
     onDrop: (event: React.DragEvent<HTMLDivElement>) => void;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -235,7 +236,7 @@ handleClass?: string
 | maxItems                 |                              |                                                                                                                                                                          |
 | maxSizeForPreviewInBytes |                              |                                                                                                                                                                          |
 | translations             |                              | Refer to the ["Translations"](./handling-uploads-with-react#translations) section                                                                                        |
-| vapor                    | `false`                      | Set to true if you will deploy your application to Vapor, this enables uploading of the files to S3. [Read more](./handling-uploads-with-react#using-with-laravel-vapor) |
+| vapor                    | `false`                      | Set to true if you will deploy your application to Vapor, this enables uploading of the files to S3. [Read more](./handling-uploads-with-react#usage-with-laravel-vapor) |
 | vaporSignedStorageUrl    | `"vapor/signed-storage-url"` |                                                                                                                                                                          |
 | multiple                 | `true`                       |                                                                                                                                                                          |
 | beforeUpload             |                              | A method that is run right before a temporary upload is started. You can throw an `Error` from this function with a custom validation message                            |

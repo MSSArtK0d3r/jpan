@@ -423,13 +423,15 @@ If you don't want to use traditional form submits to send your data to the backe
 <template>
     <div>
         <media-library-attachment
-            …
+            name="avatar"
+            :initial-value="media"
             :validation-errors="validationErrors"
             @change="onChange"
         />
 
         <media-library-collection
-            …
+            name="media"
+            :initial-value="media"
             :validation-errors="validationErrors"
             @change="onChange"
         />
@@ -466,7 +468,7 @@ If you don't want to use traditional form submits to send your data to the backe
 </script>
 ```
 
-### Using with Laravel Vapor
+### Usage with Laravel Vapor
 
 If you are planning on deploying your application to AWS using [Laravel Vapor](https://vapor.laravel.com/), you will need to do some extra configuration to make sure files are uploaded properly to an S3 bucket.
 
@@ -486,6 +488,48 @@ If you edited Vapor's signed storage URL in Laravel, you will need to pass the n
     vapor
     vapor-signed-storage-url="/vapor/signed-storage-url"
 />
+```
+
+### Usage with Inertia
+
+When using the components in repository that uses Inertia, the setup is very similar to the asynchronous setup.
+
+```html
+<template>
+    <div>
+        <media-library-attachment
+            name="avatar"
+            :initial-value="avatar"
+            :validation-errors="validationErrors"
+            @change="onChange"
+        />
+
+        <button @click="submitForm">Submit</button>
+    </div>
+</template>
+
+<script>
+    import { Inertia } from "@inertiajs/inertia";
+
+    export default {
+        data() {
+            return {
+                validationErrors: this.$page.props.errors,
+                avatar: this.$page.props.values.avatar,
+            };
+        },
+
+        methods: {
+            onChange(avatar) {
+                this.avatar = avatar;
+            },
+
+            submitForm() {
+                Inertia.post("", { avatar: this.avatar });
+            },
+        },
+    };
+</script>
 ```
 
 ## Validation rules
@@ -569,6 +613,7 @@ If you would like to use the components in your own language, you can pass a `tr
         dropFile: 'Drop file to upload',
         dragHere: 'Drag file here',
         remove: 'Remove',
+        download: 'Download',
     }"
 />
 ```
@@ -603,6 +648,7 @@ These props are available on both the `attachment` and the `collection` componen
 | max-size-for-preview-in-bytes | `5242880` (5 MB)                                      | When an image is added, the component will try to generate a local preview for it. This is done on the main thread, and can freeze the component and/or page for very large files |
 | sortable                      | `true`                                                | Only exists on the `collection` components. Allows the user to drag images to change their order, this will be reflected by a zero-based `order` attribute in the value           |
 | translations                  |                                                       | Refer to the ["Translations"](#translations) section                                                                                                                              |
+| file-type-help-text           |                                                       | Override the automatically generated helptext from `validation-rules.accept`                                                                                                       |
 | ref                           |                                                       | Used to set a reference to the MediaLibrary instance, so you can change the internal state of the component.                                                                      |
 | before-upload                 |                                                       | A method that is run right before a temporary upload is started. You can throw an `Error` from this function with a custom validation message                                     |
 | after-upload                  |                                                       | A method that is run right after a temporary upload has completed, `{ success: true, uuid }`                                                                                      |

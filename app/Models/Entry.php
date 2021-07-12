@@ -161,7 +161,8 @@ class Entry extends Model
         'Q3',
         'Q4',
         'komen',
-        'cadangan'
+        'cadangan',
+        'uuid'
     ];
 
 

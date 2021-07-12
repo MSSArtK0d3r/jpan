@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EntriesController;
+use App\Http\Controllers\ThankYouResult;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,14 @@ Route::get('/', function () {
     return view('form');
 });
 
-Route::get('/thank-you', function () {
-    return view('thankyou');
+Route::get('/result', function(){
+    return redirect('/');
+});
+
+Route::get('/result/{uuid}', [ThankYouResult::class,'index']);
+
+Route::get('/dev', function() {
+    return view('dev');
 });
 
 Route::post('/submit' , [EntriesController::class,'storeForm']);

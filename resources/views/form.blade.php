@@ -2,8 +2,8 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-<link rel="stylesheet" href="{{ URL::asset('css/normalize.css') }}">
-<link rel="stylesheet" href="{{ URL::asset('css/skeleton.css') }}">
+<link rel="stylesheet" href="{{ url('css/normalize.css') }}">
+<link rel="stylesheet" href="{{ url('css/skeleton.css') }}">
 <style>
    * {
       box-sizing: border-box;
@@ -212,7 +212,7 @@
       <div class="row">
          <div class="twelve columns">
             <div>
-               <img src="{{ URL::asset('images/header.png') }}" class="imgBanner">
+               <img src="{{ url('images/header.png') }}" class="imgBanner">
             </div>
             <form id="regForm" method="POST" action="/submit">
                @csrf
@@ -243,8 +243,10 @@
                         <h5 class="title-center">BAHAGIAN A: DEMOGRAFI</h5><span>Sila isi setiap maklumat yang diperlukan. Nyatakan atau tandakan ( / ) pada ruangan yang disediakan.</span>
                      </span>
                   </div>
+                  
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>1. Umur : </label><input class="small-input" name="umur"> tahun
+                     <input name="uuid" type="hidden" value="{{Uuid::generate(4)}}">
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>2. Jantina :</p>
@@ -439,13 +441,13 @@
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>24. Apakah jenis pengangkutan anda ke tempat kerja?</p>
-                     <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="KeretaSendiri" name="kenderaanKerja" value="KeretaSendiri">
+                     <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="KeretaSendiri" name="kenderaanKerja" value="Kereta Sendiri">
                      <label class="inBlock" for="KeretaSendiri">Kereta Sendiri</label><br>
-                     <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="MenumpangRakan" name="kenderaanKerja" value="MenumpangRakan">
+                     <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="MenumpangRakan" name="kenderaanKerja" value="Menumpang Rakan">
                      <label class="inBlock" for="MenumpangRakan">Menumpang Rakan</label><br>
-                     <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="ehailing" name="kenderaanKerja" value="ehailing">
+                     <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="ehailing" name="kenderaanKerja" value="e-Hailing">
                      <label class="inBlock" for="ehailing">e-Hailing</label><br>
-                     <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="BasTeksi" name="kenderaanKerja" value="BasTeksi">
+                     <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="BasTeksi" name="kenderaanKerja" value="Bas Teksi">
                      <label class="inBlock" for="BasTeksi">Bas/Teksi</label><br>
                      <input type="radio" id="lainKenderaanKerja" name="kenderaanKerja" value="lain-lain">
                      <label class="inBlock" for="other">Lain-lain (Nyatakan) : </label><input id="inputKenderaanKerja" class="big-input lain-lain" name="kenderaanKerjaDetail">

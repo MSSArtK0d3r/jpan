@@ -2,6 +2,54 @@
 
 All notable changes to `laravel-medialibrary` will be documented in this file
 
+## 9.6.2 - 2021-05-6
+
+- simplify and speed up code for copying a stream to disk (#2425)
+
+## 9.6.1 - 2021-05-06
+
+- update InteractsWithMedia.php (#2421)
+
+## 9.6.0 - 2021-05-05
+
+- add a way to rename files globally (#2418)
+
+## 9.5.6 - 2021-04-20
+
+- include extra_headers when adding media from same S3 Disk (#2403)
+
+## 9.5.5 - 2021-04-13
+
+- fix adding private media from same S3 Disk (#2382)
+
+## 9.5.4 - 2021-04-12
+
+- add `Collection` typehint to `addMultipleMediaFromRequest` (#2389)
+
+## 9.5.3 - 2021-04-08
+
+- fix #2372 the fallback should be the original image (#2377)
+
+## 9.5.2 - 2021-04-07
+
+- allow v2 of spatie/temporary-directory
+
+## 9.5.1 - 2021-04-05
+
+- return Fallback url or path when conversion is not ready yet (#2369)
+
+## 9.5.0 - 2021-03-29
+
+- add `addMediaFromStream` (#2363)
+
+## 9.4.4 - 2021-03-15
+
+- allow `null` in the FileAdder 'order' setter (#2336)
+
+## 9.4.3 - 2021-03-07
+
+- `DiskDoesNotExist` moved to it's own class (#2306)
+
 ## 9.4.2 - 2021-01-15
 
 - improve `preservingOriginal` (#2258)

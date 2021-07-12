@@ -2,8 +2,9 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-<link rel="stylesheet" href="{{ URL::asset('css/normalize.css') }}">
-<link rel="stylesheet" href="{{ URL::asset('css/skeleton.css') }}">
+<link rel="stylesheet" href="{{ url('css/normalize.css') }}">
+<link rel="stylesheet" href="{{ url('css/skeleton.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
 <style>
 * {
   box-sizing: border-box;
@@ -173,18 +174,60 @@ button:hover {
   <div class="row">
     <div class="twelve columns">
       <div>
-        <img src="{{ URL::asset('images/header.png') }}" class="imgBanner">
+        <img src="{{ url('images/header.png') }}" class="imgBanner">
       </div>
       <div class="titleForm"><h4>SOAL SELIDIK INDEKS-KEGEMBIRAAN ORGANISASI BERPRESTASI TINGGI (I-KOBT)</h4></div>
       <div class="introPage tq">
         <h4>Terima Kasih</h4>
-        <a href="/"><button class="primary-button backHome">key-in data baru</button></a>
+        <a href="/"><button class="primary-button backHome">Masukkan Data Baru</button></a>
+        <canvas id="myChart" width="400" height="400"></canvas>
       </div>
       <div style="clear:both;margin:10px auto;max-width: 640px;text-align: center;"><span>&copy 2021 JABATAN PERKHIDMATAN AWAM NEGERI SABAH</span></div>
+
     </div>
    </div>
   </div>
 </div>
-
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Bahagian B', 'Bahagian C', 'Bahagian D', 'Bahagian E', 'Bahagian F', 'Bahagian G', 'Bahagian H', 'Bahagian I', 'Bahagian J', 'Bahagian K', 'Bahagian L', 'Bahagian M', 'Bahagian N', 'Bahagian O', 'Bahagian P', 'Bahagian Q'],
+          datasets: [
+            {
+              label: 'Your\'s Rating',
+              data: [{{$data['userRatingB']}}, {{$data['userRatingC']}}, {{$data['userRatingD']}}, {{$data['userRatingE']}}, {{$data['userRatingF']}}, {{$data['userRatingG']}},{{$data['userRatingH']}}, {{$data['userRatingI']}}, {{$data['userRatingJ']}}, {{$data['userRatingK']}}, {{$data['userRatingL']}}, {{$data['userRatingM']}}, {{$data['userRatingN']}}, {{$data['userRatingO']}}, {{$data['userRatingP']}}, {{$data['userRatingQ']}}],
+              backgroundColor: [
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderColor: [
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          },
+            {
+              label: 'Total Rating',
+              data: [{{$data['totalRatingB']}}, {{$data['totalRatingC']}}, {{$data['totalRatingD']}}, {{$data['totalRatingE']}}, {{$data['totalRatingF']}}, {{$data['totalRatingG']}}, {{$data['totalRatingH']}}, {{$data['totalRatingI']}}, {{$data['totalRatingJ']}}, {{$data['totalRatingK']}}, {{$data['totalRatingL']}}, {{$data['totalRatingM']}}, {{$data['totalRatingN']}}, {{$data['totalRatingO']}}, {{$data['totalRatingP']}}, {{$data['totalRatingQ']}}],
+              backgroundColor: [
+                  'rgba(54, 162, 235, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1
+          }
+        ]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true,
+                  suggestedMax: 10,
+              }
+          }
+      }
+  });
+  </script>
 </body>
 </html>

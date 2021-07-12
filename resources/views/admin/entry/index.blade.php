@@ -48,36 +48,37 @@
                                                 #
                                             </label>
                                         </th>
-
-                                        <th is='sortable' :column="'id'">{{ trans('admin.entry.columns.id') }}</th>
-                                        <th is='sortable' :column="'umur'">{{ trans('admin.entry.columns.umur') }}</th>
-                                        <th is='sortable' :column="'jantina'">{{ trans('admin.entry.columns.jantina') }}</th>
-                                        <th is='sortable' :column="'agama'">{{ trans('admin.entry.columns.agama') }}</th>
-                                        <th is='sortable' :column="'bangsa'">{{ trans('admin.entry.columns.bangsa') }}</th>
-                                        <th is='sortable' :column="'status'">{{ trans('admin.entry.columns.status') }}</th>
-                                        <th is='sortable' :column="'bilAnak'">{{ trans('admin.entry.columns.bilAnak') }}</th>
-                                        <th is='sortable' :column="'tinggalBersamaPasangan'">{{ trans('admin.entry.columns.tinggalBersamaPasangan') }}</th>
-                                        <th is='sortable' :column="'education'">{{ trans('admin.entry.columns.education') }}</th>
-                                        <th is='sortable' :column="'jumlahGaji'">{{ trans('admin.entry.columns.jumlahGaji') }}</th>
-                                        <th is='sortable' :column="'kesukaranGaji'">{{ trans('admin.entry.columns.kesukaranGaji') }}</th>
-                                        <th is='sortable' :column="'pernahTukarKerja'">{{ trans('admin.entry.columns.pernahTukarKerja') }}</th>
-                                        <th is='sortable' :column="'masalahKesihatan'">{{ trans('admin.entry.columns.masalahKesihatan') }}</th>
-                                        <th is='sortable' :column="'tempatTinggal'">{{ trans('admin.entry.columns.tempatTinggal') }}</th>
-                                        <th is='sortable' :column="'tinggalBersama'">{{ trans('admin.entry.columns.tinggalBersama') }}</th>
-                                        <th is='sortable' :column="'kenderaanKerja'">{{ trans('admin.entry.columns.kenderaanKerja') }}</th>
-                                        <th is='sortable' :column="'B1'">{{ trans('admin.entry.columns.B1') }}</th>
-                                        <th is='sortable' :column="'B2'">{{ trans('admin.entry.columns.B2') }}</th>
-                                        <th is='sortable' :column="'B3'">{{ trans('admin.entry.columns.B3') }}</th>
-                                        <th is='sortable' :column="'B4'">{{ trans('admin.entry.columns.B4') }}</th>
-                                        <th is='sortable' :column="'B5'">{{ trans('admin.entry.columns.B5') }}</th>
-                                        <th is='sortable' :column="'B6'">{{ trans('admin.entry.columns.B6') }}</th>
-                                        <th is='sortable' :column="'B7'">{{ trans('admin.entry.columns.B7') }}</th>
-                                        <th is='sortable' :column="'B8'">{{ trans('admin.entry.columns.B8') }}</th>
-                                        <th is='sortable' :column="'B9'">{{ trans('admin.entry.columns.B9') }}</th>
-                                        <th is='sortable' :column="'B10'">{{ trans('admin.entry.columns.B10') }}</th>
-                                        <th is='sortable' :column="'B11'">{{ trans('admin.entry.columns.B11') }}</th>
-                                        <th is='sortable' :column="'B12'">{{ trans('admin.entry.columns.B12') }}</th>
-                                        <th is='sortable' :column="'B13'">{{ trans('admin.entry.columns.B13') }}</th>
+                                        <th is='sortable' :column="'uuid'">id</th>
+                                        <th is='sortable' :column="'umur'">Umur</th>
+                                        <th is='sortable' :column="'jantina'">Jantina</th>
+                                        <th is='sortable' :column="'agama'">Agama</th>
+                                        <th is='sortable' :column="'lainAgamaDetail'">Lain-lain agama</th>
+                                        <th is='sortable' :column="'daerahBertugas'">Daerah Bertugas</th>
+                                        <th is='sortable' :column="'status'">Status</th>
+                                        <th is='sortable' :column="'bilAnak'">Bilangan Anak</th>
+                                        <th is='sortable' :column="'bilIsiRumah'">Bilangan Isi Rumah</th>
+                                        <th is='sortable' :column="'tinggalBersamaPasangan'">Tinggal Bersama Pasangan</th>
+                                        <th is='sortable' :column="'bilBilikTidur'">Bil. Bilik Tidur</th>
+                                        <th is='sortable' :column="'education'">Tahap Pendidikan</th>
+                                        <th is='sortable' :column="'agensi'">Agensi</th>
+                                        <th is='sortable' :column="'kumpulanPerkhidmatan'">Kumpulan Perkhidmatan</th>
+                                        <th is='sortable' :column="'tarafJawatan'">Taraf Jawatan</th>
+                                        <th is='sortable' :column="'skimPerkhidmatan'">Skim Perkhidmatan</th>
+                                        <th is='sortable' :column="'gredJawatan'">Gred Jawatan</th>
+                                        <th is='sortable' :column="'gajiKasarBulanan'">Gaji Kasar Bulanan</th>
+                                        <th is='sortable' :column="'gajiBersihBulanan'">Gaji Bersih Bulanan</th>
+                                        <th is='sortable' :column="'kesukaranGaji'">Kesukaran Gaji</th>
+                                        <th is='sortable' :column="'tempohPerkhidmatanTahun'">Tempoh Perkhidmatan (Tahun)</th>
+                                        <th is='sortable' :column="'tempohPerkhidmatanBulan'">Tempoh Perkhidmatan (Bulan)</th>
+                                        <th is='sortable' :column="'masalahKesihatan'">Masalah Kesihatan</th>
+                                        <th is='sortable' :column="'masalahKesihatanDetail'">Masalah Kesihatan (Nyatakan) </th>
+                                        <th is='sortable' :column="'tempatTinggal'">Tempat Tinggal</th>
+                                        <th is='sortable' :column="'tempatTinggalDetail'">Tempat Tinggal (Nyatakan)</th>
+                                        <th is='sortable' :column="'tinggalBersama'">Tinggal Bersama</th>
+                                        <th is='sortable' :column="'tinggalBersamaDetail'">Tinggal Bersama (Nyatakan)</th>
+                                        <th is='sortable' :column="'kenderaanKerja'">Kenderaan Kerja</th>
+                                        <th is='sortable' :column="'kenderaanKerjaDetail'">Kenderaan Kerja (Nyatakan)</th>
+                                        {{--<th is='sortable' :column="'B13'">{{ trans('admin.entry.columns.B13') }}</th>
                                         <th is='sortable' :column="'B14'">{{ trans('admin.entry.columns.B14') }}</th>
                                         <th is='sortable' :column="'B15'">{{ trans('admin.entry.columns.B15') }}</th>
                                         <th is='sortable' :column="'B16'">{{ trans('admin.entry.columns.B16') }}</th>
@@ -114,7 +115,7 @@
                                         <th is='sortable' :column="'C2'">{{ trans('admin.entry.columns.C2') }}</th>
                                         <th is='sortable' :column="'C3'">{{ trans('admin.entry.columns.C3') }}</th>
                                         <th is='sortable' :column="'C4'">{{ trans('admin.entry.columns.C4') }}</th>
-                                        <th is='sortable' :column="'C5'">{{ trans('admin.entry.columns.C5') }}</th>
+                                        <th is='sortable' :column="'C5'">{{ trans('admin.entry.columns.C5') }}</th> --}}
 
                                         <th></th>
                                     </tr>
@@ -138,37 +139,37 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.id }}</td>
+                                        <td>@{{ item.uuid }}</td>
                                         <td>@{{ item.umur }}</td>
                                         <td>@{{ item.jantina }}</td>
                                         <td>@{{ item.agama }}</td>
-                                        <td>@{{ item.bangsa }}</td>
+                                        <td>@{{ item.lainAgamaDetail }}</td>
+                                        <td>@{{ item.daerahBertugas }}</td>
                                         <td>@{{ item.status }}</td>
                                         <td>@{{ item.bilAnak }}</td>
+                                        <td>@{{ item.bilIsiRumah }}</td>
                                         <td>@{{ item.tinggalBersamaPasangan }}</td>
+                                        <td>@{{ item.bilBilikTidur }}</td>
                                         <td>@{{ item.education }}</td>
-                                        <td>@{{ item.jumlahGaji }}</td>
+                                        <td>@{{ item.agensi }}</td>
+                                        <td>@{{ item.kumpulanPerkhidmatan }}</td>
+                                        <td>@{{ item.tarafJawatan }}</td>
+                                        <td>@{{ item.skimPerkhidmatan }}</td>
+                                        <td>@{{ item.gredJawatan }}</td>
+                                        <td>@{{ item.gajiKasarBulanan }}</td>
+                                        <td>@{{ item.gajiBersihBulanan }}</td>
                                         <td>@{{ item.kesukaranGaji }}</td>
-                                        <td>@{{ item.pernahTukarKerja }}</td>
+                                        <td>@{{ item.tempohPerkhidmatanTahun }}</td>
+                                        <td>@{{ item.tempohPerkhidmatanBulan }}</td>
                                         <td>@{{ item.masalahKesihatan }}</td>
+                                        <td>@{{ item.masalahKesihatanDetail }}</td>
                                         <td>@{{ item.tempatTinggal }}</td>
+                                        <td>@{{ item.tempatTinggalDetail }}</td>
                                         <td>@{{ item.tinggalBersama }}</td>
+                                        <td>@{{ item.tinggalBersamaDetail }}</td>
                                         <td>@{{ item.kenderaanKerja }}</td>
-                                        <td>@{{ item.B1 }}</td>
-                                        <td>@{{ item.B2 }}</td>
-                                        <td>@{{ item.B3 }}</td>
-                                        <td>@{{ item.B4 }}</td>
-                                        <td>@{{ item.B5 }}</td>
-                                        <td>@{{ item.B6 }}</td>
-                                        <td>@{{ item.B7 }}</td>
-                                        <td>@{{ item.B8 }}</td>
-                                        <td>@{{ item.B9 }}</td>
-                                        <td>@{{ item.B10 }}</td>
-                                        <td>@{{ item.B11 }}</td>
-                                        <td>@{{ item.B12 }}</td>
-                                        <td>@{{ item.B13 }}</td>
-                                        <td>@{{ item.B14 }}</td>
-                                        <td>@{{ item.B15 }}</td>
+                                        <td>@{{ item.kenderaanKerjaDetail }}</td>
+                                        {{--<td>@{{ item.B15 }}</td>
                                         <td>@{{ item.B16 }}</td>
                                         <td>@{{ item.B17 }}</td>
                                         <td>@{{ item.B18 }}</td>
@@ -203,7 +204,7 @@
                                         <td>@{{ item.C2 }}</td>
                                         <td>@{{ item.C3 }}</td>
                                         <td>@{{ item.C4 }}</td>
-                                        <td>@{{ item.C5 }}</td>
+                                        <td>@{{ item.C5 }}</td> --}}
                                         
                                         <td>
                                             <div class="row no-gutters">
