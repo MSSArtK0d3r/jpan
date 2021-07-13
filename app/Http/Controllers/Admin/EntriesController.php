@@ -283,8 +283,8 @@ class EntriesController extends Controller
 
     public function storeForm(Request $req)
     {
+        
         Entry::create($req->all());
-        //return redirect()->route('/result', ['uuid' => $req->uuid]);
         return redirect()->action(
             [ThankYouResult::class, 'index'], ['uuid' => $req->uuid]
         );

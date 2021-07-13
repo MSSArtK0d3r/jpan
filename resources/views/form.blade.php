@@ -268,7 +268,7 @@
                      <input type="radio" onclick="clearInput('lainAgamaInput')" id="Tiada" name="agama" value="Tiada">
                      <label class="inBlock" for="Tiada">Tidak Menganut Agama</label><br>
                      <input type="radio" id="LainAgama" name="agama">
-                     <label class="inBlock" for="Lain-lain">Lain-lain (sila nyatakan) :</label> <input id="lainAgamaInput" class="lain-lain fiftyPercent" name="lainAgamaDetail">
+                     <label class="inBlock" for="LainAgama">Lain-lain (sila nyatakan) :</label> <input id="lainAgamaInput" class="lain-lain fiftyPercent" name="lainAgamaDetail">
                   </div>
 
                   <div class="introPage" style="margin-bottom: 10px;">
@@ -342,7 +342,7 @@
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>11. Tahap Pendidikan Tertinggi :</p>
                      <input type="radio" id="sr" name="education" value="Sekolah Rendah">
-                     <label class="inBlock" for="Sekolah Rendah">Sekolah Rendah</label><br>
+                     <label class="inBlock" for="sr">Sekolah Rendah</label><br>
                      <input type="radio" id="PMR/SRP" name="education" value="PMR/SRP">
                      <label class="inBlock" for="PMR/SRP">PMR/SRP</label><br>
                      <input type="radio" id="SPM/Setara" name="education" value="SPM/Setara">
@@ -352,7 +352,7 @@
                      <input type="radio" id="Diploma" name="education" value="Diploma">
                      <label class="inBlock" for="Diploma">Diploma</label><br>
                      <input type="radio" id="SarjanaMuda" name="education" value="Sarjana Muda">
-                     <label class="inBlock" for="Sarjana Muda">Sarjana Muda</label><br>
+                     <label class="inBlock" for="SarjanaMuda">Sarjana Muda</label><br>
                      <input type="radio" id="Sarjana" name="education" value="Sarjana">
                      <label class="inBlock" for="Sarjana">Sarjana</label><br>
                      <input type="radio" id="PhD" name="education" value="PhD">
@@ -364,21 +364,21 @@
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>13. Kumpulan Perkhidmatan : </p>
-                     <input type="radio" name="kumpulanPerkhidmatan" value="Pengurusan Tertinggi">
-                     <label class="inBlock">Pengurusan Tertinggi</label><br>
-                     <input type="radio" name="kumpulanPerkhidmatan" value="Pengurusan-Professional">
-                     <label class="inBlock">Pengurusan & Professional</label><br>
-                     <input type="radio" name="kumpulanPerkhidmatan" value="Kumpulan Pelaksana">
-                     <label class="inBlock">Kumpulan Pelaksana</label>
+                     <input id="pt" type="radio" name="kumpulanPerkhidmatan" value="Pengurusan Tertinggi">
+                     <label class="inBlock" for="pt">Pengurusan Tertinggi</label><br>
+                     <input id="pp" type="radio" name="kumpulanPerkhidmatan" value="Pengurusan-Professional">
+                     <label for="pp" class="inBlock">Pengurusan & Professional</label><br>
+                     <input id="kp" type="radio" name="kumpulanPerkhidmatan" value="Kumpulan Pelaksana">
+                     <label for="kp" class="inBlock">Kumpulan Pelaksana</label>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>14. Taraf Jawatan : </p>
-                     <input type="radio" name="tarafJawatan" value="Tetap">
-                     <label class="inBlock">Tetap</label><br>
-                     <input type="radio" name="tarafJawatan" value="Sementara">
-                     <label class="inBlock">Sementara</label><br>
-                     <input type="radio" name="tarafJawatan" value="Kontrak">
-                     <label class="inBlock">Kontrak</label>
+                     <input id="tetap" type="radio" name="tarafJawatan" value="Tetap">
+                     <label for="tetap" class="inBlock">Tetap</label><br>
+                     <input id="sementara" type="radio" name="tarafJawatan" value="Sementara">
+                     <label for="sementara" class="inBlock">Sementara</label><br>
+                     <input id="kontrak" type="radio" name="tarafJawatan" value="Kontrak">
+                     <label for="kontrak" class="inBlock">Kontrak</label>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>15. Skim Perkhidmatan : </p>
@@ -398,10 +398,10 @@
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>19. Adakah anda mengalami kesukaran menjalani kehidupan dengan jumlah gaji anda?</p>
-                     <input type="radio" id="Ya" name="kesukaranGaji" value="Ya">
-                     <label class="inBlock" for="Ya">Ya</label><br>
-                     <input type="radio" id="Tidak" name="kesukaranGaji" value="Tidak">
-                     <label class="inBlock" for="Tidak">Tidak</label>
+                     <input type="radio" id="sukarGajiYa" name="kesukaranGaji" value="Ya">
+                     <label class="inBlock" for="sukarGajiYa">Ya</label><br>
+                     <input type="radio" id="sukarGajiTidak" name="kesukaranGaji" value="Tidak">
+                     <label class="inBlock" for="sukarGajiTidak">Tidak</label>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>20. Tempoh Perkhidmatan : </label>
@@ -410,10 +410,10 @@
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>21. Adakah anda mengalami masalah kesihatan? (Jika Ya, sila nyatakan)</p>
-                     <input type="radio" id="adaMasalahKesihatan" name="masalahKesihatan">
-                     <label class="inBlock" for="Ya">Ya</label><br><input placeholder="Nyatakan masalah kesihatan" id="inputKesihatan" class="big-input lain-lain" name="masalahKesihatanDetail"><br>
-                     <input type="radio" onclick="clearInput('inputKesihatan')" id="Tidak" name="masalahKesihatan" value="Tidak">
-                     <label class="inBlock" for="Tidak">Tidak</label>
+                     <input type="radio" id="adaMasalahKesihatanYa" name="masalahKesihatan">
+                     <label class="inBlock" for="adaMasalahKesihatanYa">Ya</label><br><input placeholder="Nyatakan masalah kesihatan" id="inputKesihatan" class="big-input lain-lain" name="masalahKesihatanDetail"><br>
+                     <input type="radio" onclick="clearInput('inputKesihatan')" id="adaMasalahKesihatanTidak" name="masalahKesihatan" value="Tidak">
+                     <label class="inBlock" for="adaMasalahKesihatanTidak">Tidak</label>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>22. Status Rumah Tempat Tinggal : </p>
@@ -424,7 +424,7 @@
                      <input type="radio" onclick="clearInput('inputTempatTinggal')" id="BilikSewa" name="tempatTinggal" value="Bilik Sewa">
                      <label class="inBlock" for="BilikSewa">Bilik Sewa</label><br>
                      <input type="radio" id="lainTempatTingal" name="tempatTinggal" value="lain-lain">
-                     <label class="inBlock" for="other">Lain-lain (Nyatakan) : </label><input id="inputTempatTinggal" class="big-input lain-lain" name="tempatTinggalDetail">
+                     <label class="inBlock" for="lainTempatTingal">Lain-lain (Nyatakan) : </label><input id="inputTempatTinggal" class="big-input lain-lain" name="tempatTinggalDetail">
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>23. Status Tinggal Bersama : </p>
@@ -432,12 +432,12 @@
                      <label class="inBlock" for="bersamaIbuBapa">Bersama Ibu Bapa</label><br>
                      <input type="radio" onclick="clearInput('inputTinggalBersama')" id="BersamaKeluargaMertua" name="tinggalBersama" value="Bersama Keluarga Mertua">
                      <label class="inBlock" for="BersamaKeluargaMertua">Bersama Keluarga Mertua</label><br>
-                     <input type="radio" onclick="clearInput('inputTinggalBersama')" name="tinggalBersama" value="Hanya Bersama Suami/Isteri dan Anak">
-                     <label class="inBlock" for="HanyaBersamaSuamiDanAnak">Hanya Bersama Suami/Isteri dan Anak</label><br>
-                     <input type="radio" onclick="clearInput('inputTinggalBersama')" name="tinggalBersama" value="Tinggal Berjauhan Dengan Pasangan">
-                     <label class="inBlock" for="HanyaBersamaSuamiDanAnak">Tinggal Berjauhan Dengan Pasangan</label><br>
-                     <input type="radio" id="lainTinggalBersama" name="tinggalBersama" value="lain-lain">
-                     <label class="inBlock" for="other">Lain-lain (Nyatakan) : </label><input id="inputTinggalBersama" class="big-input lain-lain" name="tinggalBersamaDetail">
+                     <input type="radio" id="hbsi" onclick="clearInput('inputTinggalBersama')" name="tinggalBersama" value="Hanya Bersama Suami/Isteri dan Anak">
+                     <label class="inBlock" for="hbsi">Hanya Bersama Suami/Isteri dan Anak</label><br>
+                     <input type="radio" id="tjdp" onclick="clearInput('inputTinggalBersama')" name="tinggalBersama" value="Tinggal Berjauhan Dengan Pasangan">
+                     <label class="inBlock" for="tjdp">Tinggal Berjauhan Dengan Pasangan</label><br>
+                     <input type="radio" id="lainTinggalBersamaLain" name="tinggalBersama" value="lain-lain">
+                     <label class="inBlock" for="lainTinggalBersamaLain">Lain-lain (Nyatakan) : </label><input id="inputTinggalBersama" class="big-input lain-lain" name="tinggalBersamaDetail">
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>24. Apakah jenis pengangkutan anda ke tempat kerja?</p>
@@ -450,7 +450,7 @@
                      <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="BasTeksi" name="kenderaanKerja" value="Bas Teksi">
                      <label class="inBlock" for="BasTeksi">Bas/Teksi</label><br>
                      <input type="radio" id="lainKenderaanKerja" name="kenderaanKerja" value="lain-lain">
-                     <label class="inBlock" for="other">Lain-lain (Nyatakan) : </label><input id="inputKenderaanKerja" class="big-input lain-lain" name="kenderaanKerjaDetail">
+                     <label class="inBlock" for="lainKenderaanKerja">Lain-lain (Nyatakan) : </label><input id="inputKenderaanKerja" class="big-input lain-lain" name="kenderaanKerjaDetail">
                   </div>
 
                </div>
@@ -6777,9 +6777,9 @@
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>1. Apakah komen anda mengenai soal selidik ini? (Jika ada)</label>
-                     <textarea rows="10" class="big-input" name="komen"></textarea><br>
+                     <textarea rows="10" class="big-input" name="komen" value=''></textarea><br>
                      <label>2. Apakah cadangan/komen ada berkaitan kegembiraan dan prestasi anda sebagai penjawat awam negeri Sabah? (Jika ada)</label><br>
-                     <textarea rows="10" class="big-input" name="cadangan"></textarea>
+                     <textarea rows="10" class="big-input" name="cadangan" value=''></textarea>
                      
                   </div>
                </div>
