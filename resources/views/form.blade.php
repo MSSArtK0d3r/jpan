@@ -179,7 +179,7 @@
       display: inline-block;
    }
 
-   #lainTinggalBersama:checked~#inputTinggalBersama {
+   #lainTinggalBersamaLain:checked~#inputTinggalBersama {
       display: inline-block;
    }
 
