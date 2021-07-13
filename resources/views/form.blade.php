@@ -171,7 +171,7 @@
       display: inline-block;
    }
 
-   #adaMasalahKesihatan:checked~#inputKesihatan {
+   #adaMasalahKesihatanYa:checked~#inputKesihatan {
       display: inline-block;
    }
 
