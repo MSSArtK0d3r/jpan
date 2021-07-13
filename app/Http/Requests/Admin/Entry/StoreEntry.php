@@ -91,6 +91,8 @@ class StoreEntry extends FormRequest
             'C3' => ['required', 'string'],
             'C4' => ['required', 'string'],
             'C5' => ['required', 'string'],
+            'komen' => ['nullable'],
+            'cadangan' => ['nullable'],
             
         ];
     }
