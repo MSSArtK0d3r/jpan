@@ -14,12 +14,17 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
+      font-family: "Raleway";
    }
 
    #regForm {
       margin: 20px auto;
-      font-family: Roboto;
+      font-family: "Raleway";
       max-width: 640px;
+   }
+
+   label {
+      font-weight: normal;
    }
 
    h1 {
