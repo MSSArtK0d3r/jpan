@@ -15,22 +15,22 @@ class ThankYouResult extends Controller
         $entry = DB::table('entries')->where('uuid', $uuid)->first();
         if ($entry !== null){
         $data['renderData'] = true;
-        $userRateB = (($entry->B1 + $entry->B2 + $entry->B3 + $entry->B4 + $entry->B5 + $entry->B6 + $entry->B7 + $entry->B8 + $entry->B9 + $entry->B10 + $entry->B11 + $entry->B12 + $entry->B13 + $entry->B14 + $entry->B15 + $entry->B16 + $entry->B17 + $entry->B18 ) * 10) / 180;
-        $userRateC = (($entry->C1 + $entry->C2) * 10) / 20;
-        $userRateD = ($entry->D1 * 10) / 10;
-        $userRateE = (($entry->E1 + $entry->E2 + $entry->E3 + $entry->E4 + $entry->E5 + $entry->E6) * 10) / 60;
-        $userRateF = (($entry->F1 + $entry->F2 + $entry->F3 + $entry->F4 + $entry->F5 + $entry->F6) * 10) / 60;
-        $userRateG = (($entry->G1 + $entry->G2 + $entry->G3 + $entry->G4 + $entry->G5 + $entry->G6 + $entry->G7 + $entry->G8 + $entry->G9 + $entry->G10) * 10) / 100;
-        $userRateH = (($entry->H1 + $entry->H2 + $entry->H3 + $entry->H4 + $entry->H5 + $entry->H6 + $entry->H7 + $entry->H8 + $entry->H9 + $entry->H10 + $entry->H11 + $entry->H12 + $entry->H13 + $entry->H14 + $entry->H15 + $entry->H16 + $entry->H17 + $entry->H18 + $entry->H19 + $entry->H20 + $entry->H21+ $entry->H22 + $entry->H23 + $entry->H24 + $entry->H25 + $entry->H26 + $entry->H27 + $entry->H28 + $entry->H29 + $entry->H30 + $entry->H31 + $entry->H32 + $entry->H33 + $entry->H34 + $entry->H35 ) * 10) / 350;
-        $userRateI = (($entry->I1 + $entry->I2 + $entry->I3) * 10) / 30;
-        $userRateJ = (($entry->J1 + $entry->J2 + $entry->J3 + $entry->J4 + $entry->J5 + $entry->J6 + $entry->J7 + $entry->J8 + $entry->J9 + $entry->J10) * 10) / 100;
-        $userRateK = (($entry->K1 + $entry->K2 + $entry->K3 + $entry->K4 + $entry->K5 + $entry->K6 + $entry->K7 + $entry->K8 + $entry->K9 + $entry->K10) * 10) / 100;
-        $userRateL = (($entry->L1 + $entry->L2 + $entry->L3 + $entry->L4) * 10) / 40;
-        $userRateM = (($entry->M1 + $entry->M2 + $entry->M3) * 10) / 30;
-        $userRateN = (($entry->N1 + $entry->N2 + $entry->N3 + $entry->N4) * 10) / 40;
-        $userRateO = (($entry->O1 + $entry->O2 + $entry->O3 + $entry->O4 + $entry->O5) * 10) / 50;
-        $userRateP = (($entry->P1 + $entry->P2) * 10) / 20;
-        $userRateQ = (($entry->Q1 + $entry->Q2 + $entry->Q3 + $entry->Q4) * 10) / 40;
+        $userRateB = (($entry->B1 + $entry->B2 + $entry->B3 + $entry->B4 + $entry->B5 + $entry->B6 + $entry->B7 + $entry->B8 + $entry->B9 + $entry->B10 + $entry->B11 + $entry->B12 + $entry->B13 + $entry->B14 + $entry->B15 + $entry->B16 + $entry->B17 + $entry->B18 ) * 100) / 180;
+        $userRateC = (($entry->C1 + $entry->C2) * 100) / 20;
+        $userRateD = ($entry->D1 * 100) / 10;
+        $userRateE = (($entry->E1 + $entry->E2 + $entry->E3 + $entry->E4 + $entry->E5 + $entry->E6) * 100) / 60;
+        $userRateF = (($entry->F1 + $entry->F2 + $entry->F3 + $entry->F4 + $entry->F5 + $entry->F6) * 100) / 60;
+        $userRateG = (($entry->G1 + $entry->G2 + $entry->G3 + $entry->G4 + $entry->G5 + $entry->G6 + $entry->G7 + $entry->G8 + $entry->G9 + $entry->G10) * 100) / 100;
+        $userRateH = (($entry->H1 + $entry->H2 + $entry->H3 + $entry->H4 + $entry->H5 + $entry->H6 + $entry->H7 + $entry->H8 + $entry->H9 + $entry->H10 + $entry->H11 + $entry->H12 + $entry->H13 + $entry->H14 + $entry->H15 + $entry->H16 + $entry->H17 + $entry->H18 + $entry->H19 + $entry->H20 + $entry->H21+ $entry->H22 + $entry->H23 + $entry->H24 + $entry->H25 + $entry->H26 + $entry->H27 + $entry->H28 + $entry->H29 + $entry->H30 + $entry->H31 + $entry->H32 + $entry->H33 + $entry->H34 + $entry->H35 ) * 100) / 350;
+        $userRateI = (($entry->I1 + $entry->I2 + $entry->I3) * 100) / 30;
+        $userRateJ = (($entry->J1 + $entry->J2 + $entry->J3 + $entry->J4 + $entry->J5 + $entry->J6 + $entry->J7 + $entry->J8 + $entry->J9 + $entry->J10) * 100) / 100;
+        $userRateK = (($entry->K1 + $entry->K2 + $entry->K3 + $entry->K4 + $entry->K5 + $entry->K6 + $entry->K7 + $entry->K8 + $entry->K9 + $entry->K10) * 100) / 100;
+        $userRateL = (($entry->L1 + $entry->L2 + $entry->L3 + $entry->L4) * 100) / 40;
+        $userRateM = (($entry->M1 + $entry->M2 + $entry->M3) * 100) / 30;
+        $userRateN = (($entry->N1 + $entry->N2 + $entry->N3 + $entry->N4) * 100) / 40;
+        $userRateO = (($entry->O1 + $entry->O2 + $entry->O3 + $entry->O4 + $entry->O5) * 100) / 50;
+        $userRateP = (($entry->P1 + $entry->P2) * 100) / 20;
+        $userRateQ = (($entry->Q1 + $entry->Q2 + $entry->Q3 + $entry->Q4) * 100) / 40;
        
         $BRate = round($userRateB, 2);
         $CRate = round($userRateC, 2);
@@ -83,42 +83,10 @@ class ThankYouResult extends Controller
         $data['totalRatingP'] = $this->calculateTotalP();
         $data['totalRatingQ'] = $this->calculateTotalQ();
         
-        // echo 'Your Rating B '.$BRate;
-        // echo '<br>Your Rating C '.$CRate;
-        // echo '<br>Your Rating D '.$DRate;
-        // echo '<br>Your Rating E '.$ERate;
-        // echo '<br>Your Rating F '.$FRate;
-        // echo '<br>Your Rating G '.$GRate;
-        // echo '<br>Your Rating H '.$HRate;
-        // echo '<br>Your Rating I '.$IRate;
-        // echo '<br>Your Rating J '.$JRate;
-        // echo '<br>Your Rating K '.$KRate;
-        // echo '<br>Your Rating L '.$LRate;
-        // echo '<br>Your Rating M '.$MRate;
-        // echo '<br>Your Rating N '.$NRate;
-        // echo '<br>Your Rating O '.$ORate;
-        // echo '<br>Your Rating P '.$PRate;
-        // echo '<br>Your Rating Q '.$QRate.'<br>';
-        // echo '<br> Total B Rating ' .$this->calculateTotalB();
-        // echo '<br> Total C Rating ' .$this->calculateTotalC();
-        // echo '<br> Total D Rating ' .$this->calculateTotalD();
-        // echo '<br> Total E Rating ' .$this->calculateTotalE();
-        // echo '<br> Total F Rating ' .$this->calculateTotalF();
-        // echo '<br> Total G Rating ' .$this->calculateTotalG();
-        // echo '<br> Total H Rating ' .$this->calculateTotalH();
-        // echo '<br> Total I Rating ' .$this->calculateTotalI();
-        // echo '<br> Total J Rating ' .$this->calculateTotalJ();
-        // echo '<br> Total K Rating ' .$this->calculateTotalK();
-        // echo '<br> Total L Rating ' .$this->calculateTotalL();
-        // echo '<br> Total M Rating ' .$this->calculateTotalM();
-        // echo '<br> Total N Rating ' .$this->calculateTotalN();
-        // echo '<br> Total O Rating ' .$this->calculateTotalO();
-        // echo '<br> Total P Rating ' .$this->calculateTotalP();
-        // echo '<br> Total Q Rating ' .$this->calculateTotalQ();
-
-
         return view('thankyou',['data' => $data]);
+        
         }
+        
         return redirect('/');
         
     }
@@ -193,7 +161,9 @@ class ThankYouResult extends Controller
 
         $countTotalB = count($TotalOfBRatingB1->toArray());
         $totalB = array_sum($totalB);
-        $totalB = round($totalB / ($countTotalB * 18), 2);
+        $totalPointsB = $countTotalB * 18 * 10;
+        $totalB = ($totalB * 100) / $totalPointsB;
+        $totalB = round($totalB, 2);
 
         return $totalB;
 
@@ -207,10 +177,12 @@ class ThankYouResult extends Controller
             $TotalOfCRatingC1->toArray(),
             $TotalOfCRatingC2->toArray(),
         );
-
+        
         $countTotalC = count($TotalOfCRatingC1->toArray());
         $totalC = array_sum($totalC);
-        $totalC = round($totalC / ($countTotalC * 2), 2);
+        $totalPointsC = $countTotalC * 2 * 10;
+        $totalC = ($totalC * 100) / $totalPointsC;
+        $totalC = round($totalC, 2);
 
         return $totalC;
     }
@@ -224,7 +196,9 @@ class ThankYouResult extends Controller
 
         $countTotalD = count($TotalOfDRatingD1->toArray());
         $totalD = array_sum($totalD);
-        $totalD = round($totalD / ($countTotalD * 1), 2);
+        $totalPointsD = $countTotalD * 1 * 10;
+        $totalD = ($totalD * 100) / $totalPointsD;
+        $totalD = round($totalD, 2);
 
         return $totalD;
     }
@@ -248,7 +222,9 @@ class ThankYouResult extends Controller
 
         $countTotalE = count($TotalOfERatingE1->toArray());
         $totalE = array_sum($totalE);
-        $totalE = round($totalE / ($countTotalE * 6), 2);
+        $totalPointsE = $countTotalE * 6 * 10;
+        $totalE = ($totalE * 100) / $totalPointsE;
+        $totalE = round($totalE, 2);
 
         return $totalE;
     }
@@ -272,7 +248,9 @@ class ThankYouResult extends Controller
 
         $countTotalF = count($TotalOfFRatingF1->toArray());
         $totalF = array_sum($totalF);
-        $totalF = round($totalF / ($countTotalF * 6), 2);
+        $totalPointsF = $countTotalF * 6 * 10;
+        $totalF = ($totalF * 100) / $totalPointsF;
+        $totalF = round($totalF, 2);
 
         return $totalF;
     }
@@ -305,7 +283,9 @@ class ThankYouResult extends Controller
 
         $countTotalG = count($TotalOfGRatingG1->toArray());
         $totalG = array_sum($totalG);
-        $totalG = round($totalG / ($countTotalG * 10), 2);
+        $totalPointsG = $countTotalG * 10 * 10;
+        $totalG = ($totalG * 100) / $totalPointsG;
+        $totalG = round($totalG, 2);
 
         return $totalG;
 
@@ -389,7 +369,9 @@ class ThankYouResult extends Controller
 
         $countTotalH = count($TotalOfHRatingH1->toArray());
         $totalH = array_sum($totalH);
-        $totalH = round($totalH / ($countTotalH * 35), 2);
+        $totalPointsH = $countTotalH * 35 * 10;
+        $totalH = ($totalH * 100) / $totalPointsH;
+        $totalH = round($totalH, 2);
 
         return $totalH;
 
@@ -408,7 +390,9 @@ class ThankYouResult extends Controller
 
         $countTotalI = count($TotalOfIRatingI1->toArray());
         $totalI = array_sum($totalI);
-        $totalI = round($totalI / ($countTotalI * 3), 2);
+        $totalPointsI = $countTotalI * 3 * 10;
+        $totalI = ($totalI * 100) / $totalPointsI;
+        $totalI = round($totalI, 2);
 
         return $totalI;
     }
@@ -441,7 +425,9 @@ class ThankYouResult extends Controller
 
         $countTotalJ = count($TotalOfJRatingJ1->toArray());
         $totalJ = array_sum($totalJ);
-        $totalJ = round($totalJ / ($countTotalJ * 10), 2);
+        $totalPointsJ = $countTotalJ * 10 * 10;
+        $totalJ = ($totalJ * 100) / $totalPointsJ;
+        $totalJ = round($totalJ, 2);
 
         return $totalJ;
 
@@ -475,7 +461,9 @@ class ThankYouResult extends Controller
 
         $countTotalK = count($TotalOfKRatingK1->toArray());
         $totalK = array_sum($totalK);
-        $totalK = round($totalK / ($countTotalK * 10), 2);
+        $totalPointsK = $countTotalK * 10 * 10;
+        $totalK = ($totalK * 100) / $totalPointsK;
+        $totalK = round($totalK, 2);
 
         return $totalK;
 
@@ -496,7 +484,9 @@ class ThankYouResult extends Controller
 
         $countTotalL = count($TotalOfLRatingL1->toArray());
         $totalL = array_sum($totalL);
-        $totalL = round($totalL / ($countTotalL * 6), 2);
+        $totalPointsL = $countTotalL * 4 * 10;
+        $totalL = ($totalL * 100) / $totalPointsL;
+        $totalL = round($totalL, 2);
 
         return $totalL;
     }
@@ -514,7 +504,9 @@ class ThankYouResult extends Controller
 
         $countTotalM = count($TotalOfMRatingM1->toArray());
         $totalM = array_sum($totalM);
-        $totalM = round($totalM / ($countTotalM * 3), 2);
+        $totalPointsM = $countTotalM * 3 * 10;
+        $totalM = ($totalM * 100) / $totalPointsM;
+        $totalM = round($totalM, 2);
 
         return $totalM;
     }
@@ -534,7 +526,9 @@ class ThankYouResult extends Controller
 
         $countTotalN = count($TotalOfNRatingN1->toArray());
         $totalN = array_sum($totalN);
-        $totalN = round($totalN / ($countTotalN * 4), 2);
+        $totalPointsN = $countTotalN * 4 * 10;
+        $totalN = ($totalN * 100) / $totalPointsN;
+        $totalN = round($totalN, 2);
 
         return $totalN;
     }
@@ -554,7 +548,9 @@ class ThankYouResult extends Controller
 
         $countTotalO = count($TotalOfORatingO1->toArray());
         $totalO = array_sum($totalO);
-        $totalO = round($totalO / ($countTotalO * 4), 2);
+        $totalPointsO = $countTotalO * 4 * 10;
+        $totalO = ($totalO * 100) / $totalPointsO;
+        $totalO = round($totalO, 2);
 
         return $totalO;
     }
@@ -570,7 +566,9 @@ class ThankYouResult extends Controller
 
         $countTotalP = count($TotalOfPRatingP1->toArray());
         $totalP = array_sum($totalP);
-        $totalP = round($totalP / ($countTotalP * 2), 2);
+        $totalPointsP = $countTotalP * 2 * 10;
+        $totalP = ($totalP * 100) / $totalPointsP;
+        $totalP = round($totalP, 2);
 
         return $totalP;
     }
@@ -590,7 +588,9 @@ class ThankYouResult extends Controller
 
         $countTotalQ = count($TotalOfQRatingQ1->toArray());
         $totalQ = array_sum($totalQ);
-        $totalQ = round($totalQ / ($countTotalQ * 4), 2);
+        $totalPointsQ = $countTotalQ * 4 * 10;
+        $totalQ = ($totalQ * 100) / $totalPointsQ;
+        $totalQ = round($totalQ, 2);
 
         return $totalQ;
     }

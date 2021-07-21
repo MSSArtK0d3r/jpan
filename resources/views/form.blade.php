@@ -10,7 +10,10 @@
    }
 
    body {
-      background-color: rgb(243, 236, 230);
+      background-image: url('/images/jpan.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
    }
 
    #regForm {
@@ -217,7 +220,7 @@
             <form id="regForm" method="POST" action="/submit">
                @csrf
                <div class="titleForm">
-                  <h4>SOAL SELIDIK INDEKS-KEGEMBIRAAN ORGANISASI BERPRESTASI TINGGI (I-KOBT)</h4>
+                  <h5>SOAL SELIDIK<br>INDEKS-KEGEMBIRAAN ORGANISASI BERPRESTASI TINGGI<br>(I-KOBT)</h5>
                </div>
                <!-- One "tab" for each step in the form: -->
                <div class="tab introPage">
@@ -245,7 +248,10 @@
                   </div>
                   
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <label>1. Umur : </label><input class="small-input" name="umur"> tahun
+                     <label>1. Umur :</label>
+                     <select name="umur" class="selectBox">
+                        <option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option>
+                     </select> tahun
                      <input name="uuid" type="hidden" value="{{Uuid::generate(4)}}">
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
@@ -273,7 +279,14 @@
 
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>4. Bangsa : </label>
-                     <input class="big-input" name="bangsa">
+                     <select name="bangsa" class="selectBox">
+                        <option value="Melayu">Melayu</option>
+                        <option value="Cina">Cina</option>
+                        <option value="India">India</option>
+                        <option value="Bumiputra Sabah">Bumiputra Sabah</option>
+                        <option value="Bumiputra Sarawak">Bumiputra Sarawak</option>
+                        <option value="Lain-lain">Lain-lain</option>
+                     </select>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>5. Daerah Bertugas : </label>
@@ -405,8 +418,14 @@
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>20. Tempoh Perkhidmatan : </label>
-                     <input class="small-input" name="tempohPerkhidmatanTahun"> Tahun
-                     <input class="small-input" name="tempohPerkhidmatanBulan"> Bulan
+                     <select name="tempohPerkhidmatanTahun" class="selectBox">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+                     </select>
+                     tahun
+                     <select name="tempohPerkhidmatanBulan" class="selectBox">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
+                     </select>
+                     bulan
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>21. Adakah anda mengalami masalah kesihatan? (Jika Ya, sila nyatakan)</p>
@@ -488,7 +507,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B1" value="5" checked="checked">
+                           <input type="radio" id="5" name="B1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -538,7 +557,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B2" value="5" checked="checked">
+                           <input type="radio" id="5" name="B2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -588,7 +607,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B3" value="5" checked="checked">
+                           <input type="radio" id="5" name="B3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -639,7 +658,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B4" value="5" checked="checked">
+                           <input type="radio" id="5" name="B4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -689,7 +708,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B5" value="5" checked="checked">
+                           <input type="radio" id="5" name="B5" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -739,7 +758,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B6" value="5" checked="checked">
+                           <input type="radio" id="5" name="B6" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -789,7 +808,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B7" value="5" checked="checked">
+                           <input type="radio" id="5" name="B7" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -839,7 +858,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B8" value="5" checked="checked">
+                           <input type="radio" id="5" name="B8" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -889,7 +908,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B9" value="5" checked="checked">
+                           <input type="radio" id="5" name="B9" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -940,7 +959,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B10" value="5" checked="checked">
+                           <input type="radio" id="5" name="B10" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -990,7 +1009,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B11" value="5" checked="checked">
+                           <input type="radio" id="5" name="B11" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1040,7 +1059,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B12" value="5" checked="checked">
+                           <input type="radio" id="5" name="B12" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1090,7 +1109,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B13" value="5" checked="checked">
+                           <input type="radio" id="5" name="B13" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1140,7 +1159,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B14" value="5" checked="checked">
+                           <input type="radio" id="5" name="B14" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1190,7 +1209,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B15" value="5" checked="checked">
+                           <input type="radio" id="5" name="B15" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1240,7 +1259,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B16" value="5" checked="checked">
+                           <input type="radio" id="5" name="B16" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1290,7 +1309,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B17" value="5" checked="checked">
+                           <input type="radio" id="5" name="B17" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1340,7 +1359,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="B18" value="5" checked="checked">
+                           <input type="radio" id="5" name="B18" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1400,7 +1419,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="C1" value="5" checked="checked">
+                           <input type="radio" id="5" name="C1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1450,7 +1469,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="C2" value="5" checked="checked">
+                           <input type="radio" id="5" name="C2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1512,7 +1531,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="D1" value="5" checked="checked">
+                           <input type="radio" id="5" name="D1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1573,7 +1592,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="E1" value="5" checked="checked">
+                           <input type="radio" id="5" name="E1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1623,7 +1642,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="E2" value="5" checked="checked">
+                           <input type="radio" id="5" name="E2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1673,7 +1692,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="E3" value="5" checked="checked">
+                           <input type="radio" id="5" name="E3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1723,7 +1742,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="E4" value="5" checked="checked">
+                           <input type="radio" id="5" name="E4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1773,7 +1792,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="E5" value="5" checked="checked">
+                           <input type="radio" id="5" name="E5" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1823,7 +1842,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="E6" value="5" checked="checked">
+                           <input type="radio" id="5" name="E6" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1883,7 +1902,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="F1" value="5" checked="checked">
+                           <input type="radio" id="5" name="F1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1933,7 +1952,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="F2" value="5" checked="checked">
+                           <input type="radio" id="5" name="F2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -1983,7 +2002,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="F3" value="5" checked="checked">
+                           <input type="radio" id="5" name="F3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2033,7 +2052,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="F4" value="5" checked="checked">
+                           <input type="radio" id="5" name="F4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2083,7 +2102,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="F5" value="5" checked="checked">
+                           <input type="radio" id="5" name="F5" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2133,7 +2152,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="F6" value="5" checked="checked">
+                           <input type="radio" id="5" name="F6" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2193,7 +2212,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G1" value="5" checked="checked">
+                           <input type="radio" id="5" name="G1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2243,7 +2262,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G2" value="5" checked="checked">
+                           <input type="radio" id="5" name="G2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2293,7 +2312,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G3" value="5" checked="checked">
+                           <input type="radio" id="5" name="G3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2343,7 +2362,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G4" value="5" checked="checked">
+                           <input type="radio" id="5" name="G4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2393,7 +2412,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G5" value="5" checked="checked">
+                           <input type="radio" id="5" name="G5" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2443,7 +2462,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G6" value="5" checked="checked">
+                           <input type="radio" id="5" name="G6" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2493,7 +2512,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G7" value="5" checked="checked">
+                           <input type="radio" id="5" name="G7" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2543,7 +2562,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G8" value="5" checked="checked">
+                           <input type="radio" id="5" name="G8" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2593,7 +2612,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G9" value="5" checked="checked">
+                           <input type="radio" id="5" name="G9" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2643,7 +2662,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="G10" value="5" checked="checked">
+                           <input type="radio" id="5" name="G10" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2703,7 +2722,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H1" value="5" checked="checked">
+                           <input type="radio" id="5" name="H1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2753,7 +2772,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H2" value="5" checked="checked">
+                           <input type="radio" id="5" name="H2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2803,7 +2822,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H3" value="5" checked="checked">
+                           <input type="radio" id="5" name="H3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2853,7 +2872,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H4" value="5" checked="checked">
+                           <input type="radio" id="5" name="H4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2903,7 +2922,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H5" value="5" checked="checked">
+                           <input type="radio" id="5" name="H5" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -2953,7 +2972,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H6" value="5" checked="checked">
+                           <input type="radio" id="5" name="H6" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3003,7 +3022,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H7" value="5" checked="checked">
+                           <input type="radio" id="5" name="H7" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3053,7 +3072,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H8" value="5" checked="checked">
+                           <input type="radio" id="5" name="H8" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3103,7 +3122,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H9" value="5" checked="checked">
+                           <input type="radio" id="5" name="H9" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3153,7 +3172,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H10" value="5" checked="checked">
+                           <input type="radio" id="5" name="H10" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3203,7 +3222,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H11" value="5" checked="checked">
+                           <input type="radio" id="5" name="H11" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3253,7 +3272,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H12" value="5" checked="checked">
+                           <input type="radio" id="5" name="H12" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3303,7 +3322,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H13" value="5" checked="checked">
+                           <input type="radio" id="5" name="H13" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3353,7 +3372,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H14" value="5" checked="checked">
+                           <input type="radio" id="5" name="H14" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3403,7 +3422,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H15" value="5" checked="checked">
+                           <input type="radio" id="5" name="H15" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3453,7 +3472,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H16" value="5" checked="checked">
+                           <input type="radio" id="5" name="H16" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3503,7 +3522,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H17" value="5" checked="checked">
+                           <input type="radio" id="5" name="H17" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3553,7 +3572,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H18" value="5" checked="checked">
+                           <input type="radio" id="5" name="H18" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3603,7 +3622,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H19" value="5" checked="checked">
+                           <input type="radio" id="5" name="H19" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3653,7 +3672,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H20" value="5" checked="checked">
+                           <input type="radio" id="5" name="H20" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3703,7 +3722,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H21" value="5" checked="checked">
+                           <input type="radio" id="5" name="H21" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3753,7 +3772,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H22" value="5" checked="checked">
+                           <input type="radio" id="5" name="H22" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3803,7 +3822,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H23" value="5" checked="checked">
+                           <input type="radio" id="5" name="H23" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3853,7 +3872,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H24" value="5" checked="checked">
+                           <input type="radio" id="5" name="H24" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3903,7 +3922,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H25" value="5" checked="checked">
+                           <input type="radio" id="5" name="H25" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -3953,7 +3972,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H26" value="5" checked="checked">
+                           <input type="radio" id="5" name="H26" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4003,7 +4022,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H27" value="5" checked="checked">
+                           <input type="radio" id="5" name="H27" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4053,7 +4072,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H28" value="5" checked="checked">
+                           <input type="radio" id="5" name="H28" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4103,7 +4122,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H29" value="5" checked="checked">
+                           <input type="radio" id="5" name="H29" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4153,7 +4172,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H30" value="5" checked="checked">
+                           <input type="radio" id="5" name="H30" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4203,7 +4222,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H31" value="5" checked="checked">
+                           <input type="radio" id="5" name="H31" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4253,7 +4272,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H32" value="5" checked="checked">
+                           <input type="radio" id="5" name="H32" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4303,7 +4322,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H33" value="5" checked="checked">
+                           <input type="radio" id="5" name="H33" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4353,7 +4372,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H34" value="5" checked="checked">
+                           <input type="radio" id="5" name="H34" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4403,7 +4422,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="H35" value="5" checked="checked">
+                           <input type="radio" id="5" name="H35" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4463,7 +4482,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="I1" value="5" checked="checked">
+                           <input type="radio" id="5" name="I1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4513,7 +4532,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="I2" value="5" checked="checked">
+                           <input type="radio" id="5" name="I2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4563,7 +4582,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="I3" value="5" checked="checked">
+                           <input type="radio" id="5" name="I3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4623,7 +4642,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J1" value="5" checked="checked">
+                           <input type="radio" id="5" name="J1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4673,7 +4692,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J2" value="5" checked="checked">
+                           <input type="radio" id="5" name="J2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4723,7 +4742,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J3" value="5" checked="checked">
+                           <input type="radio" id="5" name="J3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4773,7 +4792,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J4" value="5" checked="checked">
+                           <input type="radio" id="5" name="J4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4823,7 +4842,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J5" value="5" checked="checked">
+                           <input type="radio" id="5" name="J5" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4873,7 +4892,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J6" value="5" checked="checked">
+                           <input type="radio" id="5" name="J6" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4923,7 +4942,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J7" value="5" checked="checked">
+                           <input type="radio" id="5" name="J7" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -4973,7 +4992,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J8" value="5" checked="checked">
+                           <input type="radio" id="5" name="J8" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5023,7 +5042,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J9" value="5" checked="checked">
+                           <input type="radio" id="5" name="J9" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5073,7 +5092,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="J10" value="5" checked="checked">
+                           <input type="radio" id="5" name="J10" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5133,7 +5152,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K1" value="5" checked="checked">
+                           <input type="radio" id="5" name="K1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5183,7 +5202,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K2" value="5" checked="checked">
+                           <input type="radio" id="5" name="K2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5233,7 +5252,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K3" value="5" checked="checked">
+                           <input type="radio" id="5" name="K3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5283,7 +5302,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K4" value="5" checked="checked">
+                           <input type="radio" id="5" name="K4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5333,7 +5352,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K5" value="5" checked="checked">
+                           <input type="radio" id="5" name="K5" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5383,7 +5402,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K6" value="5" checked="checked">
+                           <input type="radio" id="5" name="K6" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5433,7 +5452,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K7" value="5" checked="checked">
+                           <input type="radio" id="5" name="K7" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5483,7 +5502,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K8" value="5" checked="checked">
+                           <input type="radio" id="5" name="K8" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5533,7 +5552,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K9" value="5" checked="checked">
+                           <input type="radio" id="5" name="K9" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5583,7 +5602,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="K10" value="5" checked="checked">
+                           <input type="radio" id="5" name="K10" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5643,7 +5662,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="L1" value="5" checked="checked">
+                           <input type="radio" id="5" name="L1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5693,7 +5712,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="L2" value="5" checked="checked">
+                           <input type="radio" id="5" name="L2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5743,7 +5762,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="L3" value="5" checked="checked">
+                           <input type="radio" id="5" name="L3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5793,7 +5812,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="L4" value="5" checked="checked">
+                           <input type="radio" id="5" name="L4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5853,7 +5872,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="M1" value="5" checked="checked">
+                           <input type="radio" id="5" name="M1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5903,7 +5922,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="M2" value="5" checked="checked">
+                           <input type="radio" id="5" name="M2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -5953,7 +5972,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="M3" value="5" checked="checked">
+                           <input type="radio" id="5" name="M3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6013,7 +6032,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="N1" value="5" checked="checked">
+                           <input type="radio" id="5" name="N1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6063,7 +6082,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="N2" value="5" checked="checked">
+                           <input type="radio" id="5" name="N2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6113,7 +6132,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="N3" value="5" checked="checked">
+                           <input type="radio" id="5" name="N3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6163,7 +6182,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="N4" value="5" checked="checked">
+                           <input type="radio" id="5" name="N4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6223,7 +6242,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="O1" value="5" checked="checked">
+                           <input type="radio" id="5" name="O1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6273,7 +6292,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="O2" value="5" checked="checked">
+                           <input type="radio" id="5" name="O2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6323,7 +6342,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="O3" value="5" checked="checked">
+                           <input type="radio" id="5" name="O3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6373,7 +6392,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="O4" value="5" checked="checked">
+                           <input type="radio" id="5" name="O4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6423,7 +6442,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="O5" value="5" checked="checked">
+                           <input type="radio" id="5" name="O5" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6483,7 +6502,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="P1" value="5" checked="checked">
+                           <input type="radio" id="5" name="P1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6533,7 +6552,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="P2" value="5" checked="checked">
+                           <input type="radio" id="5" name="P2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6593,7 +6612,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="Q1" value="5" checked="checked">
+                           <input type="radio" id="5" name="Q1" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6643,7 +6662,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="Q2" value="5" checked="checked">
+                           <input type="radio" id="5" name="Q2" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6693,7 +6712,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="Q3" value="5" checked="checked">
+                           <input type="radio" id="5" name="Q3" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">
@@ -6743,7 +6762,7 @@
                            <label class="inBlock" for="4">4</label>
                         </div>
                         <div class="rating">
-                           <input type="radio" id="5" name="Q4" value="5" checked="checked">
+                           <input type="radio" id="5" name="Q4" value="5">
                            <label class="inBlock" for="5">5</label>
                         </div>
                         <div class="rating">

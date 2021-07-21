@@ -1,6 +1,6 @@
 <a href="{{ url('admin') }}" class="navbar-brand">
     {{-- You may use plain text as a logo instead of image --}}
-    <img src="" alt="JPAN">
+    <h5>JABATAN PERKHIDMATAN AWAM NEGERI SABAH</h5>
 
     {{--Text Logo--}}
 

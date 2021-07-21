@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EntriesController;
 use App\Http\Controllers\ThankYouResult;
-use App\Http\Controllers\DashboardData;
+use App\Http\Controllers\DevTest;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/', function () {
+Route::get('/', function(){
     return view('form');
 });
 
@@ -32,9 +32,7 @@ Route::get('/result/{uuid}', [ThankYouResult::class,'index']);
 
 Route::get('/admin/dashboard', [ThankYouResult::class, 'dashboardIndex']);
 
-Route::get('/dev', function() {
-    return view('dev');
-});
+Route::get('/dev', [DevTest::class, 'index']);
 
 Route::post('/submit' , [EntriesController::class,'storeForm']);
 
