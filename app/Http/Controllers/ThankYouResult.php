@@ -123,6 +123,32 @@ class ThankYouResult extends Controller
         
     }
 
+    public function dashboardIndex() {
+
+        $data = array();
+
+        $data['totalRatingB'] = $this->calculateTotalB();
+        $data['totalRatingC'] = $this->calculateTotalC();
+        $data['totalRatingD'] = $this->calculateTotalD();
+        $data['totalRatingE'] = $this->calculateTotalE();
+        $data['totalRatingF'] = $this->calculateTotalF();
+        $data['totalRatingG'] = $this->calculateTotalG();
+        $data['totalRatingH'] = $this->calculateTotalH();
+        $data['totalRatingI'] = $this->calculateTotalI();
+        $data['totalRatingJ'] = $this->calculateTotalJ();
+        $data['totalRatingK'] = $this->calculateTotalK();
+        $data['totalRatingL'] = $this->calculateTotalL();
+        $data['totalRatingM'] = $this->calculateTotalM();
+        $data['totalRatingN'] = $this->calculateTotalN();
+        $data['totalRatingO'] = $this->calculateTotalO();
+        $data['totalRatingP'] = $this->calculateTotalP();
+        $data['totalRatingQ'] = $this->calculateTotalQ();
+
+        return view('admin.dashboard',['data' => $data]);
+        
+        
+    }
+
     public function calculateTotalB(){
         
         $TotalOfBRatingB1 = DB::table('entries')->pluck('B1');
