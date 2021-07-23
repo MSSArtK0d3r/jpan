@@ -407,9 +407,9 @@
 </div>
 
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('B4'), 'has-success': fields.B4 && fields.B4.valid }">
-    <label for="B4" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.entry.columns.B4') }}</label>
+    <label for="B5" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.entry.columns.B4') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.B4" v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('B4'), 'form-control-success': fields.B4 && fields.B4.valid}" id="B4" name="B4" placeholder="{{ trans('admin.entry.columns.B4') }}">
+        <input type="text" v-model="form.B4" v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('B4'), 'form-control-success': fields.B4 && fields.B4.valid}" id="B5" name="B5" placeholder="{{ trans('admin.entry.columns.B4') }}">
         <div v-if="errors.has('B4')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('B4') }}</div>
     </div>
 </div>

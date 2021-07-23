@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8aeb9ed979113f4624402a9293d83e135db4de38',
+    'reference' => '00f43c6f1de46fd8d015c6cd1d2f9348d435cce2',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -604,7 +604,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8aeb9ed979113f4624402a9293d83e135db4de38',
+      'reference' => '00f43c6f1de46fd8d015c6cd1d2f9348d435cce2',
     ),
     'laravel/legacy-factories' => 
     array (
@@ -704,6 +704,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '174395a901b5ba0925f1d790fa91bab531074b61',
+    ),
+    'mehdi-fathi/eloquent-filter' => 
+    array (
+      'pretty_version' => '2.5.3',
+      'version' => '2.5.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '89e2d7840b3571ec26ce83194cff1142c6621ac3',
     ),
     'mockery/mockery' => 
     array (

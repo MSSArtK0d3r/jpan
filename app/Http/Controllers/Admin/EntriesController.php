@@ -41,6 +41,7 @@ class EntriesController extends Controller
             // set columns to query
             [
                 'id',
+                'uuid',
                 'umur',
                 'jantina',
                 'agama',
@@ -89,6 +90,7 @@ class EntriesController extends Controller
                 'B16',
                 'B17',
                 'B18',
+                'B19',
                 'C1',
                 'C2',
                 'D1',
@@ -195,43 +197,12 @@ class EntriesController extends Controller
                 'Q3',
                 'Q4',
                 'komen',
-                'cadangan',
-                'uuid'
+                'cadangan'
             ],
 
             // set columns to searchIn
             [
-                'id',
-                'umur',
-                'jantina',
-                'agama',
-                'lainAgamaDetail',
-                'bangsa',
                 'daerahBertugas',
-                'status',
-                'bilAnak',
-                'bilIsiRumah',
-                'tinggalBersamaPasangan',
-                'bilBilikTidur',
-                'education',
-                'agensi',
-                'kumpulanPerkhidmatan',
-                'tarafJawatan',
-                'skimPerkhidmatan',
-                'gredJawatan',
-                'gajiKasarBulanan',
-                'gajiBersihBulanan',
-                'kesukaranGaji',
-                'tempohPerkhidmatanTahun',
-                'tempohPerkhidmatanBulan',
-                'masalahKesihatan',
-                'masalahKesihatanDetail',
-                'tempatTinggal',
-                'tempatTinggalDetail',
-                'tinggalBersama',
-                'tinggalBersamaDetail',
-                'kenderaanKerja',
-                'kenderaanKerjaDetail',
             ]
         );
 

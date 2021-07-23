@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EntriesController;
 use App\Http\Controllers\ThankYouResult;
 use App\Http\Controllers\DevTest;
+use App\Http\Controllers\DevAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,6 @@ Route::get('/result', function(){
 Route::get('/result/{uuid}', [ThankYouResult::class,'index']);
 
 Route::get('/admin/dashboard', [ThankYouResult::class, 'dashboardIndex']);
-
-Route::get('/dev', [DevTest::class, 'index']);
 
 Route::post('/submit' , [EntriesController::class,'storeForm']);
 
@@ -77,3 +76,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Dev Router */
+
+Route::get('/dev', [DevTest::class, 'index']);
+Route::get('/admin/dev', [DevAdmin::class, 'index']);

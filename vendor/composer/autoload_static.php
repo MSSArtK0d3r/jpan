@@ -91,10 +91,10 @@ class ComposerStaticInit4c44793453bfdb18f5f61d276d40376e
         '4888a6f58c08148ebe17682f9ce9b2a8' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/divideby.php',
         'eef6fa3879d3efa347cd24d5eb348f85' => __DIR__ . '/..' . '/markbaker/matrix/classes/src/Operations/divideinto.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
+        'a1af1fc0cffb5f61cbaf64dbe030fdb9' => __DIR__ . '/..' . '/laravel/legacy-factories/helpers.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         '17d016dc52a631c1e74d2eb8fdd57342' => __DIR__ . '/..' . '/laravel/helpers/src/helpers.php',
-        'a1af1fc0cffb5f61cbaf64dbe030fdb9' => __DIR__ . '/..' . '/laravel/legacy-factories/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '0c3c22e27afa83be19b4c938f4c6e9ea' => __DIR__ . '/..' . '/spatie/laravel-backup/src/Helpers/functions.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
@@ -109,6 +109,10 @@ class ComposerStaticInit4c44793453bfdb18f5f61d276d40376e
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'e' => 
+        array (
+            'eloquentFilter\\' => 15,
         ),
         'Z' => 
         array (
@@ -282,6 +286,10 @@ class ComposerStaticInit4c44793453bfdb18f5f61d276d40376e
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'eloquentFilter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src',
         ),
         'ZipStream\\' => 
         array (
@@ -735,6 +743,8 @@ class ComposerStaticInit4c44793453bfdb18f5f61d276d40376e
         'App\\Http\\Controllers\\Admin\\EntriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EntriesController.php',
         'App\\Http\\Controllers\\Admin\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProfileController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\DevAdmin' => __DIR__ . '/../..' . '/app/Http/Controllers/DevAdmin.php',
+        'App\\Http\\Controllers\\DevTest' => __DIR__ . '/../..' . '/app/Http/Controllers/DevTest.php',
         'App\\Http\\Controllers\\ThankYouResult' => __DIR__ . '/../..' . '/app/Http/Controllers/ThankYouResult.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -7081,6 +7091,34 @@ class ComposerStaticInit4c44793453bfdb18f5f61d276d40376e
         'ZipStream\\Option\\Version' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Option/Version.php',
         'ZipStream\\Stream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Stream.php',
         'ZipStream\\ZipStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/ZipStream.php',
+        'eloquentFilter\\Facade\\EloquentFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/Facade/EloquentFilter.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\SpecialCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/SpecialCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\WhereBetweenCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/WhereBetweenCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\WhereByOptCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/WhereByOptCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\WhereCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/WhereCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\WhereCustomCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/WhereCustomCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\WhereHasCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/WhereHasCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\WhereInCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/WhereInCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\WhereLikeCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/WhereLikeCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\ConditionsDetect\\WhereOrCondition' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/ConditionsDetect/WhereOrCondition.php',
+        'eloquentFilter\\QueryFilter\\Detection\\DetectionFactory' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/DetectionFactory.php',
+        'eloquentFilter\\QueryFilter\\Detection\\DetectorConditions' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/DetectorConditions.php',
+        'eloquentFilter\\QueryFilter\\Detection\\DetectorContract' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Detection/DetectorContract.php',
+        'eloquentFilter\\QueryFilter\\HelperEloquentFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/HelperEloquentFilter.php',
+        'eloquentFilter\\QueryFilter\\HelperFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/HelperFilter.php',
+        'eloquentFilter\\QueryFilter\\ModelFilters\\Filterable' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/ModelFilters/Filterable.php',
+        'eloquentFilter\\QueryFilter\\Queries\\BaseClause' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/BaseClause.php',
+        'eloquentFilter\\QueryFilter\\Queries\\Special' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/Special.php',
+        'eloquentFilter\\QueryFilter\\Queries\\Where' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/Where.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereBetween' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereBetween.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereByOpt' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereByOpt.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereCustom' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereCustom.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereHas' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereHas.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereIn' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereIn.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereLike' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereLike.php',
+        'eloquentFilter\\QueryFilter\\Queries\\WhereOr' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/Queries/WhereOr.php',
+        'eloquentFilter\\QueryFilter\\QueryFilter' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/QueryFilter/QueryFilter.php',
+        'eloquentFilter\\ServiceProvider' => __DIR__ . '/..' . '/mehdi-fathi/eloquent-filter/src/ServiceProvider.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

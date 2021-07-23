@@ -162,7 +162,7 @@
    }
 
    .rating {
-      margin: 0 20px;
+      margin: 0 15px;
       width: 10px;
       display: inline-block;
    }
@@ -304,7 +304,7 @@
                         <option value="Kota Kinabalu">Kota Kinabalu</option>
                         <option value="Kota Marudu">Kota Marudu</option>
                         <option value="Kuala Penyu">Kuala Penyu</option>
-                        <option value="Kudat">Kudat</option>
+                        <option value="Kudat">Kudat</option> 
                         <option value="Kunak">Kunak</option>
                         <option value="Lahad Datu">Lahad Datu</option>
                         <option value="Labuan">Labuan</option>
@@ -339,8 +339,10 @@
                      <label class="inBlock" for="Balu">Balu</label><br>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <label>7. Bilangan Anak : </label>
-                     <input class="small-input" name="bilAnak"> Orang
+                     <label>7. Bilangan Anak : </label> 
+                     <select name="bilAnak" class="selectBox">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                     </select> Orang
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>8. Bilangan Isi Rumah : </label>
@@ -355,7 +357,10 @@
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>10. Bilangan Bilik Tidur di Rumah : </label>
-                     <input class="small-input" name="bilBilikTidur"> Buah Bilik
+                     <select name="bilBilikTidur" class="selectBox">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                     </select>
+                     Buah Bilik
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>11. Tahap Pendidikan Tertinggi :</p>
@@ -378,7 +383,9 @@
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>12. Agensi (Kementerian/Jabatan/dll) : </p>
-                     <input class="big-input" name="agensi">
+                     <select name="agensi" class="selectBox">
+                        <option value="Kementerian Pembangunan Luar Bandar">Kementerian Pembangunan Luar Bandar</option><option value="Kementerian Kewangan">Kementerian Kewangan</option><option value="Kementerian Pertanian dan Perikanan">Kementerian Pertanian dan Perikanan</option><option value="Kementerian Kerja Raya">Kementerian Kerja Raya</option><option value="Kementerian Kerajaan Tempatan dan Perumahan">Kementerian Kerajaan Tempatan dan Perumahan</option><option value="Kementerian Pembangunan Masyarakat dan Kesejahteraan Rakyat">Kementerian Pembangunan Masyarakat dan Kesejahteraan Rakyat</option><option value="Kementerian Pelancongan, Kebudayaan dan Alam Sekitar">Kementerian Pelancongan, Kebudayaan dan Alam Sekitar</option><option value="Kementerian Pembangunan Perindustrian">Kementerian Pembangunan Perindustrian</option><option value="Kementerian Belia dan Sukan Sabah">Kementerian Belia dan Sukan Sabah</option><option value="Kementerian Sains, Teknologi dan Inovasi">Kementerian Sains, Teknologi dan Inovasi</option><option value="Pejabat Yang Dipertua Negeri Sabah / Istana Negeri">Pejabat Yang Dipertua Negeri Sabah / Istana Negeri</option><option value="Pejabat Dewan Undangan Negeri">Pejabat Dewan Undangan Negeri</option><option value="Suruhanjaya Perkhidmatan Awam Negeri">Suruhanjaya Perkhidmatan Awam Negeri</option><option value="Pejabat Setiausaha Kerajaan Negeri">Pejabat Setiausaha Kerajaan Negeri</option><option value="Pejabat Ketua Menteri">Pejabat Ketua Menteri</option><option value="Pejabat Timbalan Setiausaha Kerajaan Negeri (Pentadbiran)">Pejabat Timbalan Setiausaha Kerajaan Negeri (Pentadbiran)</option><option value="Pejabat Timbalan Setiausaha Kerajaan Negeri (Pembangunan)">Pejabat Timbalan Setiausaha Kerajaan Negeri (Pembangunan)</option><option value="Jabatan Arkib Negeri Sabah">Jabatan Arkib Negeri Sabah</option><option value="Jabatan Peguam Besar Negeri">Jabatan Peguam Besar Negeri</option><option value="Jabatan Cetak Kerajaan">Jabatan Cetak Kerajaan</option><option value="Jabatan Perkhidmatan Awam Negeri">Jabatan Perkhidmatan Awam Negeri</option><option value="Jabatan Tanah &amp; Ukur">Jabatan Tanah &amp; Ukur</option><option value="Jabatan Perhutanan Sabah">Jabatan Perhutanan Sabah</option><option value="Jabatan Hal Ehwal Agama Islam Negeri Sabah">Jabatan Hal Ehwal Agama Islam Negeri Sabah</option><option value="Unit Perancang Ekonomi Negeri">Unit Perancang Ekonomi Negeri</option><option value="Unit Pemimpin Pembangunan Masyarakat">Unit Pemimpin Pembangunan Masyarakat</option><option value="Pejabat Perhubungan Negeri Sabah">Pejabat Perhubungan Negeri Sabah</option><option value="Bahagian Istiadat dan Protokol">Bahagian Istiadat dan Protokol</option><option value="Bahagian Pengurusan dan Kewangan">Bahagian Pengurusan dan Kewangan</option><option value="Bahagian Kabinet dan Dasar">Bahagian Kabinet dan Dasar</option><option value="Pejabat Akhbar dan Penerbitan">Pejabat Akhbar dan Penerbitan</option><option value="Pejabat Mufti Negeri">Pejabat Mufti Negeri</option><option value="Pejabat Hasil Bumi">Pejabat Hasil Bumi</option><option value="Pejabat Hal Ehwal Dalam Negeri dan Penyelidikan">Pejabat Hal Ehwal Dalam Negeri dan Penyelidikan</option><option value="Jabatan Bendahari Negeri">Jabatan Bendahari Negeri</option><option value="Jabatan Perkhidmatan Komputer Negeri">Jabatan Perkhidmatan Komputer Negeri</option><option value="Jabatan Perikanan">Jabatan Perikanan</option><option value="Jabatan Perkhidmatan Veterinar Sabah">Jabatan Perkhidmatan Veterinar Sabah</option><option value="Jabatan Pengairan dan Saliran">Jabatan Pengairan dan Saliran</option><option value="Jabatan Pertanian">Jabatan Pertanian</option><option value="Jabatan Air Negeri Sabah">Jabatan Air Negeri Sabah</option><option value="Jabatan Perkhidmatan Pembetungan Sabah">Jabatan Perkhidmatan Pembetungan Sabah</option><option value="Jabatan Kerja Raya">Jabatan Kerja Raya</option><option value="Jabatan Keretapi Negeri Sabah">Jabatan Keretapi Negeri Sabah</option><option value="Jabatan Pelabuhan dan Dermaga Sabah">Jabatan Pelabuhan dan Dermaga Sabah</option><option value="Jabatan Perancang Bandar dan Wilayah">Jabatan Perancang Bandar dan Wilayah</option><option value="Jabatan Hal Ehwal Anak Negeri Sabah">Jabatan Hal Ehwal Anak Negeri Sabah</option><option value="Jabatan Perkhidmatan Kebajikan Am">Jabatan Perkhidmatan Kebajikan Am</option><option value="Jabatan Hal Ehwal Wanita Negeri">Jabatan Hal Ehwal Wanita Negeri</option><option value="Jabatan Hidupan Liar">Jabatan Hidupan Liar</option><option value="Jabatan Perlindungan Alam Sekitar">Jabatan Perlindungan Alam Sekitar</option><option value="Jabatan Muzium Sabah">Jabatan Muzium Sabah</option><option value="Jabatan Pembangunan Perindustrian dan Penyelidikan">Jabatan Pembangunan Perindustrian dan Penyelidikan</option><option value="Perpustakaan Negeri Sabah">Perpustakaan Negeri Sabah</option><option value="Jabatan Pembangunan Sumber Manusia">Jabatan Pembangunan Sumber Manusia</option>
+                     </select>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>13. Kumpulan Perkhidmatan : </p>
@@ -400,11 +407,18 @@
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <p>15. Skim Perkhidmatan : </p>
-                     <input class="big-input" name="skimPerkhidmatan">
+                     <select name="skimPerkhidmatan" class="selectBox">
+                        <option value="N">N</option>
+                        <option value="F">F</option>
+                        <option value="J">J</option>
+                        <option value="FT">FT</option>
+                     </select>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>16. Gred Jawatan : </label>
-                     <input class="small-input" name="gredJawatan">
+                     <select class="selectBox" name="gredJawatan">
+                        <option value="Gred Pengurusan Tertinggi">Gred Pengurusan Tertinggi</option><option value="Gred 54">Gred 54</option><option value="Gred 53">Gred 53</option><option value="Gred 52">Gred 52</option><option value="Gred 51">Gred 51</option><option value="Gred 50">Gred 50</option><option value="Gred 49">Gred 49</option><option value="Gred 48">Gred 48</option><option value="Gred 47">Gred 47</option><option value="Gred 46">Gred 46</option><option value="Gred 45">Gred 45</option><option value="Gred 44">Gred 44</option><option value="Gred 43">Gred 43</option><option value="Gred 42">Gred 42</option><option value="Gred 41">Gred 41</option><option value="Gred 40">Gred 40</option><option value="Gred 39">Gred 39</option><option value="Gred 38">Gred 38</option><option value="Gred 37">Gred 37</option><option value="Gred 36">Gred 36</option><option value="Gred 35">Gred 35</option><option value="Gred 34">Gred 34</option><option value="Gred 33">Gred 33</option><option value="Gred 32">Gred 32</option><option value="Gred 31">Gred 31</option><option value="Gred 30">Gred 30</option><option value="Gred 29">Gred 29</option><option value="Gred 28">Gred 28</option><option value="Gred 27">Gred 27</option><option value="Gred 26">Gred 26</option><option value="Gred 25">Gred 25</option><option value="Gred 24">Gred 24</option><option value="Gred 23">Gred 23</option><option value="Gred 22">Gred 22</option><option value="Gred 21">Gred 21</option><option value="Gred 20">Gred 20</option><option value="Gred 19">Gred 19</option><option value="Gred 18">Gred 18</option><option value="Gred 17">Gred 17</option><option value="Gred 16">Gred 16</option><option value="Gred 15">Gred 15</option><option value="Gred 14">Gred 14</option><option value="Gred 13">Gred 13</option><option value="Gred 12">Gred 12</option><option value="Gred 11">Gred 11</option><option value="Gred 10">Gred 10</option><option value="Gred 9">Gred 9</option><option value="Gred 8">Gred 8</option><option value="Gred 7">Gred 7</option><option value="Gred 6">Gred 6</option><option value="Gred 5">Gred 5</option><option value="Gred 4">Gred 4</option><option value="Gred 3">Gred 3</option><option value="Gred 2">Gred 2</option><option value="Gred 1">Gred 1</option>
+                     </select>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
                      <label>17. Gaji Kasar Bulanan : RM </label>
@@ -415,32 +429,14 @@
                      <input class="small-input" name="gajiBersihBulanan">
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>19. Adakah anda mengalami kesukaran menjalani kehidupan dengan jumlah gaji anda?</p>
-                     <input type="radio" id="sukarGajiYa" name="kesukaranGaji" value="Ya">
-                     <label class="inBlock" for="sukarGajiYa">Ya</label><br>
-                     <input type="radio" id="sukarGajiTidak" name="kesukaranGaji" value="Tidak">
-                     <label class="inBlock" for="sukarGajiTidak">Tidak</label>
-                  </div>
-                  <div class="introPage" style="margin-bottom: 10px;">
-                     <label>20. Tempoh Perkhidmatan : </label>
-                     <select name="tempohPerkhidmatanTahun" class="selectBox">
-                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
-                     </select>
-                     tahun
-                     <select name="tempohPerkhidmatanBulan" class="selectBox">
-                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
-                     </select>
-                     bulan
-                  </div>
-                  <div class="introPage" style="margin-bottom: 10px;">
-                     <p>21. Adakah anda mengalami masalah kesihatan? (Jika Ya, sila nyatakan)</p>
+                     <p>19. Adakah anda mengalami masalah kesihatan? (Jika Ya, sila nyatakan)</p>
                      <input type="radio" id="adaMasalahKesihatanYa" name="masalahKesihatan">
                      <label class="inBlock" for="adaMasalahKesihatanYa">Ya</label><br><input placeholder="Nyatakan masalah kesihatan" id="inputKesihatan" class="big-input lain-lain" name="masalahKesihatanDetail"><br>
                      <input type="radio" onclick="clearInput('inputKesihatan')" id="adaMasalahKesihatanTidak" name="masalahKesihatan" value="Tidak">
                      <label class="inBlock" for="adaMasalahKesihatanTidak">Tidak</label>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>22. Status Rumah Tempat Tinggal : </p>
+                     <p>20. Status Rumah Tempat Tinggal : </p>
                      <input type="radio" onclick="clearInput('inputTempatTinggal')" id="RumahSendiri" name="tempatTinggal" value="Rumah Sendiri">
                      <label class="inBlock" for="RumahSendiri">Rumah Sendiri</label><br>
                      <input type="radio" onclick="clearInput('inputTempatTinggal')" id="RumahSewa" name="tempatTinggal" value="Rumah Sewa">
@@ -451,7 +447,7 @@
                      <label class="inBlock" for="lainTempatTingal">Lain-lain (Nyatakan) : </label><input id="inputTempatTinggal" class="big-input lain-lain" name="tempatTinggalDetail">
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>23. Status Tinggal Bersama : </p>
+                     <p>21. Status Tinggal Bersama : </p>
                      <input type="radio" onclick="clearInput('inputTinggalBersama')" id="bersamaIbuBapa" name="tinggalBersama" value="Bersama Ibu Bapa">
                      <label class="inBlock" for="bersamaIbuBapa">Bersama Ibu Bapa</label><br>
                      <input type="radio" onclick="clearInput('inputTinggalBersama')" id="BersamaKeluargaMertua" name="tinggalBersama" value="Bersama Keluarga Mertua">
@@ -464,7 +460,7 @@
                      <label class="inBlock" for="lainTinggalBersamaLain">Lain-lain (Nyatakan) : </label><input id="inputTinggalBersama" class="big-input lain-lain" name="tinggalBersamaDetail">
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>24. Apakah jenis pengangkutan anda ke tempat kerja?</p>
+                     <p>22. Apakah jenis pengangkutan anda ke tempat kerja?</p>
                      <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="KeretaSendiri" name="kenderaanKerja" value="Kereta Sendiri">
                      <label class="inBlock" for="KeretaSendiri">Kereta Sendiri</label><br>
                      <input type="radio" onclick="clearInput('inputKenderaanKerja')" id="MenumpangRakan" name="kenderaanKerja" value="Menumpang Rakan">
@@ -475,6 +471,24 @@
                      <label class="inBlock" for="BasTeksi">Bas/Teksi</label><br>
                      <input type="radio" id="lainKenderaanKerja" name="kenderaanKerja" value="lain-lain">
                      <label class="inBlock" for="lainKenderaanKerja">Lain-lain (Nyatakan) : </label><input id="inputKenderaanKerja" class="big-input lain-lain" name="kenderaanKerjaDetail">
+                  </div>
+                  <div class="introPage" style="margin-bottom: 10px;">
+                     <p>23. Adakah anda mengalami kesukaran menjalani kehidupan dengan jumlah gaji anda?</p>
+                     <input type="radio" id="sukarGajiYa" name="kesukaranGaji" value="Ya">
+                     <label class="inBlock" for="sukarGajiYa">Ya</label><br>
+                     <input type="radio" id="sukarGajiTidak" name="kesukaranGaji" value="Tidak">
+                     <label class="inBlock" for="sukarGajiTidak">Tidak</label>
+                  </div>
+                  <div class="introPage" style="margin-bottom: 10px;">
+                     <label>24. Tempoh Perkhidmatan : </label>
+                     <select name="tempohPerkhidmatanTahun" class="selectBox">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+                     </select>
+                     tahun
+                     <select name="tempohPerkhidmatanBulan" class="selectBox">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
+                     </select>
+                     bulan
                   </div>
 
                </div>
@@ -538,57 +552,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>2. Mereka yang bekerja dengan baik lebih berpeluang mendapat kenaikan pangkat.</p>
-                     <div class="ratingContainer">
-                        <div class="rating">
-                           <label for="0">
-                              <input type="radio" id="0" name="B2" value="0">0
-                           </label>
-                        </div>
-                        <div class="rating">
-                           <label for="1">
-                              <input type="radio" id="1" name="B2" value="1">1
-                           </label>
-                        </div>
-                        <div class="rating"><input type="radio" id="2" name="B2" value="2">
-                           <label for="2">2</label>
-                        </div>
-                        <div class="rating">
-                           <input type="radio" id="3" name="B2" value="3">
-                           <label class="inBlock" for="3">3</label>
-                        </div>
-                        <div class="rating">
-                           <input type="radio" id="4" name="B2" value="4">
-                           <label class="inBlock" for="4">4</label>
-                        </div>
-                        <div class="rating">
-                           <input type="radio" id="5" name="B2" value="5">
-                           <label class="inBlock" for="5">5</label>
-                        </div>
-                        <div class="rating">
-                           <input type="radio" id="6" name="B2" value="6">
-                           <label class="inBlock" for="6">6</label>
-                        </div>
-                        <div class="rating">
-                           <input type="radio" id="7" name="B2" value="7">
-                           <label class="inBlock" for="7">7</label>
-                        </div>
-                        <div class="rating">
-                           <input type="radio" id="8" name="B2" value="8">
-                           <label class="inBlock" for="8">8</label>
-                        </div>
-                        <div class="rating">
-                           <input type="radio" id="9" name="B2" value="9">
-                           <label class="inBlock" for="9">9</label>
-                        </div>
-                        <div class="rating">
-                           <input type="radio" id="10" name="B2" value="10">
-                           <label class="inBlock" for="10">10</label>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="introPage" style="margin-bottom: 10px;">
-                     <p>3. Saya berasa puas dengan peluang kenaikan gaji saya .</p>
+                     <p>2. Saya berasa puas dengan peluang kenaikan gaji saya .</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -638,7 +602,57 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>4. Saya berpuas hati dengan kepimpinan ketua saya.
+                     <p>3. Mereka yang bekerja dengan baik lebih berpeluang mendapat kenaikan pangkat.</p>
+                     <div class="ratingContainer">
+                        <div class="rating">
+                           <label for="0">
+                              <input type="radio" id="0" name="B2" value="0">0
+                           </label>
+                        </div>
+                        <div class="rating">
+                           <label for="1">
+                              <input type="radio" id="1" name="B2" value="1">1
+                           </label>
+                        </div>
+                        <div class="rating"><input type="radio" id="2" name="B2" value="2">
+                           <label for="2">2</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="3" name="B2" value="3">
+                           <label class="inBlock" for="3">3</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="4" name="B2" value="4">
+                           <label class="inBlock" for="4">4</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="5" name="B2" value="5">
+                           <label class="inBlock" for="5">5</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="6" name="B2" value="6">
+                           <label class="inBlock" for="6">6</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="7" name="B2" value="7">
+                           <label class="inBlock" for="7">7</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="8" name="B2" value="8">
+                           <label class="inBlock" for="8">8</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="9" name="B2" value="9">
+                           <label class="inBlock" for="9">9</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="10" name="B2" value="10">
+                           <label class="inBlock" for="10">10</label>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="introPage" style="margin-bottom: 10px;">
+                     <p>4. Saya berpuas hati dengan kepimpinan ketua saya (Penilai 1)<br>Nota: Ketua adalah merujuk kepada Penilai 1 dalam penilaian prestasi tahunan
                      </p>
                      <div class="ratingContainer">
                         <div class="rating">
@@ -689,7 +703,8 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>5. Banyak peraturan dan prosedur kerja menyukarkan saya untuk melakukan kerja dengan baik.</p>
+                     <p>5. Saya berpuas hati dengan kepimpinan ketua saya (Penilai 2)<br>Nota: Ketua adalah merujuk kepada Penilai 2 dalam penilaian prestasi tahunan
+                     </p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -739,7 +754,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>6. Usaha saya untuk bekerja dengan baik jarang dihalang oleh birokrasi.</p>
+                     <p>6. Banyak peraturan dan prosedur kerja menyukarkan saya untuk melakukan kerja dengan baik.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -789,7 +804,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>7. Terlalu banyak kerja yang perlu saya lakukan di tempat kerja.</p>
+                     <p>7. Usaha saya untuk bekerja dengan baik jarang dihalang oleh birokrasi.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -839,7 +854,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>8. Saya perlu bekerja keras kerana rakan sekerja saya yang tidak berkebolehan.</p>
+                     <p>8. Terlalu banyak kerja yang perlu saya lakukan di tempat kerja.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -889,7 +904,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>9. Terlalu banyak pertengkaran dan konflik yang berlaku di tempat kerja saya.</p>
+                     <p>9. Saya perlu bekerja keras kerana rakan sekerja saya yang tidak berkebolehan.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -939,8 +954,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>10. Kadang kala, saya berasa bahawa kerja saya tidak bermakna.
-                     </p>
+                     <p>10. Terlalu banyak pertengkaran dan konflik yang berlaku di tempat kerja saya.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -990,7 +1004,8 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>11. Saya berasa bangga dengan pekerjaan saya.</p>
+                     <p>11. Kadang kala, saya berasa bahawa kerja saya tidak bermakna.
+                     </p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -1040,7 +1055,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>12. Pekerjaan saya menyeronokkan.</p>
+                     <p>12. Saya berasa bangga dengan pekerjaan saya.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -1090,7 +1105,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>13. Komunikasi agak baik dalam organisasi ini.</p>
+                     <p>13. Pekerjaan saya menyeronokkan.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -1140,7 +1155,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>14. Matlamat organisasi ini tidak jelas bagi saya.</p>
+                     <p>14. Komunikasi agak baik dalam organisasi ini.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -1190,7 +1205,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>15. Tugasan kerja yang diberikan tidak dijelaskan dengan sepenuhnya.</p>
+                     <p>15. Matlamat organisasi ini tidak jelas bagi saya.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -1240,7 +1255,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>16. Saya berpuas hati dengan reputasi jabatan di mana saya bekerja.</p>
+                     <p>16. Tugasan kerja yang diberikan tidak dijelaskan dengan sepenuhnya.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -1290,7 +1305,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>17. Saya berpuas hati dengan keselamatan di tempat kerja saya.</p>
+                     <p>17. Saya berpuas hati dengan reputasi jabatan di mana saya bekerja.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -1340,7 +1355,7 @@
                      </div>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <p>18. Saya berpuas hati dengan persekitaran tempat kerja saya yang selesa.</p>
+                     <p>18. Saya berpuas hati dengan keselamatan di tempat kerja saya.</p>
                      <div class="ratingContainer">
                         <div class="rating">
                            <label for="0">
@@ -1385,6 +1400,56 @@
                         </div>
                         <div class="rating">
                            <input type="radio" id="10" name="B18" value="10">
+                           <label class="inBlock" for="10">10</label>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="introPage" style="margin-bottom: 10px;">
+                     <p>19. Saya berpuas hati dengan persekitaran tempat kerja saya yang selesa.</p>
+                     <div class="ratingContainer">
+                        <div class="rating">
+                           <label for="0">
+                              <input type="radio" id="0" name="B19" value="0">0
+                           </label>
+                        </div>
+                        <div class="rating">
+                           <label for="1">
+                              <input type="radio" id="1" name="B19" value="1">1
+                           </label>
+                        </div>
+                        <div class="rating"><input type="radio" id="2" name="B19" value="2">
+                           <label for="2">2</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="3" name="B19" value="3">
+                           <label class="inBlock" for="3">3</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="4" name="B19" value="4">
+                           <label class="inBlock" for="4">4</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="5" name="B19" value="5">
+                           <label class="inBlock" for="5">5</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="6" name="B19" value="6">
+                           <label class="inBlock" for="6">6</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="7" name="B19" value="7">
+                           <label class="inBlock" for="7">7</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="8" name="B19" value="8">
+                           <label class="inBlock" for="8">8</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="9" name="B19" value="9">
+                           <label class="inBlock" for="9">9</label>
+                        </div>
+                        <div class="rating">
+                           <input type="radio" id="10" name="B19" value="10">
                            <label class="inBlock" for="10">10</label>
                         </div>
                      </div>

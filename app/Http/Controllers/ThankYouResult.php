@@ -15,7 +15,7 @@ class ThankYouResult extends Controller
         $entry = DB::table('entries')->where('uuid', $uuid)->first();
         if ($entry !== null){
         $data['renderData'] = true;
-        $userRateB = (($entry->B1 + $entry->B2 + $entry->B3 + $entry->B4 + $entry->B5 + $entry->B6 + $entry->B7 + $entry->B8 + $entry->B9 + $entry->B10 + $entry->B11 + $entry->B12 + $entry->B13 + $entry->B14 + $entry->B15 + $entry->B16 + $entry->B17 + $entry->B18 ) * 100) / 180;
+        $userRateB = (($entry->B1 + $entry->B2 + $entry->B3 + $entry->B4 + $entry->B5 + $entry->B6 + $entry->B7 + $entry->B8 + $entry->B9 + $entry->B10 + $entry->B11 + $entry->B12 + $entry->B13 + $entry->B14 + $entry->B15 + $entry->B16 + $entry->B17 + $entry->B18 + $entry->B19 ) * 100) / 190;
         $userRateC = (($entry->C1 + $entry->C2) * 100) / 20;
         $userRateD = ($entry->D1 * 100) / 10;
         $userRateE = (($entry->E1 + $entry->E2 + $entry->E3 + $entry->E4 + $entry->E5 + $entry->E6) * 100) / 60;
@@ -137,6 +137,7 @@ class ThankYouResult extends Controller
         $TotalOfBRatingB16 = DB::table('entries')->pluck('B16');
         $TotalOfBRatingB17 = DB::table('entries')->pluck('B17');
         $TotalOfBRatingB18 = DB::table('entries')->pluck('B18');
+        $TotalOfBRatingB19 = DB::table('entries')->pluck('B19');
         
         $totalB = array_merge(
             $TotalOfBRatingB1->toArray(),
@@ -157,6 +158,7 @@ class ThankYouResult extends Controller
             $TotalOfBRatingB16->toArray(),
             $TotalOfBRatingB17->toArray(),
             $TotalOfBRatingB18->toArray(),
+            $TotalOfBRatingB19->toArray(),
         );
 
         $countTotalB = count($TotalOfBRatingB1->toArray());

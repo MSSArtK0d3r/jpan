@@ -55,6 +55,7 @@ class Entry extends Model
         'B16',
         'B17',
         'B18',
+        'B19',
         'C1',
         'C2',
         'D1',

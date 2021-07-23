@@ -24,7 +24,7 @@
                                         <div class="input-group">
                                             <input class="form-control" placeholder="{{ trans('brackets/admin-ui::admin.placeholder.search') }}" v-model="search" @keyup.enter="filter('search', $event.target.value)" />
                                             <span class="input-group-append">
-                                                <button type="button" class="btn btn-primary" @click="filter('search', search)"><i class="fa fa-search"></i>&nbsp; {{ trans('brackets/admin-ui::admin.btn.search') }}</button>
+                                                <button type="button" class="btn btn-primary" @click="filter2('search', search)"><i class="fa fa-search"></i>&nbsp; {{ trans('brackets/admin-ui::admin.btn.search') }}</button>
                                             </span>
                                         </div>
                                     </div>
@@ -78,44 +78,6 @@
                                         <th is='sortable' :column="'tinggalBersamaDetail'">Tinggal Bersama (Nyatakan)</th>
                                         <th is='sortable' :column="'kenderaanKerja'">Kenderaan Kerja</th>
                                         <th is='sortable' :column="'kenderaanKerjaDetail'">Kenderaan Kerja (Nyatakan)</th>
-                                        {{--<th is='sortable' :column="'B13'">{{ trans('admin.entry.columns.B13') }}</th>
-                                        <th is='sortable' :column="'B14'">{{ trans('admin.entry.columns.B14') }}</th>
-                                        <th is='sortable' :column="'B15'">{{ trans('admin.entry.columns.B15') }}</th>
-                                        <th is='sortable' :column="'B16'">{{ trans('admin.entry.columns.B16') }}</th>
-                                        <th is='sortable' :column="'B17'">{{ trans('admin.entry.columns.B17') }}</th>
-                                        <th is='sortable' :column="'B18'">{{ trans('admin.entry.columns.B18') }}</th>
-                                        <th is='sortable' :column="'B19'">{{ trans('admin.entry.columns.B19') }}</th>
-                                        <th is='sortable' :column="'B20'">{{ trans('admin.entry.columns.B20') }}</th>
-                                        <th is='sortable' :column="'B21'">{{ trans('admin.entry.columns.B21') }}</th>
-                                        <th is='sortable' :column="'B22'">{{ trans('admin.entry.columns.B22') }}</th>
-                                        <th is='sortable' :column="'B23'">{{ trans('admin.entry.columns.B23') }}</th>
-                                        <th is='sortable' :column="'B24'">{{ trans('admin.entry.columns.B24') }}</th>
-                                        <th is='sortable' :column="'B25'">{{ trans('admin.entry.columns.B25') }}</th>
-                                        <th is='sortable' :column="'B26'">{{ trans('admin.entry.columns.B26') }}</th>
-                                        <th is='sortable' :column="'B27'">{{ trans('admin.entry.columns.B27') }}</th>
-                                        <th is='sortable' :column="'B28'">{{ trans('admin.entry.columns.B28') }}</th>
-                                        <th is='sortable' :column="'B29'">{{ trans('admin.entry.columns.B29') }}</th>
-                                        <th is='sortable' :column="'B30'">{{ trans('admin.entry.columns.B30') }}</th>
-                                        <th is='sortable' :column="'B31'">{{ trans('admin.entry.columns.B31') }}</th>
-                                        <th is='sortable' :column="'B32'">{{ trans('admin.entry.columns.B32') }}</th>
-                                        <th is='sortable' :column="'B33'">{{ trans('admin.entry.columns.B33') }}</th>
-                                        <th is='sortable' :column="'B34'">{{ trans('admin.entry.columns.B34') }}</th>
-                                        <th is='sortable' :column="'B35'">{{ trans('admin.entry.columns.B35') }}</th>
-                                        <th is='sortable' :column="'B36'">{{ trans('admin.entry.columns.B36') }}</th>
-                                        <th is='sortable' :column="'B37'">{{ trans('admin.entry.columns.B37') }}</th>
-                                        <th is='sortable' :column="'B38'">{{ trans('admin.entry.columns.B38') }}</th>
-                                        <th is='sortable' :column="'B39'">{{ trans('admin.entry.columns.B39') }}</th>
-                                        <th is='sortable' :column="'B40'">{{ trans('admin.entry.columns.B40') }}</th>
-                                        <th is='sortable' :column="'B41'">{{ trans('admin.entry.columns.B41') }}</th>
-                                        <th is='sortable' :column="'B42'">{{ trans('admin.entry.columns.B42') }}</th>
-                                        <th is='sortable' :column="'B43'">{{ trans('admin.entry.columns.B43') }}</th>
-                                        <th is='sortable' :column="'B44'">{{ trans('admin.entry.columns.B44') }}</th>
-                                        <th is='sortable' :column="'B45'">{{ trans('admin.entry.columns.B45') }}</th>
-                                        <th is='sortable' :column="'C1'">{{ trans('admin.entry.columns.C1') }}</th>
-                                        <th is='sortable' :column="'C2'">{{ trans('admin.entry.columns.C2') }}</th>
-                                        <th is='sortable' :column="'C3'">{{ trans('admin.entry.columns.C3') }}</th>
-                                        <th is='sortable' :column="'C4'">{{ trans('admin.entry.columns.C4') }}</th>
-                                        <th is='sortable' :column="'C5'">{{ trans('admin.entry.columns.C5') }}</th> --}}
 
                                         <th></th>
                                     </tr>
