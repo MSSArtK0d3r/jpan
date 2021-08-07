@@ -8,6 +8,8 @@ class Entry extends Model
 {
     protected $fillable = [
         'umur',
+        'email',
+        'phone',
         'jantina',
         'agama',
         'lainAgamaDetail',
@@ -55,7 +57,6 @@ class Entry extends Model
         'B16',
         'B17',
         'B18',
-        'B19',
         'C1',
         'C2',
         'D1',

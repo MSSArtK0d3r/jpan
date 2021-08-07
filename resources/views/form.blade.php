@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url('css/normalize.css') }}">
 <link rel="stylesheet" href="{{ url('css/skeleton.css') }}">
 <style>
@@ -14,12 +16,12 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
-      font-family: "Raleway";
+      font-family: "Open Sans";
    }
 
    #regForm {
       margin: 20px auto;
-      font-family: "Raleway";
+      font-family: inherit;
       max-width: 640px;
    }
 
@@ -35,7 +37,7 @@
       outline: none;
       padding: 5px 10px;
       font-size: 14px;
-      font-family: Raleway;
+      font-family: inherit;
       border-bottom: 1px solid #aaaaaa;
       border-top: 0px;
       border-left: 0px;
@@ -53,7 +55,7 @@
    }
 
    label {
-      font-family: 'Raleway';
+      font-family: inherit;
    }
 
    /* Mark input boxes that gets an error on validation: */
@@ -71,7 +73,7 @@
       color: #ffffff;
       border: none;
       font-size: 17px;
-      font-family: Raleway;
+      font-family: inherit;
       cursor: pointer;
    }
 
@@ -492,8 +494,8 @@
                   </div>
 
                </div>
+               <!-- Section B -->
                <div class="tab">
-                  <!-- Start B2 Section -->
                   <div class="titleCategory introPage">
                      <span>
                         <h5 class="title-center">BAHAGIAN B: KEPUASAN KERJA</h5>
@@ -6869,7 +6871,6 @@
                      <textarea rows="10" class="big-input" name="komen" value=''></textarea><br>
                      <label>2. Apakah cadangan/komen ada berkaitan kegembiraan dan prestasi anda sebagai penjawat awam negeri Sabah? (Jika ada)</label><br>
                      <textarea rows="10" class="big-input" name="cadangan" value=''></textarea>
-                     
                   </div>
                </div>
                <!-- Circles which indicates the steps of the form: -->

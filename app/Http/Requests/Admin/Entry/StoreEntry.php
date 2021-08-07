@@ -59,7 +59,6 @@ class StoreEntry extends FormRequest
             'B16' => ['required', 'string'],
             'B17' => ['required', 'string'],
             'B18' => ['required', 'string'],
-            'B19' => ['required', 'string'],
             'B20' => ['required', 'string'],
             'B21' => ['required', 'string'],
             'B22' => ['required', 'string'],

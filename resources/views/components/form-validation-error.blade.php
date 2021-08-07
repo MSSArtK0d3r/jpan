@@ -1,0 +1,1 @@
+{{$errors->first($key) ? 'errForm' : ''}}

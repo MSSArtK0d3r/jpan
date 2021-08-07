@@ -4,6 +4,8 @@
 
 @section('body')
 
+<div>{{var_dump($data['lul'])}}</div>
+
     <entry-listing
         :data="{{ $data->toJson() }}"
         :url="'{{ url('admin/entries') }}'"
@@ -24,7 +26,7 @@
                                         <div class="input-group">
                                             <input class="form-control" placeholder="{{ trans('brackets/admin-ui::admin.placeholder.search') }}" v-model="search" @keyup.enter="filter('search', $event.target.value)" />
                                             <span class="input-group-append">
-                                                <button type="button" class="btn btn-primary" @click="filter2('search', search)"><i class="fa fa-search"></i>&nbsp; {{ trans('brackets/admin-ui::admin.btn.search') }}</button>
+                                                <button type="button" class="btn btn-primary" @click="filter('search', search)"><i class="fa fa-search"></i>&nbsp; {{ trans('brackets/admin-ui::admin.btn.search') }}</button>
                                             </span>
                                         </div>
                                     </div>

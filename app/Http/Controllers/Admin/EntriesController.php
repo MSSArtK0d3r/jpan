@@ -90,7 +90,6 @@ class EntriesController extends Controller
                 'B16',
                 'B17',
                 'B18',
-                'B19',
                 'C1',
                 'C2',
                 'D1',
@@ -202,7 +201,8 @@ class EntriesController extends Controller
 
             // set columns to searchIn
             [
-                'daerahBertugas',
+                'id',
+                'umur'
             ]
         );
 
@@ -212,6 +212,7 @@ class EntriesController extends Controller
                     'bulkItems' => $data->pluck('id')
                 ];
             }
+            $data['lul'] = $request;
             return ['data' => $data];
         }
 

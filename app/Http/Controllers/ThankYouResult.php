@@ -8,13 +8,11 @@ use Illuminate\Support\Facades\DB;
 class ThankYouResult extends Controller
 {
     
-    public function index($uuid) {
+    public function userRndex($uuid) {
 
         $data = array();
 
         $entry = DB::table('entries')->where('uuid', $uuid)->first();
-        if ($entry !== null){
-        $data['renderData'] = true;
         $userRateB = (($entry->B1 + $entry->B2 + $entry->B3 + $entry->B4 + $entry->B5 + $entry->B6 + $entry->B7 + $entry->B8 + $entry->B9 + $entry->B10 + $entry->B11 + $entry->B12 + $entry->B13 + $entry->B14 + $entry->B15 + $entry->B16 + $entry->B17 + $entry->B18 + $entry->B19 ) * 100) / 190;
         $userRateC = (($entry->C1 + $entry->C2) * 100) / 20;
         $userRateD = ($entry->D1 * 100) / 10;
@@ -83,9 +81,8 @@ class ThankYouResult extends Controller
         $data['totalRatingP'] = $this->calculateTotalP();
         $data['totalRatingQ'] = $this->calculateTotalQ();
         
-        return view('thankyou',['data' => $data]);
         
-        }
+        
         
         return redirect('/');
         

@@ -165,7 +165,7 @@ a:hover {
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.button,
+/* .button,
 button,
 input[type="submit"],
 input[type="reset"],
@@ -220,7 +220,7 @@ input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
   color: #FFF;
   background-color: #1EAEDB;
-  border-color: #1EAEDB; }
+  border-color: #1EAEDB; } */
 
 
 /* Forms
@@ -276,8 +276,7 @@ legend {
 fieldset {
   padding: 0;
   border-width: 0; }
-input[type="checkbox"],
-input[type="radio"] {
+input[type="checkbox"] {
   display: inline; }
 label > .label-body {
   display: inline-block;
@@ -300,8 +299,7 @@ ol ol,
 ol ul {
   margin: 1.5rem 0 1.5rem 3rem;
   font-size: 90%; }
-li {
-  margin-bottom: 1rem; }
+
 
 
 /* Code
@@ -337,9 +335,9 @@ td:last-child {
 
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-button,
+/* button,
 .button {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem; } */
 input,
 textarea,
 select,
