@@ -23,12 +23,17 @@
             </p>
             <x-ratings-components initialQuestion="0" questionNumber="4" sectionQuestion="B" :userData="$userData[0]->B4"/>
          </div>
-         <div class="introPage <x-form-validation-error key='B5'/>" id="penilai2" style="margin-bottom: 10px;">
+         @if ($penilai2[0]->penilai2 == 2)
+            <div class="introPage <x-form-validation-error key='B5'/>" id="penilai2" style="margin-bottom: 10px;">
             <p style="margin: 0px">5. Saya berpuas hati dengan kepimpinan ketua saya (Penilai 2)<br>Nota: Ketua adalah merujuk kepada Penilai 2 dalam penilaian prestasi tahunan.</p>
-               <div style="text-align: center; margin:10px 0px;"><span class="btnTiada" onclick="tiadaPenilai2(); return false">Tekan sini jika tiada penilai 2</span></div>
             <x-ratings-components initialQuestion="0" questionNumber="5" sectionQuestion="B" :userData="$userData[0]->B5"/>
-            
-         </div>
+            </div>
+         @else
+            <div class="introPage <x-form-validation-error key='B5'/>" id="penilai2" style="margin-bottom: 10px;">
+            <p style="margin: 0px">5. Saya berpuas hati dengan kepimpinan ketua saya (Penilai 2)<br><span style="font-size: 12px;font-style: italic;">Nota: Soalan ini hanya terbuka kepada yang mempunyai penilai ke-2</span></p>
+            </div>
+         @endif
+         
          <div class="introPage <x-form-validation-error key='B6'/>" style="margin-bottom: 10px;">
             <p>6. Banyak peraturan dan prosedur kerja menyukarkan saya untuk melakukan kerja dengan baik.</p>
             
@@ -136,18 +141,4 @@
     :completedR="$userProgress[0]->completedR"
     />
  </div>
- <script>
-   function tiadaPenilai2() {
-      var radList = document.getElementsByName('B5');
-      for (var i = 0; i < radList.length; i++) {
-        if (radList[i].checked) radList[i].checked = false;
-      }
-     var x = document.getElementById("penilai2");
-     if (x.style.display === "none") {
-       x.style.display = "block";
-     } else {
-       x.style.display = "none";
-     }
-   }
-   </script>
 <x-footer/>

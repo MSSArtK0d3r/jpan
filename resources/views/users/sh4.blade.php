@@ -6,6 +6,10 @@
     <x-form-global-error/>
     <form action="{{route('updateSectionH4')}}" method="POST">
         @csrf
+        <div class="introPage <x-form-validation-error key='H30'/>" style="margin-bottom: 10px;">
+        <p>30. Pengurusan di organisasi saya sering mengadakan sesi berdialog dengan pekerja.</p>
+        <x-ratings-components initialQuestion="0" questionNumber="30" sectionQuestion="H" :userData="$userData[0]->H30"/> 
+         </div>
         <div class="introPage <x-form-validation-error key='H31'/>" style="margin-bottom: 10px;">
             <p>31. Warga organisasi sentiasa berkomunikasi, bertukar pengetahuan dan pembelajaran.</p>
             <x-ratings-components initialQuestion="0" questionNumber="31" sectionQuestion="H" :userData="$userData[0]->H31"/> 

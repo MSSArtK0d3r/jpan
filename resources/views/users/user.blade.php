@@ -8,7 +8,7 @@
         <input class="emailInput" type="email" name="email" placeholder="Masukkan alamat email @sabah.gov.my">
         <button class="subBtn" type="submit" value="mantap">Setuju dan teruskan</button>
         @error('email')
-            <br><span class="Err">sila gunakan alamat e-mail yang betul</span>
+            <br><span class="Err">Sila gunakan alamat e-mail @sabah.gov.my</span>
         @enderror
         {{-- <input class="subBtn" onclick="this.value='Loading...'" type="submit" value="Setuju dan teruskan"/> --}}
     </form>
@@ -33,7 +33,7 @@
     </div>
     <div class="widgetContainerDimensi twelve columns">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">B</span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Kepuasan Kerja</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>KEPUASAN KERJA</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:25px;">{{$subDimension['subDimensionBKepuasanKerja']}}%</span></p></div>
     </div>
     <div class="widgetContainerDimensi twevle columns noMargin">
@@ -83,7 +83,7 @@
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">E</span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Afek</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>AFEK</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:25px;">{{$subDimension['subDimensionEAfek']}}%</span></p></div>
     </div>
     <div class="widgetContainerDimensi twevle columns noMargin">
@@ -98,7 +98,7 @@
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">F</span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Keterlibatan Kerja</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>KETERLIBATAN KERJA</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:25px;">{{$subDimension['subDimensionFKeterlibatanKerja']}}%</span></p></div>
     </div>
     <div class="widgetContainerDimensi twevle columns noMargin">
@@ -118,7 +118,7 @@
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">G</span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Pretasi Kerja</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>PRESTASI KERJA</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:25px;">{{$subDimension['subDimensionGPrestasiKerja']}}%</span></p></div>
     </div>
     <div class="widgetContainerDimensi twevle columns noMargin">
@@ -208,7 +208,7 @@
             datasets: [
               {
                 label: 'Your\'s Rating',
-                data: [{{$data['userRatingB']}}, {{$data['userRatingC']}}, {{$data['userRatingD']}}, {{$data['userRatingE']}}, {{$data['userRatingF']}}, {{$data['userRatingG']}},{{$data['userRatingH']}}, {{$data['userRatingI']}}, {{$data['userRatingJ']}}, {{$data['userRatingK']}}, {{$data['userRatingL']}}, {{$data['userRatingM']}}, {{$data['userRatingN']}}, {{$data['userRatingO']}}, {{$data['userRatingP']}}, {{$data['userRatingQ']}}],
+                data: [{{$subDimension['subDimensionBKepuasanKerja']}}, {{$subDimension['subDimensionCKepuasanHidup']}}, {{$subDimension['subDimensionDPenilaianHidup']}}, {{$subDimension['subDimensionEAfek']}}, {{$subDimension['subDimensionFKeterlibatanKerja']}}, {{$subDimension['subDimensionGPrestasiKerja']}},{{$subDimension['subDimensionHOBT']}}, {{$subDimension['subDimensionI']}}, {{$subDimension['subDimensionJ']}}, {{$subDimension['subDimensionK']}}, {{$subDimension['subDimensionL']}}, {{$subDimension['subDimensionM']}}, {{$subDimension['subDimensionN']}}, {{$subDimension['subDimensionO']}}, {{$subDimension['subDimensionP']}}, {{$subDimension['subDimensionQ']}}],
                 backgroundColor: [
                     'rgba(255, 159, 64, 1)'
                 ],

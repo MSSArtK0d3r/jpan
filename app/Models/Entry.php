@@ -39,6 +39,8 @@ class Entry extends Model
         'tinggalBersamaDetail',
         'kenderaanKerja',
         'kenderaanKerjaDetail',
+        'penilai1',
+        'penilai2',
         'B1',
         'B2',
         'B3',

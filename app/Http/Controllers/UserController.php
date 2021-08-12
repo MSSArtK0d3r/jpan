@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Queue\NullQueue;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -54,22 +55,6 @@ class UserController extends Controller
             $data = array();
 
             $entry = DB::table('entries')->where('email','=', $user)->first();
-            $userRateB = (($entry->B1 + $entry->B2 + $entry->B3 + $entry->B4 + $entry->B5 + $entry->B6 + $entry->B7 + $entry->B8 + $entry->B9 + $entry->B10 + $entry->B11 + $entry->B12 + $entry->B13 + $entry->B14 + $entry->B15 + $entry->B16 + $entry->B17 + $entry->B18 ) * 100) / 180;
-            $userRateC = (($entry->C1 + $entry->C2) * 100) / 20;
-            $userRateD = ($entry->D1 * 100) / 10;
-            $userRateE = (($entry->E1 + $entry->E2 + $entry->E3 + $entry->E4 + $entry->E5 + $entry->E6) * 100) / 60;
-            $userRateF = (($entry->F1 + $entry->F2 + $entry->F3 + $entry->F4 + $entry->F5 + $entry->F6) * 100) / 60;
-            $userRateG = (($entry->G1 + $entry->G2 + $entry->G3 + $entry->G4 + $entry->G5 + $entry->G6 + $entry->G7 + $entry->G8 + $entry->G9 + $entry->G10) * 100) / 100;
-            $userRateH = (($entry->H1 + $entry->H2 + $entry->H3 + $entry->H4 + $entry->H5 + $entry->H6 + $entry->H7 + $entry->H8 + $entry->H9 + $entry->H10 + $entry->H11 + $entry->H12 + $entry->H13 + $entry->H14 + $entry->H15 + $entry->H16 + $entry->H17 + $entry->H18 + $entry->H19 + $entry->H20 + $entry->H21+ $entry->H22 + $entry->H23 + $entry->H24 + $entry->H25 + $entry->H26 + $entry->H27 + $entry->H28 + $entry->H29 + $entry->H30 + $entry->H31 + $entry->H32 + $entry->H33 + $entry->H34 + $entry->H35 ) * 100) / 350;
-            $userRateI = ((($entry->I1 + $entry->I3) / 20 * 100 ) + (( 10 - $entry->I2) / 10 * 100)) / 200 * 100;
-            $userRateJ = (($entry->J1 + $entry->J2 + $entry->J3 + $entry->J4 + $entry->J5 + $entry->J6 + $entry->J7 + $entry->J8 + $entry->J9 + $entry->J10) * 100) / 100;
-            $userRateK = ((($entry->K1 + $entry->K2 + $entry->K3 + $entry->K4 + $entry->K5 + $entry->K6 + $entry->K7 + $entry->K8 + $entry->K9) * 100) / 90) + (( 10 - $entry->K10 ) / 10 * 100) / 200 * 100;
-            $userRateL = ((30 - ($entry->L1 + $entry->L2 + $entry->L3)) * 100 / 30) + ($entry->L4 / 10 * 100) / 200 * 100;
-            $userRateM = (($entry->M1 + $entry->M2 + $entry->M3) * 100) / 30;
-            $userRateN = (($entry->N1 + $entry->N2 + $entry->N3 + $entry->N4) * 100) / 40;
-            $userRateO = (($entry->O1 + $entry->O2 + $entry->O3 + $entry->O4 + $entry->O5) * 100) / 50;
-            $userRateP = (($entry->P1 + $entry->P2) * 100) / 20;
-            $userRateQ = (($entry->Q1 + $entry->Q2 + $entry->Q3 + $entry->Q4) * 100) / 40;
         
             $hasCompleted['completedA'] = $entry->completedA;
             $hasCompleted['completedB'] = $entry->completedB;
@@ -92,39 +77,6 @@ class UserController extends Controller
             $hasCompleted['completedP'] = $entry->completedQ;
             $hasCompleted['completedQ'] = $entry->completedR;
 
-            $BRate = round($userRateB, 2);
-            $CRate = round($userRateC, 2);
-            $DRate = round($userRateD, 2);
-            $ERate = round($userRateE, 2);
-            $FRate = round($userRateF, 2);
-            $GRate = round($userRateG, 2);
-            $HRate = round($userRateH, 2);
-            $IRate = round($userRateI, 2);
-            $JRate = round($userRateJ, 2);
-            $KRate = round($userRateK, 2);
-            $LRate = round($userRateL, 2);
-            $MRate = round($userRateM, 2);
-            $NRate = round($userRateN, 2);
-            $ORate = round($userRateO, 2);
-            $PRate = round($userRateP, 2);
-            $QRate = round($userRateQ, 2);
-
-            $data['userRatingB'] = $BRate;
-            $data['userRatingC'] = $CRate;
-            $data['userRatingD'] = $DRate;
-            $data['userRatingE'] = $ERate;
-            $data['userRatingF'] = $FRate;
-            $data['userRatingG'] = $GRate;
-            $data['userRatingH'] = $HRate;
-            $data['userRatingI'] = $IRate;
-            $data['userRatingJ'] = $JRate;
-            $data['userRatingK'] = $KRate;
-            $data['userRatingL'] = $LRate;
-            $data['userRatingM'] = $MRate;
-            $data['userRatingN'] = $NRate;
-            $data['userRatingO'] = $ORate;
-            $data['userRatingP'] = $PRate;
-            $data['userRatingQ'] = $QRate;
 
             $data['totalRatingB'] = $this->calculateTotalB();
             $data['totalRatingC'] = $this->calculateTotalC();
@@ -147,7 +99,7 @@ class UserController extends Controller
             //Index Data
             $totalIndex['indexB'] = $this->calculateIndexB($user);
             $totalIndex['indexC'] = $this->calculateIndexC($user);
-            $totalIndex['indexD'] = $this->calculateIndexD($user);
+            $totalIndex['indexD'] = $this->calculateIndexD($entry->D1);
             $totalIndex['indexE'] = $this->calculateIndexE($user);
             $totalIndex['indexF'] = $this->calculateIndexF($user);
             $totalIndex['indexG'] = $this->calculateIndexG($user);
@@ -167,7 +119,10 @@ class UserController extends Controller
             $subDimension['subDimensionBKepuasanKerja'] = $this->calculateSubDimensionB($subDimension['subDimensionBGaji'], $subDimension['subDimensionBPangkat'], $subDimension['subDimensionBKetua'], $subDimension['subDimensionBProsedurOperasi'], $subDimension['subDimensionBRakanSekerja'], $subDimension['subDimensionBSifatKerja'], $subDimension['subDimensionBKomunikasi'], $subDimension['subDimensionBPersekitaran']);
 
             $subDimension['subDimensionCKepuasanHidup'] = $this->calculateIndexC($user);
+            $subDimension['subDimensionDPenilaianHidup'] = $this->calculateIndexD($entry->D1);
 
+
+            
             $subDimension['subDimensionEAfekPositif'] = $this->calculateSubDimensionEAfekPositif($entry->E1, $entry->E2, $entry->E3);
             $subDimension['subDimensionEAfekNegatif'] = $this->calculateSubDimensionEAfekNegatif($entry->E4, $entry->E5, $entry->E6);
             $subDimension['subDimensionEAfek'] = $this->calculateSubDimensionEAfek($subDimension['subDimensionEAfekPositif'], $subDimension['subDimensionEAfekNegatif']);
@@ -189,6 +144,15 @@ class UserController extends Controller
             $subDimension['subDimensionHKeterbukaanDanOrientasiTindakan'] = $this->calculateSubDimensionHKeterbukaanDanOrientasiTindakan($entry->H30, $entry->H31, $entry->H32, $entry->H33, $entry->H34, $entry->H35);
             $subDimension['subDimensionHOBT'] = $this->calculateSubDimensionHOBT($subDimension['subDimensionHKualitiPengurusan'], $subDimension['subDimensionHPenambahbaikanDanPembaharuanBerterusan'], $subDimension['subDimensionHOrientasiJangkaPanjang'], $subDimension['subDimensionHKualitiPekerja'], $subDimension['subDimensionGPrestasiTugas']);
 
+            $subDimension['subDimensionI'] = $this->calculateIndexI($entry->E1, $entry->E2, $entry->E3); 
+            $subDimension['subDimensionJ'] = $this->calculateIndexJ($entry->J1, $entry->J2, $entry->J3, $entry->J4, $entry->J5, $entry->J6, $entry->J7, $entry->J8, $entry->J9, $entry->J10);
+            $subDimension['subDimensionK'] = $this->calculateIndexK($entry->K1, $entry->K2, $entry->K3, $entry->K4, $entry->K5, $entry->K6, $entry->K7, $entry->K8, $entry->K9, $entry->K10);
+            $subDimension['subDimensionL'] = $this->calculateIndexL($entry->L1, $entry->L2, $entry->L3, $entry->L4);
+            $subDimension['subDimensionM'] = $this->calculateIndexM($entry->M1, $entry->M2, $entry->M3);
+            $subDimension['subDimensionN'] = $this->calculateIndexN($entry->N1, $entry->N2, $entry->N3, $entry->N4);
+            $subDimension['subDimensionO'] = $this->calculateIndexO($entry->O1, $entry->O2, $entry->O3, $entry->O4, $entry->O5);      
+            $subDimension['subDimensionP'] = $this->calculateIndexP($entry->P1, $entry->P2);
+            $subDimension['subDimensionQ'] = $this->calculateIndexQ($entry->Q1, $entry->Q2, $entry->Q3, $entry->Q4);
             return view('users.user', compact('user', 'data', 'hasCompleted', 'userProgress', 'totalIndex', 'indexKegembiraan', 'indexOBT', 'subDimension'));
         }
         return view('users.user', compact('user'));
@@ -197,6 +161,7 @@ class UserController extends Controller
     public function storeData(Request $request){
         $validateEmail = $request->validate([
             'email' => 'required|email',
+            //'email' => 'required|email|regex:/(.*)sabah\.gov\.my$/i',
         ]);
         $userData = DB::table('entries')->where('email', $request->email)->first();
             
@@ -252,6 +217,8 @@ class UserController extends Controller
         'tinggalBersamaDetail',
         'kenderaanKerja',
         'kenderaanKerjaDetail',
+        'penilai1',
+        'penilai2',
         'completedA'
         );
         $userProgress = $this->getUserProgress($request);
@@ -263,39 +230,72 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'umur' => 'required|numeric',
-                'jantina' => 'required|string',
-                'agama' => 'required|string',
-                'lainAgamaDetail' => 'nullable',
-                'bangsa' => 'required|string',
-                'daerahBertugas' => 'required',
-                'status' => 'required',
-                'bilAnak' => 'required',
-                'bilIsiRumah' => 'required',
-                'tinggalBersamaPasangan' => 'required',
-                'bilBilikTidur' => 'required',
-                'education' => 'required',
-                'agensi' => 'required',
-                'kumpulanPerkhidmatan' => 'required',
-                'tarafJawatan' => 'required',
-                'skimPerkhidmatan' => 'required',
-                'gredJawatan' => 'required',
-                'gajiKasarBulanan' => 'required',
-                'gajiBersihBulanan' => 'required',
-                'kesukaranGaji' => 'required',
-                'tempohPerkhidmatanTahun' => 'required',
-                'tempohPerkhidmatanBulan' => 'required',
-                'masalahKesihatan' => 'required',
-                'masalahKesihatanDetail' => 'nullable',
-                'tempatTinggal' => 'required',
-                'tempatTinggalDetail' => 'nullable',
-                'tinggalBersama' => 'required',
-                'tinggalBersamaDetail' => 'nullable',
-                'kenderaanKerja' => 'required',
-                'kenderaanKerjaDetail' => 'nullable'
-            ]);
-            DB::table('entries')->where('email', $user)->update(array(
+            // $validateData = $request->validate([
+            //     'umur' => 'nullable|numeric',
+            //     'jantina' => 'nullable|string',
+            //     'agama' => 'nullable|string',
+            //     'lainAgamaDetail' => 'nullable',
+            //     'bangsa' => 'nullable|string',
+            //     'daerahBertugas' => 'nullable',
+            //     'status' => 'nullable',
+            //     'bilAnak' => 'nullable',
+            //     'bilIsiRumah' => 'nullable',
+            //     'tinggalBersamaPasangan' => 'nullable',
+            //     'bilBilikTidur' => 'nullable',
+            //     'education' => 'nullable',
+            //     'agensi' => 'nullable',
+            //     'kumpulanPerkhidmatan' => 'nullable',
+            //     'tarafJawatan' => 'nullable',
+            //     'skimPerkhidmatan' => 'nullable',
+            //     'gredJawatan' => 'nullable',
+            //     'gajiKasarBulanan' => 'nullable',
+            //     'gajiBersihBulanan' => 'nullable',
+            //     'kesukaranGaji' => 'nullable',
+            //     'tempohPerkhidmatanTahun' => 'nullable',
+            //     'tempohPerkhidmatanBulan' => 'nullable',
+            //     'masalahKesihatan' => 'nullable',
+            //     'masalahKesihatanDetail' => 'nullable',
+            //     'tempatTinggal' => 'nullable',
+            //     'tempatTinggalDetail' => 'nullable',
+            //     'tinggalBersama' => 'nullable',
+            //     'tinggalBersamaDetail' => 'nullable',
+            //     'kenderaanKerja' => 'nullable',
+            //     'kenderaanKerjaDetail' => 'nullable'
+            // ]);
+            $hasCompleted = NULL;
+            if ( 
+                $request->umur != NULL && 
+                $request->jantina != NULL && 
+                $request->agama != NULL && 
+                $request->bangsa != NULL && 
+                $request->daerahBertugas != NULL && 
+                $request->status != NULL && 
+                $request->bilAnak != NULL && 
+                $request->bilIsiRumah != NULL &&
+                $request->tinggalBersamaPasangan != NULL &&
+                $request->bilBilikTidur != NULL &&
+                $request->education != NULL &&
+                $request->agensi != NULL &&
+                $request->kumpulanPerkhidmatan != NULL &&
+                $request->tarafJawatan != NULL &&
+                $request->skimPerkhidmatan != NULL &&
+                $request->gredJawatan != NULL &&
+                $request->gajiKasarBulanan != NULL &&
+                $request->gajiBersihBulanan != NULL &&
+                $request->kesukaranGaji != NULL &&
+                $request->tempohPerkhidmatanTahun != NULL &&
+                $request->tempohPerkhidmatanBulan != NULL &&
+                $request->masalahKesihatan != NULL &&
+                $request->tempatTinggal != NULL &&
+                $request->tinggalBersama != NULL &&
+                $request->kenderaanKerja != NULL &&
+                $request->penilai1 != NULL &&
+                $request->penilai2 != NULL
+                ){
+                    $hasCompleted = 1;
+                }
+            
+                DB::table('entries')->where('email', $user)->update(array(
                 'umur' => $request->umur,
                 'jantina' => $request->jantina,
                 'agama' => $request->agama,
@@ -326,9 +326,11 @@ class UserController extends Controller
                 'tinggalBersamaDetail' => $request->tinggalBersamaDetail,
                 'kenderaanKerja' => $request->kenderaanKerja,
                 'kenderaanKerjaDetail' => $request->kenderaanKerjaDetail,
-                'completedA' => 1
+                'penilai1' => $request->penilai1,
+                'penilai2' => $request->penilai2,
+                'completedA' => $hasCompleted,
             ));
-            return redirect('/users/sb');
+            return redirect('/users/demografi');
         }
 
         return redirect('users');
@@ -350,33 +352,41 @@ class UserController extends Controller
         }
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
-        return view('users.sb', compact('user', 'userData', 'userProgress'));
+        $penilai2 = DB::table('entries')->select('penilai2')->where('email', '=', $user)->get();
+        return view('users.sb', compact('user', 'userData', 'userProgress', 'penilai2'));
     }
 
     public function storeSectionB(Request $request){
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'B1' => 'required|numeric',
-                'B2' => 'required|numeric',
-                'B3' => 'required|numeric',
-                'B4' => 'required|numeric',
-                'B5' => 'nullable|numeric',
-                'B6' => 'required|numeric',
-                'B7' => 'required|numeric',
-                'B8' => 'required|numeric',
-                'B9' => 'required|numeric',
-                'B10' => 'required|numeric',
-                'B11' => 'required|numeric',
-                'B12' => 'required|numeric',
-                'B13' => 'required|numeric',
-                'B14' => 'required|numeric',
-                'B15' => 'required|numeric',
-                'B16' => 'required|numeric',
-                'B17' => 'required|numeric',
-                'B18' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'B1' => 'required|numeric',
+            //     'B2' => 'required|numeric',
+            //     'B3' => 'required|numeric',
+            //     'B4' => 'required|numeric',
+            //     'B5' => 'nullable|numeric',
+            //     'B6' => 'required|numeric',
+            //     'B7' => 'required|numeric',
+            //     'B8' => 'required|numeric',
+            //     'B9' => 'required|numeric',
+            //     'B10' => 'required|numeric',
+            //     'B11' => 'required|numeric',
+            //     'B12' => 'required|numeric',
+            //     'B13' => 'required|numeric',
+            //     'B14' => 'required|numeric',
+            //     'B15' => 'required|numeric',
+            //     'B16' => 'required|numeric',
+            //     'B17' => 'required|numeric',
+            //     'B18' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+
+            if ( $request->B1 != NULL && $request->B2 != NULL && $request->B3 != NULL && $request->B4 != NULL && $request->B6 != NULL && $request->B7 != NULL && $request->B8 != NULL && $request->B9 != NULL && $request->B10 != NULL && $request->B11 != NULL && $request->B12 != NULL && $request->B13 != NULL && $request->B14 != NULL && $request->B15 != NULL && $request->B16 != NULL && $request->B17 != NULL && $request->B18 != NULL )
+            {
+                $hasCompleted = 1;
+            }
+            
             DB::table('entries')->where('email', $user)->update(array(
                 'B1' => $request->B1,
                 'B2' => $request->B2,
@@ -396,9 +406,9 @@ class UserController extends Controller
                 'B16' => $request->B16,
                 'B17' => $request->B17,
                 'B18' => $request->B18,
-                'completedB' => 1
+                'completedB' => $hasCompleted
             ));
-            return redirect('/users/sc');
+            return redirect('/users/sb');
         }
 
         return redirect('users');
@@ -426,14 +436,18 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'C1' => 'required|numeric',
-                'C2' => 'required|numeric',
-            ]);
+            // $validateData = $request->validate([
+            //     'C1' => 'required|numeric',
+            //     'C2' => 'required|numeric',
+            //]);
+            $hasCompleted = NULL;
+            if ($request->C1 != NULL && $request->C2 != NULL) {
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'C1' => $request->C1,
                 'C2' => $request->C2,
-                'completedC' => 1
+                'completedC' => $hasCompleted
             ));
             return redirect('/users/sd');
         }
@@ -463,12 +477,14 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'D1' => 'required|numeric'
-            ]);
+
+            $hasCompleted = NULL;
+            if ($request->D1 != NULL){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'D1' => $request->D1,
-                'completedD' => 1
+                'completedD' => $hasCompleted
             ));
             return redirect('/users/se');
         }
@@ -498,14 +514,18 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'E1' => 'required|numeric',
-                'E2' => 'required|numeric',
-                'E3' => 'required|numeric',
-                'E4' => 'required|numeric',
-                'E5' => 'required|numeric',
-                'E6' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'E1' => 'required|numeric',
+            //     'E2' => 'required|numeric',
+            //     'E3' => 'required|numeric',
+            //     'E4' => 'required|numeric',
+            //     'E5' => 'required|numeric',
+            //     'E6' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if ( $request->E1 != NULL && $request->E2 != NULL && $request->E3 != NULL && $request->E4 != NULL && $request->E5 != NULL && $request->E6 != NULL ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'E1' => $request->E1,
                 'E2' => $request->E2,
@@ -513,7 +533,7 @@ class UserController extends Controller
                 'E4' => $request->E4,
                 'E5' => $request->E5,
                 'E6' => $request->E6,
-                'completedE' => 1
+                'completedE' => $hasCompleted
             ));
             return redirect('/users/sf');
         }
@@ -543,14 +563,18 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'F1' => 'required|numeric',
-                'F2' => 'required|numeric',
-                'F3' => 'required|numeric',
-                'F4' => 'required|numeric',
-                'F5' => 'required|numeric',
-                'F6' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'F1' => 'required|numeric',
+            //     'F2' => 'required|numeric',
+            //     'F3' => 'required|numeric',
+            //     'F4' => 'required|numeric',
+            //     'F5' => 'required|numeric',
+            //     'F6' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if ( $request->F1 != NULL && $request->F2 != NULL && $request->F3 != NULL && $request->F4 != NULL && $request->F5 != NULL && $request->F6 != NULL ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'F1' => $request->F1,
                 'F2' => $request->F2,
@@ -558,7 +582,7 @@ class UserController extends Controller
                 'F4' => $request->F4,
                 'F5' => $request->F5,
                 'F6' => $request->F6,
-                'completedF' => 1
+                'completedF' => $hasCompleted
             ));
             return redirect('/users/sg');
             }
@@ -587,18 +611,22 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'G1' => 'required|numeric',
-                'G2' => 'required|numeric',
-                'G3' => 'required|numeric',
-                'G4' => 'required|numeric',
-                'G5' => 'required|numeric',
-                'G6' => 'required|numeric',
-                'G7' => 'required|numeric',
-                'G8' => 'required|numeric',
-                'G9' => 'required|numeric',
-                'G10' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'G1' => 'required|numeric',
+            //     'G2' => 'required|numeric',
+            //     'G3' => 'required|numeric',
+            //     'G4' => 'required|numeric',
+            //     'G5' => 'required|numeric',
+            //     'G6' => 'required|numeric',
+            //     'G7' => 'required|numeric',
+            //     'G8' => 'required|numeric',
+            //     'G9' => 'required|numeric',
+            //     'G10' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if ( $request->G1 != NULL && $request->G2 != NULL && $request->G3 != NULL && $request->G4 != NULL && $request->G5 != NULL && $request->G6 != NULL && $request->G7 != NULL && $request->G8 != NULL && $request->G9 != NULL && $request->G10 != NULL ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'G1' => $request->G1,
                 'G2' => $request->G2,
@@ -610,7 +638,7 @@ class UserController extends Controller
                 'G8' => $request->G8,
                 'G9' => $request->G9,
                 'G10' => $request->G10,
-                'completedG' => 1
+                'completedG' => $hasCompleted
             ));
             return redirect('/users/sh1');
             }
@@ -626,7 +654,7 @@ class UserController extends Controller
         
         $i = 0;
         $data = array();
-        while ( $i <= 9 ) {
+        while ( $i <= 11 ) {
             $i++;
             array_push($data, 'H'.$i);
         }
@@ -639,18 +667,24 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'H1' => 'required|numeric',
-                'H2' => 'required|numeric',
-                'H3' => 'required|numeric',
-                'H4' => 'required|numeric',
-                'H5' => 'required|numeric',
-                'H6' => 'required|numeric',
-                'H7' => 'required|numeric',
-                'H8' => 'required|numeric',
-                'H9' => 'required|numeric',
-                'H10' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'H1' => 'required|numeric',
+            //     'H2' => 'required|numeric',
+            //     'H3' => 'required|numeric',
+            //     'H4' => 'required|numeric',
+            //     'H5' => 'required|numeric',
+            //     'H6' => 'required|numeric',
+            //     'H7' => 'required|numeric',
+            //     'H8' => 'required|numeric',
+            //     'H9' => 'required|numeric',
+            //     'H10' => 'required|numeric',
+            //     'H11' => 'required|numeric',
+            //     'H12' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if ( $request->H1 != NULL && $request->H2 != NULL && $request->H3 != NULL && $request->H4 != NULL && $request->H5 != NULL && $request->H6 != NULL && $request->H7 != NULL && $request->H8 != NULL && $request->H9 != NULL && $request->H10 != NULL && $request->H11 != NULL && $request->H12 != NULL ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'H1' => $request->H1,
                 'H2' => $request->H2,
@@ -662,7 +696,9 @@ class UserController extends Controller
                 'H8' => $request->H8,
                 'H9' => $request->H9,
                 'H10' => $request->H10,
-                'completedH1' => 1
+                'H11' => $request->H11,
+                'H12' => $request->H12,
+                'completedH1' => $hasCompleted
             ));
             return redirect('/users/sh2');
             }
@@ -676,7 +712,7 @@ class UserController extends Controller
             return redirect('users');
         }
         
-        $i = 10;
+        $i = 12;
         $data = array();
         while ( $i <= 19 ) {
             $i++;
@@ -691,21 +727,30 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'H11' => 'required|numeric',
-                'H12' => 'required|numeric',
-                'H13' => 'required|numeric',
-                'H14' => 'required|numeric',
-                'H15' => 'required|numeric',
-                'H16' => 'required|numeric',
-                'H17' => 'required|numeric',
-                'H18' => 'required|numeric',
-                'H19' => 'required|numeric',
-                'H20' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'H13' => 'required|numeric',
+            //     'H14' => 'required|numeric',
+            //     'H15' => 'required|numeric',
+            //     'H16' => 'required|numeric',
+            //     'H17' => 'required|numeric',
+            //     'H18' => 'required|numeric',
+            //     'H19' => 'required|numeric',
+            //     'H20' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->H13 != NULL &&
+                $request->H14 != NULL &&
+                $request->H15 != NULL &&
+                $request->H16 != NULL &&
+                $request->H17 != NULL &&
+                $request->H18 != NULL &&
+                $request->H19 != NULL &&
+                $request->H20 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
-                'H11' => $request->H11,
-                'H12' => $request->H12,
                 'H13' => $request->H13,
                 'H14' => $request->H14,
                 'H15' => $request->H15,
@@ -714,7 +759,7 @@ class UserController extends Controller
                 'H18' => $request->H18,
                 'H19' => $request->H19,
                 'H20' => $request->H20,
-                'completedH2' => 1
+                'completedH2' => $hasCompleted
             ));
             return redirect('/users/sh3');
             }
@@ -730,7 +775,7 @@ class UserController extends Controller
         
         $i = 20;
         $data = array();
-        while ( $i <= 29 ) {
+        while ( $i <= 28 ) {
             $i++;
             array_push($data, 'H'.$i);
         }
@@ -743,18 +788,31 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'H21' => 'required|numeric',
-                'H22' => 'required|numeric',
-                'H23' => 'required|numeric',
-                'H24' => 'required|numeric',
-                'H25' => 'required|numeric',
-                'H26' => 'required|numeric',
-                'H27' => 'required|numeric',
-                'H28' => 'required|numeric',
-                'H29' => 'required|numeric',
-                'H30' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'H21' => 'required|numeric',
+            //     'H22' => 'required|numeric',
+            //     'H23' => 'required|numeric',
+            //     'H24' => 'required|numeric',
+            //     'H25' => 'required|numeric',
+            //     'H26' => 'required|numeric',
+            //     'H27' => 'required|numeric',
+            //     'H28' => 'required|numeric',
+            //     'H29' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->H21 != NULL &&
+                $request->H22 != NULL &&
+                $request->H23 != NULL &&
+                $request->H24 != NULL &&
+                $request->H25 != NULL &&
+                $request->H26 != NULL &&
+                $request->H27 != NULL &&
+                $request->H28 != NULL &&
+                $request->H29 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'H21' => $request->H21,
                 'H22' => $request->H22,
@@ -765,8 +823,7 @@ class UserController extends Controller
                 'H27' => $request->H27,
                 'H28' => $request->H28,
                 'H29' => $request->H29,
-                'H30' => $request->H30,
-                'completedH3' => 1
+                'completedH3' => $hasCompleted
             ));
             return redirect('/users/sh4');
             }
@@ -780,7 +837,7 @@ class UserController extends Controller
             return redirect('users');
         }
         
-        $i = 30;
+        $i = 29;
         $data = array();
         while ( $i <= 34 ) {
             $i++;
@@ -795,20 +852,33 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'H31' => 'required|numeric',
-                'H32' => 'required|numeric',
-                'H33' => 'required|numeric',
-                'H34' => 'required|numeric',
-                'H35' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'H30' => 'required|numeric',
+            //     'H31' => 'required|numeric',
+            //     'H32' => 'required|numeric',
+            //     'H33' => 'required|numeric',
+            //     'H34' => 'required|numeric',
+            //     'H35' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->H30 != NULL &&
+                $request->H31 != NULL &&
+                $request->H32 != NULL &&
+                $request->H33 != NULL &&
+                $request->H34 != NULL &&
+                $request->H35 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
+                'H30' => $request->H30,
                 'H31' => $request->H31,
                 'H32' => $request->H32,
                 'H33' => $request->H33,
                 'H34' => $request->H34,
                 'H35' => $request->H35,
-                'completedH4' => 1
+                'completedH4' => $hasCompleted
             ));
             return redirect('/users/si');
             }
@@ -837,16 +907,24 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'I1' => 'required|numeric',
-                'I2' => 'required|numeric',
-                'I3' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'I1' => 'required|numeric',
+            //     'I2' => 'required|numeric',
+            //     'I3' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->I1 != NULL &&
+                $request->I2 != NULL &&
+                $request->I3 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'I1' => $request->I1,
                 'I2' => $request->I2,
                 'I3' => $request->I3,
-                'completedI' => 1
+                'completedI' => $hasCompleted
             ));
             return redirect('/users/sj');
             }
@@ -875,18 +953,33 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'J1' => 'required|numeric',
-                'J2' => 'required|numeric',
-                'J3' => 'required|numeric',
-                'J4' => 'required|numeric',
-                'J5' => 'required|numeric',
-                'J6' => 'required|numeric',
-                'J7' => 'required|numeric',
-                'J8' => 'required|numeric',
-                'J9' => 'required|numeric',
-                'J10' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'J1' => 'required|numeric',
+            //     'J2' => 'required|numeric',
+            //     'J3' => 'required|numeric',
+            //     'J4' => 'required|numeric',
+            //     'J5' => 'required|numeric',
+            //     'J6' => 'required|numeric',
+            //     'J7' => 'required|numeric',
+            //     'J8' => 'required|numeric',
+            //     'J9' => 'required|numeric',
+            //     'J10' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->J1 != NULL &&
+                $request->J2 != NULL &&
+                $request->J3 != NULL &&
+                $request->J4 != NULL &&
+                $request->J5 != NULL &&
+                $request->J6 != NULL &&
+                $request->J7 != NULL &&
+                $request->J8 != NULL &&
+                $request->J9 != NULL &&
+                $request->J10 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'J1' => $request->J1,
                 'J2' => $request->J2,
@@ -898,7 +991,7 @@ class UserController extends Controller
                 'J8' => $request->J8,
                 'J9' => $request->J9,
                 'J10' => $request->J10,
-                'completedJ' => 1
+                'completedJ' => $hasCompleted
             ));
             return redirect('/users/sk');
             }
@@ -927,18 +1020,33 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'K1' => 'required|numeric',
-                'K2' => 'required|numeric',
-                'K3' => 'required|numeric',
-                'K4' => 'required|numeric',
-                'K5' => 'required|numeric',
-                'K6' => 'required|numeric',
-                'K7' => 'required|numeric',
-                'K8' => 'required|numeric',
-                'K9' => 'required|numeric',
-                'K10' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'K1' => 'required|numeric',
+            //     'K2' => 'required|numeric',
+            //     'K3' => 'required|numeric',
+            //     'K4' => 'required|numeric',
+            //     'K5' => 'required|numeric',
+            //     'K6' => 'required|numeric',
+            //     'K7' => 'required|numeric',
+            //     'K8' => 'required|numeric',
+            //     'K9' => 'required|numeric',
+            //     'K10' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->K1 != NULL &&
+                $request->K2 != NULL &&
+                $request->K3 != NULL &&
+                $request->K4 != NULL &&
+                $request->K5 != NULL &&
+                $request->K6 != NULL &&
+                $request->K7 != NULL &&
+                $request->K8 != NULL &&
+                $request->K9 != NULL &&
+                $request->K10 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'K1' => $request->K1,
                 'K2' => $request->K2,
@@ -950,7 +1058,7 @@ class UserController extends Controller
                 'K8' => $request->K8,
                 'K9' => $request->K9,
                 'K10' => $request->K10,
-                'completedK' => 1
+                'completedK' => $hasCompleted
             ));
             return redirect('/users/sl');
             }
@@ -979,18 +1087,27 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'L1' => 'required|numeric',
-                'L2' => 'required|numeric',
-                'L3' => 'required|numeric',
-                'L4' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'L1' => 'required|numeric',
+            //     'L2' => 'required|numeric',
+            //     'L3' => 'required|numeric',
+            //     'L4' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->L1 != NULL &&
+                $request->L2 != NULL &&
+                $request->L3 != NULL &&
+                $request->L4 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'L1' => $request->L1,
                 'L2' => $request->L2,
                 'L3' => $request->L3,
                 'L4' => $request->L4,
-                'completedL' => 1
+                'completedL' => $hasCompleted
             ));
             return redirect('/users/sm');
             }
@@ -1019,16 +1136,24 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'M1' => 'required|numeric',
-                'M2' => 'required|numeric',
-                'M3' => 'required|numeric',
-            ]);
+            // $validateData = $request->validate([
+            //     'M1' => 'required|numeric',
+            //     'M2' => 'required|numeric',
+            //     'M3' => 'required|numeric',
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->M1 != NULL &&
+                $request->M2 != NULL &&
+                $request->M3 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'M1' => $request->M1,
                 'M2' => $request->M2,
                 'M3' => $request->M3,
-                'completedM' => 1
+                'completedM' => $hasCompleted
             ));
             return redirect('/users/sn');
             }
@@ -1057,18 +1182,27 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'N1' => 'required|numeric',
-                'N2' => 'required|numeric',
-                'N3' => 'required|numeric',
-                'N4' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'N1' => 'required|numeric',
+            //     'N2' => 'required|numeric',
+            //     'N3' => 'required|numeric',
+            //     'N4' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->N1 != NULL &&
+                $request->N2 != NULL &&
+                $request->N3 != NULL &&
+                $request->N4 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'N1' => $request->N1,
                 'N2' => $request->N2,
                 'N3' => $request->N3,
                 'N4' => $request->N4,
-                'completedN' => 1
+                'completedN' => $hasCompleted
             ));
             return redirect('/users/so');
             }
@@ -1097,20 +1231,30 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'O1' => 'required|numeric',
-                'O2' => 'required|numeric',
-                'O3' => 'required|numeric',
-                'O4' => 'required|numeric',
-                'O5' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'O1' => 'required|numeric',
+            //     'O2' => 'required|numeric',
+            //     'O3' => 'required|numeric',
+            //     'O4' => 'required|numeric',
+            //     'O5' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->O1 != NULL &&
+                $request->O2 != NULL &&
+                $request->O3 != NULL &&
+                $request->O4 != NULL &&
+                $request->O5 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'O1' => $request->O1,
                 'O2' => $request->O2,
                 'O3' => $request->O3,
                 'O4' => $request->O4,
                 'O5' => $request->O5,
-                'completedO' => 1
+                'completedO' => $hasCompleted
             ));
             return redirect('/users/sp');
             }
@@ -1139,14 +1283,21 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'P1' => 'required|numeric',
-                'P2' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'P1' => 'required|numeric',
+            //     'P2' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->P1 != NULL &&
+                $request->P2 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'P1' => $request->P1,
                 'P2' => $request->P2,
-                'completedP' => 1
+                'completedP' => $hasCompleted
             ));
             return redirect('/users/sq');
             }
@@ -1175,18 +1326,27 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'Q1' => 'required|numeric',
-                'Q2' => 'required|numeric',
-                'Q3' => 'required|numeric',
-                'Q4' => 'required|numeric'
-            ]);
+            // $validateData = $request->validate([
+            //     'Q1' => 'required|numeric',
+            //     'Q2' => 'required|numeric',
+            //     'Q3' => 'required|numeric',
+            //     'Q4' => 'required|numeric'
+            // ]);
+            $hasCompleted = NULL;
+            if (
+                $request->Q1 != NULL &&
+                $request->Q2 != NULL &&
+                $request->Q3 != NULL &&
+                $request->Q4 != NULL
+            ){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'Q1' => $request->Q1,
                 'Q2' => $request->Q2,
                 'Q3' => $request->Q3,
                 'Q4' => $request->Q4,
-                'completedQ' => 1
+                'completedQ' => $hasCompleted
             ));
             return redirect('/users/sr');
             }
@@ -1214,16 +1374,20 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            $validateData = $request->validate([
-                'komen' => 'nullable',
-                'cadangan' => 'nullable',
-                'phone' => 'required'
-            ]);
+            // $validateData = $request->validate([
+            //     'komen' => 'nullable',
+            //     'cadangan' => 'nullable',
+            //     'phone' => 'required'
+            // ]);
+            $hasCompleted = NULL;
+            if ($request->phone != NULL){
+                $hasCompleted = 1;
+            }
             DB::table('entries')->where('email', $user)->update(array(
                 'komen' => $request->komen,
                 'cadangan' => $request->cadangan,
                 'phone' => $request->phone,
-                'completedR' => 1
+                'completedR' => $hasCompleted
             ));
             return redirect('/users');
             }
@@ -1250,32 +1414,111 @@ class UserController extends Controller
         $TotalOfBRatingB16 = DB::table('entries')->pluck('B16');
         $TotalOfBRatingB17 = DB::table('entries')->pluck('B17');
         $TotalOfBRatingB18 = DB::table('entries')->pluck('B18');
-        
-        $totalB = array_merge(
-            $TotalOfBRatingB1->toArray(),
-            $TotalOfBRatingB2->toArray(),
-            $TotalOfBRatingB3->toArray(),
-            $TotalOfBRatingB4->toArray(),
-            $TotalOfBRatingB5->toArray(),
-            $TotalOfBRatingB6->toArray(),
-            $TotalOfBRatingB7->toArray(),
-            $TotalOfBRatingB8->toArray(),
-            $TotalOfBRatingB9->toArray(),
-            $TotalOfBRatingB10->toArray(),
-            $TotalOfBRatingB11->toArray(),
-            $TotalOfBRatingB12->toArray(),
-            $TotalOfBRatingB13->toArray(),
-            $TotalOfBRatingB14->toArray(),
-            $TotalOfBRatingB15->toArray(),
-            $TotalOfBRatingB16->toArray(),
-            $TotalOfBRatingB17->toArray(),
-            $TotalOfBRatingB18->toArray()
-        );
 
-        $countTotalB = count($TotalOfBRatingB1->toArray());
-        $totalB = array_sum($totalB);
-        $totalPointsB = $countTotalB * 18 * 10;
-        $totalB = ($totalB * 100) / $totalPointsB;
+        //calculate Normal Item
+        //calculate B1
+        $countTotalVoteB1 = count(array_filter($TotalOfBRatingB1->toArray()));
+        $totalMaxpointsB1 = $countTotalVoteB1 * 10;
+        $respondedTotalPointsB1 = array_sum($TotalOfBRatingB1->toArray());
+
+        //calculate B2
+        $countTotalVoteB2 = count(array_filter($TotalOfBRatingB2->toArray()));
+        $totalMaxpointsB2 = $countTotalVoteB2 * 10;
+        $respondedTotalPointsB2 = array_sum($TotalOfBRatingB2->toArray());
+
+        //calculate B3
+        $countTotalVoteB3 = count(array_filter($TotalOfBRatingB3->toArray()));
+        $totalMaxpointsB3 = $countTotalVoteB3 * 10;
+        $respondedTotalPointsB3 = array_sum($TotalOfBRatingB3->toArray());
+
+        //calculate B4
+        $countTotalVoteB4 = count(array_filter($TotalOfBRatingB4->toArray()));
+        $totalMaxpointsB4 = $countTotalVoteB4 * 10;
+        $respondedTotalPointsB4 = array_sum($TotalOfBRatingB4->toArray());
+
+        //calculate B5
+        $countTotalVoteB5 = count(array_filter($TotalOfBRatingB5->toArray()));
+        $totalMaxpointsB5 = $countTotalVoteB5 * 10;
+        $respondedTotalPointsB5 = array_sum($TotalOfBRatingB5->toArray());
+
+        //calculate B7
+        $countTotalVoteB7 = count(array_filter($TotalOfBRatingB7->toArray()));
+        $totalMaxpointsB7 = $countTotalVoteB7 * 10;
+        $respondedTotalPointsB7 = array_sum($TotalOfBRatingB7->toArray());
+
+        //calculate B12
+        $countTotalVoteB12 = count(array_filter($TotalOfBRatingB12->toArray()));
+        $totalMaxpointsB12 = $countTotalVoteB12 * 10;
+        $respondedTotalPointsB12 = array_sum($TotalOfBRatingB12->toArray());
+
+        //calculate B13
+        $countTotalVoteB13 = count(array_filter($TotalOfBRatingB13->toArray()));
+        $totalMaxpointsB13 = $countTotalVoteB13 * 10;
+        $respondedTotalPointsB13 = array_sum($TotalOfBRatingB13->toArray());
+
+        //calculate B14
+        $countTotalVoteB14 = count(array_filter($TotalOfBRatingB14->toArray()));
+        $totalMaxpointsB14 = $countTotalVoteB14 * 10;
+        $respondedTotalPointsB14 = array_sum($TotalOfBRatingB14->toArray());
+
+        //calculate B17
+        $countTotalVoteB17 = count(array_filter($TotalOfBRatingB17->toArray()));
+        $totalMaxpointsB17 = $countTotalVoteB17 * 10;
+        $respondedTotalPointsB17 = array_sum($TotalOfBRatingB17->toArray());
+
+        //calculate B18
+        $countTotalVoteB18 = count(array_filter($TotalOfBRatingB18->toArray()));
+        $totalMaxpointsB18 = $countTotalVoteB18 * 10;
+        $respondedTotalPointsB18 = array_sum($TotalOfBRatingB18->toArray());
+        
+        //calculate B6 (Reversed item)
+        $countTotalVoteB6 = count(array_filter($TotalOfBRatingB6->toArray()));
+        $totalPointB6 = array_sum($TotalOfBRatingB6->toArray());
+        $totalMaxpointsB6 = $countTotalVoteB6 * 10;
+        $respondedTotalPointsB6 = $totalMaxpointsB6 - $totalPointB6;
+        
+        //calculate B8 (Reversed item)
+        $countTotalVoteB8 = count(array_filter($TotalOfBRatingB8->toArray()));
+        $totalPointB8 = array_sum($TotalOfBRatingB8->toArray());
+        $totalMaxpointsB8 = $countTotalVoteB8 * 10;
+        $respondedTotalPointsB8 = $totalMaxpointsB8 - $totalPointB8;
+        
+        //calculate B9 (Reversed item)
+        $countTotalVoteB9 = count(array_filter($TotalOfBRatingB9->toArray()));
+        $totalPointB9 = array_sum($TotalOfBRatingB9->toArray());
+        $totalMaxpointsB9 = $countTotalVoteB9 * 10;
+        $respondedTotalPointsB9 = $totalMaxpointsB9 - $totalPointB9;
+        
+        //calculate B10 (Reversed item)
+        $countTotalVoteB10 = count(array_filter($TotalOfBRatingB10->toArray()));
+        $totalPointB10 = array_sum($TotalOfBRatingB10->toArray());
+        $totalMaxpointsB10 = $countTotalVoteB10 * 10;
+        $respondedTotalPointsB10 = $totalMaxpointsB10 - $totalPointB10;
+        
+        //calculate B11 (Reversed item)
+        $countTotalVoteB11 = count(array_filter($TotalOfBRatingB11->toArray()));
+        $totalPointB11 = array_sum($TotalOfBRatingB11->toArray());
+        $totalMaxpointsB11 = $countTotalVoteB11 * 10;
+        $respondedTotalPointsB11 = $totalMaxpointsB11 - $totalPointB11;
+
+        //calculate B15 (Reversed item)
+        $countTotalVoteB15 = count(array_filter($TotalOfBRatingB15->toArray()));
+        $totalPointB15 = array_sum($TotalOfBRatingB15->toArray());
+        $totalMaxpointsB15 = $countTotalVoteB15 * 10;
+        $respondedTotalPointsB15 = $totalMaxpointsB15 - $totalPointB15;
+
+        //calculate B16 (Reversed item)
+        $countTotalVoteB16 = count(array_filter($TotalOfBRatingB16->toArray()));
+        $totalPointB16 = array_sum($TotalOfBRatingB16->toArray());
+        $totalMaxpointsB16 = $countTotalVoteB16 * 10;
+        $respondedTotalPointsB16 = $totalMaxpointsB16 - $totalPointB16;
+
+        $X = $respondedTotalPointsB1 + $respondedTotalPointsB2 + $respondedTotalPointsB3 + $respondedTotalPointsB4 + $respondedTotalPointsB5 + $respondedTotalPointsB7 + $respondedTotalPointsB12 + $respondedTotalPointsB13 + $respondedTotalPointsB14 + $respondedTotalPointsB17 + $respondedTotalPointsB18;
+        $M = 0;
+        $J = $countTotalVoteB1 * 110;
+        $totalBPositive = ($X - $M)/$J*100;
+        $totalBNegative = (($respondedTotalPointsB6 + $respondedTotalPointsB8 + $respondedTotalPointsB9 + $respondedTotalPointsB10 + $respondedTotalPointsB11 + $respondedTotalPointsB15 + $respondedTotalPointsB16) - $M) / ($countTotalVoteB1 * 70) * 100;
+        $totalB = ($totalBPositive + $totalBNegative) / 200 * 100;
         $totalB = round($totalB, 2);
 
         return $totalB;
@@ -1324,20 +1567,47 @@ class UserController extends Controller
         $TotalOfERatingE5 = DB::table('entries')->pluck('E5');
         $TotalOfERatingE6 = DB::table('entries')->pluck('E6');
         
-        $totalE = array_merge(
-            $TotalOfERatingE1->toArray(),
-            $TotalOfERatingE2->toArray(),
-            $TotalOfERatingE3->toArray(),
-            $TotalOfERatingE4->toArray(),
-            $TotalOfERatingE5->toArray(),
-            $TotalOfERatingE6->toArray(),
-        );
+        //calculate E1
+        $countTotalVoteE1 = count(array_filter($TotalOfERatingE1->toArray()));
+        $totalMaxpointsE1 = $countTotalVoteE1 * 10;
+        $respondedTotalPointsE1 = array_sum($TotalOfERatingE1->toArray());
 
-        $countTotalE = count($TotalOfERatingE1->toArray());
-        $totalE = array_sum($totalE);
-        $totalPointsE = $countTotalE * 6 * 10;
-        $totalE = ($totalE * 100) / $totalPointsE;
+        //calculate E2
+        $countTotalVoteE2 = count(array_filter($TotalOfERatingE2->toArray()));
+        $totalMaxpointsE2 = $countTotalVoteE2 * 10;
+        $respondedTotalPointsE2 = array_sum($TotalOfERatingE2->toArray());
+
+        //calculate E3
+        $countTotalVoteE3 = count(array_filter($TotalOfERatingE3->toArray()));
+        $totalMaxpointsE3 = $countTotalVoteE3 * 10;
+        $respondedTotalPointsE3 = array_sum($TotalOfERatingE3->toArray());
+
+        //calculate E4 (Reversed item)
+        $countTotalVoteE4 = count(array_filter($TotalOfERatingE4->toArray()));
+        $totalPointE4 = array_sum($TotalOfERatingE4->toArray());
+        $totalMaxpointsE4 = $countTotalVoteE4 * 10;
+        $respondedTotalPointsE4 = $totalMaxpointsE4 - $totalPointE4;
+
+        //calculate E5 (Reversed item)
+        $countTotalVoteE5 = count(array_filter($TotalOfERatingE5->toArray()));
+        $totalPointE5 = array_sum($TotalOfERatingE5->toArray());
+        $totalMaxpointsE5 = $countTotalVoteE5 * 10;
+        $respondedTotalPointsE5 = $totalMaxpointsE5 - $totalPointE5;
+        
+        //calculate E6 (Reversed item)
+        $countTotalVoteE6 = count(array_filter($TotalOfERatingE6->toArray()));
+        $totalPointE6 = array_sum($TotalOfERatingE6->toArray());
+        $totalMaxpointsE6 = $countTotalVoteE6 * 10;
+        $respondedTotalPointsE6 = $totalMaxpointsE6 - $totalPointE6;
+
+        $X = $respondedTotalPointsE1 + $respondedTotalPointsE2 + $respondedTotalPointsE3;
+        $M = 0;
+        $J = $countTotalVoteE1 * 30;
+        $totalEPositive = ($X - $M)/$J*100;
+        $totalENegative = (($respondedTotalPointsE4 + $respondedTotalPointsE5 + $respondedTotalPointsE6) - $M) / ($countTotalVoteE1 * 30) * 100;
+        $totalE = ($totalEPositive + $totalENegative) / 200 * 100;
         $totalE = round($totalE, 2);
+        
 
         return $totalE;
     }
@@ -1380,24 +1650,66 @@ class UserController extends Controller
         $TotalOfGRatingG8 = DB::table('entries')->pluck('G8');
         $TotalOfGRatingG9 = DB::table('entries')->pluck('G9');
         $TotalOfGRatingG10 = DB::table('entries')->pluck('G10');
-        
-        $totalG = array_merge(
-            $TotalOfGRatingG1->toArray(),
-            $TotalOfGRatingG2->toArray(),
-            $TotalOfGRatingG3->toArray(),
-            $TotalOfGRatingG4->toArray(),
-            $TotalOfGRatingG5->toArray(),
-            $TotalOfGRatingG6->toArray(),
-            $TotalOfGRatingG7->toArray(),
-            $TotalOfGRatingG8->toArray(),
-            $TotalOfGRatingG9->toArray(),
-            $TotalOfGRatingG10->toArray(),
-        );
 
-        $countTotalG = count($TotalOfGRatingG1->toArray());
-        $totalG = array_sum($totalG);
-        $totalPointsG = $countTotalG * 10 * 10;
-        $totalG = ($totalG * 100) / $totalPointsG;
+        //calculate G1
+        $countTotalVoteG1 = count(array_filter($TotalOfGRatingG1->toArray()));
+        $totalMaxpointsG1 = $countTotalVoteG1 * 10;
+        $respondedTotalPointsG1 = array_sum($TotalOfGRatingG1->toArray());
+
+        //calculate G2
+        $countTotalVoteG2 = count(array_filter($TotalOfGRatingG2->toArray()));
+        $totalMaxpointsG2 = $countTotalVoteG2 * 10;
+        $respondedTotalPointsG2 = array_sum($TotalOfGRatingG2->toArray());
+
+        //calculate G3
+        $countTotalVoteG3 = count(array_filter($TotalOfGRatingG3->toArray()));
+        $totalMaxpointsG3 = $countTotalVoteG3 * 10;
+        $respondedTotalPointsG3 = array_sum($TotalOfGRatingG3->toArray());
+
+        //calculate G4
+        $countTotalVoteG4 = count(array_filter($TotalOfGRatingG4->toArray()));
+        $totalMaxpointsG4 = $countTotalVoteG4 * 10;
+        $respondedTotalPointsG4 = array_sum($TotalOfGRatingG4->toArray());
+
+        //calculate G5
+        $countTotalVoteG5 = count(array_filter($TotalOfGRatingG5->toArray()));
+        $totalMaxpointsG5 = $countTotalVoteG5 * 10;
+        $respondedTotalPointsG5 = array_sum($TotalOfGRatingG5->toArray());
+
+        //calculate G6
+        $countTotalVoteG6 = count(array_filter($TotalOfGRatingG6->toArray()));
+        $totalMaxpointsG6 = $countTotalVoteG6 * 10;
+        $respondedTotalPointsG6 = array_sum($TotalOfGRatingG6->toArray());
+
+        //calculate G7
+        $countTotalVoteG7 = count(array_filter($TotalOfGRatingG7->toArray()));
+        $totalMaxpointsG7 = $countTotalVoteG7 * 10;
+        $respondedTotalPointsG7 = array_sum($TotalOfGRatingG7->toArray());
+
+        //calculate G8
+        $countTotalVoteG8 = count(array_filter($TotalOfGRatingG8->toArray()));
+        $totalMaxpointsG8 = $countTotalVoteG8 * 10;
+        $respondedTotalPointsG8 = array_sum($TotalOfGRatingG8->toArray());
+
+        //calculate G9 (Reversed item)
+        $countTotalVoteG9 = count(array_filter($TotalOfGRatingG9->toArray()));
+        $totalPointG9 = array_sum($TotalOfGRatingG9->toArray());
+        $totalMaxpointsG9 = $countTotalVoteG9 * 10;
+        $respondedTotalPointsG9 = $totalMaxpointsG9 - $totalPointG9;
+
+        //calculate G10 (Reversed item)
+        $countTotalVoteG10 = count(array_filter($TotalOfGRatingG10->toArray()));
+        $totalPointG10 = array_sum($TotalOfGRatingG10->toArray());
+        $totalMaxpointsG10 = $countTotalVoteG10 * 10;
+        $respondedTotalPointsG10 = $totalMaxpointsG10 - $totalPointG10;
+
+        $X = $respondedTotalPointsG1 + $respondedTotalPointsG2 + $respondedTotalPointsG3  + $respondedTotalPointsG4 + $respondedTotalPointsG5 + $respondedTotalPointsG6 + $respondedTotalPointsG7 + $respondedTotalPointsG8;
+        $M = 0;
+        $J = $countTotalVoteG1 * 80;
+        $totalGPositive = ($X - $M)/$J*100;
+        $totalGNegative = (($respondedTotalPointsG9 + $respondedTotalPointsG10) - $M) / ($countTotalVoteG1 * 20) * 100;
+        
+        $totalG = ($totalGPositive + $totalGNegative) / 200 * 100;
         $totalG = round($totalG, 2);
 
         return $totalG;
@@ -1495,16 +1807,29 @@ class UserController extends Controller
         $TotalOfIRatingI2 = DB::table('entries')->pluck('I2');
         $TotalOfIRatingI3 = DB::table('entries')->pluck('I3');
         
-        $totalI = array_merge(
-            $TotalOfIRatingI1->toArray(),
-            $TotalOfIRatingI2->toArray(),
-            $TotalOfIRatingI3->toArray(),
-        );
+        //calculate I1
+        $countTotalVoteI1 = count(array_filter($TotalOfIRatingI1->toArray()));
+        $totalMaxpointsI1 = $countTotalVoteI1 * 10;
+        $respondedTotalPointsI1 = array_sum($TotalOfIRatingI1->toArray());
 
-        $countTotalI = count($TotalOfIRatingI1->toArray());
-        $totalI = array_sum($totalI);
-        $totalPointsI = $countTotalI * 3 * 10;
-        $totalI = ($totalI * 100) / $totalPointsI;
+        //calculate I3
+        $countTotalVoteI3 = count(array_filter($TotalOfIRatingI3->toArray()));
+        $totalMaxpointsI3 = $countTotalVoteI3 * 10;
+        $respondedTotalPointsI3 = array_sum($TotalOfIRatingI3->toArray());
+
+        //calculate I2 (Reversed item)
+        $countTotalVoteI2 = count(array_filter($TotalOfIRatingI2->toArray()));
+        $totalPointI2 = array_sum($TotalOfIRatingI2->toArray());
+        $totalMaxpointsI2 = $countTotalVoteI2 * 10;
+        $respondedTotalPointsI2 = $totalMaxpointsI2 - $totalPointI2;
+
+        $X = $respondedTotalPointsI1 + $respondedTotalPointsI3;
+        $M = 0;
+        $J = $countTotalVoteI1 * 20;
+        $totalIPositive = ($X - $M)/$J*100;
+        $totalINegative = ($respondedTotalPointsI2 - $M) / ($countTotalVoteI1 * 10) * 100;
+        
+        $totalI = ($totalIPositive + $totalINegative) / 200 * 100;
         $totalI = round($totalI, 2);
 
         return $totalI;
@@ -1559,23 +1884,64 @@ class UserController extends Controller
         $TotalOfKRatingK9 = DB::table('entries')->pluck('K9');
         $TotalOfKRatingK10 = DB::table('entries')->pluck('K10');
         
-        $totalK = array_merge(
-            $TotalOfKRatingK1->toArray(),
-            $TotalOfKRatingK2->toArray(),
-            $TotalOfKRatingK3->toArray(),
-            $TotalOfKRatingK4->toArray(),
-            $TotalOfKRatingK5->toArray(),
-            $TotalOfKRatingK6->toArray(),
-            $TotalOfKRatingK7->toArray(),
-            $TotalOfKRatingK8->toArray(),
-            $TotalOfKRatingK9->toArray(),
-            $TotalOfKRatingK10->toArray(),
-        );
+        //calculate K1
+        $countTotalVoteK1 = count(array_filter($TotalOfKRatingK1->toArray()));
+        $totalMaxpointsK1 = $countTotalVoteK1 * 10;
+        $respondedTotalPointsK1 = array_sum($TotalOfKRatingK1->toArray());
 
-        $countTotalK = count($TotalOfKRatingK1->toArray());
-        $totalK = array_sum($totalK);
-        $totalPointsK = $countTotalK * 10 * 10;
-        $totalK = ($totalK * 100) / $totalPointsK;
+        //calculate K2
+        $countTotalVoteK2 = count(array_filter($TotalOfKRatingK2->toArray()));
+        $totalMaxpointsK2 = $countTotalVoteK2 * 10;
+        $respondedTotalPointsK2 = array_sum($TotalOfKRatingK2->toArray());
+
+        //calculate K3
+        $countTotalVoteK3 = count(array_filter($TotalOfKRatingK3->toArray()));
+        $totalMaxpointsK3 = $countTotalVoteK3 * 10;
+        $respondedTotalPointsK3 = array_sum($TotalOfKRatingK3->toArray());
+
+        //calculate K4
+        $countTotalVoteK4 = count(array_filter($TotalOfKRatingK4->toArray()));
+        $totalMaxpointsK4 = $countTotalVoteK4 * 10;
+        $respondedTotalPointsK4 = array_sum($TotalOfKRatingK4->toArray());
+
+        //calculate K5
+        $countTotalVoteK5 = count(array_filter($TotalOfKRatingK5->toArray()));
+        $totalMaxpointsK5 = $countTotalVoteK5 * 10;
+        $respondedTotalPointsK5 = array_sum($TotalOfKRatingK5->toArray());
+
+        //calculate K6
+        $countTotalVoteK6 = count(array_filter($TotalOfKRatingK6->toArray()));
+        $totalMaxpointsK6 = $countTotalVoteK6 * 10;
+        $respondedTotalPointsK6 = array_sum($TotalOfKRatingK6->toArray());
+
+        //calculate K7
+        $countTotalVoteK7 = count(array_filter($TotalOfKRatingK7->toArray()));
+        $totalMaxpointsK7 = $countTotalVoteK7 * 10;
+        $respondedTotalPointsK7 = array_sum($TotalOfKRatingK7->toArray());
+
+        //calculate K8
+        $countTotalVoteK8 = count(array_filter($TotalOfKRatingK8->toArray()));
+        $totalMaxpointsK8 = $countTotalVoteK8 * 10;
+        $respondedTotalPointsK8 = array_sum($TotalOfKRatingK8->toArray());
+
+        //calculate K9
+        $countTotalVoteK9 = count(array_filter($TotalOfKRatingK9->toArray()));
+        $totalMaxpointsK9 = $countTotalVoteK9 * 10;
+        $respondedTotalPointsK9 = array_sum($TotalOfKRatingK9->toArray());
+
+        //calculate K10 (Reversed item)
+        $countTotalVoteK10 = count(array_filter($TotalOfKRatingK10->toArray()));
+        $totalPointK10 = array_sum($TotalOfKRatingK10->toArray());
+        $totalMaxpointsK10 = $countTotalVoteK10 * 10;
+        $respondedTotalPointsK10 = $totalMaxpointsK10 - $totalPointK10;
+        
+        $X = $respondedTotalPointsK1 + $respondedTotalPointsK2 + $respondedTotalPointsK3 + $respondedTotalPointsK4 + $respondedTotalPointsK5 + $respondedTotalPointsK6 + $respondedTotalPointsK7 + $respondedTotalPointsK8 + $respondedTotalPointsK9;
+        $M = 0;
+        $J = $countTotalVoteK1 * 90;
+        $totalKPositive = ($X - $M)/$J*100;
+        $totalKNegative = ($respondedTotalPointsK10 - $M) / ($countTotalVoteK1 * 10) * 100;
+        
+        $totalK = ($totalKPositive + $totalKNegative) / 200 * 100;
         $totalK = round($totalK, 2);
 
         return $totalK;
@@ -1588,17 +1954,36 @@ class UserController extends Controller
         $TotalOfLRatingL3 = DB::table('entries')->pluck('L3');
         $TotalOfLRatingL4 = DB::table('entries')->pluck('L4');
         
-        $totalL = array_merge(
-            $TotalOfLRatingL1->toArray(),
-            $TotalOfLRatingL2->toArray(),
-            $TotalOfLRatingL3->toArray(),
-            $TotalOfLRatingL4->toArray(),
-        );
+        //calculate L4
+        $countTotalVoteL4 = count(array_filter($TotalOfLRatingL4->toArray()));
+        $totalMaxpointsL4 = $countTotalVoteL4 * 10;
+        $respondedTotalPointsL4 = array_sum($TotalOfLRatingL4->toArray());
 
-        $countTotalL = count($TotalOfLRatingL1->toArray());
-        $totalL = array_sum($totalL);
-        $totalPointsL = $countTotalL * 4 * 10;
-        $totalL = ($totalL * 100) / $totalPointsL;
+        //calculate L1 (Reversed item)
+        $countTotalVoteL1 = count(array_filter($TotalOfLRatingL1->toArray()));
+        $totalPointL1 = array_sum($TotalOfLRatingL1->toArray());
+        $totalMaxpointsL1 = $countTotalVoteL1 * 10;
+        $respondedTotalPointsL1 = $totalMaxpointsL1 - $totalPointL1;
+
+        //calculate L2 (Reversed item)
+        $countTotalVoteL2 = count(array_filter($TotalOfLRatingL2->toArray()));
+        $totalPointL2 = array_sum($TotalOfLRatingL2->toArray());
+        $totalMaxpointsL2 = $countTotalVoteL2 * 10;
+        $respondedTotalPointsL2 = $totalMaxpointsL2 - $totalPointL2;
+
+        //calculate L3 (Reversed item)
+        $countTotalVoteL3 = count(array_filter($TotalOfLRatingL3->toArray()));
+        $totalPointL3 = array_sum($TotalOfLRatingL3->toArray());
+        $totalMaxpointsL3 = $countTotalVoteL3 * 10;
+        $respondedTotalPointsL3 = $totalMaxpointsL3 - $totalPointL3;
+
+        $X = $respondedTotalPointsL4;
+        $M = 0;
+        $J = $countTotalVoteL1 * 10;
+        $totalLPositive = ($X - $M)/$J*100;
+        $totalLNegative = (($respondedTotalPointsL1 + $respondedTotalPointsL2 + $respondedTotalPointsL3) - $M) / ($countTotalVoteL1 * 30) * 100;
+        
+        $totalL = ($totalLPositive + $totalLNegative) / 200 * 100;
         $totalL = round($totalL, 2);
 
         return $totalL;
@@ -1731,9 +2116,8 @@ class UserController extends Controller
         return $dimensi;
     } 
 
-    public function calculateIndexD($user){
-        $entry = DB::table('entries')->where('email','=', $user)->first();
-        $dimensi = ($entry->D1 / 10) * 100;
+    public function calculateIndexD($d1){
+        $dimensi = $d1 / 10 * 100;
         return $dimensi;
     } 
 
@@ -1765,6 +2149,51 @@ class UserController extends Controller
         return $dimensi;
     }
 
+    public function calculateIndexI($I1, $I2, $I3){
+        $dimensi = round(($I1 + ( 10 - $I2 ) + $I3) / 30 * 100, 2);
+        return $dimensi;
+    }
+
+    public function calculateIndexJ($J1, $J2, $J3, $J4, $J5, $J6, $J7, $J8, $J9, $J10){
+        $dimensi = round(( $J1 + $J2 + $J3 + $J4 + $J5 + $J6 + $J7 + $J8 + $J9 + $J10 ) / 100 * 100, 2);
+        return $dimensi;
+    }
+
+    public function calculateIndexK($K1, $K2, $K3, $K4, $K5, $K6, $K7, $K8, $K9, $K10){
+        $dimensi = round(( $K1 + $K2 + $K3 + $K4 + $K5 + $K6 + $K7 + $K8 + $K9 + ( 10 - $K10 ) ) / 100 * 100, 2);
+        return $dimensi;
+    }
+
+    public function calculateIndexL($L1, $L2, $L3, $L4){
+        $dimensi = round(( (30 - $L1 + $L2 + $L3) + $L4) / 40 * 100, 2);
+        return $dimensi;
+    }
+
+    public function calculateIndexM($M1, $M2, $M3){
+        $dimensi = round(( $M1 + $M2 + $M3) / 30 * 100, 2);
+        return $dimensi;
+    }
+
+    public function calculateIndexN($N1, $N2, $N3, $N4){
+        $dimensi = round(( $N1 + $N2 + $N3 + $N4 ) / 40 * 100, 2);
+        return $dimensi;
+    }
+
+    public function calculateIndexO($O1, $O2, $O3, $O4, $O5){
+        $dimensi = round(( $O1 + $O2 + $O3 + $O4 + $O5 ) / 50 * 100, 2);
+        return $dimensi;
+    }
+
+    public function calculateIndexP($P1, $P2){
+        $dimensi = round(( $P1 + $P2 ) / 20 * 100, 2);
+        return $dimensi;
+    }
+
+    public function calculateIndexQ($Q1, $Q2, $Q3, $Q4){
+        $dimensi = round(( $Q1 + $Q2 + $Q3 + $Q4 ) / 40 * 100, 2);
+        return $dimensi;
+    }
+
     public function calculateSubDimensionB($b1,$b2,$b3,$b4,$b5,$b6,$b7,$b8){
         $dimensi = round(( $b1 + $b2 + $b3 + $b4 + $b5 + $b6 + $b7 + $b8) / 800 * 100, 2);
         return $dimensi;
@@ -1788,28 +2217,22 @@ class UserController extends Controller
     }
 
     public function calculateSubDimensionBProsedurOperasi($b6,$b7,$b8){
-        $positive = $b7 / 10 * 100;
-        $negatif = ((10 - $b6) + (10 - $b8)) / 20 * 100;
-        $dimensi = round(($positive + $negatif) / 200 * 100, 2);
+        $dimensi = round((($b7 + (10 - $b6) + (10 - $b8))) / 30 * 100,2);
         return $dimensi;
     }
 
     public function calculateSubDimensionBRakanSekerja($b9,$b10){
-        $dimensi = round(($b9 + $b10) / 20 * 100, 2);
+        $dimensi = round(((10 - $b9) + (10 - $b10)) / 20 * 100, 2);
         return $dimensi;
     }
 
     public function calculateSubDimensionBSifatKerja($b11,$b12,$b13){
-        $positive = ( $b12 + $b13 ) / 20 * 100;
-        $negatif = (10 - $b11) / 10 * 100;
-        $dimensi = round(($positive + $negatif) / 200 * 100, 2);
+        $dimensi = round(((10 - $b11) + $b12 + $b13) / 30 * 100, 2);
         return $dimensi;
     }
 
     public function calculateSubDimensionBKomunikasi($b14,$b15,$b16){
-        $positive = $b14 / 10 * 100;
-        $negatif = ((10 - $b15) + (10 - $b16)) / 20 * 100;
-        $dimensi = round(($positive + $negatif) / 200 * 100, 2);
+        $dimensi = round(( $b14 + ( 10 - $b15 ) + ( 10 - $b16 )) / 30 * 100, 2);
         return $dimensi;
     }
 

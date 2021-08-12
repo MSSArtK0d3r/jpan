@@ -28,5 +28,25 @@
 		  "<x-form-validation-error key='${1:example'/>"
 		],
 		"description": "view err generator"
+	  },
+	  "totalCountShortcut": {
+		"prefix": "ctot",
+		"body": [
+		  "//calculate L${1:example}",
+		  "\\$countTotalVoteL${1:example} = count(array_filter(\\$TotalOfLRatingL${1:example}->toArray()));",
+		  "\\$totalMaxpointsL${1:example} = \\$countTotalVoteL${1:example} * 10;",
+		  "\\$respondedTotalPointsL${1:example} = array_sum(\\$TotalOfLRatingL${1:example}->toArray());"
+		],
+		"description": "totalCountShortcut"
+	  },
+	  "totalReversedShortcut":{
+		  "prefix": "ctot2",
+		  "body": [
+			  "//calculate L${1:example} (Reversed item)",
+			  "\\$countTotalVoteL${1:example} = count(array_filter(\\$TotalOfLRatingL${1:example}->toArray()));",
+			  "\\$totalPointL${1:example} = array_sum(\\$TotalOfLRatingL${1:example}->toArray());",
+			  "\\$totalMaxpointsL${1:example} = \\$countTotalVoteL${1:example} * 10;",
+			  "\\$respondedTotalPointsL${1:example} = \\$totalMaxpointsL${1:example} - \\$totalPointL${1:example};"
+		  ]
 	  }
 }

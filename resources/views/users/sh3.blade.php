@@ -43,12 +43,7 @@
      <div class="introPage <x-form-validation-error key='H29'/>" style="margin-bottom: 10px;">
         <p>29. Organisasi saya membangun melalui usaha perkongsian dengan pelbagai pelanggan.</p>
         <x-ratings-components initialQuestion="0" questionNumber="29" sectionQuestion="H" :userData="$userData[0]->H29"/> 
-        
-     </div>
-     <div class="introPage <x-form-validation-error key='H30'/>" style="margin-bottom: 10px;">
-        <p>30. Pengurusan di organisasi saya sering mengadakan sesi berdialog dengan pekerja.</p>
-        <x-ratings-components initialQuestion="0" questionNumber="30" sectionQuestion="H" :userData="$userData[0]->H30"/> 
-    </div>
+        </div>
 
     <button class="subBtn twelve columns" type="submit">Simpan</button>
 </form>

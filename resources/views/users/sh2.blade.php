@@ -6,14 +6,6 @@
     <x-form-global-error/>
     <form action="{{route('updateSectionH2')}}" method="POST">
         @csrf
-        <div class="introPage <x-form-validation-error key='H11'/>" style="margin-bottom: 10px;">
-            <p>11. Pengurusan organisasi saya mengambil tindakan tegas terhadap warga berprestasi rendah.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="11" sectionQuestion="H" :userData="$userData[0]->H11"/> 
-         </div>
-         <div class="introPage <x-form-validation-error key='H12'/>" style="margin-bottom: 10px;">
-            <p>12. Pengurusan organisasi sentiasa memastikan ahli organisasi bertanggungjawab terhadap hasil kerja mereka.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="12" sectionQuestion="H" :userData="$userData[0]->H12"/> 
-         </div>
          <div class="introPage <x-form-validation-error key='H13'/>" style="margin-bottom: 10px;">
             <p>13. Strategi organisasi yang jelas.</p>
             <x-ratings-components initialQuestion="0" questionNumber="13" sectionQuestion="H" :userData="$userData[0]->H13"/> 
