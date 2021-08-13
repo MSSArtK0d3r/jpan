@@ -142,7 +142,7 @@ class UserController extends Controller
             $subDimension['subDimensionHOrientasiJangkaPanjang'] = $this->calculateSubDimensionHOrientasiJangkaPanjang($entry->H21, $entry->H22, $entry->H23, $entry->H24, $entry->H25);
             $subDimension['subDimensionHKualitiPekerja'] = $this->calculateSubDimensionHKualitiPekerja($entry->H26, $entry->H27, $entry->H28, $entry->H29);
             $subDimension['subDimensionHKeterbukaanDanOrientasiTindakan'] = $this->calculateSubDimensionHKeterbukaanDanOrientasiTindakan($entry->H30, $entry->H31, $entry->H32, $entry->H33, $entry->H34, $entry->H35);
-            $subDimension['subDimensionHOBT'] = $this->calculateSubDimensionHOBT($subDimension['subDimensionHKualitiPengurusan'], $subDimension['subDimensionHPenambahbaikanDanPembaharuanBerterusan'], $subDimension['subDimensionHOrientasiJangkaPanjang'], $subDimension['subDimensionHKualitiPekerja'], $subDimension['subDimensionGPrestasiTugas']);
+            $subDimension['subDimensionHOBT'] = $this->calculateSubDimensionHOBT($subDimension['subDimensionHKualitiPengurusan'], $subDimension['subDimensionHPenambahbaikanDanPembaharuanBerterusan'], $subDimension['subDimensionHOrientasiJangkaPanjang'], $subDimension['subDimensionHKualitiPekerja'], $subDimension['subDimensionHKeterbukaanDanOrientasiTindakan']);
 
             $subDimension['subDimensionI'] = $this->calculateIndexI($entry->E1, $entry->E2, $entry->E3); 
             $subDimension['subDimensionJ'] = $this->calculateIndexJ($entry->J1, $entry->J2, $entry->J3, $entry->J4, $entry->J5, $entry->J6, $entry->J7, $entry->J8, $entry->J9, $entry->J10);
