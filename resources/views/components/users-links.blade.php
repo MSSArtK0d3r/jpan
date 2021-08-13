@@ -1,5 +1,5 @@
-<a href="{{route('home')}}">
-    <div class="bahagian {{Route::currentRouteName() == 'home' ? 'activeSection' : ''}}">
+<a href="#">
+    <div class="bahagian">
         <span>Selamat datang,<br>
             <strong>{{$user}}</strong><br>
             {{-- <a href="{{url('/users/logout')}}"><span class="btnLogout">Log keluar</span></a> --}}
@@ -114,7 +114,12 @@
     </div>
 </a>
 <a href="{{route('sr')}}">
-    <div class="bahagianLast {{Route::currentRouteName() == 'sr' ? 'activeSection' : ''}}"><span class="topik">Bahagian R<span class="{{$completedR == 1 ? 'completed' : 'notComplete'}}">{{$completedR == 1 ? 'selesai' : 'Belum selesai'}}</span></span><br>
+    <div class="bahagian {{Route::currentRouteName() == 'sr' ? 'activeSection' : ''}}"><span class="topik">Bahagian R<span class="{{$completedR == 1 ? 'completed' : 'notComplete'}}">{{$completedR == 1 ? 'selesai' : 'Belum selesai'}}</span></span><br>
         <strong>Soalan Terbuka</strong>
+    </div>
+</a>
+<a href="{{route('home')}}">
+    <div class="bahagianLast {{Route::currentRouteName() == 'home' ? 'activeSection' : ''}}">
+        <strong>Keputusan I-KOBT</strong>
     </div>
 </a>
