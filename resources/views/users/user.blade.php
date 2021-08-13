@@ -78,23 +78,18 @@
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">C</span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Kepuasan Hidup</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>KEPUASAN HIDUP</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:25px;">{{$subDimension['subDimensionCKepuasanHidup']}}%</span></p></div>
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
+        <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">D</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>PENILAIAN HIDUP</span></p></div>
+        <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:25px;">{{$subDimension['subDimensionDPenilaianHidup']}}%</span></p></div>
+    </div>
+    <div class="widgetContainerDimensi twelve columns dimensiLine">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">E</span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>AFEK</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>AFEK POSITIF</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:25px;">{{$subDimension['subDimensionEAfek']}}%</span></p></div>
-    </div>
-    <div class="widgetContainerDimensi twevle columns noMargin">
-        <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px"></span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">SUB-DIMENSI</span><br><span>Afek Positif</span></p></div>
-        <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:20px;">{{$subDimension['subDimensionEAfekPositif']}}%</span></p></div>
-    </div>
-    <div class="widgetContainerDimensi twevle columns noMargin">
-        <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px"></span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">SUB-DIMENSI</span><br><span>Afek Negatif</span></p></div>
-        <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:20px;">{{$subDimension['subDimensionEAfekNegatif']}}%</span></p></div>
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">F</span></p></div>
