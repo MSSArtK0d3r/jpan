@@ -35,7 +35,7 @@
 </a>
 <a href="{{route('se')}}">
     <div class="bahagian {{Route::currentRouteName() == 'se' ? 'activeSection' : ''}}"><span class="topik">Bahagian E<span class="{{$completedE == 1 ? 'completed' : 'notComplete'}}">{{$completedE == 1 ? 'selesai' : 'Belum selesai'}}</span></span><br>
-        <strong>Afek</strong>
+        <strong>Afek Positif</strong>
     </div>
 </a>
 <a href="{{route('sf')}}">
