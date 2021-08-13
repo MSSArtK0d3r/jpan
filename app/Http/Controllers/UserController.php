@@ -217,8 +217,7 @@ class UserController extends Controller
         'tinggalBersamaDetail',
         'kenderaanKerja',
         'kenderaanKerjaDetail',
-        'penilai1',
-        'penilai2',
+        'penilai',
         'completedA'
         );
         $userProgress = $this->getUserProgress($request);
@@ -289,8 +288,7 @@ class UserController extends Controller
                 $request->tempatTinggal != NULL &&
                 $request->tinggalBersama != NULL &&
                 $request->kenderaanKerja != NULL &&
-                $request->penilai1 != NULL &&
-                $request->penilai2 != NULL
+                $request->penilai != NULL
                 ){
                     $hasCompleted = 1;
                 }
@@ -326,8 +324,7 @@ class UserController extends Controller
                 'tinggalBersamaDetail' => $request->tinggalBersamaDetail,
                 'kenderaanKerja' => $request->kenderaanKerja,
                 'kenderaanKerjaDetail' => $request->kenderaanKerjaDetail,
-                'penilai1' => $request->penilai1,
-                'penilai2' => $request->penilai2,
+                'penilai' => $request->penilai,
                 'completedA' => $hasCompleted,
             ));
             return redirect('/users/demografi');

@@ -327,10 +327,10 @@
                   </div>
                   <div class="introPage <x-form-validation-error key='masalahKesihatan'/>" style="margin-bottom: 10px;">
                      <p>25. Adakah anda mempunyai seorang atau dua orang penilai.</p>
-                     <input type="checkbox" id="penilai1" name="penilai1" value="1" {{ $userData[0]->penilai1 == '1' ? 'Checked' : '' }}>
-                     <label for="penilai1">Seorang Penilai</label><br>
-                     <input type="checkbox" id="penilai2" name="penilai2" value="2" {{ $userData[0]->penilai2 == '2' ? 'Checked' : '' }}>
-                     <label for="penilai2">Dua Orang Penilai</label>
+                     <input style="margin-left: 15px" type="radio" id="penilai1" name="penilai" value="1" {{ $userData[0]->penilai == '1' ? 'checked' : ''}}>
+                     <label class="inBlock" for="penilai1">Seorang Penilai</label>
+                     <input style="margin-left: 15px" type="radio" id="penilai2" name="penilai" value="2" {{ $userData[0]->penilai == '2' ? 'checked' : ''}}>
+                     <label class="inBlock" for="penilai2">Dua Orang Penilai</label>
                   </div>
          <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>
