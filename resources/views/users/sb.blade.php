@@ -23,7 +23,7 @@
             </p>
             <x-ratings-components initialQuestion="0" questionNumber="4" sectionQuestion="B" :userData="$userData[0]->B4"/>
          </div>
-         @if ($penilai2[0]->penilai2 == 2)
+         @if ($penilai[0]->penilai == 2)
             <div class="introPage <x-form-validation-error key='B5'/>" id="penilai2" style="margin-bottom: 10px;">
             <p style="margin: 0px">5. Saya berpuas hati dengan kepimpinan ketua saya (Penilai 2)<br>Nota: Ketua adalah merujuk kepada Penilai 2 dalam penilaian prestasi tahunan.</p>
             <x-ratings-components initialQuestion="0" questionNumber="5" sectionQuestion="B" :userData="$userData[0]->B5"/>

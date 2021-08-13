@@ -349,8 +349,8 @@ class UserController extends Controller
         }
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
-        $penilai2 = DB::table('entries')->select('penilai2')->where('email', '=', $user)->get();
-        return view('users.sb', compact('user', 'userData', 'userProgress', 'penilai2'));
+        $penilai = DB::table('entries')->select('penilai')->where('email', '=', $user)->get();
+        return view('users.sb', compact('user', 'userData', 'userProgress', 'penilai'));
     }
 
     public function storeSectionB(Request $request){
