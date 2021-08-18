@@ -218,6 +218,7 @@ class UserController extends Controller
         'kenderaanKerja',
         'kenderaanKerjaDetail',
         'penilai',
+        'lntp',
         'completedA'
         );
         $userProgress = $this->getUserProgress($request);
@@ -288,7 +289,8 @@ class UserController extends Controller
                 $request->tempatTinggal != NULL &&
                 $request->tinggalBersama != NULL &&
                 $request->kenderaanKerja != NULL &&
-                $request->penilai != NULL
+                $request->penilai != NULL &&
+                $request->lntp != NULL
                 ){
                     $hasCompleted = 1;
                 }
@@ -325,8 +327,12 @@ class UserController extends Controller
                 'kenderaanKerja' => $request->kenderaanKerja,
                 'kenderaanKerjaDetail' => $request->kenderaanKerjaDetail,
                 'penilai' => $request->penilai,
+                'lntp' => $request->lntp,
                 'completedA' => $hasCompleted,
             ));
+            if ($hasCompleted == 1) {
+                return redirect('/users/sb');
+            }
             return redirect('/users/demografi');
         }
 
@@ -405,6 +411,9 @@ class UserController extends Controller
                 'B18' => $request->B18,
                 'completedB' => $hasCompleted
             ));
+            if ($hasCompleted == 1) {
+                return redirect('/users/sc');
+            }
             return redirect('/users/sb');
         }
 
@@ -446,7 +455,10 @@ class UserController extends Controller
                 'C2' => $request->C2,
                 'completedC' => $hasCompleted
             ));
-            return redirect('/users/sd');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sd');
+            }
+            return redirect('/users/sc');
         }
 
         return redirect('users');
@@ -483,7 +495,10 @@ class UserController extends Controller
                 'D1' => $request->D1,
                 'completedD' => $hasCompleted
             ));
-            return redirect('/users/se');
+            if ($hasCompleted == 1) {
+                return redirect('/users/se');
+            }
+            return redirect('/users/sd');
         }
 
         return redirect('users');
@@ -532,7 +547,10 @@ class UserController extends Controller
                 'E6' => $request->E6,
                 'completedE' => $hasCompleted
             ));
-            return redirect('/users/sf');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sf');
+            }
+            return redirect('/users/se');
         }
 
         return redirect('users');
@@ -581,7 +599,10 @@ class UserController extends Controller
                 'F6' => $request->F6,
                 'completedF' => $hasCompleted
             ));
-            return redirect('/users/sg');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sg');
+            }
+            return redirect('/users/sf');
             }
         return redirect('users');
     }
@@ -637,7 +658,10 @@ class UserController extends Controller
                 'G10' => $request->G10,
                 'completedG' => $hasCompleted
             ));
-            return redirect('/users/sh1');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sh1');
+            }
+            return redirect('/users/g');
             }
         return redirect('users');
     }
@@ -697,7 +721,10 @@ class UserController extends Controller
                 'H12' => $request->H12,
                 'completedH1' => $hasCompleted
             ));
-            return redirect('/users/sh2');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sh2');
+            }
+            return redirect('/users/sh1');
             }
         return redirect('users');
     }
@@ -758,7 +785,10 @@ class UserController extends Controller
                 'H20' => $request->H20,
                 'completedH2' => $hasCompleted
             ));
-            return redirect('/users/sh3');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sh3');
+            }
+            return redirect('/users/sh2');
             }
         return redirect('users');
     }
@@ -822,7 +852,10 @@ class UserController extends Controller
                 'H29' => $request->H29,
                 'completedH3' => $hasCompleted
             ));
-            return redirect('/users/sh4');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sh4');
+            }
+            return redirect('/users/sh3');
             }
         return redirect('users');
     }
@@ -877,7 +910,10 @@ class UserController extends Controller
                 'H35' => $request->H35,
                 'completedH4' => $hasCompleted
             ));
-            return redirect('/users/si');
+            if ($hasCompleted == 1) {
+                return redirect('/users/si');
+            }
+            return redirect('/users/sh4');
             }
         return redirect('users');
     }
@@ -923,7 +959,10 @@ class UserController extends Controller
                 'I3' => $request->I3,
                 'completedI' => $hasCompleted
             ));
-            return redirect('/users/sj');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sj');
+            }
+            return redirect('/users/si');
             }
         return redirect('users');
     }
@@ -990,7 +1029,10 @@ class UserController extends Controller
                 'J10' => $request->J10,
                 'completedJ' => $hasCompleted
             ));
-            return redirect('/users/sk');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sk');
+            }
+            return redirect('/users/sj');
             }
         return redirect('users');
     }
@@ -1057,7 +1099,10 @@ class UserController extends Controller
                 'K10' => $request->K10,
                 'completedK' => $hasCompleted
             ));
-            return redirect('/users/sl');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sl');
+            }
+            return redirect('/users/sk');
             }
         return redirect('users');
     }
@@ -1106,7 +1151,10 @@ class UserController extends Controller
                 'L4' => $request->L4,
                 'completedL' => $hasCompleted
             ));
-            return redirect('/users/sm');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sm');
+            }
+            return redirect('/users/sl');
             }
         return redirect('users');
     }
@@ -1152,7 +1200,10 @@ class UserController extends Controller
                 'M3' => $request->M3,
                 'completedM' => $hasCompleted
             ));
-            return redirect('/users/sn');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sn');
+            }
+            return redirect('/users/sm');
             }
         return redirect('users');
     }
@@ -1201,7 +1252,10 @@ class UserController extends Controller
                 'N4' => $request->N4,
                 'completedN' => $hasCompleted
             ));
-            return redirect('/users/so');
+            if ($hasCompleted == 1) {
+                return redirect('/users/so');
+            }
+            return redirect('/users/sn');
             }
         return redirect('users');
     }
@@ -1253,7 +1307,10 @@ class UserController extends Controller
                 'O5' => $request->O5,
                 'completedO' => $hasCompleted
             ));
-            return redirect('/users/sp');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sp');
+            }
+            return redirect('/users/so');
             }
         return redirect('users');
     }
@@ -1296,7 +1353,10 @@ class UserController extends Controller
                 'P2' => $request->P2,
                 'completedP' => $hasCompleted
             ));
-            return redirect('/users/sq');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sq');
+            }
+            return redirect('/users/sp');
             }
         return redirect('users');
     }    
@@ -1345,7 +1405,10 @@ class UserController extends Controller
                 'Q4' => $request->Q4,
                 'completedQ' => $hasCompleted
             ));
-            return redirect('/users/sr');
+            if ($hasCompleted == 1) {
+                return redirect('/users/sr');
+            }
+            return redirect('/users/sq');
             }
         return redirect('users');
     }
@@ -1386,7 +1449,10 @@ class UserController extends Controller
                 'phone' => $request->phone,
                 'completedR' => $hasCompleted
             ));
-            return redirect('/users');
+            if ($hasCompleted == 1) {
+                return redirect('/users');
+            }
+            return redirect('/users/sr');
             }
         return redirect('users');
     }

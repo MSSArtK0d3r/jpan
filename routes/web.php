@@ -22,14 +22,27 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 Route::get('/result', function(){
-    return redirect('/');
+    return redirect('/form');
 });
 
 Route::get('/users', function(){
-    return redirect('/');
+    return redirect('/form');
 });
+
+Route::get('/', function(){
+    return view('pengenalan');
+});
+
+Route::get('/informasi', function(){
+    return view('informasi');
+});
+
+Route::get('/hubungi', function(){
+    return view('hubungi');
+});
+
 // Users Route
-Route::get('/', [UserController::class,'index'])->name('home');
+Route::get('/form', [UserController::class,'index'])->name('home');
 Route::post('/users', [UserController::class, 'storeData'])->name('storeMyForm');
 Route::get('/users/logout', [UserController::class, 'clearSession'])->name('logout');
 Route::get('/users/demografi', [UserController::class, 'demoGraphy'])->name('demograph');

@@ -1,10 +1,10 @@
 <x-header/>
 <div class="contents eight columns">
     <h5 class="title-center">BAHAGIAN B: KEPUASAN KERJA</h5>
-    <span>Sila TANDAKAN (/) pada skala yang menunjukkan persetujuan anda mengenai <b>kepuasan kerja anda.</b></span><br><br>
+    <span>Sila TANDAKAN pada skala yang menunjukkan persetujuan anda mengenai <b>kepuasan kerja anda.</b></span><br><br>
     <p>Skala 0 menunjukkan anda ‘Sangat Tidak Bersetuju’ dengan pernyataan tersebut, manakala Skala 10 menunjukkan anda ‘Sangat Bersetuju’ dengan pernyataan tersebut.</p>
     <x-form-global-error/>
-    <form action="{{route('updateSectionB')}}" method="POST">
+    <form action="{{route('updateSectionB')}}" method="POST" onsubmit="this.querySelectorAll('input').forEach(i => i.disabled = false)">
         @csrf
         <div class="introPage <x-form-validation-error key='B1'/>" style="margin-bottom: 10px;">
             <p>1. Saya berasa dibayar dengan gaji yang setimpal dengan kerja yang saya lakukan.</p>

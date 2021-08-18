@@ -1,9 +1,9 @@
 <x-header/>
 <div class="contents eight columns">
     <h5 class="title-center">BAHAGIAN C: KEPUASAN HIDUP</h5>
-    <span>Sila TANDAKAN (/) pada skala yang menunjukkan persetujuan anda mengenai <b>kepuasan hidup anda</b>.<br><br>Skala 0 menunjukkan anda ‘Sangat Tidak Bersetuju’ dengan pernyataan tersebut, manakala Skala 10 menunjukkan anda ‘Sangat Bersetuju’ dengan pernyataan tersebut.</span>
+    <span>Sila TANDAKAN pada skala yang menunjukkan persetujuan anda mengenai <b>kepuasan hidup anda</b>.<br><br>Skala 0 menunjukkan anda ‘Sangat Tidak Bersetuju’ dengan pernyataan tersebut, manakala Skala 10 menunjukkan anda ‘Sangat Bersetuju’ dengan pernyataan tersebut.</span>
     <x-form-global-error/>
-    <form action="{{route('updateSectionC')}}" method="POST">
+    <form action="{{route('updateSectionC')}}" method="POST" onsubmit="this.querySelectorAll('input').forEach(i => i.disabled = false)">
         @csrf
         <div class="introPage <x-form-validation-error key='C1'/>" style="margin-bottom: 10px;">
             <p>1. Dalam banyak perkara, kehidupan saya adalah hampir dengan ciri kehidupan ideal (sempurna) saya.</p>

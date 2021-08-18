@@ -1,7 +1,7 @@
 <x-header/>
 <div class="contents eight columns">
     <h5 class="title-center">BAHAGIAN O: DAYA TAHAN</h5>
-    <span>Sila TANDAKAN (/) pada skala yang menunjukkan persetujuan anda mengenai <b>daya tahan</b> anda di dalam pekerjaan.<br><br>
+    <span>Sila TANDAKAN pada skala yang menunjukkan persetujuan anda mengenai <b>daya tahan</b> anda di dalam pekerjaan.<br><br>
     <p>Skala 0 menunjukkan anda ‘Sangat Tidak Bersetuju’ dengan pernyataan tersebut, manakala Skala 10 menunjukkan anda ‘Sangat Bersetuju’ dengan pernyataan tersebut.</p>
     <x-form-global-error/>
     <form action="{{route('updateSectionO')}}" method="POST">

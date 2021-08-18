@@ -302,6 +302,11 @@ input[type="submit"] {
 button[disabled],
 html input[disabled] {
   cursor: default;
+  color: grey;
+}
+
+input[read-only]{
+  color: grey;
 }
 
 /**

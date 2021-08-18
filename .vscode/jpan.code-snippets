@@ -48,5 +48,89 @@
 			  "\\$totalMaxpointsL${1:example} = \\$countTotalVoteL${1:example} * 10;",
 			  "\\$respondedTotalPointsL${1:example} = \\$totalMaxpointsL${1:example} - \\$totalPointL${1:example};"
 		  ]
+	  },
+	  "DimensiTinggiJS": {
+		"prefix": "dimT",
+		"body": [
+		  "function dimensi${1:example}Tinggi() {",
+		  "    var modal = new tingle.modal({",
+		  "    footer: true,",
+		  "    stickyFooter: false,",
+		  "    closeMethods: ['overlay', 'button', 'escape'],",
+		  "    closeLabel: \"Close\",",
+		  "    cssClass: ['custom-class-1', 'custom-class-2'],",
+		  "});",
+		  "modal.setContent('<span>${2:example}</span>');",
+		  "modal.addFooterBtn('Tutup', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {",
+		  "    // here goes some logic",
+		  "    modal.close();",
+		  "});",
+		  "modal.open();",
+		  "}"
+		],
+		"description": "DimensiTinggiJS"
+	  },
+	  "DimensiSederhanaJS": {
+		"prefix": "dimS",
+		"body": [
+		  "function dimensi${1:example}Sederhana() {",
+		  "    var modal = new tingle.modal({",
+		  "    footer: true,",
+		  "    stickyFooter: false,",
+		  "    closeMethods: ['overlay', 'button', 'escape'],",
+		  "    closeLabel: \"Close\",",
+		  "    cssClass: ['custom-class-1', 'custom-class-2'],",
+		  "});",
+		  "modal.setContent('<span>${2:example}</span>');",
+		  "modal.addFooterBtn('Tutup', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {",
+		  "    // here goes some logic",
+		  "    modal.close();",
+		  "});",
+		  "modal.open();",
+		  "}"
+		],
+		"description": "DimensiSederhanaJS"
+	  },
+	  "DimensiRendahJS": {
+		"prefix": "dimR",
+		"body": [
+		  "function dimensi${1:example}Rendah() {",
+		  "    var modal = new tingle.modal({",
+		  "    footer: true,",
+		  "    stickyFooter: false,",
+		  "    closeMethods: ['overlay', 'button', 'escape'],",
+		  "    closeLabel: \"Close\",",
+		  "    cssClass: ['custom-class-1', 'custom-class-2'],",
+		  "});",
+		  "modal.setContent('<span>${2:example}</span>');",
+		  "modal.addFooterBtn('Tutup', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {",
+		  "    // here goes some logic",
+		  "    modal.close();",
+		  "});",
+		  "modal.open();",
+		  "}"
+		],
+		"description": "DimensiSederhanaJS"
+	  },
+	  "dimesniJsTinggi": {
+		"prefix": "dt",
+		"body": [
+		  "onclick=\"dimensi${1:example}Tinggi()\""
+		],
+		"description": "dimesniJsTinggi"
+	  },
+	  "dimesniJsSederhana": {
+		"prefix": "ds",
+		"body": [
+		  "onclick=\"dimensi${1:example}Sederhana()\""
+		],
+		"description": "dimesniJsTinggi"
+	  },
+	  "dimesniJsRendah": {
+		"prefix": "dr",
+		"body": [
+		  "onclick=\"dimensi${1:example}Rendah()\""
+		],
+		"description": "dimesniJsTinggi"
 	  }
 }

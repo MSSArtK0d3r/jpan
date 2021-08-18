@@ -16,6 +16,7 @@ class ratingsComponents extends Component
     public $sectionQuestion;
     public $userData;
     public $totalQuestion;
+    //public $sectionComplete;
 
     public function __construct($initialQuestion, $questionNumber, $sectionQuestion, $userData, $totalQuestion = '')
     {
@@ -24,6 +25,7 @@ class ratingsComponents extends Component
         $this->sectionQuestion = $sectionQuestion;
         $this->userData = $userData;
         $this->totalQuestion = $totalQuestion;
+        //$this->sectionComplete = $sectionComplete;
     }
 
     /**

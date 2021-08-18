@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url('css/normalize.css') }}">
 <link rel="stylesheet" href="{{ url('css/skeleton.css') }}">
+<link rel="stylesheet" href="{{ url('css/tingle.min.css') }}">
 <style>
    * {
       box-sizing: border-box;
@@ -76,10 +77,38 @@
 
    .dimensiSection {
       text-align: center;
-      width: 10%;
+      width: 50px;
       background-color: #7a00ff;
       color: white;
       border-radius: 4px;
+   }
+
+   .dimensiPercent{
+      line-height: 0.7em;
+      text-align: end;
+      font-size:25px;
+   }
+
+   .dimensiPointsInfo {
+    padding: 4px 8px;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-radius: 4px;
+   }
+
+   .dimensiPointInfoTinggi{
+      background-color: green;
+      color: white;
+   }
+
+   .dimensiPointInfoSederhana{
+      background-color: orange;
+      color: black;
+   }
+
+   .dimensiPointInfoRendah{
+      background-color: red;
+      color: white;
    }
 
    .dimensiSubject {
@@ -176,6 +205,12 @@
       border-right: 0px;
       text-align: center;
       margin-bottom: 0;
+   }
+
+   .listMain{
+      list-style: decimal;
+      padding-left: 1em;
+      list-style-type: decimal;
    }
 
    #meter0{
@@ -480,10 +515,42 @@
 	text-align: center;
 	width: 100%;
 }
+
+.sectionDone{
+   pointer-events: none;
+   color: grey !important;
+}
+
+.navigation{
+   background-color: #540b89;
+}
+
+.menu li{
+   display: inline;
+   background-color: #540b89;
+}
+
+.nav2{
+   padding: 15px 0px;
+   text-align: center;
+   background-color: #540b89;
+}
+
+.nav2 a{
+   margin: 10px 25px;
+   text-decoration: none;
+   color: white;
+}
+
 </style>
 
 <body>
-
+   <div class="navigation nav2">
+      <a href="/">Pengenalan</a>
+      <a href="/informasi">Informasi</a>
+      <a href="/form">Soal Selidik</a>
+      <a href="/hubungi">Hubungi Kami</a>
+   </div>
    <div class="container">
       <div class="row">
          <div class="twelve columns">

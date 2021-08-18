@@ -1,7 +1,7 @@
 <x-header/>
 <div class="contents eight columns">
     <h5 class="title-center">BAHAGIAN P: KINDNESS</h5>
-    <span>Sila TANDAKAN (/) pada skala yang menunjukkan persetujuan anda mengenai <i>kindness</i> di tempat kerja.<br><br>
+    <span>Sila TANDAKAN pada skala yang menunjukkan persetujuan anda mengenai <i>kindness</i> di tempat kerja.<br><br>
     <p>Skala 0 menunjukkan anda ‘Sangat Tidak Bersetuju’ dengan pernyataan tersebut, manakala Skala 10 menunjukkan anda ‘Sangat Bersetuju’ dengan pernyataan tersebut.</p> 
     <x-form-global-error/>
     <form action="{{route('updateSectionP')}}" method="POST">

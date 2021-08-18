@@ -1,7 +1,7 @@
 <x-header/>
 <div class="contents eight columns">
     <h5 class="title-center">BAHAGIAN N: TUJUAN</h5>
-    <span>Sila TANDAKAN (/) pada skala yang menunjukkan persetujuan anda mengenai <b>tujuan/makna</b> dalam pekerjaan anda.<br><br>
+    <span>Sila TANDAKAN pada skala yang menunjukkan persetujuan anda mengenai <b>tujuan/makna</b> dalam pekerjaan anda.<br><br>
     <p>Skala 0 menunjukkan anda ‘Sangat Tidak Bersetuju’ dengan pernyataan tersebut, manakala Skala 10 menunjukkan anda ‘Sangat Bersetuju’ dengan pernyataan tersebut./p>
    <x-form-global-error/>
    <form action="{{route('updateSectionN')}}" method="POST">
