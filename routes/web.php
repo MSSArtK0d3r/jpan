@@ -91,7 +91,6 @@ Route::post('/users/sr', [UserController::class, 'storeSectionR'])->name('update
 
 Route::get('/result/{uuid}', [ThankYouResult::class,'index']);
 
-Route::get('/admin/dashboard', [ThankYouResult::class, 'dashboardIndex']);
 
 Route::post('/submit' , [EntriesController::class,'storeForm']);
 
@@ -121,6 +120,11 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         Route::post('/password',                                    'ProfileController@updatePassword')->name('update-password');
     });
 });
+
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::get('/admin/dashboard', [UserController::class,'adminDashboard']);
+});
+
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {

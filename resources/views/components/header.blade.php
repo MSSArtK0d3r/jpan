@@ -550,6 +550,7 @@
       <a href="/informasi">Informasi</a>
       <a href="/form">Soal Selidik</a>
       <a href="/hubungi">Hubungi Kami</a>
+      <a href="/admin">Pentadbir</a>
    </div>
    <div class="container">
       <div class="row">

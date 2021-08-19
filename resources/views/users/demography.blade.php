@@ -363,7 +363,7 @@
                      <label class="inBlock" for="penilai2">Dua Orang Penilai</label>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <label>26. Laporan Nilaian Prestasi Tahunan (LNPT) </label>
+                     <label>26. Laporan Nilaian Prestasi Tahunan (LNTP) </label>
                      <input class="small-input" name="lntp" value="{{ $userData[0]->lntp == NULL ? '' : $userData[0]->lntp }}">%
                   </div>
          <button class="subBtn twelve columns" type="submit">Simpan</button>

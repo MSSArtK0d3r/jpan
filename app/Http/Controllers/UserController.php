@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Queue\NullQueue;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class UserController extends Controller
 {
@@ -46,6 +47,27 @@ class UserController extends Controller
         $userProgeress = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return $userProgeress;
 
+    }
+
+    public function adminDashboard(){
+        $data['totalRatingB'] = $this->calculateTotalB();
+            $data['totalRatingC'] = $this->calculateTotalC();
+            $data['totalRatingD'] = $this->calculateTotalD();
+            $data['totalRatingE'] = $this->calculateTotalE();
+            $data['totalRatingF'] = $this->calculateTotalF();
+            $data['totalRatingG'] = $this->calculateTotalG();
+            $data['totalRatingH'] = $this->calculateTotalH();
+            $data['totalRatingI'] = $this->calculateTotalI();
+            $data['totalRatingJ'] = $this->calculateTotalJ();
+            $data['totalRatingK'] = $this->calculateTotalK();
+            $data['totalRatingL'] = $this->calculateTotalL();
+            $data['totalRatingM'] = $this->calculateTotalM();
+            $data['totalRatingN'] = $this->calculateTotalN();
+            $data['totalRatingO'] = $this->calculateTotalO();
+            $data['totalRatingP'] = $this->calculateTotalP();
+            $data['totalRatingQ'] = $this->calculateTotalQ();
+
+        return view('admin.dashboard', ['data' => $data]);
     }
 
     public function index(Request $request){
@@ -2228,7 +2250,8 @@ class UserController extends Controller
     }
 
     public function calculateIndexL($L1, $L2, $L3, $L4){
-        $dimensi = round(( (30 - $L1 + $L2 + $L3) + $L4) / 40 * 100, 2);
+        $dimensi = round(( (30 - ($L1 + $L2 + $L3)) + $L4) / 40 * 100, 2);
+        
         return $dimensi;
     }
 

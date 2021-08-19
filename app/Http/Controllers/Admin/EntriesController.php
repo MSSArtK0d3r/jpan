@@ -41,7 +41,6 @@ class EntriesController extends Controller
             // set columns to query
             [
                 'id',
-                'uuid',
                 'umur',
                 'jantina',
                 'agama',
@@ -72,6 +71,8 @@ class EntriesController extends Controller
                 'tinggalBersamaDetail',
                 'kenderaanKerja',
                 'kenderaanKerjaDetail',
+                'penilai',
+                'lntp',
                 'B1',
                 'B2',
                 'B3',
