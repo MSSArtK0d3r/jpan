@@ -4,8 +4,6 @@
 
 @section('body')
 
-<div>{{var_dump($data['lul'])}}</div>
-
     <entry-listing
         :data="{{ $data->toJson() }}"
         :url="'{{ url('admin/entries') }}'"
@@ -50,7 +48,7 @@
                                                 #
                                             </label>
                                         </th>
-                                        <th is='sortable' :column="'uuid'">id</th>
+                                        <th is='sortable' :column="'id'">id</th>
                                         <th is='sortable' :column="'umur'">Umur</th>
                                         <th is='sortable' :column="'jantina'">Jantina</th>
                                         <th is='sortable' :column="'agama'">Agama</th>
@@ -103,7 +101,7 @@
                                             </label>
                                         </td>
 
-                                        <td>@{{ item.uuid }}</td>
+                                        <td>@{{ item.id }}</td>
                                         <td>@{{ item.umur }}</td>
                                         <td>@{{ item.jantina }}</td>
                                         <td>@{{ item.agama }}</td>

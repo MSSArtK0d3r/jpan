@@ -1,2 +1,3 @@
+{{var_dump($totalResponden)}}
 
-{{dd($totalEPositive)}}
+

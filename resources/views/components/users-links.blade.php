@@ -1,5 +1,10 @@
 <a href="#">
     <div class="bahagian">
+        <span>Keseluruhan Responden<span class="jumlahResponded">{{$totalResponden}}</span></span>
+    </div>
+</a>
+<a href="#">
+    <div class="bahagian">
         <span>Selamat datang,<br>
             <strong>{{$user}}</strong><br>
             {{-- <a href="{{url('/users/logout')}}"><span class="btnLogout">Log keluar</span></a> --}}

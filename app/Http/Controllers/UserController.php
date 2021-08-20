@@ -50,7 +50,7 @@ class UserController extends Controller
     }
 
     public function adminDashboard(){
-        $data['totalRatingB'] = $this->calculateTotalB();
+            $data['totalRatingB'] = $this->calculateTotalB();
             $data['totalRatingC'] = $this->calculateTotalC();
             $data['totalRatingD'] = $this->calculateTotalD();
             $data['totalRatingE'] = $this->calculateTotalE();
@@ -67,7 +67,11 @@ class UserController extends Controller
             $data['totalRatingP'] = $this->calculateTotalP();
             $data['totalRatingQ'] = $this->calculateTotalQ();
 
-        return view('admin.dashboard', ['data' => $data]);
+            $totalResponden = DB::table('entries')
+                ->where('completedR','=', '1')
+                ->count();
+
+        return view('admin.dashboard', compact('data','totalResponden'));
     }
 
     public function index(Request $request){
@@ -369,6 +373,12 @@ class UserController extends Controller
             return redirect('users');
         }
         
+        $hasCompleted = DB::table('entries')->select('completedA')->where('email', '=', $user)->get()->toArray();
+        
+        if ($hasCompleted[0]->completedA == NULL) {
+            return redirect()->route('demograph');
+        }
+
         $i = 0;
         $data = array();
         while ( $i <= 17 ) {
@@ -448,6 +458,11 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+        $hasCompleted = DB::table('entries')->select('completedB')->where('email', '=', $user)->get()->toArray();
+        
+        if ($hasCompleted[0]->completedB == NULL) {
+            return redirect()->route('demograph');
+        }
         
         $i = 0;
         $data = array();
@@ -492,6 +507,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedC')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedC == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -533,6 +554,12 @@ class UserController extends Controller
             return redirect('users');
         }
         
+        $hasCompleted = DB::table('entries')->select('completedD')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedD == NULL) {
+                    return redirect()->route('demograph');
+                }
+
         $i = 0;
         $data = array();
         while ( $i <= 5 ) {
@@ -584,6 +611,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedE')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedE == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -636,6 +669,12 @@ class UserController extends Controller
             return redirect('users');
         }
         
+        $hasCompleted = DB::table('entries')->select('completedF')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedF == NULL) {
+                    return redirect()->route('demograph');
+                }
+
         $i = 0;
         $data = array();
         while ( $i <= 9 ) {
@@ -694,6 +733,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedG')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedG == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -757,6 +802,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedH1')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedH1 == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 12;
         $data = array();
@@ -821,6 +872,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedH2')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedH2 == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 20;
         $data = array();
@@ -888,6 +945,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedH3')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedH3 == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 29;
         $data = array();
@@ -946,6 +1009,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedH4')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedH4 == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -995,6 +1064,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedI')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedI == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -1065,6 +1140,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedJ')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedJ == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -1135,6 +1216,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedK')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedK == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -1187,6 +1274,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedL')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedL == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -1236,6 +1329,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedM')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedM == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -1288,6 +1387,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedN')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedN == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -1343,6 +1448,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedO')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedO == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -1389,6 +1500,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedP')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedP == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $i = 0;
         $data = array();
@@ -1441,6 +1558,12 @@ class UserController extends Controller
         if ( !$user ){
             return redirect('users');
         }
+
+        $hasCompleted = DB::table('entries')->select('completedQ')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedQ == NULL) {
+                    return redirect()->route('demograph');
+                }
         
         $data = array(
             'komen',

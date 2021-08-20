@@ -2,7 +2,7 @@
 <div class="contents twevle columns">
     <h5 class="title-center">SOAL SELIDIK<br>INDEKS-KEGEMBIRAAN ORGANISASI BERPRESTASI TINGGI<br>(I-KOBT)</h5>
     <h5 style="padding: 10px 30px">Informasi</h5>
-    <p style="padding: 0px 30px">Indeks-Kegembiraan Organisasi Berprestasi Tinggi (I-KOBT) digunakan untuk mengukur kegembiraan dan organisasi berprestasi tinggi dalam kalangan penjawat awam. I-KOBT mengandungi lima elemen utama iaitu kegembiraan, organisasi berprestasi tinggi, produktiviti, faktor individu dan PRKA (Purpose, Resilience , Kindness & Altruisme). Berikut merupakan 16 konstruk dan 32 domain I-KOBT.</p>
+    <p style="padding: 0px 30px;text-align:justify;">Indeks-Kegembiraan Organisasi Berprestasi Tinggi (I-KOBT) digunakan untuk mengukur kegembiraan dan organisasi berprestasi tinggi dalam kalangan penjawat awam. I-KOBT mengandungi lima elemen utama iaitu kegembiraan, organisasi berprestasi tinggi, produktiviti, faktor individu dan PRKA (Purpose, Resilience , Kindness & Altruisme). Berikut merupakan 16 konstruk dan 31 domain I-KOBT.</p>
     <div class="four columns">
     <ol style="list-style: none">
         <li><strong>1. Kegembiraan</strong>

@@ -20,10 +20,40 @@
       font-family: "Open Sans";
    }
 
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
+.mapTooltipTitle{
+   font-size: 12px;
+   text-transform: uppercase;
+}
+
+.jumlahResponded{
+    padding: 0px 10px;
+    margin-left: 10px;
+    background-color: blue;
+    border-radius: 4px;
+}
+
    #regForm {
       margin: 20px auto;
       font-family: inherit;
       max-width: 640px;
+   }
+
+   div.hubungiKami div{
+      display: flex;
+      align-items: center;
+      margin: 10px 0px;
+   }
+   
+   div.hubungiKami img{
+      width: 30px;
+      margin-right: 10px;
    }
 
    .contents {
@@ -548,7 +578,7 @@
    <div class="navigation nav2">
       <a href="/">Pengenalan</a>
       <a href="/informasi">Informasi</a>
-      <a href="/form">Soal Selidik</a>
+      <a href="/form">Soal Selidik I-KOBT</a>
       <a href="/hubungi">Hubungi Kami</a>
       <a href="/admin">Pentadbir</a>
    </div>

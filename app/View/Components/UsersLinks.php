@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\DB;
 
 class UsersLinks extends Component
 {
@@ -69,6 +70,9 @@ class UsersLinks extends Component
      */
     public function render()
     {
-        return view('components.users-links');
+        $totalResponden = DB::table('entries')
+                ->where('completedR','=', '1')
+                ->count();
+        return view('components.users-links', compact('totalResponden'));
     }
 }

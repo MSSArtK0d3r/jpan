@@ -1,6 +1,6 @@
 <x-header/>
 <div class="contents {{ $user == NULL ? '' : 'eight columns'}}">
- <h5 class="title-center">SOAL SELIDIK<br>INDEKS-KEGEMBIRAAN ORGANISASI BERPRESTASI TINGGI<br>(I-KOBT)</h5>
+ <h5 class="title-center" style="font-size: 1.3em">SOAL SELIDIK<br>INDEKS-KEGEMBIRAAN ORGANISASI BERPRESTASI TINGGI<br>(I-KOBT)</h5>
     @if ( $user == NULL )
     <x-context-main/>
     <form class="title-center" action="{{route('storeMyForm')}}" method="POST">
