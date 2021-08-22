@@ -21,7 +21,7 @@ class ratingsComponents extends Component
     public $getUser;
     //public $sectionComplete;
 
-    public function __construct($initialQuestion, $questionNumber, $sectionQuestion, $userData, $totalQuestion = '', Request $request, $getUser='')
+    public function __construct($initialQuestion, $questionNumber, $sectionQuestion, $userData, $totalQuestion = '', Request $request)
     {
         $this->initialQuestion = $initialQuestion;
         $this->questionNumber = $questionNumber;
