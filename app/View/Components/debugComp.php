@@ -36,6 +36,6 @@ class debugComp extends Component
      */
     public function render()
     {
-        return view('components.debug-comp');
+        return view('components.debug-comp')->with('lul', $this->getCompletedR());
     }
 }

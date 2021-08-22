@@ -1,3 +1,3 @@
 <div>
-    hello {{var_dump($getCompletedR())}}
+    hello {{var_dump($lul)}}
 </div>
