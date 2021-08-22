@@ -7,18 +7,17 @@
         @csrf
         <div class="introPage <x-form-validation-error key='C1'/>" style="margin-bottom: 10px;">
             <p>1. Dalam banyak perkara, kehidupan saya adalah hampir dengan ciri kehidupan ideal (sempurna) saya.</p>
-            {{-- <x-ratings-components initialQuestion="0" questionNumber="1" sectionQuestion="C" :userData="$userData[0]->C1"/> --}}
+            <x-ratings-components initialQuestion="0" questionNumber="1" sectionQuestion="C" :userData="$userData[0]->C1"/>
          </div>
          <div class="introPage <x-form-validation-error key='C2'/>" style="margin-bottom: 10px;">
             <p>2. Saya berpuas hati dengan kehidupan saya.</p>
-            {{-- <x-ratings-components initialQuestion="0" questionNumber="2" sectionQuestion="C" :userData="$userData[0]->C2"/> --}}
+            <x-ratings-components initialQuestion="0" questionNumber="2" sectionQuestion="C" :userData="$userData[0]->C2"/>
          </div>
          <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>
 </div>
-{{$userProgress[0]->completedR}}
 <div class="four columns userLinks">
-    {{-- <x-users-links :user="$user" 
+    <x-users-links :user="$user" 
     :completedA="$userProgress[0]->completedA"
     :completedB="$userProgress[0]->completedB"
     :completedC="$userProgress[0]->completedC"
@@ -41,6 +40,6 @@
     :completedQ="$userProgress[0]->completedQ"
     :completedR="$userProgress[0]->completedR"
     :paymentChoose="$userProgress[0]->paymentChoose"
-    /> --}}
+    />
  </div>
 <x-footer/>
