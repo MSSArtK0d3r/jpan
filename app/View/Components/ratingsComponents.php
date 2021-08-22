@@ -3,6 +3,8 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ratingsComponents extends Component
 {
@@ -16,15 +18,18 @@ class ratingsComponents extends Component
     public $sectionQuestion;
     public $userData;
     public $totalQuestion;
+    public $getUser;
     //public $sectionComplete;
 
-    public function __construct($initialQuestion, $questionNumber, $sectionQuestion, $userData, $totalQuestion = '')
+    public function __construct($initialQuestion, $questionNumber, $sectionQuestion, $userData, $totalQuestion = '', Request $request, $getUser='')
     {
         $this->initialQuestion = $initialQuestion;
         $this->questionNumber = $questionNumber;
         $this->sectionQuestion = $sectionQuestion;
         $this->userData = $userData;
         $this->totalQuestion = $totalQuestion;
+        $this->getUser = $request->session()->get('identity');;
+
         //$this->sectionComplete = $sectionComplete;
     }
 
@@ -35,6 +40,8 @@ class ratingsComponents extends Component
      */
     public function render()
     {
-        return view('components.ratings-components');
+        $data = DB::table('entries')->select('completedR')->where('email', $this->getUser)->get()->toArray();
+        $completedR = $data[0]->completedR;
+        return view('components.ratings-components', compact('completedR'));
     }
 }

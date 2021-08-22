@@ -124,7 +124,12 @@
     </div>
 </a>
 <a href="{{route('home')}}">
-    <div class="bahagianLast {{Route::currentRouteName() == 'home' ? 'activeSection' : ''}}">
+    <div class="bahagian {{Route::currentRouteName() == 'home' ? 'activeSection' : ''}}">
         <strong>Keputusan I-KOBT</strong>
+    </div>
+</a>
+<a href="{{route('reward')}}">
+    <div class="bahagianLast">
+        <strong>Maklumat Bayaran Sagu hati</strong>
     </div>
 </a>

@@ -1,3 +1,3 @@
-{{var_dump($totalResponden)}}
+{{var_dump($data)}}
 
 

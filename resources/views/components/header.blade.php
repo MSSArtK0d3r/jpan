@@ -49,10 +49,11 @@
       display: flex;
       align-items: center;
       margin: 10px 0px;
+      font-size: 12px
    }
    
    div.hubungiKami img{
-      width: 30px;
+      width: 18px;
       margin-right: 10px;
    }
 
@@ -446,6 +447,7 @@
       padding: 5px 14px;
    }
    .bahagianLast{
+      background-color: #269c1e;
       border-bottom: none;
       padding: 5px 14px;
    }
@@ -570,6 +572,134 @@
    margin: 10px 25px;
    text-decoration: none;
    color: white;
+}
+
+.wrapper{
+  display: inline-flex;
+  background-color:#d1e9ff;
+  height: 100px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px 5px 0px 0px;
+  padding: 25px 40px;
+}
+.wrapper .option{
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  
+  border: 2px solid lightgrey;
+  transition: all 0.3s ease;
+}
+.wrapper .option .dot{
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #0069d9;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+.wrapper input[type="radio"]{
+  display: none;
+}
+#ewallet:checked:checked ~ .option-1,
+#bank:checked:checked ~ .option-2{
+  border-color: #0069d9;
+  background: #0069d9;
+}
+#ewallet:checked:checked ~ .option-1 .dot,
+#bank:checked:checked ~ .option-2 .dot{
+  background: #fff;
+}
+#ewallet:checked:checked ~ .option-1 .dot::before,
+#bank:checked:checked ~ .option-2 .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span{
+  font-size: 15px;
+  margin-left: 15px;
+  color: #808080;
+}
+#ewallet:checked:checked ~ .option-1 span,
+#bank:checked:checked ~ .option-2 span{
+  color: #fff;
+}
+
+.ewalletForm{
+   display: none;
+   background-color: #f7f7f7;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    border-left: 1px solid rgb(219, 219, 219);
+    border-right: 1px solid rgb(219, 219, 219);
+    border-top: 0px solid rgb(248, 248, 248);
+    overflow: auto;
+    padding: 10px 40px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.ewalletForm span {
+   font-size: 12px;
+}
+
+.ewalletForm input[type="text"]{
+   border: 1px solid #8a8a8a;
+    border-radius: 2px;
+    background-color: #fbfbfb;
+    color: #565555;
+    font-size: 11px;
+}
+
+
+.bankForm{
+   display: none;
+   background-color: #f7f7f7;
+   border-bottom: 1px solid rgb(219, 219, 219);
+    border-left: 1px solid rgb(219, 219, 219);
+    border-right: 1px solid rgb(219, 219, 219);
+    border-top: 0px solid rgb(248, 248, 248);
+    overflow: auto;
+    padding: 10px 40px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.bankForm div{
+   display: flex;
+    margin: 10px 0px;
+    overflow: auto;
+    align-items: center;
+}
+
+.bankForm span {
+   font-size: 12px;
+}
+
+.bankForm input[type="text"]{
+   text-align: start;
+   border: 1px solid #8a8a8a;
+    border-radius: 2px;
+    background-color: #fbfbfb;
+    color: #565555;
+    font-size: 11px;
 }
 
 </style>

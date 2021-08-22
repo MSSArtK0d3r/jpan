@@ -87,6 +87,8 @@ Route::get('/users/sq', [UserController::class, 'sectionQ'])->name('sq');
 Route::post('/users/sq', [UserController::class, 'storeSectionQ'])->name('updateSectionQ');
 Route::get('/users/sr', [UserController::class, 'sectionR'])->name('sr');
 Route::post('/users/sr', [UserController::class, 'storeSectionR'])->name('updateSectionR');
+Route::get('/users/reward', [UserController::class, 'getReward'])->name('reward');
+Route::post('/users/reward', [UserController::class, 'storeReward'])->name('storeReward');
 //
 
 Route::get('/result/{uuid}', [ThankYouResult::class,'index']);

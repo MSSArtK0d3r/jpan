@@ -192,7 +192,7 @@ class UserController extends Controller
         $userData = DB::table('entries')->where('email', $request->email)->first();
             
         if ($userData == NULL) {
-                DB::table('entries')->insert(['email' => $request->email]);
+                DB::table('entries')->insert(['email' => $request->email, 'start_at' => now(+8)]);
                 $ses = $request->session()->put('identity', $request->email);
                 return redirect('users/demografi');
         }
@@ -1567,8 +1567,7 @@ class UserController extends Controller
         
         $data = array(
             'komen',
-            'cadangan',
-            'phone'
+            'cadangan'
         );
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
@@ -1584,20 +1583,18 @@ class UserController extends Controller
             //     'cadangan' => 'nullable',
             //     'phone' => 'required'
             // ]);
-            $hasCompleted = NULL;
-            if ($request->phone != NULL){
-                $hasCompleted = 1;
-            }
+            // $hasCompleted = NULL;
+            // if ($request->phone != NULL){
+            //     $hasCompleted = 1;
+            // }
             DB::table('entries')->where('email', $user)->update(array(
                 'komen' => $request->komen,
                 'cadangan' => $request->cadangan,
-                'phone' => $request->phone,
-                'completedR' => $hasCompleted
+                'finish_at' => now(+8),
+                'completedR' => 1
             ));
-            if ($hasCompleted == 1) {
-                return redirect('/users');
-            }
-            return redirect('/users/sr');
+            
+            return redirect('/form');
             }
         return redirect('users');
     }
@@ -2533,6 +2530,46 @@ class UserController extends Controller
     public function calculateSubDimensionHOBT($h1,$h2,$h3,$h4,$h5){
         $dimensi = round(($h1 + $h2 + $h3 + $h4 + $h5 ) / 500 * 100, 2);
         return $dimensi;
+    }
+
+    public function getReward(Request $request){
+        $user = $this->getUser($request);
+        if ( !$user ){
+            return redirect('users');
+        }
+
+        $hasCompleted = DB::table('entries')->select('completedR')->where('email', '=', $user)->get()->toArray();
+                
+                if ($hasCompleted[0]->completedR == NULL) {
+                    return redirect()->route('demograph');
+                }
+        
+        $data = array(
+            'paymentChoose',
+            'phone',
+            'bankCompany',
+            'bankAccNo',
+            'bankFullName'
+        );
+
+        $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
+        $userProgress = $this->getUserProgress($request);
+        return view('users.reward', compact('user','userData','userProgress'));
+    }
+
+    public function storeReward(Request $request){
+        $user = $this->getUser($request);
+        if ( !$user ){
+            return redirect('users');
+        }
+        DB::table('entries')->where('email', $user)->update(array(
+            'paymentChoose' => $request->paymentChoose,
+            'phone' => $request->phone,
+            'bankCompany' => $request->bankCompany,
+            'bankAccNo' => $request->bankAccNo,
+            'bankFullName' => $request->bankFullName
+        ));
+        return redirect()->route('home');
     }
 
 

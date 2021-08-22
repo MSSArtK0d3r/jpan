@@ -2,20 +2,17 @@
 <div class="contents eight columns">
     <h5 class="title-center">BAHAGIAN R (SOALAN TERBUKA)</h5>
     <x-form-global-error/>
-    <form action="{{route('updateSectionR')}}" method="POST">
+    <form action="{{route('updateSectionR')}}" method="POST" id="srSumit">
     @csrf
     <div class="introPage" style="margin-bottom: 10px;">
         <label>1. Apakah komen anda mengenai soal selidik ini? (Jika ada)</label>
-        <textarea rows="10" class="big-input" name="komen" value="mantp">{{ $userData[0]->komen == NULL ? '' : $userData[0]->komen }}</textarea><br>
+        <textarea rows="10" class="big-input" name="komen">{{ $userData[0]->komen == NULL ? '' : $userData[0]->komen }}</textarea><br>
         <label>2. Apakah cadangan/komen ada berkaitan kegembiraan dan prestasi anda sebagai penjawat awam negeri Sabah? (Jika ada)</label><br>
         <textarea rows="10" class="big-input" name="cadangan" >{{ $userData[0]->cadangan == NULL ? '' : $userData[0]->cadangan }}</textarea>
-        <div class="introPage <x-form-validation-error key='phone'/>" style="margin-bottom: 10px;">
-        <label>3. Nombor telefon<br>(untuk kegunaan pembayaran menggunakan e-wallet Boost) : </label>
-        <input value="{{ $userData[0]->phone == NULL ? '' : $userData[0]->phone }}" name="phone">
-        </div>
     </div>
-    <button class="subBtn twelve columns" type="submit">Simpan</button>
+    
     </form>
+    <button class="subBtn twelve columns" onclick="confirm()">Simpan dan Lihat keputusan I-KOBT</button>
 </div>
 <div class="four columns userLinks">
     <x-users-links :user="$user" 
@@ -42,4 +39,26 @@
     :completedR="$userProgress[0]->completedR"
     />
  </div>
+ <script src="{{ url('js/tingle.min.js') }}"></script>
+ <script>
+     function confirm() {
+    var modal = new tingle.modal({
+    footer: true,
+    stickyFooter: false,
+    closeMethods: ['overlay', 'button', 'escape'],
+    closeLabel: "Close",
+    cssClass: ['custom-class-1', 'custom-class-2'],
+});
+modal.setContent('<span>Selepas anda SETUJU, pilihan jawapan TIDAK BOLEH di ubah.</span>');
+modal.addFooterBtn('Saya berpuas hati dengan jawapan saya', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {
+    // here goes some logic
+    document.getElementById("srSumit").submit();
+});
+modal.addFooterBtn('Saya ingin ubah jawapan', 'tingle-btn tingle-btn--danger tingle-btn--pull-right', function() {
+    // here goes some logic
+    modal.close();
+});
+modal.open();
+}
+ </script>
 <x-footer/>
