@@ -1,4 +1,4 @@
 {{var_dump($data)}}
 
 
-<x-debug-comp/>
+<x-dev-comp/>
