@@ -112,7 +112,7 @@
                 <x-ratings-components initialQuestion="0"  questionNumber="18" sectionQuestion="B" :userData="$userData[0]->B18"/>
             </div>
          </div>
-         <button class="subBtn twelve columns" type="submit">Simpan</button>
+         <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

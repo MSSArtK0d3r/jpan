@@ -18,7 +18,7 @@
             <p>3. Saya mampu memberikan perhatian dalam mencapai matlamat kerja walaupun saya sedang mempunyai masalah.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="I" :userData="$userData[0]->I3"/>
          </div>
-        <button class="subBtn twelve columns" type="submit">Simpan</button>
+        <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

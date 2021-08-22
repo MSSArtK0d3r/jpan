@@ -10,7 +10,7 @@
             <img class="img-center" src="{{ URL::asset('images/tangga.png') }}">
             <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="D" :userData="$userData[0]->D1"/>
          </div>
-        <button class="subBtn twelve columns" type="submit">Simpan</button>
+        <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

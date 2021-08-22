@@ -30,7 +30,7 @@
                 <p>6. Saya terlalu mementingkan pekerjaan sehingga leka dengan segalanya.</p>
                 <x-ratings-components initialQuestion="0"  questionNumber="6" sectionQuestion="F" :userData="$userData[0]->F6"/>
              </div>
-            <button class="subBtn twelve columns" type="submit">Simpan</button>
+            <x-btn-submit/>
         </form>
 </div>
 <div class="four columns userLinks">

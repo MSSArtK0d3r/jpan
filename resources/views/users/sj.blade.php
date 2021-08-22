@@ -47,7 +47,7 @@
             <p>10. Tidak begitu teliti.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="10" sectionQuestion="J" :userData="$userData[0]->J10"/>
          </div>
-        <button class="subBtn twelve columns" type="submit">Simpan</button>
+        <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

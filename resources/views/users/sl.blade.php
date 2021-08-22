@@ -22,7 +22,7 @@
         <p>4. Saya mempunyai baki simpanan hingga hujung bulan.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="4" sectionQuestion="L" :userData="$userData[0]->L4"/> 
      </div>
-    <button class="subBtn twelve columns" type="submit">Simpan</button>
+    <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

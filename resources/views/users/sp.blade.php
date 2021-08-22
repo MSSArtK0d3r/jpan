@@ -14,7 +14,7 @@
         <p>2. Organisasi bersikap fleksibel tentang keseimbangan kehidupan berkerjaya dan kehidupan seharian.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="P" :userData="$userData[0]->P2"/>
      </div>
-     <button class="subBtn twelve columns" type="submit">Simpan</button>
+     <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

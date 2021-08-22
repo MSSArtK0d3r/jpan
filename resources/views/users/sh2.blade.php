@@ -38,7 +38,7 @@
             <p>20. Organisasi saya terus berinovasi dalam produk, proses dan perkhidmatannya.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="20" sectionQuestion="H" :userData="$userData[0]->H20"/> 
          </div>
-        <button class="subBtn twelve columns" type="submit">Simpan</button>
+        <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

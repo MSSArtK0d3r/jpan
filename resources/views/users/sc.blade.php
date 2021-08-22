@@ -13,7 +13,7 @@
             <p>2. Saya berpuas hati dengan kehidupan saya.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="C" :userData="$userData[0]->C2" :completedR="$userProgress[0]->completedR"/>
          </div>
-         <button class="subBtn twelve columns" type="submit">Simpan</button>
+         <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

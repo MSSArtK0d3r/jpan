@@ -46,7 +46,7 @@
         <p>10. Saya menumpukan kepada aspek-aspek negatif sesuatu keadaan di tempat kerja saya berbanding aspek-aspek positif.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="10" sectionQuestion="G" :userData="$userData[0]->G10"/>
      </div>
-     <button class="subBtn twelve columns" type="submit">Simpan</button>
+     <x-btn-submit/>
 </form>
 </div>
 <div class="four columns userLinks">

@@ -18,7 +18,7 @@
         <p>3. Komuniti di tempat saya adalah baik.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="M" :userData="$userData[0]->M3"/> 
      </div>
-     <button class="subBtn twelve columns" type="submit">Simpan</button>
+     <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

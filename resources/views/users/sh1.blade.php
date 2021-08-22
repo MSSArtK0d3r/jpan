@@ -54,7 +54,7 @@
             <p>12. Pengurusan organisasi sentiasa memastikan ahli organisasi bertanggungjawab terhadap hasil kerja mereka.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="12" sectionQuestion="H" :userData="$userData[0]->H12"/> 
          </div>
-         <button class="subBtn twelve columns" type="submit">Simpan</button>
+         <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

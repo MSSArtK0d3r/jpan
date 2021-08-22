@@ -26,7 +26,7 @@
         <p>5. Saya mampu beradaptasi dengan keperluan teknologi masa kini.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="5" sectionQuestion="O" :userData="$userData[0]->O5"/>
      </div>
-     <button class="subBtn twelve columns" type="submit">Simpan</button>
+     <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

@@ -49,7 +49,7 @@
         <p>10. Keluarga saya mempunyai beban hutang yang banyak.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="10" sectionQuestion="K" :userData="$userData[0]->K10"/>
      </div>
-    <button class="subBtn twelve columns" type="submit">Simpan</button>
+    <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

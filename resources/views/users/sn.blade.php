@@ -23,7 +23,7 @@
         <p>4. Saya berpuas hati dengan penglibatan saya dalam pembuatan keputusan berkaitan kerja.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="4" sectionQuestion="N" :userData="$userData[0]->N4"/>
      </div>
-    <button class="subBtn twelve columns" type="submit">Simpan</button>
+    <x-btn-submit/>
     </form>
 </div>
 <div class="four columns userLinks">

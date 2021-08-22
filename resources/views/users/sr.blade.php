@@ -12,7 +12,10 @@
     </div>
     
     </form>
-    <button class="subBtn twelve columns" onclick="confirm()">Simpan dan Lihat Keputusan I-KOBT Anda</button>
+    @if ($userProgress[0]->completedR != 1)
+        <button class="subBtn twelve columns" onclick="confirm()">Simpan dan Lihat Keputusan I-KOBT Anda</button>
+    @endif
+    
 </div>
 <div class="four columns userLinks">
     <x-users-links :user="$user" 
