@@ -3,6 +3,8 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class debugComp extends Component
 {
@@ -11,9 +13,20 @@ class debugComp extends Component
      *
      * @return void
      */
-    public function __construct()
+
+    public $user;
+    public function __construct(Request $request, $user = null)
     {
-        //
+        
+        $this->user = $request->session()->get('identity');
+    }
+
+    public function getCompletedR(){
+        
+        $data = DB::table('entries')->select('completedR')->where('email', $this->user)->get()->toArray();
+        $data = $data[0]->completedR;
+        //$this->completedR = 'heheheheh';
+        return $data;
     }
 
     /**
@@ -23,7 +36,6 @@ class debugComp extends Component
      */
     public function render()
     {
-        $data = 'mantap kali';
-        return view('components.debug-comp' , compact('data'));
+        return view('components.debug-comp');
     }
 }

@@ -1,3 +1,3 @@
 <div>
-    hello {{$data}}
+    hello {{var_dump($getCompletedR())}}
 </div>
