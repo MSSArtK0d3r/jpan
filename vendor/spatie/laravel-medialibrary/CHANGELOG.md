@@ -2,7 +2,23 @@
 
 All notable changes to `laravel-medialibrary` will be documented in this file
 
-## 9.6.2 - 2021-05-6
+## 9.7.1 - 2021-07-29
+
+- allow `keepOriginalImageFormat()` method to work with uppercase file extensions (#2527)
+
+## 9.7.0 - 2021-07-28
+
+- add getMediaRepository() to InteractsWithMedia and query() to MediaRepository (#2523)
+
+## 9.6.4 - 2021-06-23
+
+- fix syntax error
+
+## 9.6.3 - 2021-06-23
+
+- add the option to skip 'deprecated conversions' when cleaning the media directory
+
+## 9.6.2 - 2021-05-06
 
 - simplify and speed up code for copying a stream to disk (#2425)
 
@@ -289,6 +305,10 @@ All notable changes to `laravel-medialibrary` will be documented in this file
 - improved naming of classes and namespaces.
 
 To learn how to upgrade, take a look in UPGRADING.md
+
+## 7.20.0 - 2021-05-26
+
+- add support for PHP 8
 
 ## 7.19.3 - 2020-03-09
 

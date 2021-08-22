@@ -223,6 +223,8 @@ These are the available validation methods on `validateSingleMedia() ` and `vali
 - `dimensions($width, $height)`: validates that the image has a specific width and height (in pixels).
 - `width($width)`: validates that the image has a specific width (in pixels). The height is not validated.
 - `height($height)`: validates that the image has a specific height (in pixels). The width is not validated.
+- `widthBetween($minWidth, $maxWidth)`: validates that the image width (in pixels) is between the `$minWidth` and `$maxWidth` given (inclusive)
+- `heightBetween($minHeight, $maxHeight)`: validates that the image height (in pixels) is between the `$minHeight` and `$maxHeight` given (inclusive)
 
 These rules can be used on `validateMultipleMedia`;
 
@@ -383,7 +385,7 @@ use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\Image\Manipulations;
 
 // in a service provider
-TemporaryUpload::manipulatePreview(function(Conversion $conversion) {
+TemporaryUpload::previewManipulation(function(Conversion $conversion) {
     $conversion->fit(Manipulations::FIT_CROP, 300, 300);
 });
 ```
