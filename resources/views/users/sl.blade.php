@@ -8,19 +8,19 @@
     @csrf
     <div class="introPage <x-form-validation-error key='L1'/>" style="margin-bottom: 10px;">
         <p>1. Kewangan saya cukup-cukup untuk hidup.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="1" sectionQuestion="L" :userData="$userData[0]->L1"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="1" sectionQuestion="L" :userData="$userData[0]->L1"/> 
      </div>
      <div class="introPage <x-form-validation-error key='L2'/>" style="margin-bottom: 10px;">
         <p>2. Saya bimbang simpanan kewangan saya tidak akan bertahan lama.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="2" sectionQuestion="L" :userData="$userData[0]->L2"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="2" sectionQuestion="L" :userData="$userData[0]->L2"/> 
      </div>
      <div class="introPage <x-form-validation-error key='L3'/>" style="margin-bottom: 10px;">
         <p>3. Kewangan saya mengawal hidup saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="3" sectionQuestion="L" :userData="$userData[0]->L3"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="3" sectionQuestion="L" :userData="$userData[0]->L3"/> 
      </div>
      <div class="introPage <x-form-validation-error key='L4'/>" style="margin-bottom: 10px;">
         <p>4. Saya mempunyai baki simpanan hingga hujung bulan.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="4" sectionQuestion="L" :userData="$userData[0]->L4"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="4" sectionQuestion="L" :userData="$userData[0]->L4"/> 
      </div>
     <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>

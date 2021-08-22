@@ -8,20 +8,20 @@
     @csrf
     <div class="introPage <x-form-validation-error key='N1'/>" style="margin-bottom: 10px;">
         <p>1. Pekerjaan saya mempunyai tujuan/makna yang jelas.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="1" sectionQuestion="N" :userData="$userData[0]->N1"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="1" sectionQuestion="N" :userData="$userData[0]->N1"/> 
      </div>
      <div class="introPage <x-form-validation-error key='N2'/>" style="margin-bottom: 10px;">
         <p>2. Saya mempunyai pemahaman yang jelas tentang apa yang membuatkan pekerjaan saya bermakna.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="2" sectionQuestion="N" :userData="$userData[0]->N2"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="2" sectionQuestion="N" :userData="$userData[0]->N2"/>
      </div>
      <div class="introPage <x-form-validation-error key='N3'/>" style="margin-bottom: 10px;">
         <p>3. Organisasi selalu mengingatkan saya tentang tujuan dan makna pekerjaan saya dalam memberi perkhidmatan kepada masyarakat.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="3" sectionQuestion="N" :userData="$userData[0]->N3"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="3" sectionQuestion="N" :userData="$userData[0]->N3"/>
         
      </div>
      <div class="introPage <x-form-validation-error key='N4'/>" style="margin-bottom: 10px;">
         <p>4. Saya berpuas hati dengan penglibatan saya dalam pembuatan keputusan berkaitan kerja.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="4" sectionQuestion="N" :userData="$userData[0]->N4"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="4" sectionQuestion="N" :userData="$userData[0]->N4"/>
      </div>
     <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>

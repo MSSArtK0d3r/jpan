@@ -8,43 +8,43 @@
     @csrf
     <div class="introPage <x-form-validation-error key='G1'/>" style="margin-bottom: 10px;">
         <p>1. Saya merancang pekerjaan dengan teliti agar dapat diselesaikan pada waktunya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="1" sectionQuestion="G" :userData="$userData[0]->G1"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="1" sectionQuestion="G" :userData="$userData[0]->G1"/>
      </div>
      <div class="introPage <x-form-validation-error key='G2'/>" style="margin-bottom: 10px;">
         <p>2. Saya sentiasa mengingati hasil kerja yang perlu dicapai.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="2" sectionQuestion="G" :userData="$userData[0]->G2"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="2" sectionQuestion="G" :userData="$userData[0]->G2"/>
      </div>
      <div class="introPage <x-form-validation-error key='G3'/>" style="margin-bottom: 10px;">
         <p>3. Saya dapat melaksanakan kerja saya dengan cekap.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="3" sectionQuestion="G" :userData="$userData[0]->G3"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="3" sectionQuestion="G" :userData="$userData[0]->G3"/>
      </div>
      <div class="introPage <x-form-validation-error key='G4'/>" style="margin-bottom: 10px;">
         <p>4. Saya berusaha memastikan kemahiran pekerjaan saya selaras dengan keperluan terkini.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="4" sectionQuestion="G" :userData="$userData[0]->G4"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="4" sectionQuestion="G" :userData="$userData[0]->G4"/>
      </div>
      <div class="introPage <x-form-validation-error key='G5'/>" style="margin-bottom: 10px;">
         <p>5. Saya menghasilkan penyelesaian kreatif terhadap masalah-masalah yang baru.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="5" sectionQuestion="G" :userData="$userData[0]->G5"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="5" sectionQuestion="G" :userData="$userData[0]->G5"/>
      </div>
      <div class="introPage <x-form-validation-error key='G6'/>" style="margin-bottom: 10px;">
         <p>6. Saya juga memikul tanggungjawab lain dalam pekerjaan.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="6" sectionQuestion="G" :userData="$userData[0]->G6"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="6" sectionQuestion="G" :userData="$userData[0]->G6"/>
      </div>
      <div class="introPage <x-form-validation-error key='G7'/>" style="margin-bottom: 10px;">
         <p>7. Saya terus mencari cabaran-cabaran baru dalam pekerjaan saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="7" sectionQuestion="G" :userData="$userData[0]->G7"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="7" sectionQuestion="G" :userData="$userData[0]->G7"/>
      </div>
      <div class="introPage <x-form-validation-error key='G8'/>" style="margin-bottom: 10px;">
         <p>8. Saya terlibat secara aktif dalam mesyuarat dan/atau perundingan.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="8" sectionQuestion="G" :userData="$userData[0]->G8"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="8" sectionQuestion="G" :userData="$userData[0]->G8"/>
      </div>
      <div class="introPage <x-form-validation-error key='G9'/>" style="margin-bottom: 10px;">
         <p>9. Saya mengadu tentang isu-isu kecil berkaitan pekerjaan di tempat kerja.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="9" sectionQuestion="G" :userData="$userData[0]->G9"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="9" sectionQuestion="G" :userData="$userData[0]->G9"/>
      </div>
      <div class="introPage <x-form-validation-error key='G10'/>" style="margin-bottom: 10px;">
         <p>10. Saya menumpukan kepada aspek-aspek negatif sesuatu keadaan di tempat kerja saya berbanding aspek-aspek positif.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="10" sectionQuestion="G" :userData="$userData[0]->G10"/>
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="10" sectionQuestion="G" :userData="$userData[0]->G10"/>
      </div>
      <button class="subBtn twelve columns" type="submit">Simpan</button>
 </form>

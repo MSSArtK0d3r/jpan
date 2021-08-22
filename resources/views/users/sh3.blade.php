@@ -8,41 +8,41 @@
     @csrf
     <div class="introPage <x-form-validation-error key='H21'/>" style="margin-bottom: 10px;">
         <p>21. Organisasi saya mengekalkan hubungan baik jangka panjang dengan semua pihak yang berkepentingan (stake holders).</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="21" sectionQuestion="H" :userData="$userData[0]->H21"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="21" sectionQuestion="H" :userData="$userData[0]->H21"/> 
      </div>
      <div class="introPage <x-form-validation-error key='H22'/>" style="margin-bottom: 10px;">
         <p>22. Organisasi saya memberi perkhidmatan terbaik.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="22" sectionQuestion="H" :userData="$userData[0]->H22"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="22" sectionQuestion="H" :userData="$userData[0]->H22"/> 
      </div>
      <div class="introPage <x-form-validation-error key='H23'/>" style="margin-bottom: 10px;">
         <p>23. Organisasi saya mempunyai strategi jangka panjang.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="23" sectionQuestion="H" :userData="$userData[0]->H23"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="23" sectionQuestion="H" :userData="$userData[0]->H23"/> 
      </div>
      <div class="introPage <x-form-validation-error key='H24'/>" style="margin-bottom: 10px;">
         <p>24. Peluang kenaikan pangkat wujud secara dalaman.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="24" sectionQuestion="H" :userData="$userData[0]->H24"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="24" sectionQuestion="H" :userData="$userData[0]->H24"/> 
      </div>
      <div class="introPage <x-form-validation-error key='H25'/>" style="margin-bottom: 10px;">
         <p>25. Tempat kerja yang selamat.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="25" sectionQuestion="H" :userData="$userData[0]->H25"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="25" sectionQuestion="H" :userData="$userData[0]->H25"/> 
      </div>
      <div class="introPage <x-form-validation-error key='H26'/>" style="margin-bottom: 10px;">
         <p>26. Pengurusan di organisasi saya memberi inspirasi kepada ahli organisasi untuk mencapai prestasi luar biasa.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="26" sectionQuestion="H" :userData="$userData[0]->H26"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="26" sectionQuestion="H" :userData="$userData[0]->H26"/> 
         
      </div>
      <div class="introPage <x-form-validation-error key='H27'/>" style="margin-bottom: 10px;">
         <p>27. Pekerja diberi latihan supaya berdaya tahan dan berdaya saing.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="27" sectionQuestion="H" :userData="$userData[0]->H27"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="27" sectionQuestion="H" :userData="$userData[0]->H27"/> 
      </div>
      <div class="introPage <x-form-validation-error key='H28'/>" style="margin-bottom: 10px;">
         <p>28. Organisasi saya mempunyai tenaga kerja yang pelbagai dan saling melengkapi.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="28" sectionQuestion="H" :userData="$userData[0]->H28"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="28" sectionQuestion="H" :userData="$userData[0]->H28"/> 
         
      </div>
      <div class="introPage <x-form-validation-error key='H29'/>" style="margin-bottom: 10px;">
         <p>29. Organisasi saya membangun melalui usaha perkongsian dengan pelbagai pelanggan.</p>
-        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="29" sectionQuestion="H" :userData="$userData[0]->H29"/> 
+        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="29" sectionQuestion="H" :userData="$userData[0]->H29"/> 
         </div>
 
     <button class="subBtn twelve columns" type="submit">Simpan</button>
