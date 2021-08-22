@@ -64,6 +64,7 @@
     :completedP="$userProgress[0]->completedP"
     :completedQ="$userProgress[0]->completedQ"
     :completedR="$userProgress[0]->completedR"
+    :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
 <x-footer/>

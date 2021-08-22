@@ -236,6 +236,7 @@
     :completedP="$userProgress[0]->completedP"
     :completedQ="$userProgress[0]->completedQ"
     :completedR="$userProgress[0]->completedR"
+    :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>

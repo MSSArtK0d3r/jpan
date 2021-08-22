@@ -42,7 +42,8 @@ class UserController extends Controller
             'completedO',
             'completedP',
             'completedQ',
-            'completedR'
+            'completedR',
+            'paymentChoose'
         );
         $userProgeress = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return $userProgeress;

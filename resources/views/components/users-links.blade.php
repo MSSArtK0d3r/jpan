@@ -131,5 +131,6 @@
 <a href="{{route('reward')}}">
     <div class="bahagianLast">
         <strong>Maklumat Bayaran Sagu hati</strong>
+        <span class="{{$paymentChoose != NULL ? 'completed' : 'notComplete'}}">{{$paymentChoose != NULL ? 'selesai' : 'Belum selesai'}}</span>
     </div>
 </a>

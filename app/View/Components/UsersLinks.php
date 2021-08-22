@@ -35,8 +35,9 @@ class UsersLinks extends Component
     public $completedP;
     public $completedQ;
     public $completedR;
+    public $paymentChoose;
 
-    public function __construct($user, $completedA, $completedB, $completedC, $completedD, $completedE, $completedF, $completedG, $completedH1, $completedH2, $completedH3, $completedH4, $completedI, $completedJ, $completedK, $completedL, $completedM, $completedN, $completedO, $completedP, $completedQ, $completedR)
+    public function __construct($user, $completedA, $completedB, $completedC, $completedD, $completedE, $completedF, $completedG, $completedH1, $completedH2, $completedH3, $completedH4, $completedI, $completedJ, $completedK, $completedL, $completedM, $completedN, $completedO, $completedP, $completedQ, $completedR, $paymentChoose)
     {
         $this->user = $user;
         $this->completedA = $completedA;
@@ -60,6 +61,8 @@ class UsersLinks extends Component
         $this->completedP = $completedP;
         $this->completedQ = $completedQ;
         $this->completedR = $completedR;
+        $this->paymentChoose = $paymentChoose;
+
 
     }
 

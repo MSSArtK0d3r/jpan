@@ -30,15 +30,15 @@
     <div class="bankForm" {{ $userData[0]->paymentChoose == 'bank' ? 'style=display:block;' : '' }}>
         <div>
             <span class="three columns">Nama Bank</span>
-            <input class="nine columns" type="text" placeholder="Maybank, CIMB, RHB" name="bankCompany" value="{{ $userData[0]->bankCompany == NULL ? '' : $userData[0]->bankCompany }}">
+            <input class="nine columns" type="text" placeholder="Maybank, CIMB, RHB" required name="bankCompany" value="{{ $userData[0]->bankCompany == NULL ? '' : $userData[0]->bankCompany }}">
         </div> 
         <div>
             <span class="three columns">Nombor akaun</span>
-            <input class="nine columns" type="text" placeholder="12347654335434" name="bankAccNo" value="{{ $userData[0]->bankAccNo == NULL ? '' : $userData[0]->bankAccNo }}">
+            <input class="nine columns" type="text" placeholder="12347654335434" required name="bankAccNo" value="{{ $userData[0]->bankAccNo == NULL ? '' : $userData[0]->bankAccNo }}">
         </div>
         <div>
             <span class="three columns">Nama penuh</span>
-            <input class="nine columns" type="text" placeholder="John Bryce" name="bankFullName" value="{{ $userData[0]->bankFullName == NULL ? '' : $userData[0]->bankFullName }}">
+            <input class="nine columns" type="text" placeholder="John Bryce" required name="bankFullName" value="{{ $userData[0]->bankFullName == NULL ? '' : $userData[0]->bankFullName }}">
         </div>
     </div>
     <button class="subBtn twelve columns" type="submit">Simpan</button>
@@ -68,6 +68,7 @@
     :completedP="$userProgress[0]->completedP"
     :completedQ="$userProgress[0]->completedQ"
     :completedR="$userProgress[0]->completedR"
+    :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
  <script src="{{ url('js/tingle.min.js') }}"></script>

@@ -12,7 +12,7 @@
     </div>
     
     </form>
-    <button class="subBtn twelve columns" onclick="confirm()">Simpan dan Lihat keputusan I-KOBT Anda</button>
+    <button class="subBtn twelve columns" onclick="confirm()">Simpan dan Lihat Keputusan I-KOBT Anda</button>
 </div>
 <div class="four columns userLinks">
     <x-users-links :user="$user" 
@@ -37,6 +37,7 @@
     :completedP="$userProgress[0]->completedP"
     :completedQ="$userProgress[0]->completedQ"
     :completedR="$userProgress[0]->completedR"
+    :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
  <script src="{{ url('js/tingle.min.js') }}"></script>

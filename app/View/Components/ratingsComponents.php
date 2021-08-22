@@ -28,7 +28,7 @@ class ratingsComponents extends Component
         $this->sectionQuestion = $sectionQuestion;
         $this->userData = $userData;
         $this->totalQuestion = $totalQuestion;
-        $this->getUser = $request->session()->get('identity');;
+        $this->getUser = $request->session()->get('identity');
 
         //$this->sectionComplete = $sectionComplete;
     }
