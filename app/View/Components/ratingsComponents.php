@@ -42,6 +42,6 @@ class ratingsComponents extends Component
     {
         $data = DB::table('entries')->select('completedR')->where('email','=', $this->getUser)->get()->toArray();
         $completedR = 'hehehe';
-        return view('components.ratings-components', compact('completedR'));
+        return view('components.ratings-components', compact('completedR','data'));
     }
 }
