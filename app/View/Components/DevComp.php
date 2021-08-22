@@ -13,14 +13,16 @@ class DevComp extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $user;
+    public function __construct(Request $request, $user=null)
     {
-        //
+        $this->user = $request->session()->get('identity');
     }
 
     public function test(){
-        
-        return 'welcome of genius';
+        $data = DB::table('entries')->select('completedR')->where('email', $this->user)->get()->toArray();
+        $data = $data[0]->completedR;
+        return $data;
     }
     /**
      * Get the view / contents that represent the component.
