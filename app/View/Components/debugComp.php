@@ -26,7 +26,7 @@ class debugComp extends Component
         $data = DB::table('entries')->select('completedR')->where('email', $this->user)->get()->toArray();
         $data = $data[0]->completedR;
         //$this->completedR = 'heheheheh';
-        return $data;
+        return 'hello';
     }
 
     /**
