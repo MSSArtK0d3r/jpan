@@ -15,22 +15,25 @@ class debugComp extends Component
      */
 
     public $user;
-    public function __construct(Request $request, $user = null)
+    public $message;
+    public function __construct(Request $request, $user = null, $message=null)
     {
         
         $this->user = $request->session()->get('identity');
+        $this->message = $message;
     }
 
     public function getCompletedR(){
         
         $data = DB::table('entries')->select('completedR')->where('email', $this->user)->get()->toArray();
         $data = $data[0]->completedR;
-        //$this->completedR = 'heheheheh';
-        return 'hello';
+        $this->message = 'heheheheh';
+        return $this->message;
     }
 
     public function test(){
-        return 'mantap!!';
+        $this->message = 'heheheheh world';
+        return $this->message;
     }
 
     /**
