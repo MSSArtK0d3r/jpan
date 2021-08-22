@@ -28,14 +28,14 @@ class RatingsComponents extends Component
         $this->sectionQuestion = $sectionQuestion;
         $this->userData = $userData;
         $this->totalQuestion = $totalQuestion;
-        $this->user = $request->session()->get('identity');
+        $this->getUser = $request->session()->get('identity');
 
 
         //$this->sectionComplete = $sectionComplete;
     }
 
     public function getCompletedR(){
-        $data = DB::table('entries')->select('completedR')->where('email', $this->user)->get()->toArray();
+        $data = DB::table('entries')->select('completedR')->where('email', $this->getUser)->get()->toArray();
         $data = $data[0]->completedR;
         return $data;
     }
