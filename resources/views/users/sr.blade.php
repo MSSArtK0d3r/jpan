@@ -12,7 +12,7 @@
     </div>
     
     </form>
-    <button class="subBtn twelve columns" onclick="confirm()">Simpan dan Lihat keputusan I-KOBT</button>
+    <button class="subBtn twelve columns" onclick="confirm()">Simpan dan Lihat keputusan I-KOBT Anda</button>
 </div>
 <div class="four columns userLinks">
     <x-users-links :user="$user" 
@@ -49,8 +49,8 @@
     closeLabel: "Close",
     cssClass: ['custom-class-1', 'custom-class-2'],
 });
-modal.setContent('<span>Selepas anda SETUJU, pilihan jawapan TIDAK BOLEH di ubah.</span>');
-modal.addFooterBtn('Saya berpuas hati dengan jawapan saya', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {
+modal.setContent('<span>Sekiranya anda berpuas hati dan membuat pengesahan, pilihan jawapan dalam I-KOBT <strong>TIDAK BOLEH</strong> diubah.</span>');
+modal.addFooterBtn('Saya berpuas hati dan mengesahkan jawapan saya', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {
     // here goes some logic
     document.getElementById("srSumit").submit();
 });

@@ -23,7 +23,7 @@
     
     <div class="ewalletForm" {{ $userData[0]->paymentChoose == 'ewallet' ? 'style=display:block;' : '' }}>
         <div>
-        <span class="six columns">Masukkan Nombor telefon yang berdaftar dengan Boosts</span>
+        <span class="six columns">Masukkan Nombor telefon yang berdaftar dengan Boost</span>
         <input class="six columns" type="text" value="{{ $userData[0]->phone == NULL ? '' : $userData[0]->phone }}" name="phone">
         </div>
     </div>
