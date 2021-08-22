@@ -8,27 +8,27 @@
             @csrf
             <div class="introPage <x-form-validation-error key='F1'/>" style="margin-bottom: 10px;">
                 <p>1. Saya berasa sangat bertenaga di tempat kerja.</p>
-                <x-ratings-components initialQuestion="0" questionNumber="1" sectionQuestion="F" :userData="$userData[0]->F1"/>
+                <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="1" sectionQuestion="F" :userData="$userData[0]->F1"/>
              </div>
              <div class="introPage <x-form-validation-error key='F2'/>" style="margin-bottom: 10px;">
                 <p>2. Apabila bangun pagi, saya mahu pergi bekerja.</p>
-                <x-ratings-components initialQuestion="0" questionNumber="2" sectionQuestion="F" :userData="$userData[0]->F2"/>
+                <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="2" sectionQuestion="F" :userData="$userData[0]->F2"/>
              </div>
              <div class="introPage <x-form-validation-error key='F3'/>" style="margin-bottom: 10px;">
                 <p>3. Saya bersemangat dengan kerja saya.</p>
-                <x-ratings-components initialQuestion="0" questionNumber="3" sectionQuestion="F" :userData="$userData[0]->F3"/>
+                <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="3" sectionQuestion="F" :userData="$userData[0]->F3"/>
              </div>
              <div class="introPage <x-form-validation-error key='F4'/>" style="margin-bottom: 10px;">
                 <p>4. Kerja saya memberi inspirasi kepada saya.</p>
-                <x-ratings-components initialQuestion="0" questionNumber="4" sectionQuestion="F" :userData="$userData[0]->F4"/>
+                <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="4" sectionQuestion="F" :userData="$userData[0]->F4"/>
              </div>
              <div class="introPage <x-form-validation-error key='F5'/>" style="margin-bottom: 10px;">
                 <p>5. Saya terlibat sepenuhnya dalam pekerjaan saya.</p>
-                <x-ratings-components initialQuestion="0" questionNumber="5" sectionQuestion="F" :userData="$userData[0]->F5"/>
+                <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="5" sectionQuestion="F" :userData="$userData[0]->F5"/>
              </div>
              <div class="introPage <x-form-validation-error key='F6'/>" style="margin-bottom: 10px;">
                 <p>6. Saya terlalu mementingkan pekerjaan sehingga leka dengan segalanya.</p>
-                <x-ratings-components initialQuestion="0" questionNumber="6" sectionQuestion="F" :userData="$userData[0]->F6"/>
+                <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="6" sectionQuestion="F" :userData="$userData[0]->F6"/>
              </div>
             <button class="subBtn twelve columns" type="submit">Simpan</button>
         </form>

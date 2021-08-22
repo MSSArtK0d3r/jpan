@@ -8,19 +8,19 @@
     @csrf
     <div class="introPage <x-form-validation-error key='Q1'/>" style="margin-bottom: 10px;">
         <p>1. Organisasi di tempat kerja saya sentiasa bersedia dalam memberi bantuan kepada pelanggan tanpa mengambil kira waktu.</p>
-        <x-ratings-components initialQuestion="0" questionNumber="1" sectionQuestion="Q" :userData="$userData[0]->Q1"/>
+        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="1" sectionQuestion="Q" :userData="$userData[0]->Q1"/>
      </div>
      <div class="introPage <x-form-validation-error key='Q2'/>" style="margin-bottom: 10px;">
         <p>2. Organisasi di tempat kerja saya sentiasa bersedia untuk turun padang bagi memberi khidmat kepada masyarakat.</p>
-        <x-ratings-components initialQuestion="0" questionNumber="2" sectionQuestion="Q" :userData="$userData[0]->Q2"/>
+        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="2" sectionQuestion="Q" :userData="$userData[0]->Q2"/>
      </div>
      <div class="introPage <x-form-validation-error key='Q3'/>" style="margin-bottom: 10px;">
         <p>3. Organisasi di tempat kerja saya sentiasa mengingatkan kepentingan perkhidmatan kepada rakyat dan pelanggan.</p>
-        <x-ratings-components initialQuestion="0" questionNumber="3" sectionQuestion="Q" :userData="$userData[0]->Q3"/>
+        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="3" sectionQuestion="Q" :userData="$userData[0]->Q3"/>
      </div>
      <div class="introPage <x-form-validation-error key='Q4'/>" style="margin-bottom: 10px;">
         <p>4. Saya berpuas hati dengan perkhidmatan yang diberikan oleh jabatan saya kepada pelanggan.</p>
-        <x-ratings-components initialQuestion="0" questionNumber="4" sectionQuestion="Q" :userData="$userData[0]->Q4"/>
+        <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="4" sectionQuestion="Q" :userData="$userData[0]->Q4"/>
         
      </div>
     <button class="subBtn twelve columns" type="submit">Simpan</button>

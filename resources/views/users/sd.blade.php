@@ -8,7 +8,7 @@
         <div class="introPage <x-form-validation-error key='D1'/>" style="margin-bottom: 10px;">
             <p>Berdasarkan Gambar Rajah di bawah, kehidupan anda berada di tahap mana?</p>
             <img class="img-center" src="{{ URL::asset('images/tangga.png') }}">
-            <x-ratings-components initialQuestion="0" questionNumber="1" sectionQuestion="D" :userData="$userData[0]->D1"/>
+            <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="1" sectionQuestion="D" :userData="$userData[0]->D1"/>
          </div>
         <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>

@@ -8,35 +8,35 @@
         @csrf
          <div class="introPage <x-form-validation-error key='H13'/>" style="margin-bottom: 10px;">
             <p>13. Strategi organisasi yang jelas.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="13" sectionQuestion="H" :userData="$userData[0]->H13"/> 
+            <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="13" sectionQuestion="H" :userData="$userData[0]->H13"/> 
          </div>
          <div class="introPage <x-form-validation-error key='H14'/>" style="margin-bottom: 10px;">
             <p>14. Proses/sistem kerja sentiasa diperbaiki.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="14" sectionQuestion="H" :userData="$userData[0]->H14"/> 
+            <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="14" sectionQuestion="H" :userData="$userData[0]->H14"/> 
          </div>
          <div class="introPage <x-form-validation-error key='H15'/>" style="margin-bottom: 10px;">
             <p>15. Proses/sistem kerja dipermudahkan secara berterusan.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="15" sectionQuestion="H" :userData="$userData[0]->H15"/> 
+            <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="15" sectionQuestion="H" :userData="$userData[0]->H15"/> 
          </div>
          <div class="introPage <x-form-validation-error key='H16'/>" style="margin-bottom: 10px;">
             <p>16. Proses/sistem kerja diselaraskan.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="16" sectionQuestion="H" :userData="$userData[0]->H16"/> 
+            <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="16" sectionQuestion="H" :userData="$userData[0]->H16"/> 
          </div>
          <div class="introPage <x-form-validation-error key='H17'/>" style="margin-bottom: 10px;">
             <p>17. Prestasi organisasi dilaporkan secara jelas.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="17" sectionQuestion="H" :userData="$userData[0]->H17"/> 
+            <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="17" sectionQuestion="H" :userData="$userData[0]->H17"/> 
          </div>
          <div class="introPage <x-form-validation-error key='H18'/>" style="margin-bottom: 10px;">
             <p>18. Maklumat kewangan dan bukan kewangan dilaporkan kepada semua warga.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="18" sectionQuestion="H" :userData="$userData[0]->H18"/> 
+            <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="18" sectionQuestion="H" :userData="$userData[0]->H18"/> 
          </div>
          <div class="introPage <x-form-validation-error key='H19'/>" style="margin-bottom: 10px;">
             <p>19. Sentiasa meningkatkan kecekapan melalui inovasi.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="19" sectionQuestion="H" :userData="$userData[0]->H19"/> 
+            <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="19" sectionQuestion="H" :userData="$userData[0]->H19"/> 
          </div>
          <div class="introPage <x-form-validation-error key='H20'/>" style="margin-bottom: 10px;">
             <p>20. Organisasi saya terus berinovasi dalam produk, proses dan perkhidmatannya.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="20" sectionQuestion="H" :userData="$userData[0]->H20"/> 
+            <x-ratings-components initialQuestion="0" :completedR="userData[0]->completedR" questionNumber="20" sectionQuestion="H" :userData="$userData[0]->H20"/> 
          </div>
         <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>
