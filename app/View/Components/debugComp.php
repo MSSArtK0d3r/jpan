@@ -29,6 +29,10 @@ class debugComp extends Component
         return 'hello';
     }
 
+    public function test(){
+        return 'mantap!!';
+    }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -36,6 +40,6 @@ class debugComp extends Component
      */
     public function render()
     {
-        return view('components.debug-comp')->with('lul', $this->getCompletedR());
+        return view('components.debug-comp');
     }
 }

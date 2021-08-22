@@ -1,3 +1,3 @@
 <div>
-    hello {{dd($lul)}}
+    hello {{dd($test())}}
 </div>
