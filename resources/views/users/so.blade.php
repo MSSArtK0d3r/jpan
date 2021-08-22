@@ -8,23 +8,23 @@
     @csrf
     <div class="introPage <x-form-validation-error key='O1'/>" style="margin-bottom: 10px;">
         <p>1. Saya tahu kekuatan peribadi saya dan akan menggunakannya dengan kerap dalam pekerjaan saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="1" sectionQuestion="O" :userData="$userData[0]->O1"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="O" :userData="$userData[0]->O1"/>
      </div>
      <div class="introPage <x-form-validation-error key='O2'/>" style="margin-bottom: 10px;">
         <p>2. Saya mempunyai rakan di tempat kerja yang saya percayai boleh menyokong saya apabila saya memerlukan sokongan.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="2" sectionQuestion="O" :userData="$userData[0]->O2"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="O" :userData="$userData[0]->O2"/>
      </div>
      <div class="introPage <x-form-validation-error key='O3'/>" style="margin-bottom: 10px;">
         <p>3. Saya cenderung untuk bangkit semula dengan cepat selepas berhadapan dengan masalah sukar yang berkaitan dengan pekerjaan.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="3" sectionQuestion="O" :userData="$userData[0]->O3"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="O" :userData="$userData[0]->O3"/>
      </div>
      <div class="introPage <x-form-validation-error key='O4'/>" style="margin-bottom: 10px;">
         <p>4. Saya sedar bahawa penyampaian perkhidmatan terbaik adalah menerusi perkhidmatan digital.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="4" sectionQuestion="O" :userData="$userData[0]->O4"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="4" sectionQuestion="O" :userData="$userData[0]->O4"/>
      </div>
      <div class="introPage <x-form-validation-error key='O5'/>" style="margin-bottom: 10px;">
         <p>5. Saya mampu beradaptasi dengan keperluan teknologi masa kini.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="5" sectionQuestion="O" :userData="$userData[0]->O5"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="5" sectionQuestion="O" :userData="$userData[0]->O5"/>
      </div>
      <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>

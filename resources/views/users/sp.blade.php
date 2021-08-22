@@ -8,11 +8,11 @@
     @csrf
     <div class="introPage <x-form-validation-error key='P1'/>" style="margin-bottom: 10px;">
         <p>1. Organisasi bersikap fleksibel dan mengambil berat dalam isu-isu keperluan kebajikan pekerja.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="1" sectionQuestion="P" :userData="$userData[0]->P1"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="P" :userData="$userData[0]->P1"/>
      </div>
      <div class="introPage <x-form-validation-error key='P2'/>" style="margin-bottom: 10px;">
         <p>2. Organisasi bersikap fleksibel tentang keseimbangan kehidupan berkerjaya dan kehidupan seharian.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="2" sectionQuestion="P" :userData="$userData[0]->P2"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="P" :userData="$userData[0]->P2"/>
      </div>
      <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>

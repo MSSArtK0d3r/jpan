@@ -8,15 +8,15 @@
     @csrf
     <div class="introPage <x-form-validation-error key='M1'/>" style="margin-bottom: 10px;">
         <p>1. Saya mempunyai sesuatu yang penting untuk disumbangkan kepada komuniti.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="1" sectionQuestion="M" :userData="$userData[0]->M1"/> 
+        <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="M" :userData="$userData[0]->M1"/> 
      </div>
      <div class="introPage <x-form-validation-error key='M2'/>" style="margin-bottom: 10px;">
         <p>2. Saya terlibat aktif dalam kerja komuniti.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="2" sectionQuestion="M" :userData="$userData[0]->M2"/> 
+        <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="M" :userData="$userData[0]->M2"/> 
      </div>
      <div class="introPage <x-form-validation-error key='M3'/>" style="margin-bottom: 10px;">
         <p>3. Komuniti di tempat saya adalah baik.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="3" sectionQuestion="M" :userData="$userData[0]->M3"/> 
+        <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="M" :userData="$userData[0]->M3"/> 
      </div>
      <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>

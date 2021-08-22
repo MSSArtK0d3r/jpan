@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ratingsComponents extends Component
+class RatingsComponents extends Component
 {
     /**
      * Create a new component instance.
@@ -19,19 +19,25 @@ class ratingsComponents extends Component
     public $userData;
     public $totalQuestion;
     public $getUser;
-    public $completedR;
     //public $sectionComplete;
 
-    public function __construct($initialQuestion, $questionNumber, $sectionQuestion, $userData, $totalQuestion = '',$completedR)
+    public function __construct($initialQuestion, $questionNumber, $sectionQuestion, $userData, $totalQuestion = '',$getUser=null,Request $request)
     {
         $this->initialQuestion = $initialQuestion;
         $this->questionNumber = $questionNumber;
         $this->sectionQuestion = $sectionQuestion;
         $this->userData = $userData;
         $this->totalQuestion = $totalQuestion;
-        $this->completedR = $completedR;
+        $this->user = $request->session()->get('identity');
+
 
         //$this->sectionComplete = $sectionComplete;
+    }
+
+    public function getCompletedR(){
+        $data = DB::table('entries')->select('completedR')->where('email', $this->user)->get()->toArray();
+        $data = $data[0]->completedR;
+        return $data;
     }
 
     /**

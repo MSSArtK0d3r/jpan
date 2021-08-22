@@ -8,46 +8,46 @@
     @csrf
     <div class="introPage <x-form-validation-error key='K1'/>" style="margin-bottom: 10px;">
         <p>1. Secara keseluruhannya, saya berpuas hati dengan hubungan saya bersama pasangan saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="1" sectionQuestion="K" :userData="$userData[0]->K1"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="K" :userData="$userData[0]->K1"/>
      </div>
      <div class="introPage <x-form-validation-error key='K2'/>" style="margin-bottom: 10px;">
         <p>2. Secara keseluruhannya, saya berpuas hati dengan hubungan kekeluargaan saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="2" sectionQuestion="K" :userData="$userData[0]->K2"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="K" :userData="$userData[0]->K2"/>
      </div>
      <div class="introPage <x-form-validation-error key='K3'/>" style="margin-bottom: 10px;">
         <p>3. Secara keseluruhannya, saya berpuas hati dengan pencapaian keluarga saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="3" sectionQuestion="K" :userData="$userData[0]->K3"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="K" :userData="$userData[0]->K3"/>
      </div>
      <div class="introPage <x-form-validation-error key='K4'/>" style="margin-bottom: 10px;">
         <p>4. Secara keseluruhannya, saya berpuas hati dengan tahap kesihatan keluarga saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="4" sectionQuestion="K" :userData="$userData[0]->K4"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="4" sectionQuestion="K" :userData="$userData[0]->K4"/>
         
      </div>
      <div class="introPage <x-form-validation-error key='K5'/>" style="margin-bottom: 10px;">
         <p>5. Secara keseluruhannya, saya berpuas hati dengan tahap keselamatan keluarga saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="5" sectionQuestion="K" :userData="$userData[0]->K5"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="5" sectionQuestion="K" :userData="$userData[0]->K5"/>
      </div>
      <div class="introPage <x-form-validation-error key='K6'/>" style="margin-bottom: 10px;">
         <p>6. Secara keseluruhannya, saya berpuas hati mengenai hubungan keluarga saya dengan komuniti (cth; Jiran, NGO, Persatuan, dll).</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="6" sectionQuestion="K" :userData="$userData[0]->K6"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="6" sectionQuestion="K" :userData="$userData[0]->K6"/>
      </div>
      <div class="introPage <x-form-validation-error key='K7'/>" style="margin-bottom: 10px;">
         <p>7. Secara keseluruhannya, saya berpuas hati dengan amalan keagamaan keluarga saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="7" sectionQuestion="K" :userData="$userData[0]->K7"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="7" sectionQuestion="K" :userData="$userData[0]->K7"/>
         
      </div>
      <div class="introPage <x-form-validation-error key='K8'/>" style="margin-bottom: 10px;">
         <p>8. Secara keseluruhannya, saya berpuas hati dengan keperluan asas di kawasan tempat tinggal saya.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="8" sectionQuestion="K" :userData="$userData[0]->K8"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="8" sectionQuestion="K" :userData="$userData[0]->K8"/>
         
      </div>
      <div class="introPage <x-form-validation-error key='K9'/>" style="margin-bottom: 10px;">
         <p>9. Keluarga saya mempunyai simpanan kewangan yang cukup.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="9" sectionQuestion="K" :userData="$userData[0]->K9"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="9" sectionQuestion="K" :userData="$userData[0]->K9"/>
      </div>
      <div class="introPage <x-form-validation-error key='K10'/>" style="margin-bottom: 10px;">
         <p>10. Keluarga saya mempunyai beban hutang yang banyak.</p>
-        <x-ratings-components initialQuestion="0" :completedR="$userProgress[0]->completedR" questionNumber="10" sectionQuestion="K" :userData="$userData[0]->K10"/>
+        <x-ratings-components initialQuestion="0"  questionNumber="10" sectionQuestion="K" :userData="$userData[0]->K10"/>
      </div>
     <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>
