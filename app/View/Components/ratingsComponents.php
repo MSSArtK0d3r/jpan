@@ -19,16 +19,17 @@ class ratingsComponents extends Component
     public $userData;
     public $totalQuestion;
     public $getUser;
+    public $completedR;
     //public $sectionComplete;
 
-    public function __construct($initialQuestion, $questionNumber, $sectionQuestion, $userData, $totalQuestion = '', Request $request)
+    public function __construct($initialQuestion, $questionNumber, $sectionQuestion, $userData, $totalQuestion = '',$completedR)
     {
         $this->initialQuestion = $initialQuestion;
         $this->questionNumber = $questionNumber;
         $this->sectionQuestion = $sectionQuestion;
         $this->userData = $userData;
         $this->totalQuestion = $totalQuestion;
-        $this->getUser = $request->session()->get('identity');
+        $this->completedR = $completedR;
 
         //$this->sectionComplete = $sectionComplete;
     }
@@ -40,8 +41,6 @@ class ratingsComponents extends Component
      */
     public function render()
     {
-        $data = DB::table('entries')->select('completedR')->where('email','=', $this->getUser)->get()->toArray();
-        $completedR = $data[0]->completedR;
-        return view('components.ratings-components', compact('completedR'));
+        return view('components.ratings-components');
     }
 }

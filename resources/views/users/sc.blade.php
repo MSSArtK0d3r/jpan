@@ -7,11 +7,11 @@
         @csrf
         <div class="introPage <x-form-validation-error key='C1'/>" style="margin-bottom: 10px;">
             <p>1. Dalam banyak perkara, kehidupan saya adalah hampir dengan ciri kehidupan ideal (sempurna) saya.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="1" sectionQuestion="C" :userData="$userData[0]->C1"/>
+            <x-ratings-components initialQuestion="0" questionNumber="1" sectionQuestion="C" :userData="$userData[0]->C1" :completedR="$userProgress[0]->completedR"/>
          </div>
          <div class="introPage <x-form-validation-error key='C2'/>" style="margin-bottom: 10px;">
             <p>2. Saya berpuas hati dengan kehidupan saya.</p>
-            <x-ratings-components initialQuestion="0" questionNumber="2" sectionQuestion="C" :userData="$userData[0]->C2"/>
+            <x-ratings-components initialQuestion="0" questionNumber="2" sectionQuestion="C" :userData="$userData[0]->C2" :completedR="$userProgress[0]->completedR"/>
          </div>
          <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>
