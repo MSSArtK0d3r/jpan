@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class debugComp extends Component
+class DebugComp extends Component
 {
     /**
      * Create a new component instance.
