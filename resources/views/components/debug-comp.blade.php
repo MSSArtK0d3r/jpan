@@ -1,3 +1,3 @@
 <div>
-    hello {{var_dump($lul)}}
+    hello {{dd($lul)}}
 </div>
