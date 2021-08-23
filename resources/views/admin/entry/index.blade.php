@@ -49,6 +49,7 @@
                                             </label>
                                         </th>
                                         <th is='sortable' :column="'id'">id</th>
+                                        <th is='sortable' :column="'email'">email</th>
                                         <th is='sortable' :column="'umur'">Umur</th>
                                         <th is='sortable' :column="'jantina'">Jantina</th>
                                         <th is='sortable' :column="'agama'">Agama</th>
@@ -102,6 +103,7 @@
                                         </td>
 
                                         <td>@{{ item.id }}</td>
+                                        <td>@{{ item.email }}</td>
                                         <td>@{{ item.umur }}</td>
                                         <td>@{{ item.jantina }}</td>
                                         <td>@{{ item.agama }}</td>

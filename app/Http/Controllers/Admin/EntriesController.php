@@ -41,6 +41,7 @@ class EntriesController extends Controller
             // set columns to query
             [
                 'id',
+                'email',
                 'umur',
                 'jantina',
                 'agama',
