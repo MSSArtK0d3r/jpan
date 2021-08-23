@@ -173,7 +173,7 @@ class UserController extends Controller
             $subDimension['subDimensionHKeterbukaanDanOrientasiTindakan'] = $this->calculateSubDimensionHKeterbukaanDanOrientasiTindakan($entry->H30, $entry->H31, $entry->H32, $entry->H33, $entry->H34, $entry->H35);
             $subDimension['subDimensionHOBT'] = $this->calculateSubDimensionHOBT($subDimension['subDimensionHKualitiPengurusan'], $subDimension['subDimensionHPenambahbaikanDanPembaharuanBerterusan'], $subDimension['subDimensionHOrientasiJangkaPanjang'], $subDimension['subDimensionHKualitiPekerja'], $subDimension['subDimensionHKeterbukaanDanOrientasiTindakan']);
 
-            $subDimension['subDimensionI'] = $this->calculateIndexI($entry->E1, $entry->E2, $entry->E3); 
+            $subDimension['subDimensionI'] = $this->calculateIndexI($entry->I1, $entry->I2, $entry->I3); 
             $subDimension['subDimensionJ'] = $this->calculateIndexJ($entry->J1, $entry->J2, $entry->J3, $entry->J4, $entry->J5, $entry->J6, $entry->J7, $entry->J8, $entry->J9, $entry->J10);
             $subDimension['subDimensionK'] = $this->calculateIndexK($entry->K1, $entry->K2, $entry->K3, $entry->K4, $entry->K5, $entry->K6, $entry->K7, $entry->K8, $entry->K9, $entry->K10);
             $subDimension['subDimensionL'] = $this->calculateIndexL($entry->L1, $entry->L2, $entry->L3, $entry->L4);
@@ -182,6 +182,7 @@ class UserController extends Controller
             $subDimension['subDimensionO'] = $this->calculateIndexO($entry->O1, $entry->O2, $entry->O3, $entry->O4, $entry->O5);      
             $subDimension['subDimensionP'] = $this->calculateIndexP($entry->P1, $entry->P2);
             $subDimension['subDimensionQ'] = $this->calculateIndexQ($entry->Q1, $entry->Q2, $entry->Q3, $entry->Q4);
+            
             return view('users.user', compact('user', 'data', 'hasCompleted', 'userProgress', 'totalIndex', 'indexKegembiraan', 'indexOBT', 'subDimension'));
         }
         return view('users.user', compact('user'));
@@ -195,10 +196,10 @@ class UserController extends Controller
             
         if ($userData == NULL) {
                 DB::table('entries')->insert(['email' => $request->email, 'start_at' => now(+8)]);
-                $ses = $request->session()->put('identity', $request->email);
+                $request->session()->put('identity', $request->email);
                 return redirect('users/demografi');
         }
-        $ses = $request->session()->put('identity', $request->email);
+        $request->session()->put('identity', $request->email);
         return redirect('/users');
         }
 
@@ -1622,111 +1623,87 @@ class UserController extends Controller
         $TotalOfBRatingB17 = DB::table('entries')->where('completedR', 1)->pluck('B17');
         $TotalOfBRatingB18 = DB::table('entries')->where('completedR', 1)->pluck('B18');
 
-        //calculate Normal Item
-        //calculate B1
-        $countTotalVoteB1 = count(array_filter($TotalOfBRatingB1->toArray()));
-        $totalMaxpointsB1 = $countTotalVoteB1 * 10;
-        $respondedTotalPointsB1 = array_sum($TotalOfBRatingB1->toArray());
-
-        //calculate B2
-        $countTotalVoteB2 = count(array_filter($TotalOfBRatingB2->toArray()));
-        $totalMaxpointsB2 = $countTotalVoteB2 * 10;
-        $respondedTotalPointsB2 = array_sum($TotalOfBRatingB2->toArray());
-
-        //calculate B3
-        $countTotalVoteB3 = count(array_filter($TotalOfBRatingB3->toArray()));
-        $totalMaxpointsB3 = $countTotalVoteB3 * 10;
-        $respondedTotalPointsB3 = array_sum($TotalOfBRatingB3->toArray());
-
-        //calculate B4
-        $countTotalVoteB4 = count(array_filter($TotalOfBRatingB4->toArray()));
-        $totalMaxpointsB4 = $countTotalVoteB4 * 10;
-        $respondedTotalPointsB4 = array_sum($TotalOfBRatingB4->toArray());
-
-        //calculate B5
-        $countTotalVoteB5 = count(array_filter($TotalOfBRatingB5->toArray()));
-        $totalMaxpointsB5 = $countTotalVoteB5 * 10;
-        $respondedTotalPointsB5 = array_sum($TotalOfBRatingB5->toArray());
-
-        //calculate B7
-        $countTotalVoteB7 = count(array_filter($TotalOfBRatingB7->toArray()));
-        $totalMaxpointsB7 = $countTotalVoteB7 * 10;
-        $respondedTotalPointsB7 = array_sum($TotalOfBRatingB7->toArray());
-
-        //calculate B12
-        $countTotalVoteB12 = count(array_filter($TotalOfBRatingB12->toArray()));
-        $totalMaxpointsB12 = $countTotalVoteB12 * 10;
-        $respondedTotalPointsB12 = array_sum($TotalOfBRatingB12->toArray());
-
-        //calculate B13
-        $countTotalVoteB13 = count(array_filter($TotalOfBRatingB13->toArray()));
-        $totalMaxpointsB13 = $countTotalVoteB13 * 10;
-        $respondedTotalPointsB13 = array_sum($TotalOfBRatingB13->toArray());
-
-        //calculate B14
-        $countTotalVoteB14 = count(array_filter($TotalOfBRatingB14->toArray()));
-        $totalMaxpointsB14 = $countTotalVoteB14 * 10;
-        $respondedTotalPointsB14 = array_sum($TotalOfBRatingB14->toArray());
-
-        //calculate B17
-        $countTotalVoteB17 = count(array_filter($TotalOfBRatingB17->toArray()));
-        $totalMaxpointsB17 = $countTotalVoteB17 * 10;
-        $respondedTotalPointsB17 = array_sum($TotalOfBRatingB17->toArray());
-
-        //calculate B18
-        $countTotalVoteB18 = count(array_filter($TotalOfBRatingB18->toArray()));
-        $totalMaxpointsB18 = $countTotalVoteB18 * 10;
-        $respondedTotalPointsB18 = array_sum($TotalOfBRatingB18->toArray());
+        $TotalResponden = count($TotalOfBRatingB1->toArray());
         
-        //calculate B6 (Reversed item)
-        $countTotalVoteB6 = count(array_filter($TotalOfBRatingB6->toArray()));
-        $totalPointB6 = array_sum($TotalOfBRatingB6->toArray());
-        $totalMaxpointsB6 = $countTotalVoteB6 * 10;
-        $respondedTotalPointsB6 = $totalMaxpointsB6 - $totalPointB6;
-        
-        //calculate B8 (Reversed item)
-        $countTotalVoteB8 = count(array_filter($TotalOfBRatingB8->toArray()));
-        $totalPointB8 = array_sum($TotalOfBRatingB8->toArray());
-        $totalMaxpointsB8 = $countTotalVoteB8 * 10;
-        $respondedTotalPointsB8 = $totalMaxpointsB8 - $totalPointB8;
-        
-        //calculate B9 (Reversed item)
-        $countTotalVoteB9 = count(array_filter($TotalOfBRatingB9->toArray()));
-        $totalPointB9 = array_sum($TotalOfBRatingB9->toArray());
-        $totalMaxpointsB9 = $countTotalVoteB9 * 10;
-        $respondedTotalPointsB9 = $totalMaxpointsB9 - $totalPointB9;
-        
-        //calculate B10 (Reversed item)
-        $countTotalVoteB10 = count(array_filter($TotalOfBRatingB10->toArray()));
-        $totalPointB10 = array_sum($TotalOfBRatingB10->toArray());
-        $totalMaxpointsB10 = $countTotalVoteB10 * 10;
-        $respondedTotalPointsB10 = $totalMaxpointsB10 - $totalPointB10;
-        
-        //calculate B11 (Reversed item)
-        $countTotalVoteB11 = count(array_filter($TotalOfBRatingB11->toArray()));
-        $totalPointB11 = array_sum($TotalOfBRatingB11->toArray());
-        $totalMaxpointsB11 = $countTotalVoteB11 * 10;
-        $respondedTotalPointsB11 = $totalMaxpointsB11 - $totalPointB11;
+        $TotalGaji = array_sum(array_merge(
+            $TotalOfBRatingB1->toArray(),
+            $TotalOfBRatingB2->toArray()
+        ));
 
-        //calculate B15 (Reversed item)
-        $countTotalVoteB15 = count(array_filter($TotalOfBRatingB15->toArray()));
-        $totalPointB15 = array_sum($TotalOfBRatingB15->toArray());
-        $totalMaxpointsB15 = $countTotalVoteB15 * 10;
-        $respondedTotalPointsB15 = $totalMaxpointsB15 - $totalPointB15;
+        $TotalPangkat = array_sum(array_merge(
+            $TotalOfBRatingB3->toArray()
+        ));
 
-        //calculate B16 (Reversed item)
-        $countTotalVoteB16 = count(array_filter($TotalOfBRatingB16->toArray()));
-        $totalPointB16 = array_sum($TotalOfBRatingB16->toArray());
-        $totalMaxpointsB16 = $countTotalVoteB16 * 10;
-        $respondedTotalPointsB16 = $totalMaxpointsB16 - $totalPointB16;
+        $TotalKetua = array_sum(array_merge(
+            $TotalOfBRatingB4->toArray(),
+            $TotalOfBRatingB5->toArray()
+        ));
 
-        $X = $respondedTotalPointsB1 + $respondedTotalPointsB2 + $respondedTotalPointsB3 + $respondedTotalPointsB4 + $respondedTotalPointsB5 + $respondedTotalPointsB7 + $respondedTotalPointsB12 + $respondedTotalPointsB13 + $respondedTotalPointsB14 + $respondedTotalPointsB17 + $respondedTotalPointsB18;
-        $M = 0;
-        $J = $countTotalVoteB1 * 110;
-        $totalBPositive = ($X - $M)/$J*100;
-        $totalBNegative = (($respondedTotalPointsB6 + $respondedTotalPointsB8 + $respondedTotalPointsB9 + $respondedTotalPointsB10 + $respondedTotalPointsB11 + $respondedTotalPointsB15 + $respondedTotalPointsB16) - $M) / ($countTotalVoteB1 * 70) * 100;
-        $totalB = ($totalBPositive + $totalBNegative) / 200 * 100;
-        $totalB = round($totalB, 2);
+        $TotalProsedurOperasiPositif = array_sum(array_merge($TotalOfBRatingB7->toArray()));
+        $TotalProsedurOperasiNegatif = array_sum(array_merge(
+          $TotalOfBRatingB6->toArray(),
+          $TotalOfBRatingB8->toArray()
+          ));
+
+        $TotalRakanSekerja = array_sum(array_merge(
+            $TotalOfBRatingB9->toArray(),
+            $TotalOfBRatingB10->toArray()
+        ));
+
+        $TotalSifatKerjaPositif = array_sum(array_merge(
+            $TotalOfBRatingB12->toArray(),
+            $TotalOfBRatingB13->toArray()
+        ));
+       
+        $TotalSifatKerjaNegatif = array_sum(array_merge(
+            $TotalOfBRatingB11->toArray()
+        ));
+
+        $TotalKomunikasiPositif = array_sum(array_merge(
+            $TotalOfBRatingB14->toArray()
+        ));
+
+        $TotalKomunikasiNegatif = array_sum(array_merge(
+            $TotalOfBRatingB15->toArray(),
+            $TotalOfBRatingB16->toArray()
+        ));
+
+        $TotalPersekitaran = array_sum(array_merge(
+            $TotalOfBRatingB17->toArray(),
+            $TotalOfBRatingB18->toArray()
+        ));
+
+        $MaxPointRespondenGaji = $TotalResponden * 20;
+        $TotalGajiPercentage = $TotalGaji / $MaxPointRespondenGaji * 100;
+
+        $MaxPointRespondenPangkat = $TotalResponden * 10;
+        $TotalPangkatPercentage = $TotalPangkat / $MaxPointRespondenPangkat * 100;
+
+        $MaxPointRespondenKetua = $TotalResponden * 20;
+        $TotalKetuaPercentage = $TotalKetua / $MaxPointRespondenKetua * 100;
+
+        $MaxPointRespondenProsedurOperasi = $TotalResponden * 30;
+        $MaxTotalPONeg = $TotalResponden * 20;
+        $TotalPONeg = $MaxTotalPONeg - $TotalProsedurOperasiNegatif;
+        $TotalPOPercentage = ($TotalProsedurOperasiPositif + $TotalPONeg) / $MaxPointRespondenProsedurOperasi * 100;
+
+        $MaxPointRS = $TotalResponden * 20;
+        $TotalRSPercent = ($MaxPointRS - $TotalRakanSekerja)  / $MaxPointRS * 100;
+        
+        $MaxPointRespondenSifatKerja = $TotalResponden * 30; 
+        $MaxPSKNeg = $TotalResponden * 10;
+        $TotalSKNeg = $MaxPSKNeg - $TotalSifatKerjaNegatif;
+        $TotalSKPercentage = ($TotalSifatKerjaPositif + $TotalSKNeg) / $MaxPointRespondenSifatKerja * 100;
+        
+        $MaxPointRespondenKom = $TotalResponden * 30; 
+        $MaxPKomNeg = $TotalResponden * 20;
+        $TotalKomNeg = $MaxPKomNeg - $TotalKomunikasiNegatif;
+        $TotalKomPercentage = ($TotalKomunikasiPositif + $TotalKomNeg) / $MaxPointRespondenKom * 100;
+
+        $MaxPointRespondenPersekitaran = $TotalResponden * 20;
+        $TotalPersekitaranPercentage = $TotalPersekitaran / $MaxPointRespondenPersekitaran * 100;
+
+        $totalB = ($TotalGajiPercentage + $TotalPangkatPercentage + $TotalPOPercentage + $TotalKetuaPercentage + $TotalRSPercent + $TotalSKPercentage + $TotalKomPercentage + $TotalPersekitaranPercentage) / 800 * 100;
 
         return $totalB;
 
@@ -1774,46 +1751,27 @@ class UserController extends Controller
         $TotalOfERatingE5 = DB::table('entries')->where('completedR', 1)->pluck('E5');
         $TotalOfERatingE6 = DB::table('entries')->where('completedR', 1)->pluck('E6');
         
-        //calculate E1
-        $countTotalVoteE1 = count(array_filter($TotalOfERatingE1->toArray()));
-        $totalMaxpointsE1 = $countTotalVoteE1 * 10;
-        $respondedTotalPointsE1 = array_sum($TotalOfERatingE1->toArray());
+        $TotalResponden = count($TotalOfERatingE1->toArray());
 
-        //calculate E2
-        $countTotalVoteE2 = count(array_filter($TotalOfERatingE2->toArray()));
-        $totalMaxpointsE2 = $countTotalVoteE2 * 10;
-        $respondedTotalPointsE2 = array_sum($TotalOfERatingE2->toArray());
+        $TotalAP = array_sum(array_merge(
+            $TotalOfERatingE1->toArray(),
+            $TotalOfERatingE2->toArray(),
+            $TotalOfERatingE3->toArray()
+        ));
 
-        //calculate E3
-        $countTotalVoteE3 = count(array_filter($TotalOfERatingE3->toArray()));
-        $totalMaxpointsE3 = $countTotalVoteE3 * 10;
-        $respondedTotalPointsE3 = array_sum($TotalOfERatingE3->toArray());
+        $TotalAN = array_sum(array_merge(
+            $TotalOfERatingE4->toArray(),
+            $TotalOfERatingE5->toArray(),
+            $TotalOfERatingE6->toArray()
+        ));
 
-        //calculate E4 (Reversed item)
-        $countTotalVoteE4 = count(array_filter($TotalOfERatingE4->toArray()));
-        $totalPointE4 = array_sum($TotalOfERatingE4->toArray());
-        $totalMaxpointsE4 = $countTotalVoteE4 * 10;
-        $respondedTotalPointsE4 = $totalMaxpointsE4 - $totalPointE4;
+        $MaxPointsAP = $TotalResponden * 30;
+        $TotalAPPercent = $TotalAP / $MaxPointsAP * 100;
 
-        //calculate E5 (Reversed item)
-        $countTotalVoteE5 = count(array_filter($TotalOfERatingE5->toArray()));
-        $totalPointE5 = array_sum($TotalOfERatingE5->toArray());
-        $totalMaxpointsE5 = $countTotalVoteE5 * 10;
-        $respondedTotalPointsE5 = $totalMaxpointsE5 - $totalPointE5;
+        $MaxPointsAN = $TotalResponden * 30; 
+        $TotalANPercent = ($MaxPointsAN - $TotalAN) / $MaxPointsAN * 100;        
         
-        //calculate E6 (Reversed item)
-        $countTotalVoteE6 = count(array_filter($TotalOfERatingE6->toArray()));
-        $totalPointE6 = array_sum($TotalOfERatingE6->toArray());
-        $totalMaxpointsE6 = $countTotalVoteE6 * 10;
-        $respondedTotalPointsE6 = $totalMaxpointsE6 - $totalPointE6;
-
-        $X = $respondedTotalPointsE1 + $respondedTotalPointsE2 + $respondedTotalPointsE3;
-        $M = 0;
-        $J = $countTotalVoteE1 * 30;
-        $totalEPositive = ($X - $M)/$J*100;
-        $totalENegative = (($respondedTotalPointsE4 + $respondedTotalPointsE5 + $respondedTotalPointsE6) - $M) / ($countTotalVoteE1 * 30) * 100;
-        $totalE = ($totalEPositive + $totalENegative) / 200 * 100;
-        $totalE = round($totalE, 2);
+        $totalE = round(($TotalAPPercent + $TotalANPercent) / 200 * 100, 2);
         
 
         return $totalE;
@@ -1827,20 +1785,31 @@ class UserController extends Controller
         $TotalOfFRatingF5 = DB::table('entries')->where('completedR', 1)->pluck('F5');
         $TotalOfFRatingF6 = DB::table('entries')->where('completedR', 1)->pluck('F6');
         
-        $totalF = array_merge(
+        $totalFS = array_sum(array_merge(
             $TotalOfFRatingF1->toArray(),
             $TotalOfFRatingF2->toArray(),
+        ));
+        $totalFD = array_sum(array_merge(
             $TotalOfFRatingF3->toArray(),
             $TotalOfFRatingF4->toArray(),
+        ));
+        $totalFK = array_sum(array_merge(
             $TotalOfFRatingF5->toArray(),
             $TotalOfFRatingF6->toArray(),
-        );
+        ));
 
-        $countTotalF = count($TotalOfFRatingF1->toArray());
-        $totalF = array_sum($totalF);
-        $totalPointsF = $countTotalF * 6 * 10;
-        $totalF = ($totalF * 100) / $totalPointsF;
-        $totalF = round($totalF, 2);
+        $TotalResponden = count($TotalOfFRatingF1->toArray());
+        
+        $MaxPointFS = $TotalResponden * 20;
+        $TotalFSPercent = $totalFS / $MaxPointFS * 100;
+        
+        $MaxPointFD = $TotalResponden * 20;
+        $TotalFDPercent = $totalFD / $MaxPointFD * 100;
+        
+        $MaxPointFK = $TotalResponden * 20;
+        $TotalFKPercent = $totalFK / $MaxPointFK * 100;
+
+        $totalF = round(($TotalFSPercent + $TotalFDPercent + $TotalFKPercent) / 300 * 100, 2);
 
         return $totalF;
     }
@@ -1858,65 +1827,37 @@ class UserController extends Controller
         $TotalOfGRatingG9 = DB::table('entries')->where('completedR', 1)->pluck('G9');
         $TotalOfGRatingG10 = DB::table('entries')->where('completedR', 1)->pluck('G10');
 
-        //calculate G1
-        $countTotalVoteG1 = count(array_filter($TotalOfGRatingG1->toArray()));
-        $totalMaxpointsG1 = $countTotalVoteG1 * 10;
-        $respondedTotalPointsG1 = array_sum($TotalOfGRatingG1->toArray());
-
-        //calculate G2
-        $countTotalVoteG2 = count(array_filter($TotalOfGRatingG2->toArray()));
-        $totalMaxpointsG2 = $countTotalVoteG2 * 10;
-        $respondedTotalPointsG2 = array_sum($TotalOfGRatingG2->toArray());
-
-        //calculate G3
-        $countTotalVoteG3 = count(array_filter($TotalOfGRatingG3->toArray()));
-        $totalMaxpointsG3 = $countTotalVoteG3 * 10;
-        $respondedTotalPointsG3 = array_sum($TotalOfGRatingG3->toArray());
-
-        //calculate G4
-        $countTotalVoteG4 = count(array_filter($TotalOfGRatingG4->toArray()));
-        $totalMaxpointsG4 = $countTotalVoteG4 * 10;
-        $respondedTotalPointsG4 = array_sum($TotalOfGRatingG4->toArray());
-
-        //calculate G5
-        $countTotalVoteG5 = count(array_filter($TotalOfGRatingG5->toArray()));
-        $totalMaxpointsG5 = $countTotalVoteG5 * 10;
-        $respondedTotalPointsG5 = array_sum($TotalOfGRatingG5->toArray());
-
-        //calculate G6
-        $countTotalVoteG6 = count(array_filter($TotalOfGRatingG6->toArray()));
-        $totalMaxpointsG6 = $countTotalVoteG6 * 10;
-        $respondedTotalPointsG6 = array_sum($TotalOfGRatingG6->toArray());
-
-        //calculate G7
-        $countTotalVoteG7 = count(array_filter($TotalOfGRatingG7->toArray()));
-        $totalMaxpointsG7 = $countTotalVoteG7 * 10;
-        $respondedTotalPointsG7 = array_sum($TotalOfGRatingG7->toArray());
-
-        //calculate G8
-        $countTotalVoteG8 = count(array_filter($TotalOfGRatingG8->toArray()));
-        $totalMaxpointsG8 = $countTotalVoteG8 * 10;
-        $respondedTotalPointsG8 = array_sum($TotalOfGRatingG8->toArray());
-
-        //calculate G9 (Reversed item)
-        $countTotalVoteG9 = count(array_filter($TotalOfGRatingG9->toArray()));
-        $totalPointG9 = array_sum($TotalOfGRatingG9->toArray());
-        $totalMaxpointsG9 = $countTotalVoteG9 * 10;
-        $respondedTotalPointsG9 = $totalMaxpointsG9 - $totalPointG9;
-
-        //calculate G10 (Reversed item)
-        $countTotalVoteG10 = count(array_filter($TotalOfGRatingG10->toArray()));
-        $totalPointG10 = array_sum($TotalOfGRatingG10->toArray());
-        $totalMaxpointsG10 = $countTotalVoteG10 * 10;
-        $respondedTotalPointsG10 = $totalMaxpointsG10 - $totalPointG10;
-
-        $X = $respondedTotalPointsG1 + $respondedTotalPointsG2 + $respondedTotalPointsG3  + $respondedTotalPointsG4 + $respondedTotalPointsG5 + $respondedTotalPointsG6 + $respondedTotalPointsG7 + $respondedTotalPointsG8;
-        $M = 0;
-        $J = $countTotalVoteG1 * 80;
-        $totalGPositive = ($X - $M)/$J*100;
-        $totalGNegative = (($respondedTotalPointsG9 + $respondedTotalPointsG10) - $M) / ($countTotalVoteG1 * 20) * 100;
+        $countTotalResponden = count($TotalOfGRatingG1->toArray());
         
-        $totalG = ($totalGPositive + $totalGNegative) / 200 * 100;
+        $TotalPrestasiTugas = array_sum(array_merge(
+            $TotalOfGRatingG1->toArray(),
+            $TotalOfGRatingG2->toArray(),
+            $TotalOfGRatingG3->toArray()
+        ));
+
+        $TotalPrestasiKontekstual = array_sum(array_merge(
+            $TotalOfGRatingG4->toArray(),
+            $TotalOfGRatingG5->toArray(),
+            $TotalOfGRatingG6->toArray(),
+            $TotalOfGRatingG7->toArray(),
+            $TotalOfGRatingG8->toArray()
+        ));
+
+        $TotalTingkahLakuKerjaTidakProduktif = array_sum(array_merge(
+            $TotalOfGRatingG9->toArray(),
+            $TotalOfGRatingG10->toArray()
+        ));
+        
+        $MaxPointsRespondenPrestasiTugas = $countTotalResponden * 30;
+        $TotalPrestasiTugasPercentage = round($TotalPrestasiTugas / $MaxPointsRespondenPrestasiTugas * 100, 2);
+
+        $MaxPointsRespondenPrestasiKontekstual = $countTotalResponden * 50;
+        $TotalPrestasiKontekstualPercentage = round($TotalPrestasiKontekstual / $MaxPointsRespondenPrestasiKontekstual * 100, 2);
+        
+        $MaxPointsTingkahLakuKerjaTidakProduktif = $countTotalResponden * 20;
+        $TotalTingkahLakuKerjaTidakProduktifPercentage = round(($MaxPointsTingkahLakuKerjaTidakProduktif - $TotalTingkahLakuKerjaTidakProduktif) / $MaxPointsTingkahLakuKerjaTidakProduktif * 100,2);
+        
+        $totalG = ($TotalPrestasiTugasPercentage + $TotalPrestasiKontekstualPercentage + $TotalTingkahLakuKerjaTidakProduktifPercentage) / 300 * 100;
         $totalG = round($totalG, 2);
 
         return $totalG;
@@ -1961,7 +1902,7 @@ class UserController extends Controller
         $TotalOfHRatingH34 = DB::table('entries')->where('completedR', 1)->pluck('H34');
         $TotalOfHRatingH35 = DB::table('entries')->where('completedR', 1)->pluck('H35');
         
-        $totalH = array_merge(
+        $TotalHKP1 = array_sum(array_merge(
             $TotalOfHRatingH1->toArray(),
             $TotalOfHRatingH2->toArray(),
             $TotalOfHRatingH3->toArray(),
@@ -1973,7 +1914,10 @@ class UserController extends Controller
             $TotalOfHRatingH9->toArray(),
             $TotalOfHRatingH10->toArray(),
             $TotalOfHRatingH11->toArray(),
-            $TotalOfHRatingH12->toArray(),
+            $TotalOfHRatingH12->toArray()
+        ));
+
+        $TotalHPPB = array_sum(array_merge(
             $TotalOfHRatingH13->toArray(),
             $TotalOfHRatingH14->toArray(),
             $TotalOfHRatingH15->toArray(),
@@ -1981,29 +1925,48 @@ class UserController extends Controller
             $TotalOfHRatingH17->toArray(),
             $TotalOfHRatingH18->toArray(),
             $TotalOfHRatingH19->toArray(),
-            $TotalOfHRatingH20->toArray(),
+            $TotalOfHRatingH20->toArray()
+        )); 
+        $TotalHOJP = array_sum(array_merge(
             $TotalOfHRatingH21->toArray(),
             $TotalOfHRatingH22->toArray(),
             $TotalOfHRatingH23->toArray(),
             $TotalOfHRatingH24->toArray(),
-            $TotalOfHRatingH25->toArray(),
+            $TotalOfHRatingH25->toArray()
+        ));
+        $TotalHKP2 = array_sum(array_merge(
             $TotalOfHRatingH26->toArray(),
             $TotalOfHRatingH27->toArray(),
             $TotalOfHRatingH28->toArray(),
-            $TotalOfHRatingH29->toArray(),
+            $TotalOfHRatingH29->toArray()
+        ));
+        $TotalHKOT = array_sum(array_merge(
             $TotalOfHRatingH30->toArray(),
             $TotalOfHRatingH31->toArray(),
             $TotalOfHRatingH32->toArray(),
             $TotalOfHRatingH33->toArray(),
             $TotalOfHRatingH34->toArray(),
-            $TotalOfHRatingH35->toArray(),
-        );
+            $TotalOfHRatingH35->toArray()
+        ));
 
-        $countTotalH = count($TotalOfHRatingH1->toArray());
-        $totalH = array_sum($totalH);
-        $totalPointsH = $countTotalH * 35 * 10;
-        $totalH = ($totalH * 100) / $totalPointsH;
-        $totalH = round($totalH, 2);
+        $TotalResponden = count($TotalOfHRatingH1->toArray());
+
+        $MaxPointHKP1 = $TotalResponden * 120;
+        $TotalHKP1Percent = $TotalHKP1 / $MaxPointHKP1 * 100;
+
+        $MaxPointHPPB = $TotalResponden * 80;
+        $TotalHPPBPercent = $TotalHPPB / $MaxPointHPPB * 100;
+
+        $MaxPointHOJP = $TotalResponden * 50;
+        $TotalHOJPPercent = $TotalHOJP / $MaxPointHOJP * 100;
+
+        $MaxPointHKP2 = $TotalResponden * 40;
+        $TotalHKP2Percent = $TotalHKP2 / $MaxPointHKP2 * 100;
+
+        $MaxPointHKOT = $TotalResponden * 60;
+        $TotalHKOTPercent = $TotalHKOT / $MaxPointHKOT * 100;
+
+        $totalH = round(($TotalHKP1Percent + $TotalHPPBPercent + $TotalHOJPPercent + $TotalHKP2Percent + $TotalHKOTPercent) / 500 * 100, 2);
 
         return $totalH;
 
@@ -2014,48 +1977,37 @@ class UserController extends Controller
         $TotalOfIRatingI2 = DB::table('entries')->where('completedR', 1)->pluck('I2');
         $TotalOfIRatingI3 = DB::table('entries')->where('completedR', 1)->pluck('I3');
         
-        //calculate I1
-        $countTotalVoteI1 = count(array_filter($TotalOfIRatingI1->toArray()));
-        $totalMaxpointsI1 = $countTotalVoteI1 * 10;
-        $respondedTotalPointsI1 = array_sum($TotalOfIRatingI1->toArray());
+        $TotalIP = array_sum(array_merge(
+            $TotalOfIRatingI1->toArray(),
+            $TotalOfIRatingI3->toArray()
+        ));
+        $TotalIN = array_sum(array_merge($TotalOfIRatingI2->toArray()));
+    
+        $TotalResponden = count($TotalOfIRatingI1->toArray());
 
-        //calculate I3
-        $countTotalVoteI3 = count(array_filter($TotalOfIRatingI3->toArray()));
-        $totalMaxpointsI3 = $countTotalVoteI3 * 10;
-        $respondedTotalPointsI3 = array_sum($TotalOfIRatingI3->toArray());
-
-        //calculate I2 (Reversed item)
-        $countTotalVoteI2 = count(array_filter($TotalOfIRatingI2->toArray()));
-        $totalPointI2 = array_sum($TotalOfIRatingI2->toArray());
-        $totalMaxpointsI2 = $countTotalVoteI2 * 10;
-        $respondedTotalPointsI2 = $totalMaxpointsI2 - $totalPointI2;
-
-        $X = $respondedTotalPointsI1 + $respondedTotalPointsI3;
-        $M = 0;
-        $J = $countTotalVoteI1 * 20;
-        $totalIPositive = ($X - $M)/$J*100;
-        $totalINegative = ($respondedTotalPointsI2 - $M) / ($countTotalVoteI1 * 10) * 100;
+        $MaxPointI = $TotalResponden * 30;
+        $MaxTotalIN = $TotalResponden * 10;
+        $TotalINRev = $MaxTotalIN - $TotalIN;
         
-        $totalI = ($totalIPositive + $totalINegative) / 200 * 100;
-        $totalI = round($totalI, 2);
+        $totalI = round(( $TotalIP + $TotalINRev ) / $MaxPointI * 100, 2);
 
         return $totalI;
     }
 
     public function calculateTotalJ(){
         
-        $TotalOfJRatingJ1 = DB::table('entries')->pluck('J1');
-        $TotalOfJRatingJ2 = DB::table('entries')->pluck('J2');
-        $TotalOfJRatingJ3 = DB::table('entries')->pluck('J3');
-        $TotalOfJRatingJ4 = DB::table('entries')->pluck('J4');
-        $TotalOfJRatingJ5 = DB::table('entries')->pluck('J5');
-        $TotalOfJRatingJ6 = DB::table('entries')->pluck('J6');
-        $TotalOfJRatingJ7 = DB::table('entries')->pluck('J7');
-        $TotalOfJRatingJ8 = DB::table('entries')->pluck('J8');
-        $TotalOfJRatingJ9 = DB::table('entries')->pluck('J9');
-        $TotalOfJRatingJ10 = DB::table('entries')->pluck('G10');
+        $TotalOfJRatingJ1 = DB::table('entries')->where('completedR', 1)->pluck('J1');
+        $TotalOfJRatingJ2 = DB::table('entries')->where('completedR', 1)->pluck('J2');
+        $TotalOfJRatingJ3 = DB::table('entries')->where('completedR', 1)->pluck('J3');
+        $TotalOfJRatingJ4 = DB::table('entries')->where('completedR', 1)->pluck('J4');
+        $TotalOfJRatingJ5 = DB::table('entries')->where('completedR', 1)->pluck('J5');
+        $TotalOfJRatingJ6 = DB::table('entries')->where('completedR', 1)->pluck('J6');
+        $TotalOfJRatingJ7 = DB::table('entries')->where('completedR', 1)->pluck('J7');
+        $TotalOfJRatingJ8 = DB::table('entries')->where('completedR', 1)->pluck('J8');
+        $TotalOfJRatingJ9 = DB::table('entries')->where('completedR', 1)->pluck('J9');
+        $TotalOfJRatingJ10 = DB::table('entries')->where('completedR', 1)->pluck('J10');
         
-        $totalJ = array_merge(
+        $totalPointJ = array_sum(array_merge(
             $TotalOfJRatingJ1->toArray(),
             $TotalOfJRatingJ2->toArray(),
             $TotalOfJRatingJ3->toArray(),
@@ -2066,13 +2018,13 @@ class UserController extends Controller
             $TotalOfJRatingJ8->toArray(),
             $TotalOfJRatingJ9->toArray(),
             $TotalOfJRatingJ10->toArray(),
-        );
+        ));
 
-        $countTotalJ = count($TotalOfJRatingJ1->toArray());
-        $totalJ = array_sum($totalJ);
-        $totalPointsJ = $countTotalJ * 10 * 10;
-        $totalJ = ($totalJ * 100) / $totalPointsJ;
-        $totalJ = round($totalJ, 2);
+        $TotalResponden = count($TotalOfJRatingJ1->toArray());
+
+        $MaxTotalJ = $TotalResponden * 100;
+        
+        $totalJ = round($totalPointJ / $MaxTotalJ * 100, 2);
 
         return $totalJ;
 
@@ -2090,66 +2042,29 @@ class UserController extends Controller
         $TotalOfKRatingK8 = DB::table('entries')->where('completedR', 1)->pluck('K8');
         $TotalOfKRatingK9 = DB::table('entries')->where('completedR', 1)->pluck('K9');
         $TotalOfKRatingK10 = DB::table('entries')->where('completedR', 1)->pluck('K10');
+
+        $TotalPos = array_sum(array_merge(
+            $TotalOfKRatingK1->toArray(),
+            $TotalOfKRatingK2->toArray(),
+            $TotalOfKRatingK3->toArray(),
+            $TotalOfKRatingK4->toArray(),
+            $TotalOfKRatingK5->toArray(),
+            $TotalOfKRatingK6->toArray(),
+            $TotalOfKRatingK7->toArray(),
+            $TotalOfKRatingK8->toArray(),
+            $TotalOfKRatingK9->toArray()
+        ));
+        $TotalKNeg = array_sum(array_merge(
+            $TotalOfKRatingK10->toArray()
+        ));
+
+        $TotalResponden = count($TotalOfKRatingK1->toArray());
+
+        $MaxPointsK = $TotalResponden * 100;
+        $MaxKPontNeg = $TotalResponden * 10;
+        $TotalPointKNeg = $MaxKPontNeg - $TotalKNeg;
         
-        //calculate K1
-        $countTotalVoteK1 = count(array_filter($TotalOfKRatingK1->toArray()));
-        $totalMaxpointsK1 = $countTotalVoteK1 * 10;
-        $respondedTotalPointsK1 = array_sum($TotalOfKRatingK1->toArray());
-
-        //calculate K2
-        $countTotalVoteK2 = count(array_filter($TotalOfKRatingK2->toArray()));
-        $totalMaxpointsK2 = $countTotalVoteK2 * 10;
-        $respondedTotalPointsK2 = array_sum($TotalOfKRatingK2->toArray());
-
-        //calculate K3
-        $countTotalVoteK3 = count(array_filter($TotalOfKRatingK3->toArray()));
-        $totalMaxpointsK3 = $countTotalVoteK3 * 10;
-        $respondedTotalPointsK3 = array_sum($TotalOfKRatingK3->toArray());
-
-        //calculate K4
-        $countTotalVoteK4 = count(array_filter($TotalOfKRatingK4->toArray()));
-        $totalMaxpointsK4 = $countTotalVoteK4 * 10;
-        $respondedTotalPointsK4 = array_sum($TotalOfKRatingK4->toArray());
-
-        //calculate K5
-        $countTotalVoteK5 = count(array_filter($TotalOfKRatingK5->toArray()));
-        $totalMaxpointsK5 = $countTotalVoteK5 * 10;
-        $respondedTotalPointsK5 = array_sum($TotalOfKRatingK5->toArray());
-
-        //calculate K6
-        $countTotalVoteK6 = count(array_filter($TotalOfKRatingK6->toArray()));
-        $totalMaxpointsK6 = $countTotalVoteK6 * 10;
-        $respondedTotalPointsK6 = array_sum($TotalOfKRatingK6->toArray());
-
-        //calculate K7
-        $countTotalVoteK7 = count(array_filter($TotalOfKRatingK7->toArray()));
-        $totalMaxpointsK7 = $countTotalVoteK7 * 10;
-        $respondedTotalPointsK7 = array_sum($TotalOfKRatingK7->toArray());
-
-        //calculate K8
-        $countTotalVoteK8 = count(array_filter($TotalOfKRatingK8->toArray()));
-        $totalMaxpointsK8 = $countTotalVoteK8 * 10;
-        $respondedTotalPointsK8 = array_sum($TotalOfKRatingK8->toArray());
-
-        //calculate K9
-        $countTotalVoteK9 = count(array_filter($TotalOfKRatingK9->toArray()));
-        $totalMaxpointsK9 = $countTotalVoteK9 * 10;
-        $respondedTotalPointsK9 = array_sum($TotalOfKRatingK9->toArray());
-
-        //calculate K10 (Reversed item)
-        $countTotalVoteK10 = count(array_filter($TotalOfKRatingK10->toArray()));
-        $totalPointK10 = array_sum($TotalOfKRatingK10->toArray());
-        $totalMaxpointsK10 = $countTotalVoteK10 * 10;
-        $respondedTotalPointsK10 = $totalMaxpointsK10 - $totalPointK10;
-        
-        $X = $respondedTotalPointsK1 + $respondedTotalPointsK2 + $respondedTotalPointsK3 + $respondedTotalPointsK4 + $respondedTotalPointsK5 + $respondedTotalPointsK6 + $respondedTotalPointsK7 + $respondedTotalPointsK8 + $respondedTotalPointsK9;
-        $M = 0;
-        $J = $countTotalVoteK1 * 90;
-        $totalKPositive = ($X - $M)/$J*100;
-        $totalKNegative = ($respondedTotalPointsK10 - $M) / ($countTotalVoteK1 * 10) * 100;
-        
-        $totalK = ($totalKPositive + $totalKNegative) / 200 * 100;
-        $totalK = round($totalK, 2);
+        $totalK = ($TotalPos + $TotalPointKNeg) / $MaxPointsK * 100;
 
         return $totalK;
 
@@ -2161,36 +2076,23 @@ class UserController extends Controller
         $TotalOfLRatingL3 = DB::table('entries')->where('completedR', 1)->pluck('L3');
         $TotalOfLRatingL4 = DB::table('entries')->where('completedR', 1)->pluck('L4');
         
-        //calculate L4
-        $countTotalVoteL4 = count(array_filter($TotalOfLRatingL4->toArray()));
-        $totalMaxpointsL4 = $countTotalVoteL4 * 10;
-        $respondedTotalPointsL4 = array_sum($TotalOfLRatingL4->toArray());
+        $TotalLP = array_sum(array_merge(
+            $TotalOfLRatingL4->toArray()
+        ));
 
-        //calculate L1 (Reversed item)
-        $countTotalVoteL1 = count(array_filter($TotalOfLRatingL1->toArray()));
-        $totalPointL1 = array_sum($TotalOfLRatingL1->toArray());
-        $totalMaxpointsL1 = $countTotalVoteL1 * 10;
-        $respondedTotalPointsL1 = $totalMaxpointsL1 - $totalPointL1;
-
-        //calculate L2 (Reversed item)
-        $countTotalVoteL2 = count(array_filter($TotalOfLRatingL2->toArray()));
-        $totalPointL2 = array_sum($TotalOfLRatingL2->toArray());
-        $totalMaxpointsL2 = $countTotalVoteL2 * 10;
-        $respondedTotalPointsL2 = $totalMaxpointsL2 - $totalPointL2;
-
-        //calculate L3 (Reversed item)
-        $countTotalVoteL3 = count(array_filter($TotalOfLRatingL3->toArray()));
-        $totalPointL3 = array_sum($TotalOfLRatingL3->toArray());
-        $totalMaxpointsL3 = $countTotalVoteL3 * 10;
-        $respondedTotalPointsL3 = $totalMaxpointsL3 - $totalPointL3;
-
-        $X = $respondedTotalPointsL4;
-        $M = 0;
-        $J = $countTotalVoteL1 * 10;
-        $totalLPositive = ($X - $M)/$J*100;
-        $totalLNegative = (($respondedTotalPointsL1 + $respondedTotalPointsL2 + $respondedTotalPointsL3) - $M) / ($countTotalVoteL1 * 30) * 100;
+        $TotalLN = array_sum(array_merge(
+            $TotalOfLRatingL1->toArray(),
+            $TotalOfLRatingL2->toArray(),
+            $TotalOfLRatingL3->toArray()
+        ));
         
-        $totalL = ($totalLPositive + $totalLNegative) / 200 * 100;
+        $TotalResponden = count($TotalOfLRatingL1->toArray());
+        $MaxPointsL = $TotalResponden * 40;
+
+        $MaxPointNeg = $TotalResponden * 30;
+        $TotalPointLNeg = $MaxPointNeg - $TotalLN;
+
+        $totalL = ($TotalLP + $TotalPointLNeg) / $MaxPointsL * 100;
         $totalL = round($totalL, 2);
 
         return $totalL;
@@ -2201,19 +2103,20 @@ class UserController extends Controller
         $TotalOfMRatingM2 = DB::table('entries')->where('completedR', 1)->pluck('M2');
         $TotalOfMRatingM3 = DB::table('entries')->where('completedR', 1)->pluck('M3');
     
-        $totalM = array_merge(
+        $TotalM = array_sum(array_merge(
             $TotalOfMRatingM1->toArray(),
             $TotalOfMRatingM2->toArray(),
             $TotalOfMRatingM3->toArray(),
-        );
+        ));
 
-        $countTotalM = count($TotalOfMRatingM1->toArray());
-        $totalM = array_sum($totalM);
-        $totalPointsM = $countTotalM * 3 * 10;
-        $totalM = ($totalM * 100) / $totalPointsM;
-        $totalM = round($totalM, 2);
+        $TotalResponden = count($TotalOfMRatingM1->toArray());
 
-        return $totalM;
+        $MaxPointM = $TotalResponden * 30;
+        
+        $TotalM = $TotalM / $MaxPointM * 100;
+        $TotalM = round($TotalM, 2);
+
+        return $TotalM;
     }
 
     public function calculateTotalN(){
@@ -2222,20 +2125,21 @@ class UserController extends Controller
         $TotalOfNRatingN3 = DB::table('entries')->where('completedR', 1)->pluck('N3');
         $TotalOfNRatingN4 = DB::table('entries')->where('completedR', 1)->pluck('N4');
     
-        $totalN = array_merge(
+        $TotalN = array_sum(array_merge(
             $TotalOfNRatingN1->toArray(),
             $TotalOfNRatingN2->toArray(),
             $TotalOfNRatingN3->toArray(),
             $TotalOfNRatingN4->toArray(),
-        );
+        ));
 
-        $countTotalN = count($TotalOfNRatingN1->toArray());
-        $totalN = array_sum($totalN);
-        $totalPointsN = $countTotalN * 4 * 10;
-        $totalN = ($totalN * 100) / $totalPointsN;
-        $totalN = round($totalN, 2);
+        $TotalResponden = count($TotalOfNRatingN1->toArray());
 
-        return $totalN;
+        $MaxPointN = $TotalResponden * 40;
+        
+        $TotalN = $TotalN / $MaxPointN * 100;
+        $TotalN = round($TotalN, 2);
+
+        return $TotalN;
     }
 
     public function calculateTotalO(){
@@ -2243,39 +2147,43 @@ class UserController extends Controller
         $TotalOfORatingO2 = DB::table('entries')->where('completedR', 1)->pluck('O2');
         $TotalOfORatingO3 = DB::table('entries')->where('completedR', 1)->pluck('O3');
         $TotalOfORatingO4 = DB::table('entries')->where('completedR', 1)->pluck('O4');
+        $TotalOfORatingO5 = DB::table('entries')->where('completedR', 1)->pluck('O5');
     
-        $totalO = array_merge(
+        $TotalO = array_sum(array_merge(
             $TotalOfORatingO1->toArray(),
             $TotalOfORatingO2->toArray(),
             $TotalOfORatingO3->toArray(),
             $TotalOfORatingO4->toArray(),
-        );
+            $TotalOfORatingO5->toArray()
+        ));
 
-        $countTotalO = count($TotalOfORatingO1->toArray());
-        $totalO = array_sum($totalO);
-        $totalPointsO = $countTotalO * 4 * 10;
-        $totalO = ($totalO * 100) / $totalPointsO;
-        $totalO = round($totalO, 2);
+        $TotalResponden = count($TotalOfORatingO1->toArray());
 
-        return $totalO;
+        $MaxPointO = $TotalResponden * 50;
+        
+        $TotalO = $TotalO / $MaxPointO * 100;
+        $TotalO = round($TotalO, 2);
+
+        return $TotalO;
     }
 
     public function calculateTotalP(){
         $TotalOfPRatingP1 = DB::table('entries')->where('completedR', 1)->pluck('P1');
         $TotalOfPRatingP2 = DB::table('entries')->where('completedR', 1)->pluck('P2');
         
-        $totalP = array_merge(
+        $TotalP = array_sum(array_merge(
             $TotalOfPRatingP1->toArray(),
             $TotalOfPRatingP2->toArray(),
-        );
+        ));
 
-        $countTotalP = count($TotalOfPRatingP1->toArray());
-        $totalP = array_sum($totalP);
-        $totalPointsP = $countTotalP * 2 * 10;
-        $totalP = ($totalP * 100) / $totalPointsP;
-        $totalP = round($totalP, 2);
+        $TotalResponden = count($TotalOfPRatingP1->toArray());
 
-        return $totalP;
+        $MaxPointP = $TotalResponden * 20;
+        
+        $TotalP = $TotalP / $MaxPointP * 100;
+        $TotalP = round($TotalP, 2);
+
+        return $TotalP;
     }
 
     public function calculateTotalQ(){
@@ -2284,20 +2192,21 @@ class UserController extends Controller
         $TotalOfQRatingQ3 = DB::table('entries')->where('completedR', 1)->pluck('Q3');
         $TotalOfQRatingQ4 = DB::table('entries')->where('completedR', 1)->pluck('Q4');
     
-        $totalQ = array_merge(
+        $TotalQ = array_sum(array_merge(
             $TotalOfQRatingQ1->toArray(),
             $TotalOfQRatingQ2->toArray(),
             $TotalOfQRatingQ3->toArray(),
             $TotalOfQRatingQ4->toArray(),
-        );
+        ));
 
-        $countTotalQ = count($TotalOfQRatingQ1->toArray());
-        $totalQ = array_sum($totalQ);
-        $totalPointsQ = $countTotalQ * 4 * 10;
-        $totalQ = ($totalQ * 100) / $totalPointsQ;
-        $totalQ = round($totalQ, 2);
+        $TotalResponden = count($TotalOfQRatingQ1->toArray());
 
-        return $totalQ;
+        $MaxPointQ = $TotalResponden * 40;
+        
+        $TotalQ = $TotalQ / $MaxPointQ * 100;
+        $TotalQ = round($TotalQ, 2);
+
+        return $TotalQ;
     }
 
     public function calculateTotalIndexKegembiraan($ib,$ic,$id,$ie,$if,$ig){
@@ -2417,8 +2326,8 @@ class UserController extends Controller
         return $dimensi;
     }
     public function calculateSubDimensionBKetua($b4,$b5){
-        if ($b5 != NULL){
-            $dimensi = round(($b4 + $b5)/ 20 * 100, 2);
+        if (is_null($b5) == false){
+            return $dimensi = round(($b4 + $b5)/ 20 * 100, 2);
         }
         $dimensi = round($b4 / 10 * 100, 2);
         return $dimensi;
@@ -2450,6 +2359,7 @@ class UserController extends Controller
     }
 
     public function calculateSubDimensionEAfek($e1,$e2){
+        //$dimensi = round(($e1 + $e2) / 200 * 100, 2);
         $dimensi = round(($e1 + $e2) / 200 * 100, 2);
         return $dimensi;
     }
@@ -2495,7 +2405,7 @@ class UserController extends Controller
     }
 
     public function calculateSubDimensionGTingkahLakuKerjaTidakProduktif($g9,$g10){
-        $dimensi = round((( 10 - $g9 ) + ( 10 - $g10 )) / 20 * 100, 2);
+        $dimensi = round((( 20 - ($g9 + $g10) )) / 20 * 100, 2);
         return $dimensi;
     }
 

@@ -1,1 +1,1 @@
-{{var_dump($TotalOfKRatingK1)}}
+{{dd($data)}}
