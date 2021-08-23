@@ -4,8 +4,11 @@
     <p style="text-align: justify">
         Kumpulan penyelidik merakamkan ucapan ribuan terima kasih atas kesudian Tuan/Puan melengkapkan soal selidik I-KOBT. Sebagai tanda penghargaan, pihak penyelidik akan membayar sagu hati berjumlah RM10.00 ke e-wallet atau akaun bank Tuan/Puan. Justeru, pihak kami memohon jasa baik dan kerjasama daripada pihak Tuan/Puan memberikan maklumat berikut:
     </p>
+    <p style="text-align: justify;font-size: 12px;font-style: italic;">
+        (Nota: Bayaran sagu hati hanya diberikan kepada 6,122 penjawat awam terawal yang mengisi I-KOBT dan telah mendapat pengesahan daripada pihak JPAN)
+    </p>
     <x-form-global-error/>
-    <form action="" method="POST" id="rewardSumit">
+    <form action="{{route('storeReward')}}" method="POST" id="rewardSumit">
     @csrf
     <div class="wrapper">
         <input type="radio" name="paymentChoose" value="ewallet" id="ewallet" {{ $userData[0]->paymentChoose == 'ewallet' ? 'checked' : '' }}>
