@@ -198,7 +198,8 @@ class EntriesController extends Controller
                 'Q3',
                 'Q4',
                 'komen',
-                'cadangan'
+                'cadangan',
+                'completedR'
             ],
 
             // set columns to searchIn

@@ -48,7 +48,8 @@
                                                 #
                                             </label>
                                         </th>
-                                        <th is='sortable' :column="'id'">id</th>
+                                        <th style="display: none" is='sortable' :column="'id'">id</th>
+                                        <th is='sortable' :column="'completedR'">Status Responded</th>
                                         <th is='sortable' :column="'email'">email</th>
                                         <th is='sortable' :column="'umur'">Umur</th>
                                         <th is='sortable' :column="'jantina'">Jantina</th>
@@ -102,7 +103,8 @@
                                             </label>
                                         </td>
 
-                                        <td>@{{ item.id }}</td>
+                                        <td style="display: none">@{{ item.id }}</td>
+                                        <td>@{{ item.completedR == 1 ? 'Lengkap' : 'Belum Lengkap' }}</td>
                                         <td>@{{ item.email }}</td>
                                         <td>@{{ item.umur }}</td>
                                         <td>@{{ item.jantina }}</td>
