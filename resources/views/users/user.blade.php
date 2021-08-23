@@ -14,7 +14,8 @@
     </form>
  </div>
     @else
-    @if ($userProgress[0]->completedA != NULL && $userProgress[0]->completedB != NULL && $userProgress[0]->completedC != NULL && $userProgress[0]->completedD != NULL && $userProgress[0]->completedE != NULL && $userProgress[0]->completedF != NULL && $userProgress[0]->completedG != NULL && $userProgress[0]->completedH1 != NULL && $userProgress[0]->completedH2 != NULL  && $userProgress[0]->completedH3 != NULL && $userProgress[0]->completedH4 != NULL && $userProgress[0]->completedI != NULL && $userProgress[0]->completedJ != NULL && $userProgress[0]->completedK != NULL && $userProgress[0]->completedL != NULL && $userProgress[0]->completedM != NULL && $userProgress[0]->completedN != NULL && $userProgress[0]->completedO != NULL && $userProgress[0]->completedP != NULL && $userProgress[0]->completedQ != NULL && $userProgress[0]->completedR != NULL )
+    {{-- @if ($userProgress[0]->completedA != NULL && $userProgress[0]->completedB != NULL && $userProgress[0]->completedC != NULL && $userProgress[0]->completedD != NULL && $userProgress[0]->completedE != NULL && $userProgress[0]->completedF != NULL && $userProgress[0]->completedG != NULL && $userProgress[0]->completedH1 != NULL && $userProgress[0]->completedH2 != NULL  && $userProgress[0]->completedH3 != NULL && $userProgress[0]->completedH4 != NULL && $userProgress[0]->completedI != NULL && $userProgress[0]->completedJ != NULL && $userProgress[0]->completedK != NULL && $userProgress[0]->completedL != NULL && $userProgress[0]->completedM != NULL && $userProgress[0]->completedN != NULL && $userProgress[0]->completedO != NULL && $userProgress[0]->completedP != NULL && $userProgress[0]->completedQ != NULL && $userProgress[0]->completedR != NULL ) --}}
+    @if ($userProgress[0]->completedR == 1)
     <div class="widgetContainer twelve columns">
         <div class="widgetIndex six columns">
             <span>Indeks Kegembiraan</span>

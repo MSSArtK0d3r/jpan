@@ -79,8 +79,12 @@ class UserController extends Controller
 
     public function index(Request $request){
         $user = $this->getUser($request);
+        $notZero = DB::table('entries')->where('completedR', 1)->first();
 
         if ($user != NULL) {
+            if ($notZero == NULL){
+                return redirect()->route('demograph');
+            }
             $data = array();
 
             $entry = DB::table('entries')->where('email','=', $user)->first();
@@ -105,7 +109,6 @@ class UserController extends Controller
             $hasCompleted['completedO'] = $entry->completedP;
             $hasCompleted['completedP'] = $entry->completedQ;
             $hasCompleted['completedQ'] = $entry->completedR;
-
 
             $data['totalRatingB'] = $this->calculateTotalB();
             $data['totalRatingC'] = $this->calculateTotalC();
