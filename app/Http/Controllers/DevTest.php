@@ -10,9 +10,10 @@ use Maatwebsite\Excel\Concerns\ToArray;
 class DevTest extends Controller {
 
     public function index(){
-        $data = DB::table('entries')->select('completedR')->where('email', 'a@a.com')->get()->toArray();
-        $data = $data[0]->completedR;
-        return view('dev', compact('data'));
+        $TotalOfKRatingK1 = DB::table('entries')
+        ->where('completedR', 1)
+        ->pluck('K1');
+        return view('dev', compact('TotalOfKRatingK1'));
     }
 
 }

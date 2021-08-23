@@ -1,2 +1,1 @@
-{{var_dump($data)}}
-<x-dev-comp/>
+{{var_dump($TotalOfKRatingK1)}}
