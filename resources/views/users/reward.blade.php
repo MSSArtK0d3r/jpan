@@ -27,21 +27,21 @@
     <div class="ewalletForm" {{ $userData[0]->paymentChoose == 'ewallet' ? 'style=display:block;' : '' }}>
         <div>
         <span class="six columns">Masukkan Nombor telefon yang berdaftar dengan Boost</span>
-        <input class="six columns" type="text" value="{{ $userData[0]->phone == NULL ? '' : $userData[0]->phone }}" name="phone">
+        <input class="six columns" type="text" value="{{ $userData[0]->phone == NULL ? '' : $userData[0]->phone }}" name="phone" id="phone">
         </div>
     </div>
     <div class="bankForm" {{ $userData[0]->paymentChoose == 'bank' ? 'style=display:block;' : '' }}>
         <div>
             <span class="three columns">Nama Bank</span>
-            <input class="nine columns" type="text" placeholder="Maybank, CIMB, RHB" required name="bankCompany" value="{{ $userData[0]->bankCompany == NULL ? '' : $userData[0]->bankCompany }}">
+            <input class="nine columns" type="text" placeholder="Maybank, CIMB, RHB" name="bankCompany" id="bankCompany" value="{{ $userData[0]->bankCompany == NULL ? '' : $userData[0]->bankCompany }}">
         </div> 
         <div>
             <span class="three columns">Nombor akaun</span>
-            <input class="nine columns" type="text" placeholder="12347654335434" required name="bankAccNo" value="{{ $userData[0]->bankAccNo == NULL ? '' : $userData[0]->bankAccNo }}">
+            <input class="nine columns" type="text" placeholder="12347654335434" name="bankAccNo" id="bankAccNo" value="{{ $userData[0]->bankAccNo == NULL ? '' : $userData[0]->bankAccNo }}">
         </div>
         <div>
             <span class="three columns">Nama penuh</span>
-            <input class="nine columns" type="text" placeholder="John Bryce" required name="bankFullName" value="{{ $userData[0]->bankFullName == NULL ? '' : $userData[0]->bankFullName }}">
+            <input class="nine columns" type="text" placeholder="John Bryce" name="bankFullName" id="bankFullName" value="{{ $userData[0]->bankFullName == NULL ? '' : $userData[0]->bankFullName }}">
         </div>
     </div>
     <button class="subBtn twelve columns" type="submit">Simpan</button>
@@ -97,10 +97,18 @@ modal.open();
 }
 
 function openEwallet(){
+    document.getElementById("phone").required = true;
+    document.getElementById("bankCompany").value = "";
+    document.getElementById("bankAccNo").value = "";
+    document.getElementById("bankFullName").value = "";
     document.querySelector('.ewalletForm').style.display = 'block';
     document.querySelector('.bankForm').style.display = 'none';
 }
 function openBank(){
+    document.getElementById("bankCompany").required = true;
+    document.getElementById("bankAccNo").required = true;
+    document.getElementById("bankFullName").required = true;
+    document.getElementById("phone").value = "";
     document.querySelector('.ewalletForm').style.display = 'none';
     document.querySelector('.bankForm').style.display = 'block';
 }

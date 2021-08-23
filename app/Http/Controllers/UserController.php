@@ -68,6 +68,8 @@ class UserController extends Controller
             $data['totalRatingP'] = $this->calculateTotalP();
             $data['totalRatingQ'] = $this->calculateTotalQ();
 
+            $data['IndeksKegembiraanKeseluruhan'] = round(($this->calculateTotalB() + $this->calculateTotalC() + $this->calculateTotalD() + $this->calculateTotalE() + $this->calculateTotalF() + $this->calculateTotalG()) / 600 * 100, 2);
+            $data['IndeksOBTKeseluruhan'] = $this->calculateTotalH();
             $totalResponden = DB::table('entries')
                 ->where('completedR','=', '1')
                 ->count();
@@ -196,7 +198,7 @@ class UserController extends Controller
                 $ses = $request->session()->put('identity', $request->email);
                 return redirect('users/demografi');
         }
-        $request->session()->put('identity', $request->email);
+        $ses = $request->session()->put('identity', $request->email);
         return redirect('/users');
         }
 
