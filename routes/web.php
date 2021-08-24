@@ -144,9 +144,5 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 });
 
 /* Dev Router */
-Route::get('/view-clear', function() {
-    $exitCode = Artisan::call('view:clear');
-    return '<h1>View cache cleared</h1>';
-});
 Route::get('/dev', [DevTest::class, 'index']);
 Route::get('/admin/dev', [DevAdmin::class, 'index']);

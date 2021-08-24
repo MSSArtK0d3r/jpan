@@ -2,6 +2,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
 <script src={{ url('js/chartjs-plugin-datalabels.min.js') }}></script>
 @section('body')
+@if (is_null($notZero) == true)
+    <div class="row">
+        <div class="col-x-12">
+            No data avaiable
+        </div>
+    </div>
+@else
 <div class="row">
     <div class="col-sm-6 col-lg-3">
         <div class="card text-white bg-indigo">
@@ -43,7 +50,7 @@
     <div id="chartContainer"></div>
     </div>
 </div>
-    <script type="application/javascript">
+<script type="application/javascript">
     document.addEventListener("DOMContentLoaded", 
     function () {
         document.getElementById("chartContainer").innerHTML = '<canvas id="votes"></canvas>';
@@ -91,4 +98,6 @@
 );
         
         </script>
+@endif
+
 @endsection

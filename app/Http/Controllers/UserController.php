@@ -51,6 +51,9 @@ class UserController extends Controller
     }
 
     public function adminDashboard(){
+
+            $notZero = DB::table('entries')->where('completedR', 1)->first();
+            if (is_null($notZero) == false){
             $data['totalRatingB'] = $this->calculateTotalB();
             $data['totalRatingC'] = $this->calculateTotalC();
             $data['totalRatingD'] = $this->calculateTotalD();
@@ -73,8 +76,10 @@ class UserController extends Controller
             $totalResponden = DB::table('entries')
                 ->where('completedR','=', '1')
                 ->count();
-
-        return view('admin.dashboard', compact('data','totalResponden'));
+            return view('admin.dashboard', compact('data','totalResponden', 'notZero'));
+            }
+            
+        return view('admin.dashboard', compact('notZero'));
     }
 
     public function index(Request $request){
