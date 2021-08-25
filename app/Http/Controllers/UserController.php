@@ -84,16 +84,13 @@ class UserController extends Controller
 
     public function index(Request $request){
         $user = $this->getUser($request);
-        $notZero = DB::table('entries')->where('completedR', 1)->first();
 
         if ($user != NULL) {
-            if ($notZero == NULL){
-                return redirect()->route('demograph');
-            }
-            $data = array();
-
+            
             $entry = DB::table('entries')->where('email','=', $user)->first();
-        
+            $notZero = DB::table('entries')->where('completedR', 1)->first();
+            $userProgress = $this->getUserProgress($request);
+
             $hasCompleted['completedA'] = $entry->completedA;
             $hasCompleted['completedB'] = $entry->completedB;
             $hasCompleted['completedC'] = $entry->completedC;
@@ -114,7 +111,12 @@ class UserController extends Controller
             $hasCompleted['completedO'] = $entry->completedP;
             $hasCompleted['completedP'] = $entry->completedQ;
             $hasCompleted['completedQ'] = $entry->completedR;
+            
+            if (is_null($notZero) == true){
+                return view('users.user', compact('user', 'notZero', 'userProgress', 'userProgress'));
+            }
 
+            $data = array();
             $data['totalRatingB'] = $this->calculateTotalB();
             $data['totalRatingC'] = $this->calculateTotalC();
             $data['totalRatingD'] = $this->calculateTotalD();
@@ -131,7 +133,6 @@ class UserController extends Controller
             $data['totalRatingO'] = $this->calculateTotalO();
             $data['totalRatingP'] = $this->calculateTotalP();
             $data['totalRatingQ'] = $this->calculateTotalQ();
-            $userProgress = $this->getUserProgress($request);
             
             //Index Data
             $totalIndex['indexB'] = $this->calculateIndexB($user);
@@ -191,7 +192,9 @@ class UserController extends Controller
             $subDimension['subDimensionP'] = $this->calculateIndexP($entry->P1, $entry->P2);
             $subDimension['subDimensionQ'] = $this->calculateIndexQ($entry->Q1, $entry->Q2, $entry->Q3, $entry->Q4);
             
-            return view('users.user', compact('user', 'data', 'hasCompleted', 'userProgress', 'totalIndex', 'indexKegembiraan', 'indexOBT', 'subDimension'));
+            return view('users.user', compact('user', 'data', 'hasCompleted', 'userProgress', 'totalIndex', 'indexKegembiraan', 'indexOBT', 'subDimension', 'notZero'));
+            
+            
         }
         return view('users.user', compact('user'));
     }
@@ -1578,7 +1581,8 @@ class UserController extends Controller
         
         $data = array(
             'komen',
-            'cadangan'
+            'cadangan',
+            'saguhati'
         );
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
@@ -1588,25 +1592,41 @@ class UserController extends Controller
     public function storeSectionR(Request $request){
         
         $user = $this->getUser($request);
+
+        //$hasCompleted = NULL;
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'komen' => 'nullable',
-            //     'cadangan' => 'nullable',
-            //     'phone' => 'required'
-            // ]);
-            // $hasCompleted = NULL;
-            // if ($request->phone != NULL){
-            //     $hasCompleted = 1;
-            // }
+
+            $validateData = $request->validate([
+                'saguhati' => 'required|numeric',
+            ]);
+            
+            if ($request->saguhati == 0){
+                //$hasCompleted = 1;
+            
             DB::table('entries')->where('email', $user)->update(array(
                 'komen' => $request->komen,
                 'cadangan' => $request->cadangan,
                 'finish_at' => now(+8),
+                'saguhati' => $request->saguhati,
                 'completedR' => 1
             ));
             
             return redirect('/form');
+
+            } elseif ($request->saguhati == 1) {
+                
+                DB::table('entries')->where('email', $user)->update(array(
+                    'komen' => $request->komen,
+                    'cadangan' => $request->cadangan,
+                    'finish_at' => now(+8),
+                    'saguhati' => $request->saguhati,
+                    'completedR' => NULL
+                ));
+                
+                return redirect()->route('reward'); 
             }
+
+        }
         return redirect('users');
     }
 
@@ -2459,11 +2479,12 @@ class UserController extends Controller
         }
 
         $hasCompleted = DB::table('entries')->select('completedR')->where('email', '=', $user)->get()->toArray();
-                
-                if ($hasCompleted[0]->completedR == NULL) {
-                    return redirect()->route('home');
-                }
-        
+        $getSaguHati = DB::table('entries')->select('saguhati')->where('email', '=', $user)->get()->toArray();        
+        if ($hasCompleted[0]->completedR == NULL && $getSaguHati[0]->saguhati == NULL) {
+            return redirect()->route('home');
+        } elseif ($hasCompleted[0]->completedR == 1 && $getSaguHati[0]->saguhati == 0) {
+            return redirect()->route('home');
+        } 
         $data = array(
             'paymentChoose',
             'phone',
@@ -2474,7 +2495,7 @@ class UserController extends Controller
 
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         $userProgress = $this->getUserProgress($request);
-        return view('users.reward', compact('user','userData','userProgress'));
+        return view('users.reward', compact('user','userData','userProgress','getSaguHati','hasCompleted'));
     }
 
     public function storeReward(Request $request){
@@ -2487,7 +2508,8 @@ class UserController extends Controller
             'phone' => $request->phone,
             'bankCompany' => $request->bankCompany,
             'bankAccNo' => $request->bankAccNo,
-            'bankFullName' => $request->bankFullName
+            'bankFullName' => $request->bankFullName,
+            'completedR' => 1
         ));
         return redirect()->route('home');
     }

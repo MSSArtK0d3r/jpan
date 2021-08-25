@@ -119,7 +119,7 @@
     </div>
 </a>
 <a href="{{$completedQ == 1 ? route('sr') : '#'}}">
-    <div class="bahagian {{Route::currentRouteName() == 'sr' ? 'activeSection' : ''}}"><span class="topik">Bahagian R<span class="{{$completedR == 1 ? 'completed' : 'notComplete'}}">{{$completedR == 1 ? 'selesai' : 'Belum selesai'}}</span></span><br>
+    <div class="bahagian {{Route::currentRouteName() == 'sr' ? 'activeSection' : ''}}"><span class="topik">Bahagian R<span class="{{$completedR == 1 || $getSaguHati() == 1 ? 'completed' : 'notComplete'}}">{{$completedR == 1 || $getSaguHati() == 1 ? 'selesai' : 'Belum selesai'}}</span></span><br>
         <strong>Soalan Terbuka</strong>
     </div>
 </a>
@@ -128,11 +128,13 @@
         <strong>Keputusan I-KOBT</strong>
     </div>
 </a>
-@if ($getCompletedR() == 1)
+@if ($getPaidResponden() <= 6122)
+@if ($getCompletedR() == NULL && $getSaguHati() == 1 || $getCompletedR() == 1 && $getSaguHati() == 1)
 <a href="{{route('reward')}}">
     <div class="bahagianLast">
-        <strong>Maklumat Bayaran Sagu hati</strong>
+        <strong>Maklumat Bayaran Sagu Hati</strong>
         <span class="{{$paymentChoose != NULL ? 'completed' : 'notComplete'}}">{{$paymentChoose != NULL ? 'selesai' : 'Belum selesai'}}</span>
     </div>
 </a>
+@endif
 @endif

@@ -40,6 +40,12 @@ class RatingsComponents extends Component
         return $data;
     }
 
+    public function getSaguHati(){
+        $data = DB::table('entries')->select('saguhati')->where('email', $this->getUser)->get()->toArray();
+        $data = $data[0]->saguhati;
+        return $data;
+    }
+
     /**
      * Get the view / contents that represent the component.
      *

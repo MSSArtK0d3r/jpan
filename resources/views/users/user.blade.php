@@ -1,7 +1,7 @@
 <x-header/>
 <div class="contents {{ $user == NULL ? '' : 'eight columns'}}">
  <h5 class="title-center" style="font-size: 1.3em">SOAL SELIDIK<br>INDEKS-KEGEMBIRAAN ORGANISASI BERPRESTASI TINGGI<br>(I-KOBT)</h5>
-    @if ( $user == NULL )
+@if ( $user == NULL )
     <x-context-main/>
     <form class="title-center" action="{{route('storeMyForm')}}" method="POST">
         @csrf
@@ -13,8 +13,9 @@
         {{-- <input class="subBtn" onclick="this.value='Loading...'" type="submit" value="Setuju dan teruskan"/> --}}
     </form>
  </div>
-    @else
+@else
     {{-- @if ($userProgress[0]->completedA != NULL && $userProgress[0]->completedB != NULL && $userProgress[0]->completedC != NULL && $userProgress[0]->completedD != NULL && $userProgress[0]->completedE != NULL && $userProgress[0]->completedF != NULL && $userProgress[0]->completedG != NULL && $userProgress[0]->completedH1 != NULL && $userProgress[0]->completedH2 != NULL  && $userProgress[0]->completedH3 != NULL && $userProgress[0]->completedH4 != NULL && $userProgress[0]->completedI != NULL && $userProgress[0]->completedJ != NULL && $userProgress[0]->completedK != NULL && $userProgress[0]->completedL != NULL && $userProgress[0]->completedM != NULL && $userProgress[0]->completedN != NULL && $userProgress[0]->completedO != NULL && $userProgress[0]->completedP != NULL && $userProgress[0]->completedQ != NULL && $userProgress[0]->completedR != NULL ) --}}
+    @if (is_null($notZero) == false)
     @if ($userProgress[0]->completedR == 1)
     <div class="widgetContainer twelve columns">
         <div class="widgetIndex six columns">
@@ -206,13 +207,17 @@
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">Q</span></p></div>
         <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Altruisme</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span class="dimensipercent">{{$subDimension['subDimensionQ']}}%<x-dimensi-info-point-q :userPoints="$subDimension['subDimensionQ']"/></span></p></div>
-    </div>
+    </div> 
     @else
         <div class="notCompleteAllSection">
             <p>Sila lengkapkan kesemua bahagian untuk mendapat data.</p>
         </div>
-    @endif
-    
+@endif
+@else
+        <div class="notCompleteAllSection">
+            <p>Sila lengkapkan kesemua bahagian untuk mendapat data.</p>
+        </div>
+@endif
 </div>
 <div class="four columns userLinks">
     <x-users-links :user="$user" 
@@ -240,6 +245,8 @@
     :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
+ @if (is_null($notZero) == false)
+     
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
 <script src="{{ url('js/tingle.min.js') }}"></script>
 <script src="{{ url('js/dimensi-model.js') }}"></script>
@@ -284,6 +291,7 @@
         }
     });
 </script>
+@endif
 @endif
 <x-footer/>
 

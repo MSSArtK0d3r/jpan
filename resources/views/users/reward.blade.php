@@ -46,7 +46,6 @@
     </div>
     <button class="subBtn twelve columns" type="submit">Simpan</button>
     </form>
-    
 </div>
 <div class="four columns userLinks">
     <x-users-links :user="$user" 
@@ -98,6 +97,9 @@ modal.open();
 
 function openEwallet(){
     document.getElementById("phone").required = true;
+    document.getElementById("bankCompany").required = false;
+    document.getElementById("bankAccNo").required = false;
+    document.getElementById("bankFullName").required = false;
     document.getElementById("bankCompany").value = "";
     document.getElementById("bankAccNo").value = "";
     document.getElementById("bankFullName").value = "";
@@ -105,6 +107,7 @@ function openEwallet(){
     document.querySelector('.bankForm').style.display = 'none';
 }
 function openBank(){
+    document.getElementById("phone").required = false;
     document.getElementById("bankCompany").required = true;
     document.getElementById("bankAccNo").required = true;
     document.getElementById("bankFullName").required = true;

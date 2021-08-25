@@ -47,6 +47,7 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\View\\Components\\BtnSubmit' => $baseDir . '/app/View/Components/BtnSubmit.php',
     'App\\View\\Components\\ContextMain' => $baseDir . '/app/View/Components/ContextMain.php',
     'App\\View\\Components\\DevComp' => $baseDir . '/app/View/Components/DevComp.php',
     'App\\View\\Components\\Footer' => $baseDir . '/app/View/Components/Footer.php',
