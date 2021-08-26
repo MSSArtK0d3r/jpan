@@ -6,15 +6,15 @@
     @csrf
     <div class="introPage" style="margin-bottom: 10px;">
         <label>1. Apakah komen anda mengenai soal selidik ini? (Jika ada)</label>
-        <textarea rows="10" class="big-input" name="komen">{{ $userData[0]->komen == NULL ? '' : $userData[0]->komen }}</textarea><br>
+        <textarea {{$userData[0]->saguhati == 1 || $userProgress[0]->completedR == 1 ? 'disabled' : ''}} rows="10" class="big-input" name="komen">{{ $userData[0]->komen == NULL ? '' : $userData[0]->komen }}</textarea><br>
         <label>2. Apakah cadangan/komen ada berkaitan kegembiraan dan prestasi anda sebagai penjawat awam negeri Sabah? (Jika ada)</label><br>
-        <textarea rows="10" class="big-input" name="cadangan" >{{ $userData[0]->cadangan == NULL ? '' : $userData[0]->cadangan }}</textarea>
+        <textarea {{$userData[0]->saguhati == 1 || $userProgress[0]->completedR == 1 ? 'disabled' : ''}} rows="10" class="big-input" name="cadangan" >{{ $userData[0]->cadangan == NULL ? '' : $userData[0]->cadangan }}</textarea>
     </div>
     <div class="introPage <x-form-validation-error key='saguhati'/>" style="margin-bottom: 10px;">
-        <p style="text-align:justify;">Pihak penyelidik dengan berbesar hati memberikan bayaran sagu hati sebanyak RM10 di atas penglibatan anda dalam kajian ini. Adakah anda bersetuju menerima bayaran tersebut? (Sekiranya <strong>BERSETUJU</strong>, sila lengkapkan maklumat anda di bahagian <strong>Maklumat Bayaran Sagu Hati</strong> setelah anda membuat Pengesahan)</p>
-        <input {{$userData[0]->saguhati == 1 ? 'disabled' : ''}} style="margin-left: 15px" type="radio" name="saguhati" id="setuju" value="1" {{ $userData[0]->saguhati == 1 ? 'checked' : ''}}>
+        <p style="text-align:justify;">Pihak penyelidik dengan berbesar hati memberikan bayaran sagu hati sebanyak RM10 atas penglibatan anda dalam kajian ini. Adakah anda bersetuju menerima bayaran tersebut? (Sekiranya <strong>BERSETUJU</strong>, sila lengkapkan maklumat anda di bahagian <strong>Maklumat Bayaran Sagu Hati</strong> setelah anda membuat Pengesahan)</p>
+        <input {{$userData[0]->saguhati == 1 || $userProgress[0]->completedR == 1 ? 'disabled' : ''}} style="margin-left: 15px" type="radio" name="saguhati" id="setuju" value="1" {{ $userData[0]->saguhati == 1 ? 'checked' : ''}}>
         <label class="inBlock" for="setuju">Setuju</label>
-        <input {{$userData[0]->saguhati == 1 ? 'disabled' : ''}} style="margin-left: 15px" type="radio" name="saguhati" id="tidaksetuju" value="0" {{ $userData[0]->saguhati == 0 ? 'checked' : ''}}>
+        <input {{$userData[0]->saguhati == 1 || $userProgress[0]->completedR == 1 ? 'disabled' : ''}} style="margin-left: 15px" type="radio" name="saguhati" id="tidaksetuju" value="0" {{ $userData[0]->saguhati == 0 ? 'checked' : ''}}>
         <label class="inBlock" for="tidaksetuju">Tidak Setuju</label>
     </div>
     </form>
