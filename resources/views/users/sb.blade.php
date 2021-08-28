@@ -12,11 +12,11 @@
          </div>
          <div class="introPage <x-form-validation-error :key='$userData[0]->filledB' :index='$userData[0]->B2'/>" style="margin-bottom: 10px;">
             <p>2. Mereka yang bekerja dengan baik lebih berpeluang mendapat kenaikan pangkat.</p>
-            <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="B" :userData="$userData[0]->B3"/>
+            <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="B" :userData="$userData[0]->B2"/>
          </div>
          <div class="introPage <x-form-validation-error :key='$userData[0]->filledB' :index='$userData[0]->B3'/>" style="margin-bottom: 10px;">
             <p>3. Saya berasa puas dengan peluang kenaikan gaji.</p>
-            <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="B" :userData="$userData[0]->B2"/>
+            <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="B" :userData="$userData[0]->B3"/>
          </div>
          <div class="introPage <x-form-validation-error :key='$userData[0]->filledB' :index='$userData[0]->B4'/>" style="margin-bottom: 10px;">
             <p>4. Saya berpuas hati dengan kepimpinan ketua saya (Penilai 1)<br>Nota: Ketua adalah merujuk kepada Penilai 1 dalam penilaian prestasi tahunan
