@@ -706,9 +706,9 @@
 
 <body>
    <div class="navigation nav2">
-      <a href="/">Pengenalan</a>
+      <a href="/pengenalan">Pengenalan</a>
       <a href="/informasi">Informasi</a>
-      <a href="/form">Soal Selidik I-KOBT</a>
+      <a href="/">Soal Selidik I-KOBT</a>
       <a href="/hubungi">Hubungi Kami</a>
       <a href="/admin">Pentadbir</a>
    </div>

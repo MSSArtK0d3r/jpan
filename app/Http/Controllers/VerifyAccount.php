@@ -14,11 +14,11 @@ class VerifyAccount extends Controller
             return redirect()->route('invalid');
         } else {
             $hasVerified = DB::table('entries')->select('verified')->where('uuid', $uuid)->first();
-            if ($hasVerified->verified == 1) {
+            if ($hasVerified->verified == 'verified') {
                 return redirect()->route('doneverify');
             }
             DB::table('entries')->where('uuid', $uuid)->update(array(
-                'verified' => 1
+                'verified' => 'verified'
             ));
             
             return redirect()->route('verified');

@@ -82,8 +82,12 @@ class UserController extends Controller
 
     public function index(Request $request){
         $user = $this->getUser($request);
+        $accountStatus = DB::table('entries')->select('verified')->where('email', $user)->first();
 
         if ($user != NULL) {
+            if($accountStatus->verified != 'verified'){
+                return redirect()->route('send-verification');
+            }
             
             $entry = DB::table('entries')->where('email','=', $user)->first();
             $notZero = DB::table('entries')->where('completedR', 1)->first();
@@ -1673,6 +1677,7 @@ class UserController extends Controller
                 'cadangan' => $request->cadangan,
                 'finish_at' => now(+8),
                 'saguhati' => $request->saguhati,
+                'verified' => 'pending',
                 'completedR' => 1
             ));
             
@@ -2592,6 +2597,7 @@ class UserController extends Controller
             'bankCompany' => $request->bankCompany,
             'bankAccNo' => $request->bankAccNo,
             'bankFullName' => $request->bankFullName,
+            'verified' => 'pending',
             'completedR' => 1
         ));
         return redirect()->route('home');

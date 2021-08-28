@@ -1,1 +1,1 @@
-{{ url($data) }}
+{{ var_dump($data->verified) }}
