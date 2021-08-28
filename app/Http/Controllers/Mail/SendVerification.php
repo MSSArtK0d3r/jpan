@@ -31,7 +31,8 @@ class SendVerification extends Controller
             'verificationLink' => route('verify', $uuid),
         ];
 
-        $user = 'syadri@borneocode.com';
+        //$user = $request->session()->get('identity');
+        $user = 'etadiguu@gmail.com';
         Mail::to($user)->send(new SendVerificationAccount($data));
 
         return view('verification.mail-sent', compact('data'));
