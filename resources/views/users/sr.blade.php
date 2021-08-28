@@ -2,7 +2,8 @@
 <div class="contents eight columns">
     <h5 class="title-center">BAHAGIAN R (SOALAN TERBUKA)</h5>
     <x-form-global-error/>
-    <form action="{{route('updateSectionR')}}" method="POST" id="srSumit">
+    {{-- {{route('updateSectionR')}} --}}
+    <form method="POST" id="srSumit">
     @csrf
     <div class="introPage" style="margin-bottom: 10px;">
         <label>1. Apakah komen anda mengenai soal selidik ini? (Jika ada)</label>
@@ -19,7 +20,8 @@
     </div>
     </form>
     @if ($userProgress[0]->completedR == NULL && $userData[0]->saguhati == NULL)
-        <button class="subBtn twelve columns" onclick="confirm()">Simpan dan Lihat Keputusan I-KOBT Anda</button>
+        <button class="subBtn twelve columns" onclick="confirm()" >Simpan dan Lihat Keputusan I-KOBT Anda</button>
+        <button style="display: none" class="subBtn twelve columns" >Simpan dan Lihat Keputusan I-KOBT Anda</button>
     @endif
     
 </div>
@@ -51,7 +53,7 @@
  </div>
  <script src="{{ url('js/tingle.min.js') }}"></script>
  <script>
-     function confirm() {
+    function confirm() {
     var modal = new tingle.modal({
     footer: true,
     stickyFooter: false,
@@ -62,13 +64,27 @@
 modal.setContent('<span>Sekiranya anda berpuas hati dan membuat pengesahan, pilihan jawapan dalam I-KOBT <strong>TIDAK BOLEH</strong> diubah.</span>');
 modal.addFooterBtn('Saya berpuas hati dan mengesahkan jawapan saya', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {
     // here goes some logic
-    document.getElementById("srSumit").submit();
+    //document.getElementById("srSumit").submit();
+    SaveFormNow();
 });
 modal.addFooterBtn('Saya ingin ubah jawapan', 'tingle-btn tingle-btn--danger tingle-btn--pull-right', function() {
     // here goes some logic
+    //document.getElementById("srSumit2").submit();
+    halfSave();
     modal.close();
+
 });
 modal.open();
+
+form = document.getElementById("srSumit");
+function SaveFormNow() {
+    form.action="{{route('updateSectionR')}}";
+    form.submit();
+}
+function halfSave() {
+    form.action="{{route('updateSectionR2')}}";
+    form.submit();
+}
 }
  </script>
 <x-footer/>

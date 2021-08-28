@@ -12,11 +12,12 @@ class formValidationError extends Component
      * @return void
      */
 
-     public $key;
-
-    public function __construct($key='')
+    public $key;
+    public $index;
+    public function __construct($key='', $index='')
     {
         $this->key = $key;
+        $this->index = $index;
     }
 
     /**

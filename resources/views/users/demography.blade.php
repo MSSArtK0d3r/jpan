@@ -7,7 +7,7 @@
     <x-form-global-error/>
     <form action="{{route('updateDemografi')}}" method="POST">
       @csrf
-    <div class="introPage <x-form-validation-error key='umur'/>" style="margin-bottom: 10px;">
+    <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->umur'/>" style="margin-bottom: 10px;">
             <label>1. Umur :</label>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="umur" class="selectBox">
                         @if ($userData[0]->umur == NULL)
@@ -17,14 +17,14 @@
                         @endif
                     </select> tahun
                   </div>
-                  <div class="introPage <x-form-validation-error key='jantina'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->jantina'/>" style="margin-bottom: 10px;">
                      <label>2. Jantina :</label>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} style="margin-left: 15px" type="radio" id="Lelaki" name="jantina" value="Lelaki" {{ $userData[0]->jantina == 'Lelaki' ? 'checked' : ''}}>
                      <label class="inBlock" for="Lelaki">Lelaki</label>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} style="margin-left: 15px" type="radio" id="Perempuan" name="jantina" value="Perempuan" {{ $userData[0]->jantina == 'Perempuan' ? 'checked' : ''}}>
                      <label class="inBlock" for="Perempuan">Perempuan</label>
                   </div>
-                  <div class="introPage <x-form-validation-error key='agama'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->agama'/>" style="margin-bottom: 10px;">
                      <label>3. Agama :</label><br>
                         <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('lainAgamaInput')" id="Islam" name="agama" value="Islam" {{ $userData[0]->agama == 'Islam' ? 'checked' : '' }}>
                         <label class="inBlock" for="Islam">Islam</label><br>
@@ -40,7 +40,7 @@
                         <label class="inBlock" for="LainAgama">Lain-lain (sila nyatakan) :</label> <input id="lainAgamaInput" class="lain-lain fiftyPercent" name="lainAgamaDetail" value="{{ $userData[0]->agama == 'lain-lain' ? $userData[0]->lainAgamaDetail : '' }}">
                      </div>
 
-                  <div class="introPage <x-form-validation-error key='bangsa'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->bangsa'/>" style="margin-bottom: 10px;">
                      <label>4. Bangsa : </label>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="bangsa" class="selectBox">
                      @if ($userData[0]->bangsa == NULL)
@@ -49,7 +49,6 @@
                            <option value="Cina">Cina</option>
                            <option value="India">India</option>
                            <option value="Bumiputera Sabah">Bumiputera Sabah</option>
-                           <option value="Bumiputera Sarawak">Bumiputera Sarawak</option>
                            <option value="Lain-lain">Lain-lain</option>
                      @else
                            <option value="{{$userData[0]->bangsa}}">[Pilihan] - {{$userData[0]->bangsa}}</option>
@@ -57,12 +56,11 @@
                            <option value="Cina">Cina</option>
                            <option value="India">India</option>
                            <option value="Bumiputera Sabah">Bumiputera Sabah</option>
-                           <option value="Bumiputera Sarawak">Bumiputera Sarawak</option>
                            <option value="Lain-lain">Lain-lain</option>
                      @endif
                      </select>
                   </div>
-                  <div class="introPage <x-form-validation-error key='daerahBertugas'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->daerahBertugas'/>" style="margin-bottom: 10px;">
                      <label>5. Daerah Bertugas : </label>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="daerahBertugas" class="selectBox">
                         @if ( $userData[0]->daerahBertugas == NULL )
@@ -126,7 +124,7 @@
                         @endif
                      </select>
                   </div>
-                  <div class="introPage <x-form-validation-error key='status'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->status'/>" style="margin-bottom: 10px;">
                      <p>6. Status Perkahwinan :</p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="Bujang" name="status" value="Bujang" {{$userData[0]->status == 'Bujang' ? 'checked' : ''}}>
                      <label class="inBlock" for="Bujang">Bujang</label><br>
@@ -140,7 +138,7 @@
                      <label class="inBlock" for="Balu">Balu</label><br>
                      
                   </div>
-                  <div class="introPage <x-form-validation-error key='bilAnak'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->bilAnak'/>" style="margin-bottom: 10px;">
                      <label>7. Bilangan Anak : </label> 
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="bilAnak" class="selectBox">
                         @if ( $userData[0]->bilAnak == NULL )
@@ -150,18 +148,18 @@
                         @endif
                      </select> Orang
                      </div>
-                  <div class="introPage <x-form-validation-error key='bilIsiRumah'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->bilIsiRumah'/>" style="margin-bottom: 10px;">
                      <label>8. Bilangan Isi Rumah : </label>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} class="small-input" value="{{ $userData[0]->bilIsiRumah == NULL ? '' : $userData[0]->bilIsiRumah }}" name="bilIsiRumah"> Orang
                      </div>
-                  <div class="introPage <x-form-validation-error key='tinggalBersamaPasangan'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->tinggalBersamaPasangan'/>" style="margin-bottom: 10px;">
                      <p>9. Adakah anda tinggal bersama pasangan anda? :</p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="Ya" name="tinggalBersamaPasangan" value="Ya" {{ $userData[0]->tinggalBersamaPasangan == 'Ya' ? 'checked' : '' }}>
                      <label class="inBlock" for="Ya">Ya</label><br>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="tidak" name="tinggalBersamaPasangan" value="Tidak" {{ $userData[0]->tinggalBersamaPasangan == 'Tidak' ? 'checked' : '' }}>
                      <label class="inBlock" for="tidak">Tidak</label><br>
                      </div>
-                  <div class="introPage <x-form-validation-error key='bilBilikTidur'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->bilBilikTidur'/>" style="margin-bottom: 10px;">
                      <label>10. Bilangan Bilik Tidur di Rumah : </label>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="bilBilikTidur" class="selectBox">
                         @if ( $userData[0]->bilBilikTidur == NULL )
@@ -172,7 +170,7 @@
                      </select>
                      Buah Bilik
                      </div>
-                  <div class="introPage <x-form-validation-error key='education'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->education'/>" style="margin-bottom: 10px;">
                      <p>11. Tahap Pendidikan Tertinggi :</p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="sr" name="education" value="Sekolah Rendah" {{ $userData[0]->education == 'Sekolah Rendah' ? 'checked' : '' }}>
                      <label class="inBlock" for="sr">Sekolah Rendah</label><br>
@@ -191,7 +189,7 @@
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="PhD" name="education" value="PhD" {{ $userData[0]->education == 'PhD' ? 'checked' : '' }}>
                      <label class="inBlock" for="PhD">Ph.D</label><br>
                      </div>
-                  <div class="introPage <x-form-validation-error key='agensi'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->agensi'/>" style="margin-bottom: 10px;">
                      <p>12. Agensi (Kementerian/Jabatan/dll) : </p>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="agensi" class="selectBox">
                         @if ( $userData[0]->agensi == NULL )
@@ -201,16 +199,16 @@
                         @endif
                      </select>
                      </div>
-                  <div class="introPage <x-form-validation-error key='kumpulanPerkhidmatan'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->kumpulanPerkhidmatan'/>" style="margin-bottom: 10px;">
                      <p>13. Kumpulan Perkhidmatan : </p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} id="pt" type="radio" name="kumpulanPerkhidmatan" value="Pengurusan Tertinggi" {{ $userData[0]->kumpulanPerkhidmatan == 'Pengurusan Tertinggi' ? 'checked' : '' }}>
                      <label class="inBlock" for="pt">Pengurusan Tertinggi</label><br>
-                     <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} id="pp" type="radio" name="kumpulanPerkhidmatan" value="Pengurusan Professional" {{ $userData[0]->kumpulanPerkhidmatan == 'Pengurusan Professional' ? 'checked' : '' }}>
-                     <label for="pp" class="inBlock">Pengurusan & Professional</label><br>
+                     <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} id="pp" type="radio" name="kumpulanPerkhidmatan" value="Pengurusan Profesional" {{ $userData[0]->kumpulanPerkhidmatan == 'Pengurusan Profesional' ? 'checked' : '' }}>
+                     <label for="pp" class="inBlock">Pengurusan & Profesional</label><br>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} id="kp" type="radio" name="kumpulanPerkhidmatan" value="Kumpulan Pelaksana" {{ $userData[0]->kumpulanPerkhidmatan == 'Kumpulan Pelaksana' ? 'checked' : '' }}>
                      <label for="kp" class="inBlock">Kumpulan Pelaksana</label>
                   </div>
-                  <div class="introPage <x-form-validation-error key='tarafJawatan'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->tarafJawatan'/>" style="margin-bottom: 10px;">
                      <p>14. Taraf Jawatan : </p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} id="tetap" type="radio" name="tarafJawatan" value="Tetap" {{ $userData[0]->tarafJawatan == 'Tetap' ? 'checked' : '' }} >
                      <label for="tetap" class="inBlock">Tetap</label><br>
@@ -219,7 +217,7 @@
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} id="kontrak" type="radio" name="tarafJawatan" value="Kontrak" {{ $userData[0]->tarafJawatan == 'Kontrak' ? 'checked' : '' }}>
                      <label for="kontrak" class="inBlock">Kontrak</label>
                      </div>
-                  <div class="introPage <x-form-validation-error key='skimPerkhidmatan'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->skimPerkhidmatan'/>" style="margin-bottom: 10px;">
                      <p>15. Skim Perkhidmatan : </p>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="skimPerkhidmatan" class="selectBox">
                         @if ( $userData[0]->skimPerkhidmatan == NULL )
@@ -267,7 +265,7 @@
                         @endif
                      </select>
                      </div>
-                  <div class="introPage <x-form-validation-error key='gredJawatan'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->gredJawatan'/>" style="margin-bottom: 10px;">
                      <label>16. Gred Jawatan : </label>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} class="selectBox" name="gredJawatan">
                         @if ( $userData[0]->gredJawatan == NULL )
@@ -277,22 +275,22 @@
                         @endif
                      </select>
                   </div>
-                  <div class="introPage <x-form-validation-error key='gajiKasarBulanan'/>" style="margin-bottom: 10px;">
+                  <div class="introPage" style="margin-bottom: 10px;">
                      <label>17. Gaji Kasar Bulanan : RM </label>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} class="small-input" name="gajiKasarBulanan" value="{{ $userData[0]->gajiKasarBulanan == NULL ? '' : $userData[0]->gajiKasarBulanan }}">
                   </div>
-                  <div class="introPage <x-form-validation-error key='gajiBersihBulanan'/>" style="margin-bottom: 10px;">
+                  <div class="introPage" style="margin-bottom: 10px;">
                      <label>18. Gaji Bersih Bulanan : RM </label>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} class="small-input" name="gajiBersihBulanan" value="{{ $userData[0]->gajiBersihBulanan == NULL ? '' : $userData[0]->gajiBersihBulanan }}">
                   </div>
-                  <div class="introPage <x-form-validation-error key='masalahKesihatan'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->masalahKesihatan'/>" style="margin-bottom: 10px;">
                      <p>19. Adakah anda mengalami masalah kesihatan? (Jika Ya, sila nyatakan)</p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="adaMasalahKesihatanYa" value="Ya" name="masalahKesihatan" {{ $userData[0]->masalahKesihatan == 'Ya' ? 'Checked' : '' }} >
                      <label class="inBlock" for="adaMasalahKesihatanYa">Ya</label><br><input placeholder="Nyatakan masalah kesihatan" id="inputKesihatan" class="big-input lain-lain" name="masalahKesihatanDetail" value="{{ $userData[0]->masalahKesihatan == 'Ya' ? $userData[0]->masalahKesihatanDetail : '' }}"><br>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('inputKesihatan')" id="adaMasalahKesihatanTidak" name="masalahKesihatan" value="Tidak" {{ $userData[0]->masalahKesihatan == 'Tidak' ? 'Checked' : '' }}>
                      <label class="inBlock" for="adaMasalahKesihatanTidak">Tidak</label>
                   </div>
-                  <div class="introPage <x-form-validation-error key='tempatTinggal'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->tempatTinggal'/>" style="margin-bottom: 10px;">
                      <p>20. Status Rumah Tempat Tinggal : </p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('inputTempatTinggal')" id="RumahSendiri" name="tempatTinggal" value="Rumah Sendiri" {{ $userData[0]->tempatTinggal == 'Rumah Sendiri' ? 'checked' : '' }}>
                      <label class="inBlock" for="RumahSendiri">Rumah Sendiri</label><br>
@@ -303,7 +301,7 @@
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="lainTempatTingal" name="tempatTinggal" value="lain-lain" {{ $userData[0]->tempatTinggal == 'lain-lain' ? 'checked' : '' }}>
                      <label class="inBlock" for="lainTempatTingal">Lain-lain (Nyatakan) : </label><input id="inputTempatTinggal" class="big-input lain-lain" name="tempatTinggalDetail" value="{{ $userData[0]->tempatTinggal == 'lain-lain' ? $userData[0]->tempatTinggalDetail : '' }}">
                   </div>
-                  <div class="introPage <x-form-validation-error key='tinggalBersama'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->tinggalBersama'/>" style="margin-bottom: 10px;">
                      <p>21. Status Tinggal Bersama : </p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('inputTinggalBersama')" id="bersamaIbuBapa" name="tinggalBersama" value="Bersama Ibu Bapa" {{ $userData[0]->tinggalBersama == 'Bersama Ibu Bapa' ? 'checked' : '' }}>
                      <label class="inBlock" for="bersamaIbuBapa">Bersama Ibu Bapa</label><br>
@@ -316,7 +314,7 @@
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="lainTinggalBersamaLain" name="tinggalBersama" value="lain-lain" {{ $userData[0]->tinggalBersama == 'lain-lain' ? 'checked' : '' }}>
                      <label class="inBlock" for="lainTinggalBersamaLain">Lain-lain (Nyatakan) : </label><input id="inputTinggalBersama" class="big-input lain-lain" name="tinggalBersamaDetail" value="{{ $userData[0]->tinggalBersama == 'lain-lain' ? $userData[0]->tinggalBersamaDetail : '' }}">
                   </div>
-                  <div class="introPage <x-form-validation-error key='kenderaanKerja'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->kenderaanKerja'/>" style="margin-bottom: 10px;">
                      <p>22. Apakah jenis pengangkutan anda ke tempat kerja?</p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('inputKenderaanKerja')" id="KeretaSendiri" name="kenderaanKerja" value="Kereta Sendiri" {{ $userData[0]->kenderaanKerja == 'Kereta Sendiri' ? 'checked' : '' }}>
                      <label class="inBlock" for="KeretaSendiri">Kereta Sendiri</label><br>
@@ -329,14 +327,14 @@
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="lainKenderaanKerja" name="kenderaanKerja" value="lain-lain" {{ $userData[0]->kenderaanKerja == 'lain-lain' ? 'checked' : '' }}>
                      <label class="inBlock" for="lainKenderaanKerja">Lain-lain (Nyatakan) : </label><input id="inputKenderaanKerja" class="big-input lain-lain" name="kenderaanKerjaDetail" value="{{ $userData[0]->kenderaanKerja == 'lain-lain' ? $userData[0]->kenderaanKerjaDetail : '' }}">
                   </div>
-                  <div class="introPage <x-form-validation-error key='kesukaranGaji'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->kesukaranGaji'/>" style="margin-bottom: 10px;">
                      <p>23. Adakah anda mengalami kesukaran menjalani kehidupan dengan jumlah gaji anda?</p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="sukarGajiYa" name="kesukaranGaji" value="Ya" {{ $userData[0]->kesukaranGaji == 'Ya' ? 'checked' : '' }}>
                      <label class="inBlock" for="sukarGajiYa">Ya</label><br>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="sukarGajiTidak" name="kesukaranGaji" value="Tidak" {{ $userData[0]->kesukaranGaji == 'Tidak' ? 'checked' : '' }}>
                      <label class="inBlock" for="sukarGajiTidak">Tidak</label>
                   </div>
-                  <div class="introPage <x-form-validation-error key='tempohPerkhidmatanTahun'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->tempohPerkhidmatanTahun'/>" style="margin-bottom: 10px;">
                      <label>24. Tempoh Perkhidmatan : </label>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="tempohPerkhidmatanTahun" class="selectBox">
                         @if ( $userData[0]->tempohPerkhidmatanTahun == NULL)
@@ -355,7 +353,7 @@
                      </select>
                      bulan
                   </div>
-                  <div class="introPage <x-form-validation-error key='masalahKesihatan'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->penilai'/>" style="margin-bottom: 10px;">
                      <p>25. Adakah anda mempunyai seorang atau dua orang penilai.</p>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} style="margin-left: 15px" type="radio" id="penilai1" name="penilai" value="1" {{ $userData[0]->penilai == '1' ? 'checked' : ''}}>
                      <label class="inBlock" for="penilai1">Seorang Penilai</label>
@@ -363,7 +361,7 @@
                      <label class="inBlock" for="penilai2">Dua Orang Penilai</label>
                   </div>
                   <div class="introPage" style="margin-bottom: 10px;">
-                     <label>26. Laporan Nilaian Prestasi Tahunan (LNTP) </label>
+                     <label>26. Laporan Nilaian Prestasi Tahunan (LNPT) {{now()->year - 1}} </label>
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} class="small-input" name="lntp" value="{{ $userData[0]->lntp == NULL ? '' : $userData[0]->lntp }}">%
                   </div>
          <x-btn-submit/>

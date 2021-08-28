@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\EntriesController;
 use App\Http\Controllers\ThankYouResult;
 use App\Http\Controllers\DevTest;
 use App\Http\Controllers\DevAdmin;
+use App\Http\Controllers\Mail\SendVerification;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VerifyAccount;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +28,10 @@ Route::get('/result', function(){
 });
 
 Route::get('/users', function(){
-    return redirect('/form');
+    return redirect()->route('home');
 });
 
-Route::get('/', function(){
+Route::get('/pengenalan', function(){
     return view('pengenalan');
 });
 
@@ -42,7 +44,7 @@ Route::get('/hubungi', function(){
 });
 
 // Users Route
-Route::get('/form', [UserController::class,'index'])->name('home');
+Route::get('/', [UserController::class,'index'])->name('home');
 Route::post('/users', [UserController::class, 'storeData'])->name('storeMyForm');
 Route::get('/users/logout', [UserController::class, 'clearSession'])->name('logout');
 Route::get('/users/demografi', [UserController::class, 'demoGraphy'])->name('demograph');
@@ -87,11 +89,24 @@ Route::get('/users/sq', [UserController::class, 'sectionQ'])->name('sq');
 Route::post('/users/sq', [UserController::class, 'storeSectionQ'])->name('updateSectionQ');
 Route::get('/users/sr', [UserController::class, 'sectionR'])->name('sr');
 Route::post('/users/sr', [UserController::class, 'storeSectionR'])->name('updateSectionR');
+Route::post('/users/sr2', [UserController::class, 'storeSectionR2'])->name('updateSectionR2');
 Route::get('/users/reward', [UserController::class, 'getReward'])->name('reward');
 Route::post('/users/reward', [UserController::class, 'storeReward'])->name('storeReward');
-//
+Route::get('/verify/{uuid}', [VerifyAccount::class, 'index'])->name('verify');
 
-Route::get('/result/{uuid}', [ThankYouResult::class,'index']);
+Route::get('/invalid', function(){
+    return view('invalid');
+})->name('invalid');
+
+Route::get('/verified', function(){
+    return view('verified');
+})->name('verified');
+
+Route::get('/done', function(){
+    return view('doneverify');
+})->name('doneverify');
+
+Route::get('/send-verify', [SendVerification::class, 'SendEmailVerify'])->name('send-verification');
 
 
 Route::post('/submit' , [EntriesController::class,'storeForm']);

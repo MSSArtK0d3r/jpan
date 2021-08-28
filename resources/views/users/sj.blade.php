@@ -6,44 +6,44 @@
     <x-form-global-error/>
     <form action="{{route('updateSectionJ')}}" method="POST">
         @csrf
-        <div class="introPage <x-form-validation-error key='J1'/>" style="margin-bottom: 10px;">
+        <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J1'/>" style="margin-bottom: 10px;">
             <p>1. Tidak teragak-agak untuk meninggalkan sesuatu yang belum selesai.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="J" :userData="$userData[0]->J1"/>
          </div>
-         <div class="introPage <x-form-validation-error key='J2'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J2'/>" style="margin-bottom: 10px;">
             <p>2. Tidak berdaya saing.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="J" :userData="$userData[0]->J2"/>
          </div>
-         <div class="introPage <x-form-validation-error key='J3'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J3'/>" style="margin-bottom: 10px;">
             <p>3. Mendengar dengan baik dan membiarkan dahulu orang lain selesai bercakap.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="J" :userData="$userData[0]->J3"/>
             
          </div>
-         <div class="introPage <x-form-validation-error key='J4'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J4'/>" style="margin-bottom: 10px;">
             <p>4. Menyatakan perasaan secara terbuka.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="4" sectionQuestion="J" :userData="$userData[0]->J4"/>
          </div>
-         <div class="introPage <x-form-validation-error key='J5'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J5'/>" style="margin-bottom: 10px;">
             <p>5. Menyelesaikan satu perkara pada satu masa.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="5" sectionQuestion="J" :userData="$userData[0]->J5"/>
          </div>
-         <div class="introPage <x-form-validation-error key='J6'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J6'/>" style="margin-bottom: 10px;">
             <p>6. Tidak tergesa-gesa walaupun dalam keadaan tertekan.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="6" sectionQuestion="J" :userData="$userData[0]->J6"/>
          </div>
-         <div class="introPage <x-form-validation-error key='J7'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J7'/>" style="margin-bottom: 10px;">
             <p>7. Mudah bergaul.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="7" sectionQuestion="J" :userData="$userData[0]->J7"/>
          </div>
-         <div class="introPage <x-form-validation-error key='J8'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J8'/>" style="margin-bottom: 10px;">
             <p>8. Mementingkan kepuasan diri, bukan orang lain.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="8" sectionQuestion="J" :userData="$userData[0]->J8"/>
          </div>
-         <div class="introPage <x-form-validation-error key='J9'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J9'/>" style="margin-bottom: 10px;">
             <p>9. Lambat dalam melakukan sesuatu perkara.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="9" sectionQuestion="J" :userData="$userData[0]->J9"/>
          </div>
-         <div class="introPage <x-form-validation-error key='J10'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledJ' :index='$userData[0]->J10'/>" style="margin-bottom: 10px;">
             <p>10. Tidak begitu teliti.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="10" sectionQuestion="J" :userData="$userData[0]->J10"/>
          </div>
@@ -76,4 +76,11 @@
     :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
+ <script src="{{ url('js/smoothscroll.js') }}"></script>
+ <script>
+    document.querySelector('.errForm').scrollIntoView({
+    block: "start",
+    behavior: "smooth"
+});
+ </script>
 <x-footer/>

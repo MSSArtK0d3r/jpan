@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Queue\NullQueue;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Webpatser\Uuid\Uuid;
 
 class UserController extends Controller
 {
@@ -206,7 +204,12 @@ class UserController extends Controller
         $userData = DB::table('entries')->where('email', $request->email)->first();
             
         if ($userData == NULL) {
-                DB::table('entries')->insert(['email' => $request->email, 'start_at' => now(+8)]);
+            $uuid = Uuid::generate();
+                DB::table('entries')->insert([
+                    'email' => $request->email,
+                    'start_at' => now(+8),
+                    'uuid' => $uuid
+                ]);
                 $request->session()->put('identity', $request->email);
                 return redirect('users/demografi');
         }
@@ -259,10 +262,12 @@ class UserController extends Controller
         'kenderaanKerjaDetail',
         'penilai',
         'lntp',
+        'filledA',
         'completedA'
         );
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
+        //$notCompleted = 
         return view('users.demography', compact('user', 'userData','userProgress'));
     }
 
@@ -270,38 +275,6 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'umur' => 'nullable|numeric',
-            //     'jantina' => 'nullable|string',
-            //     'agama' => 'nullable|string',
-            //     'lainAgamaDetail' => 'nullable',
-            //     'bangsa' => 'nullable|string',
-            //     'daerahBertugas' => 'nullable',
-            //     'status' => 'nullable',
-            //     'bilAnak' => 'nullable',
-            //     'bilIsiRumah' => 'nullable',
-            //     'tinggalBersamaPasangan' => 'nullable',
-            //     'bilBilikTidur' => 'nullable',
-            //     'education' => 'nullable',
-            //     'agensi' => 'nullable',
-            //     'kumpulanPerkhidmatan' => 'nullable',
-            //     'tarafJawatan' => 'nullable',
-            //     'skimPerkhidmatan' => 'nullable',
-            //     'gredJawatan' => 'nullable',
-            //     'gajiKasarBulanan' => 'nullable',
-            //     'gajiBersihBulanan' => 'nullable',
-            //     'kesukaranGaji' => 'nullable',
-            //     'tempohPerkhidmatanTahun' => 'nullable',
-            //     'tempohPerkhidmatanBulan' => 'nullable',
-            //     'masalahKesihatan' => 'nullable',
-            //     'masalahKesihatanDetail' => 'nullable',
-            //     'tempatTinggal' => 'nullable',
-            //     'tempatTinggalDetail' => 'nullable',
-            //     'tinggalBersama' => 'nullable',
-            //     'tinggalBersamaDetail' => 'nullable',
-            //     'kenderaanKerja' => 'nullable',
-            //     'kenderaanKerjaDetail' => 'nullable'
-            // ]);
             $hasCompleted = NULL;
             if ( 
                 $request->umur != NULL && 
@@ -320,8 +293,6 @@ class UserController extends Controller
                 $request->tarafJawatan != NULL &&
                 $request->skimPerkhidmatan != NULL &&
                 $request->gredJawatan != NULL &&
-                $request->gajiKasarBulanan != NULL &&
-                $request->gajiBersihBulanan != NULL &&
                 $request->kesukaranGaji != NULL &&
                 $request->tempohPerkhidmatanTahun != NULL &&
                 $request->tempohPerkhidmatanBulan != NULL &&
@@ -329,10 +300,13 @@ class UserController extends Controller
                 $request->tempatTinggal != NULL &&
                 $request->tinggalBersama != NULL &&
                 $request->kenderaanKerja != NULL &&
-                $request->penilai != NULL &&
-                $request->lntp != NULL
+                $request->penilai != NULL
                 ){
                     $hasCompleted = 1;
+                    $hasFilled = 1;
+                } else {
+                    $hasFilled = 1;
+                    $hasCompleted = NULL;
                 }
             
                 DB::table('entries')->where('email', $user)->update(array(
@@ -368,8 +342,10 @@ class UserController extends Controller
                 'kenderaanKerjaDetail' => $request->kenderaanKerjaDetail,
                 'penilai' => $request->penilai,
                 'lntp' => $request->lntp,
-                'completedA' => $hasCompleted,
+                'filledA' => $hasFilled,
+                'completedA' => $hasCompleted
             ));
+            //send verification email
             if ($hasCompleted == 1) {
                 return redirect('/users/sb');
             }
@@ -399,6 +375,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'B'.$i);
         }
+        $extra = 'filledB';
+        array_push($data, 'filledB');
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         $penilai = DB::table('entries')->select('penilai')->where('email', '=', $user)->get();
@@ -434,6 +412,10 @@ class UserController extends Controller
             if ( $request->B1 != NULL && $request->B2 != NULL && $request->B3 != NULL && $request->B4 != NULL && $request->B6 != NULL && $request->B7 != NULL && $request->B8 != NULL && $request->B9 != NULL && $request->B10 != NULL && $request->B11 != NULL && $request->B12 != NULL && $request->B13 != NULL && $request->B14 != NULL && $request->B15 != NULL && $request->B16 != NULL && $request->B17 != NULL && $request->B18 != NULL )
             {
                 $hasCompleted = 1;
+                $hasFilled = 1;
+            }else{
+                $hasCompleted = NULL;
+                $hasFilled = 1;
             }
             
             DB::table('entries')->where('email', $user)->update(array(
@@ -455,6 +437,7 @@ class UserController extends Controller
                 'B16' => $request->B16,
                 'B17' => $request->B17,
                 'B18' => $request->B18,
+                'filledB' => $hasFilled,
                 'completedB' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -484,6 +467,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'C'.$i);
         }
+        $extra = 'filledC';
+        array_push($data,$extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sc', compact('user', 'userData', 'userProgress'));
@@ -500,10 +485,15 @@ class UserController extends Controller
             $hasCompleted = NULL;
             if ($request->C1 != NULL && $request->C2 != NULL) {
                 $hasCompleted = 1;
+                $hasFilled = 1;
+            } else {
+                $hasCompleted = NULL;
+                $hasFilled = 1;
             }
             DB::table('entries')->where('email', $user)->update(array(
                 'C1' => $request->C1,
                 'C2' => $request->C2,
+                'filledC' => $hasFilled,
                 'completedC' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -534,6 +524,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'D'.$i);
         }
+        $extra = 'filledD';
+        array_push($data,$extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sd', compact('user', 'userData', 'userProgress'));
@@ -547,9 +539,14 @@ class UserController extends Controller
             $hasCompleted = NULL;
             if ($request->D1 != NULL){
                 $hasCompleted = 1;
+                $hasFilled = 1;
+            } else {
+                $hasCompleted = NULL;
+                $hasFilled = 1;
             }
             DB::table('entries')->where('email', $user)->update(array(
                 'D1' => $request->D1,
+                'filledD' => $hasFilled,
                 'completedD' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -580,6 +577,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'E'.$i);
         }
+        $extra = 'filledE';
+        array_push($data,$extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.se', compact('user', 'userData', 'userProgress'));
@@ -600,6 +599,10 @@ class UserController extends Controller
             $hasCompleted = NULL;
             if ( $request->E1 != NULL && $request->E2 != NULL && $request->E3 != NULL && $request->E4 != NULL && $request->E5 != NULL && $request->E6 != NULL ){
                 $hasCompleted = 1;
+                $hasFilled = 1;
+            } else {
+                $hasCompleted = NULL;
+                $hasFilled = 1;
             }
             DB::table('entries')->where('email', $user)->update(array(
                 'E1' => $request->E1,
@@ -608,6 +611,7 @@ class UserController extends Controller
                 'E4' => $request->E4,
                 'E5' => $request->E5,
                 'E6' => $request->E6,
+                'filledE' => $hasFilled,
                 'completedE' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -638,6 +642,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'F'.$i);
         }
+        $extra = 'filledF';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sf', compact('user', 'userData', 'userProgress'));
@@ -658,6 +664,10 @@ class UserController extends Controller
             $hasCompleted = NULL;
             if ( $request->F1 != NULL && $request->F2 != NULL && $request->F3 != NULL && $request->F4 != NULL && $request->F5 != NULL && $request->F6 != NULL ){
                 $hasCompleted = 1;
+                $hasFilled = 1;
+            } else {
+                $hasCompleted = NULL;
+                $hasFilled = 1;
             }
             DB::table('entries')->where('email', $user)->update(array(
                 'F1' => $request->F1,
@@ -666,6 +676,7 @@ class UserController extends Controller
                 'F4' => $request->F4,
                 'F5' => $request->F5,
                 'F6' => $request->F6,
+                'filledF' => $hasFilled,
                 'completedF' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -695,6 +706,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'G'.$i);
         }
+        $extra = 'filledG';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sg', compact('user', 'userData', 'userProgress'));
@@ -719,6 +732,10 @@ class UserController extends Controller
             $hasCompleted = NULL;
             if ( $request->G1 != NULL && $request->G2 != NULL && $request->G3 != NULL && $request->G4 != NULL && $request->G5 != NULL && $request->G6 != NULL && $request->G7 != NULL && $request->G8 != NULL && $request->G9 != NULL && $request->G10 != NULL ){
                 $hasCompleted = 1;
+                $hasFilled = 1;
+            } else {
+                $hasCompleted = NULL;
+                $hasFilled = 1;
             }
             DB::table('entries')->where('email', $user)->update(array(
                 'G1' => $request->G1,
@@ -731,12 +748,13 @@ class UserController extends Controller
                 'G8' => $request->G8,
                 'G9' => $request->G9,
                 'G10' => $request->G10,
+                'filledG' => $hasFilled,
                 'completedG' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
                 return redirect('/users/sh1');
             }
-            return redirect('/users/g');
+            return redirect('/users/sg');
             }
         return redirect('users');
     }
@@ -760,6 +778,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'H'.$i);
         }
+        $extra = 'filledH1';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sh1', compact('user', 'userData', 'userProgress'));
@@ -786,6 +806,10 @@ class UserController extends Controller
             $hasCompleted = NULL;
             if ( $request->H1 != NULL && $request->H2 != NULL && $request->H3 != NULL && $request->H4 != NULL && $request->H5 != NULL && $request->H6 != NULL && $request->H7 != NULL && $request->H8 != NULL && $request->H9 != NULL && $request->H10 != NULL && $request->H11 != NULL && $request->H12 != NULL ){
                 $hasCompleted = 1;
+                $hasFilled = 1;
+            } else {
+                $hasCompleted = NULL;
+                $hasFilled = 1;
             }
             DB::table('entries')->where('email', $user)->update(array(
                 'H1' => $request->H1,
@@ -800,6 +824,7 @@ class UserController extends Controller
                 'H10' => $request->H10,
                 'H11' => $request->H11,
                 'H12' => $request->H12,
+                'filledH1' => $hasFilled,
                 'completedH1' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -829,6 +854,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'H'.$i);
         }
+        $extra = 'filledH2';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sh2', compact('user', 'userData', 'userProgress'));
@@ -860,6 +887,8 @@ class UserController extends Controller
                 $request->H20 != NULL
             ){
                 $hasCompleted = 1;
+            } else {
+                $hasCompleted = NULL;
             }
             DB::table('entries')->where('email', $user)->update(array(
                 'H13' => $request->H13,
@@ -870,6 +899,7 @@ class UserController extends Controller
                 'H18' => $request->H18,
                 'H19' => $request->H19,
                 'H20' => $request->H20,
+                'filledH2' => 1,
                 'completedH2' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -899,6 +929,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'H'.$i);
         }
+        $extra = 'filledH3';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sh3', compact('user', 'userData', 'userProgress'));
@@ -932,6 +964,8 @@ class UserController extends Controller
                 $request->H29 != NULL
             ){
                 $hasCompleted = 1;
+            } else {
+                $hasCompleted = NULL;
             }
             DB::table('entries')->where('email', $user)->update(array(
                 'H21' => $request->H21,
@@ -943,6 +977,7 @@ class UserController extends Controller
                 'H27' => $request->H27,
                 'H28' => $request->H28,
                 'H29' => $request->H29,
+                'filledH3' => 1,
                 'completedH3' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -972,6 +1007,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'H'.$i);
         }
+        $extra = 'filledH4';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sh4', compact('user', 'userData', 'userProgress'));
@@ -1007,6 +1044,7 @@ class UserController extends Controller
                 'H33' => $request->H33,
                 'H34' => $request->H34,
                 'H35' => $request->H35,
+                'filledH4' => 1,
                 'completedH4' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1036,6 +1074,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'I'.$i);
         }
+        $extra = 'filledI';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.si', compact('user', 'userData', 'userProgress'));
@@ -1062,6 +1102,7 @@ class UserController extends Controller
                 'I1' => $request->I1,
                 'I2' => $request->I2,
                 'I3' => $request->I3,
+                'filledI' => 1,
                 'completedI' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1091,6 +1132,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'J'.$i);
         }
+        $extra = 'filledJ';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sj', compact('user', 'userData', 'userProgress'));
@@ -1138,6 +1181,7 @@ class UserController extends Controller
                 'J8' => $request->J8,
                 'J9' => $request->J9,
                 'J10' => $request->J10,
+                'filledJ' => 1,
                 'completedJ' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1167,6 +1211,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'K'.$i);
         }
+        $extra = 'filledK';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sk', compact('user', 'userData', 'userProgress'));
@@ -1214,6 +1260,7 @@ class UserController extends Controller
                 'K8' => $request->K8,
                 'K9' => $request->K9,
                 'K10' => $request->K10,
+                'filledK' => 1,
                 'completedK' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1243,6 +1290,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'L'.$i);
         }
+        $extra = 'filledL';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sl', compact('user', 'userData', 'userProgress'));
@@ -1272,6 +1321,7 @@ class UserController extends Controller
                 'L2' => $request->L2,
                 'L3' => $request->L3,
                 'L4' => $request->L4,
+                'filledL' => 1,
                 'completedL' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1301,6 +1351,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'M'.$i);
         }
+        $extra = 'filledM';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sm', compact('user', 'userData', 'userProgress'));
@@ -1327,6 +1379,7 @@ class UserController extends Controller
                 'M1' => $request->M1,
                 'M2' => $request->M2,
                 'M3' => $request->M3,
+                'filledM' => 1,
                 'completedM' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1356,6 +1409,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'N'.$i);
         }
+        $extra = 'filledN';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sn', compact('user', 'userData', 'userProgress'));
@@ -1385,6 +1440,7 @@ class UserController extends Controller
                 'N2' => $request->N2,
                 'N3' => $request->N3,
                 'N4' => $request->N4,
+                'filledN' => 1,
                 'completedN' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1414,6 +1470,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'O'.$i);
         }
+        $extra = 'filledO';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.so', compact('user', 'userData', 'userProgress'));
@@ -1446,6 +1504,7 @@ class UserController extends Controller
                 'O3' => $request->O3,
                 'O4' => $request->O4,
                 'O5' => $request->O5,
+                'filledO' => 1,
                 'completedO' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1475,6 +1534,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'P'.$i);
         }
+        $extra = 'filledP';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sp', compact('user', 'userData', 'userProgress'));
@@ -1498,6 +1559,7 @@ class UserController extends Controller
             DB::table('entries')->where('email', $user)->update(array(
                 'P1' => $request->P1,
                 'P2' => $request->P2,
+                'filledP' => 1,
                 'completedP' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1527,6 +1589,8 @@ class UserController extends Controller
             $i++;
             array_push($data, 'Q'.$i);
         }
+        $extra = 'filledQ';
+        array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
         return view('users.sq', compact('user', 'userData', 'userProgress'));
@@ -1556,6 +1620,7 @@ class UserController extends Controller
                 'Q2' => $request->Q2,
                 'Q3' => $request->Q3,
                 'Q4' => $request->Q4,
+                'filledQ' => 1,
                 'completedQ' => $hasCompleted
             ));
             if ($hasCompleted == 1) {
@@ -1611,7 +1676,7 @@ class UserController extends Controller
                 'completedR' => 1
             ));
             
-            return redirect('/form');
+            return redirect()->route('home');
 
             } elseif ($request->saguhati == 1) {
                 
@@ -1627,6 +1692,24 @@ class UserController extends Controller
             }
 
         }
+        return redirect('users');
+    }
+
+    public function storeSectionR2(Request $request){
+        
+        $user = $this->getUser($request);
+
+        //$hasCompleted = NULL;
+        if ( $user != NULL ){
+                
+                DB::table('entries')->where('email', $user)->update(array(
+                    'komen' => $request->komen,
+                    'cadangan' => $request->cadangan
+                ));
+                
+                return redirect()->route('reward'); 
+            }
+
         return redirect('users');
     }
 

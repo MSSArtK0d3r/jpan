@@ -52,6 +52,7 @@ return array(
     'App\\View\\Components\\DevComp' => $baseDir . '/app/View/Components/DevComp.php',
     'App\\View\\Components\\Footer' => $baseDir . '/app/View/Components/Footer.php',
     'App\\View\\Components\\Header' => $baseDir . '/app/View/Components/Header.php',
+    'App\\View\\Components\\IsFilled' => $baseDir . '/app/View/Components/IsFilled.php',
     'App\\View\\Components\\RatingsComponents' => $baseDir . '/app/View/Components/RatingsComponents.php',
     'App\\View\\Components\\UsersLinks' => $baseDir . '/app/View/Components/UsersLinks.php',
     'App\\View\\Components\\dimensiInfoPointB' => $baseDir . '/app/View/Components/dimensiInfoPointB.php',

@@ -788,6 +788,7 @@ class ComposerStaticInit4c44793453bfdb18f5f61d276d40376e
         'App\\View\\Components\\DevComp' => __DIR__ . '/../..' . '/app/View/Components/DevComp.php',
         'App\\View\\Components\\Footer' => __DIR__ . '/../..' . '/app/View/Components/Footer.php',
         'App\\View\\Components\\Header' => __DIR__ . '/../..' . '/app/View/Components/Header.php',
+        'App\\View\\Components\\IsFilled' => __DIR__ . '/../..' . '/app/View/Components/IsFilled.php',
         'App\\View\\Components\\RatingsComponents' => __DIR__ . '/../..' . '/app/View/Components/RatingsComponents.php',
         'App\\View\\Components\\UsersLinks' => __DIR__ . '/../..' . '/app/View/Components/UsersLinks.php',
         'App\\View\\Components\\dimensiInfoPointB' => __DIR__ . '/../..' . '/app/View/Components/dimensiInfoPointB.php',

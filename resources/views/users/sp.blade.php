@@ -5,12 +5,12 @@
     <p>Skala 0 menunjukkan anda ‘Sangat Tidak Bersetuju’ dengan pernyataan tersebut, manakala Skala 10 menunjukkan anda ‘Sangat Bersetuju’ dengan pernyataan tersebut.</p> 
     <x-form-global-error/>
     <form action="{{route('updateSectionP')}}" method="POST">
-    @csrf
-    <div class="introPage <x-form-validation-error key='P1'/>" style="margin-bottom: 10px;">
+    @csrf 
+    <div class="introPage <x-form-validation-error :key='$userData[0]->filledP' :index='$userData[0]->P1'/>" style="margin-bottom: 10px;">
         <p>1. Organisasi bersikap fleksibel dan mengambil berat dalam isu-isu keperluan kebajikan pekerja.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="P" :userData="$userData[0]->P1"/>
      </div>
-     <div class="introPage <x-form-validation-error key='P2'/>" style="margin-bottom: 10px;">
+     <div class="introPage <x-form-validation-error :key='$userData[0]->filledP' :index='$userData[0]->P2'/>" style="margin-bottom: 10px;">
         <p>2. Organisasi bersikap fleksibel tentang keseimbangan kehidupan berkerjaya dan kehidupan seharian.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="P" :userData="$userData[0]->P2"/>
      </div>
@@ -43,4 +43,11 @@
     :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
+ <script src="{{ url('js/smoothscroll.js') }}"></script>
+ <script>
+    document.querySelector('.errForm').scrollIntoView({
+    block: "start",
+    behavior: "smooth"
+});
+ </script>
 <x-footer/>

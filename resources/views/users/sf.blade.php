@@ -6,27 +6,27 @@
     <x-form-global-error/>    
     <form action="{{route('updateSectionF')}}" method="POST">
             @csrf
-            <div class="introPage <x-form-validation-error key='F1'/>" style="margin-bottom: 10px;">
+            <div class="introPage <x-form-validation-error :key='$userData[0]->filledF' :index='$userData[0]->F1'/>" style="margin-bottom: 10px;">
                 <p>1. Saya berasa sangat bertenaga di tempat kerja.</p>
                 <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="F" :userData="$userData[0]->F1"/>
              </div>
-             <div class="introPage <x-form-validation-error key='F2'/>" style="margin-bottom: 10px;">
+             <div class="introPage <x-form-validation-error :key='$userData[0]->filledF' :index='$userData[0]->F2'/>" style="margin-bottom: 10px;">
                 <p>2. Apabila bangun pagi, saya mahu pergi bekerja.</p>
                 <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="F" :userData="$userData[0]->F2"/>
              </div>
-             <div class="introPage <x-form-validation-error key='F3'/>" style="margin-bottom: 10px;">
+             <div class="introPage <x-form-validation-error :key='$userData[0]->filledF' :index='$userData[0]->F3'/>" style="margin-bottom: 10px;">
                 <p>3. Saya bersemangat dengan kerja saya.</p>
                 <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="F" :userData="$userData[0]->F3"/>
              </div>
-             <div class="introPage <x-form-validation-error key='F4'/>" style="margin-bottom: 10px;">
+             <div class="introPage <x-form-validation-error :key='$userData[0]->filledF' :index='$userData[0]->F4'/>" style="margin-bottom: 10px;">
                 <p>4. Kerja saya memberi inspirasi kepada saya.</p>
                 <x-ratings-components initialQuestion="0"  questionNumber="4" sectionQuestion="F" :userData="$userData[0]->F4"/>
              </div>
-             <div class="introPage <x-form-validation-error key='F5'/>" style="margin-bottom: 10px;">
+             <div class="introPage <x-form-validation-error :key='$userData[0]->filledF' :index='$userData[0]->F5'/>" style="margin-bottom: 10px;">
                 <p>5. Saya terlibat sepenuhnya dalam pekerjaan saya.</p>
                 <x-ratings-components initialQuestion="0"  questionNumber="5" sectionQuestion="F" :userData="$userData[0]->F5"/>
              </div>
-             <div class="introPage <x-form-validation-error key='F6'/>" style="margin-bottom: 10px;">
+             <div class="introPage <x-form-validation-error :key='$userData[0]->filledF' :index='$userData[0]->F6'/>" style="margin-bottom: 10px;">
                 <p>6. Saya terlalu mementingkan pekerjaan sehingga leka dengan segalanya.</p>
                 <x-ratings-components initialQuestion="0"  questionNumber="6" sectionQuestion="F" :userData="$userData[0]->F6"/>
              </div>
@@ -59,4 +59,11 @@
     :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
+ <script src="{{ url('js/smoothscroll.js') }}"></script>
+ <script>
+    document.querySelector('.errForm').scrollIntoView({
+    block: "start",
+    behavior: "smooth"
+});
+ </script>
 <x-footer/>

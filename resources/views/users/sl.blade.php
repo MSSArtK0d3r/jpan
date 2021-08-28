@@ -6,19 +6,19 @@
      <x-form-global-error/>
      <form action="{{route('updateSectionL')}}" method="POST">
     @csrf
-    <div class="introPage <x-form-validation-error key='L1'/>" style="margin-bottom: 10px;">
+    <div class="introPage <x-form-validation-error :key='$userData[0]->filledL' :index='$userData[0]->L1'/>" style="margin-bottom: 10px;">
         <p>1. Kewangan saya cukup-cukup untuk hidup.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="L" :userData="$userData[0]->L1"/> 
      </div>
-     <div class="introPage <x-form-validation-error key='L2'/>" style="margin-bottom: 10px;">
+     <div class="introPage <x-form-validation-error :key='$userData[0]->filledL' :index='$userData[0]->L2'/>" style="margin-bottom: 10px;">
         <p>2. Saya bimbang simpanan kewangan saya tidak akan bertahan lama.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="L" :userData="$userData[0]->L2"/> 
      </div>
-     <div class="introPage <x-form-validation-error key='L3'/>" style="margin-bottom: 10px;">
+     <div class="introPage <x-form-validation-error :key='$userData[0]->filledL' :index='$userData[0]->L3'/>" style="margin-bottom: 10px;">
         <p>3. Kewangan saya mengawal hidup saya.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="L" :userData="$userData[0]->L3"/> 
      </div>
-     <div class="introPage <x-form-validation-error key='L4'/>" style="margin-bottom: 10px;">
+     <div class="introPage <x-form-validation-error :key='$userData[0]->filledL' :index='$userData[0]->L4'/>" style="margin-bottom: 10px;">
         <p>4. Saya mempunyai baki simpanan hingga hujung bulan.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="4" sectionQuestion="L" :userData="$userData[0]->L4"/> 
      </div>
@@ -51,4 +51,11 @@
     :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
+ <script src="{{ url('js/smoothscroll.js') }}"></script>
+ <script>
+    document.querySelector('.errForm').scrollIntoView({
+    block: "start",
+    behavior: "smooth"
+});
+ </script>
 <x-footer/>

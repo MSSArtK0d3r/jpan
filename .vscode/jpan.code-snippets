@@ -143,5 +143,10 @@
 		  "        }"
 		],
 		"description": "hsc"
+	  },
+	  "isfa":{
+		  "prefix": "isf",
+		  "body": "<x-form-validation-error :key='\\$userData[0]->filledA' :index='\\$userData[0]->{1:example}'/>",
+		  "description": "isfa"
 	  }
 }

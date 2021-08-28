@@ -5,21 +5,21 @@
     <p>Skala 0 menunjukkan anda ‘Sangat Tidak Bersetuju’ dengan pernyataan tersebut, manakala Skala 10 menunjukkan anda ‘Sangat Bersetuju’ dengan pernyataan tersebut./p>
    <x-form-global-error/>
    <form action="{{route('updateSectionN')}}" method="POST">
-    @csrf
-    <div class="introPage <x-form-validation-error key='N1'/>" style="margin-bottom: 10px;">
+    @csrf 
+    <div class="introPage <x-form-validation-error :key='$userData[0]->filledN' :index='$userData[0]->N1'/>" style="margin-bottom: 10px;">
         <p>1. Pekerjaan saya mempunyai tujuan/makna yang jelas.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="N" :userData="$userData[0]->N1"/> 
      </div>
-     <div class="introPage <x-form-validation-error key='N2'/>" style="margin-bottom: 10px;">
+     <div class="introPage <x-form-validation-error :key='$userData[0]->filledN' :index='$userData[0]->N2'/>" style="margin-bottom: 10px;">
         <p>2. Saya mempunyai pemahaman yang jelas tentang apa yang membuatkan pekerjaan saya bermakna.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="N" :userData="$userData[0]->N2"/>
      </div>
-     <div class="introPage <x-form-validation-error key='N3'/>" style="margin-bottom: 10px;">
+     <div class="introPage <x-form-validation-error :key='$userData[0]->filledN' :index='$userData[0]->N3'/>" style="margin-bottom: 10px;">
         <p>3. Organisasi selalu mengingatkan saya tentang tujuan dan makna pekerjaan saya dalam memberi perkhidmatan kepada masyarakat.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="N" :userData="$userData[0]->N3"/>
         
      </div>
-     <div class="introPage <x-form-validation-error key='N4'/>" style="margin-bottom: 10px;">
+     <div class="introPage <x-form-validation-error :key='$userData[0]->filledN' :index='$userData[0]->N4'/>" style="margin-bottom: 10px;">
         <p>4. Saya berpuas hati dengan penglibatan saya dalam pembuatan keputusan berkaitan kerja.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="4" sectionQuestion="N" :userData="$userData[0]->N4"/>
      </div>
@@ -52,4 +52,11 @@
     :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
+ <script src="{{ url('js/smoothscroll.js') }}"></script>
+ <script>
+    document.querySelector('.errForm').scrollIntoView({
+    block: "start",
+    behavior: "smooth"
+});
+ </script>
 <x-footer/>

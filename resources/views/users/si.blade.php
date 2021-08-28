@@ -6,15 +6,15 @@
     <x-form-global-error/>
     <form action="{{route('updateSectionI')}}" method="POST">
         @csrf
-        <div class="introPage <x-form-validation-error key='I1'/>" style="margin-bottom: 10px;">
+        <div class="introPage <x-form-validation-error :key='$userData[0]->filledI' :index='$userData[0]->I1'/>" style="margin-bottom: 10px;">
             <p>1. Saya mampu menyiapkan tugasan yang sukar walaupun saya mempunyai masalah.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="I" :userData="$userData[0]->I1"/> 
          </div>
-         <div class="introPage <x-form-validation-error key='I2'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledI' :index='$userData[0]->I2'/>" style="margin-bottom: 10px;">
             <p>2. Saya merasa tidak berdaya menyiapkan tugas-tugas tertentu disebabkan masalah saya.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="I" :userData="$userData[0]->I2"/>
          </div>
-         <div class="introPage <x-form-validation-error key='I3'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledI' :index='$userData[0]->I3'/>" style="margin-bottom: 10px;">
             <p>3. Saya mampu memberikan perhatian dalam mencapai matlamat kerja walaupun saya sedang mempunyai masalah.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="3" sectionQuestion="I" :userData="$userData[0]->I3"/>
          </div>
@@ -47,4 +47,11 @@
     :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
+ <script src="{{ url('js/smoothscroll.js') }}"></script>
+ <script>
+    document.querySelector('.errForm').scrollIntoView({
+    block: "start",
+    behavior: "smooth"
+});
+ </script>
 <x-footer/>

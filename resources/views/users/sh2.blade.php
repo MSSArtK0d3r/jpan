@@ -6,35 +6,35 @@
     <x-form-global-error/>
     <form action="{{route('updateSectionH2')}}" method="POST">
         @csrf
-         <div class="introPage <x-form-validation-error key='H13'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledH2' :index='$userData[0]->H13'/>" style="margin-bottom: 10px;">
             <p>13. Strategi organisasi yang jelas.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="13" sectionQuestion="H" :userData="$userData[0]->H13"/> 
          </div>
-         <div class="introPage <x-form-validation-error key='H14'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledH2' :index='$userData[0]->H14'/>" style="margin-bottom: 10px;">
             <p>14. Proses/sistem kerja sentiasa diperbaiki.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="14" sectionQuestion="H" :userData="$userData[0]->H14"/> 
          </div>
-         <div class="introPage <x-form-validation-error key='H15'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledH2' :index='$userData[0]->H15'/>" style="margin-bottom: 10px;">
             <p>15. Proses/sistem kerja dipermudahkan secara berterusan.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="15" sectionQuestion="H" :userData="$userData[0]->H15"/> 
          </div>
-         <div class="introPage <x-form-validation-error key='H16'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledH2' :index='$userData[0]->H16'/>" style="margin-bottom: 10px;">
             <p>16. Proses/sistem kerja diselaraskan.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="16" sectionQuestion="H" :userData="$userData[0]->H16"/> 
          </div>
-         <div class="introPage <x-form-validation-error key='H17'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledH2' :index='$userData[0]->H17'/>" style="margin-bottom: 10px;">
             <p>17. Prestasi organisasi dilaporkan secara jelas.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="17" sectionQuestion="H" :userData="$userData[0]->H17"/> 
          </div>
-         <div class="introPage <x-form-validation-error key='H18'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledH2' :index='$userData[0]->H18'/>" style="margin-bottom: 10px;">
             <p>18. Maklumat kewangan dan bukan kewangan dilaporkan kepada semua warga.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="18" sectionQuestion="H" :userData="$userData[0]->H18"/> 
          </div>
-         <div class="introPage <x-form-validation-error key='H19'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledH2' :index='$userData[0]->H19'/>" style="margin-bottom: 10px;">
             <p>19. Sentiasa meningkatkan kecekapan melalui inovasi.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="19" sectionQuestion="H" :userData="$userData[0]->H19"/> 
          </div>
-         <div class="introPage <x-form-validation-error key='H20'/>" style="margin-bottom: 10px;">
+         <div class="introPage <x-form-validation-error :key='$userData[0]->filledH2' :index='$userData[0]->H20'/>" style="margin-bottom: 10px;">
             <p>20. Organisasi saya terus berinovasi dalam produk, proses dan perkhidmatannya.</p>
             <x-ratings-components initialQuestion="0"  questionNumber="20" sectionQuestion="H" :userData="$userData[0]->H20"/> 
          </div>
@@ -67,4 +67,11 @@
     :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
+ <script src="{{ url('js/smoothscroll.js') }}"></script>
+ <script>
+    document.querySelector('.errForm').scrollIntoView({
+    block: "start",
+    behavior: "smooth"
+});
+ </script>
 <x-footer/>

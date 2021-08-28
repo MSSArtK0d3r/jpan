@@ -5,7 +5,7 @@
         <h5 class="title-center">BAHAGIAN D: PENILAIAN HIDUP</h5>
         <span>Sila TANDAKAN pada skala yang menunjukkan <b>penilaian hidup anda</b> sebagai seorang pekerja.</span><br><br><p>Skala 0 menunjukkan kehidupan bekerja yang sukar, manakala Skala 10 menunjukkan kehidupan bekerja yang terbaik.</p>
         <x-form-global-error/>
-        <div class="introPage <x-form-validation-error key='D1'/>" style="margin-bottom: 10px;">
+        <div class="introPage <x-form-validation-error :key='$userData[0]->filledD' :index='$userData[0]->D1'/>" style="margin-bottom: 10px;">
             <p>Berdasarkan Gambar Rajah di bawah, kehidupan anda berada di tahap mana?</p>
             <img class="img-center" src="{{ URL::asset('images/tangga.png') }}">
             <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="D" :userData="$userData[0]->D1"/>
@@ -39,4 +39,11 @@
     :paymentChoose="$userProgress[0]->paymentChoose"
     />
  </div>
+ <script src="{{ url('js/smoothscroll.js') }}"></script>
+ <script>
+    document.querySelector('.errForm').scrollIntoView({
+    block: "start",
+    behavior: "smooth"
+});
+ </script>
 <x-footer/>

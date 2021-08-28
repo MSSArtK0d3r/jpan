@@ -1,1 +1,1 @@
-{{$errors->first($key) ? 'errForm' : ''}}
+{{ $key == 1 && $index == NULL  ? 'errForm' : '' }}

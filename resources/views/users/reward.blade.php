@@ -1,6 +1,6 @@
 <x-header/>
 <div class="contents eight columns">
-    <h5 class="title-center">Maklumat Bayaran Sagu Hati</h5>
+    <h5 class="title-center">Maklumat Bayaran Saguhati</h5>
     <p style="text-align: justify">
         Kumpulan penyelidik merakamkan ucapan ribuan terima kasih atas kesudian Tuan/Puan melengkapkan soal selidik I-KOBT. Sebagai tanda penghargaan, pihak penyelidik akan membayar sagu hati berjumlah RM10.00 ke e-wallet atau akaun bank Tuan/Puan. Justeru, pihak kami memohon jasa baik dan kerjasama daripada pihak Tuan/Puan memberikan maklumat berikut:
     </p>

@@ -9,12 +9,9 @@ use Maatwebsite\Excel\Concerns\ToArray;
 
 class DevTest extends Controller {
 
-    public function index(){
-        $entry = DB::table('entries')->select('saguhati')->where('email', '=', 'a@sabah.gov.my')->get()->toArray(); 
+    public function index(Request $request){
+        $data = $request->session()->get('identity');
         
-        $data = $entry[0]->saguhati;
-        
-
         return view('dev', compact('data'));
     }
 

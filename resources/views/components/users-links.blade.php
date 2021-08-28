@@ -1,10 +1,5 @@
 <a href="#">
     <div class="bahagian">
-        <span>Keseluruhan Responden<span class="jumlahResponded">{{$totalResponden}}</span></span>
-    </div>
-</a>
-<a href="#">
-    <div class="bahagian">
         <span>Selamat datang,<br>
             <strong>{{$user}}</strong><br>
             {{-- <a href="{{url('/users/logout')}}"><span class="btnLogout">Log keluar</span></a> --}}
@@ -132,7 +127,7 @@
 @if ($getCompletedR() == NULL && $getSaguHati() == 1 || $getCompletedR() == 1 && $getSaguHati() == 1)
 <a href="{{route('reward')}}">
     <div class="bahagianLast">
-        <strong>Maklumat Bayaran Sagu Hati</strong>
+        <strong>Maklumat Bayaran Saguhati</strong>
         <span class="{{$paymentChoose != NULL ? 'completed' : 'notComplete'}}">{{$paymentChoose != NULL ? 'selesai' : 'Belum selesai'}}</span>
     </div>
 </a>
