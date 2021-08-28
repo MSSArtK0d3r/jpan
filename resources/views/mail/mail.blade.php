@@ -1,2 +1,2 @@
 Sila tekan pada link ini untuk mengesahkan akaun anda<br>
-{{$mail_data['verificationLink']}}
+<a href="{{$mail_data['verificationLink']}}">Tekan sini untuk pengesahan akaun</a>
