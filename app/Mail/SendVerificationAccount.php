@@ -28,6 +28,6 @@ class SendVerificationAccount extends Mailable
      */
     public function build()
     {
-        return $this->from('it@borneocode.com')->subject('Pengesahan akaun i-KOBT')->view('mail.mail', ['mail_data' => $this->data]);
+        return $this->from('it@borneocode.com', 'I-KOBT Verification')->subject('Pengesahan akaun i-KOBT')->view('mail.mail', ['mail_data' => $this->data]);
     }
 }
