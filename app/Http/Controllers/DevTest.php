@@ -11,8 +11,8 @@ use Webpatser\Uuid\Uuid;
 class DevTest extends Controller {
 
     public function index(Request $request){
-        //$uuid = Uuid::generate();
-        $data = DB::table('entries')->select('verified')->where('email', 'a@sabah.gov.my')->first();
+        $uuid = DB::table('entries')->select('verified')->where('email', 'a@sabah.gov.my')->first();
+        $data = $uuid;
         
         return view('dev', compact('data'));
     }

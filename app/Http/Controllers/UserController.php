@@ -82,10 +82,11 @@ class UserController extends Controller
 
     public function index(Request $request){
         $user = $this->getUser($request);
-        $accountStatus = DB::table('entries')->select('verified')->where('email', $user)->first();
+        
 
         if ($user != NULL) {
-            if($accountStatus->verified != 'verified'){
+            $accountStatus = DB::table('entries')->select('verified')->where('email', $user)->first();
+            if($accountStatus->verified == 'pending'){
                 return redirect()->route('send-verification');
             }
             
@@ -194,7 +195,7 @@ class UserController extends Controller
             $subDimension['subDimensionP'] = $this->calculateIndexP($entry->P1, $entry->P2);
             $subDimension['subDimensionQ'] = $this->calculateIndexQ($entry->Q1, $entry->Q2, $entry->Q3, $entry->Q4);
             
-            return view('users.user', compact('user', 'data', 'hasCompleted', 'userProgress', 'totalIndex', 'indexKegembiraan', 'indexOBT', 'subDimension', 'notZero'));
+            return view('users.user', compact('user', 'data', 'hasCompleted', 'userProgress', 'totalIndex', 'indexKegembiraan', 'indexOBT', 'subDimension', 'notZero','accountStatus'));
             
             
         }
