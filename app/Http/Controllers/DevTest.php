@@ -10,7 +10,8 @@ use Maatwebsite\Excel\Concerns\ToArray;
 class DevTest extends Controller {
 
     public function index(Request $request){
-        $data = $request->session()->get('identity');
+        $uuid = 'asdasdasd';
+        $data = route('verify', $uuid);
         
         return view('dev', compact('data'));
     }

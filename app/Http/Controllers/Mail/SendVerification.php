@@ -24,7 +24,7 @@ class SendVerification extends Controller
     public function SendEmailVerify(Request $request){
         $uuid = $this->getCurrentUser($request);
         $data = [
-            'verificationLink' => 'Sila tekan pada link '.$uuid,
+            'verificationLink' => route('verify', $uuid),
         ];
 
         //$user = $request->session()->get('identity');
