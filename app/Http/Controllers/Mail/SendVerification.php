@@ -23,6 +23,11 @@ class SendVerification extends Controller
 
     public function SendEmailVerify(Request $request){
         $uuid = $this->getCurrentUser($request);
+        
+        $hasVerified = DB::table('entries')->select('verified')->where('uuid', $uuid)->first();
+            if ($hasVerified->verified == 'verified') {
+                return redirect()->route('doneverify');
+            }
 
         if (is_null($uuid) == true) {
             return redirect()->route('home');
@@ -31,8 +36,8 @@ class SendVerification extends Controller
             'verificationLink' => route('verify', $uuid),
         ];
 
-        //$user = $request->session()->get('identity');
-        $user = 'etadiguu@gmail.com';
+        $user = $request->session()->get('identity');
+        
         Mail::to($user)->send(new SendVerificationAccount($data));
 
         return view('verification.mail-sent', compact('data'));
