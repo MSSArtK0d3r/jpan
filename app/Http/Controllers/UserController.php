@@ -204,7 +204,8 @@ class UserController extends Controller
 
     public function storeData(Request $request){
         $request->validate([
-            'email' => 'required|email|regex:/(.*)sabah\.gov\.my$/i',
+            'email' => 'required|email',
+            //'email' => 'required|email|regex:/(.*)sabah\.gov\.my$/i',
         ]);
         $userData = DB::table('entries')->where('email', $request->email)->first();
             
