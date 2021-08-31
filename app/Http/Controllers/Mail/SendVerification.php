@@ -38,7 +38,7 @@ class SendVerification extends Controller
 
         $user = $request->session()->get('identity');
         
-        //Mail::to($user)->send(new SendVerificationAccount($data));
+        Mail::to($user)->send(new SendVerificationAccount($data));
 
         return view('verification.mail-sent', compact('data'));
     }
