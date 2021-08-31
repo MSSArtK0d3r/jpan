@@ -334,7 +334,7 @@
                      <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="sukarGajiTidak" name="kesukaranGaji" value="Tidak" {{ $userData[0]->kesukaranGaji == 'Tidak' ? 'checked' : '' }}>
                      <label class="inBlock" for="sukarGajiTidak">Tidak</label>
                   </div>
-                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->tempohPerkhidmatanTahun'/>" style="margin-bottom: 10px;">
+                  <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->tempohPerkhidmatanTahun'/> <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->tempohPerkhidmatanBulan'/>" style="margin-bottom: 10px;">
                      <label>24. Tempoh Perkhidmatan : </label>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="tempohPerkhidmatanTahun" class="selectBox">
                         @if ( $userData[0]->tempohPerkhidmatanTahun == NULL)
