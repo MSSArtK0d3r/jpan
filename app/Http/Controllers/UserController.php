@@ -50,7 +50,7 @@ class UserController extends Controller
 
     public function adminDashboard(){
 
-            $notZero = DB::table('entries')->where('completedR', 1)->first();
+            $notZero = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->first();
             if (is_null($notZero) == false){
             $data['totalRatingB'] = $this->calculateTotalB();
             $data['totalRatingC'] = $this->calculateTotalC();
@@ -91,7 +91,7 @@ class UserController extends Controller
             }
             
             $entry = DB::table('entries')->where('email','=', $user)->first();
-            $notZero = DB::table('entries')->where('completedR', 1)->first();
+            $notZero = DB::table('entries')->where('completedR', 1)->where('verified','verified')->first();
             $userProgress = $this->getUserProgress($request);
 
             $hasCompleted['completedA'] = $entry->completedA;
@@ -241,6 +241,7 @@ class UserController extends Controller
         'agama',
         'lainAgamaDetail',
         'bangsa',
+        'lainBangsaDetail',
         'daerahBertugas',
         'status',
         'bilAnak',
@@ -321,6 +322,7 @@ class UserController extends Controller
                 'agama' => $request->agama,
                 'lainAgamaDetail' => $request->lainAgamaDetail,
                 'bangsa' => $request->bangsa,
+                'lainBangsaDetail' => $request->lainBangsaDetail,
                 'daerahBertugas' => $request->daerahBertugas,
                 'status' => $request->status,
                 'bilAnak' => $request->bilAnak,
@@ -1722,24 +1724,24 @@ class UserController extends Controller
 
     public function calculateTotalB(){
         
-        $TotalOfBRatingB1 = DB::table('entries')->where('completedR', 1)->pluck('B1');
-        $TotalOfBRatingB2 = DB::table('entries')->where('completedR', 1)->pluck('B2');
-        $TotalOfBRatingB3 = DB::table('entries')->where('completedR', 1)->pluck('B3');
-        $TotalOfBRatingB4 = DB::table('entries')->where('completedR', 1)->pluck('B4');
-        $TotalOfBRatingB5 = DB::table('entries')->where('completedR', 1)->pluck('B5');
-        $TotalOfBRatingB6 = DB::table('entries')->where('completedR', 1)->pluck('B6');
-        $TotalOfBRatingB7 = DB::table('entries')->where('completedR', 1)->pluck('B7');
-        $TotalOfBRatingB8 = DB::table('entries')->where('completedR', 1)->pluck('B8');
-        $TotalOfBRatingB9 = DB::table('entries')->where('completedR', 1)->pluck('B9');
-        $TotalOfBRatingB10 = DB::table('entries')->where('completedR', 1)->pluck('B10');
-        $TotalOfBRatingB11 = DB::table('entries')->where('completedR', 1)->pluck('B11');
-        $TotalOfBRatingB12 = DB::table('entries')->where('completedR', 1)->pluck('B12');
-        $TotalOfBRatingB13 = DB::table('entries')->where('completedR', 1)->pluck('B13');
-        $TotalOfBRatingB14 = DB::table('entries')->where('completedR', 1)->pluck('B14');
-        $TotalOfBRatingB15 = DB::table('entries')->where('completedR', 1)->pluck('B15');
-        $TotalOfBRatingB16 = DB::table('entries')->where('completedR', 1)->pluck('B16');
-        $TotalOfBRatingB17 = DB::table('entries')->where('completedR', 1)->pluck('B17');
-        $TotalOfBRatingB18 = DB::table('entries')->where('completedR', 1)->pluck('B18');
+        $TotalOfBRatingB1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B1');
+        $TotalOfBRatingB2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B2');
+        $TotalOfBRatingB3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B3');
+        $TotalOfBRatingB4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B4');
+        $TotalOfBRatingB5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B5');
+        $TotalOfBRatingB6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B6');
+        $TotalOfBRatingB7 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B7');
+        $TotalOfBRatingB8 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B8');
+        $TotalOfBRatingB9 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B9');
+        $TotalOfBRatingB10 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B10');
+        $TotalOfBRatingB11 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B11');
+        $TotalOfBRatingB12 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B12');
+        $TotalOfBRatingB13 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B13');
+        $TotalOfBRatingB14 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B14');
+        $TotalOfBRatingB15 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B15');
+        $TotalOfBRatingB16 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B16');
+        $TotalOfBRatingB17 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B17');
+        $TotalOfBRatingB18 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B18');
 
         $TotalResponden = count($TotalOfBRatingB1->toArray());
         
@@ -1828,8 +1830,8 @@ class UserController extends Controller
     }
 
     public function calculateTotalC(){
-        $TotalOfCRatingC1 = DB::table('entries')->where('completedR', 1)->pluck('C1');
-        $TotalOfCRatingC2 = DB::table('entries')->where('completedR', 1)->pluck('C2');
+        $TotalOfCRatingC1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('C1');
+        $TotalOfCRatingC2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('C2');
         
         $totalC = array_merge(
             $TotalOfCRatingC1->toArray(),
@@ -1846,7 +1848,7 @@ class UserController extends Controller
     }
 
     public function calculateTotalD(){
-        $TotalOfDRatingD1 = DB::table('entries')->where('completedR', 1)->pluck('D1');
+        $TotalOfDRatingD1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('D1');
         
         $totalD = array_merge(
             $TotalOfDRatingD1->toArray(),
@@ -1862,12 +1864,12 @@ class UserController extends Controller
     }
 
     public function calculateTotalE(){
-        $TotalOfERatingE1 = DB::table('entries')->where('completedR', 1)->pluck('E1');
-        $TotalOfERatingE2 = DB::table('entries')->where('completedR', 1)->pluck('E2');
-        $TotalOfERatingE3 = DB::table('entries')->where('completedR', 1)->pluck('E3');
-        $TotalOfERatingE4 = DB::table('entries')->where('completedR', 1)->pluck('E4');
-        $TotalOfERatingE5 = DB::table('entries')->where('completedR', 1)->pluck('E5');
-        $TotalOfERatingE6 = DB::table('entries')->where('completedR', 1)->pluck('E6');
+        $TotalOfERatingE1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E1');
+        $TotalOfERatingE2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E2');
+        $TotalOfERatingE3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E3');
+        $TotalOfERatingE4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E4');
+        $TotalOfERatingE5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E5');
+        $TotalOfERatingE6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E6');
         
         $TotalResponden = count($TotalOfERatingE1->toArray());
 
@@ -1896,12 +1898,12 @@ class UserController extends Controller
     }
 
     public function calculateTotalF(){
-        $TotalOfFRatingF1 = DB::table('entries')->where('completedR', 1)->pluck('F1');
-        $TotalOfFRatingF2 = DB::table('entries')->where('completedR', 1)->pluck('F2');
-        $TotalOfFRatingF3 = DB::table('entries')->where('completedR', 1)->pluck('F3');
-        $TotalOfFRatingF4 = DB::table('entries')->where('completedR', 1)->pluck('F4');
-        $TotalOfFRatingF5 = DB::table('entries')->where('completedR', 1)->pluck('F5');
-        $TotalOfFRatingF6 = DB::table('entries')->where('completedR', 1)->pluck('F6');
+        $TotalOfFRatingF1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F1');
+        $TotalOfFRatingF2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F2');
+        $TotalOfFRatingF3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F3');
+        $TotalOfFRatingF4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F4');
+        $TotalOfFRatingF5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F5');
+        $TotalOfFRatingF6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F6');
         
         $totalFS = array_sum(array_merge(
             $TotalOfFRatingF1->toArray(),
@@ -1934,16 +1936,16 @@ class UserController extends Controller
 
     public function calculateTotalG(){
         
-        $TotalOfGRatingG1 = DB::table('entries')->where('completedR', 1)->pluck('G1');
-        $TotalOfGRatingG2 = DB::table('entries')->where('completedR', 1)->pluck('G2');
-        $TotalOfGRatingG3 = DB::table('entries')->where('completedR', 1)->pluck('G3');
-        $TotalOfGRatingG4 = DB::table('entries')->where('completedR', 1)->pluck('G4');
-        $TotalOfGRatingG5 = DB::table('entries')->where('completedR', 1)->pluck('G5');
-        $TotalOfGRatingG6 = DB::table('entries')->where('completedR', 1)->pluck('G6');
-        $TotalOfGRatingG7 = DB::table('entries')->where('completedR', 1)->pluck('G7');
-        $TotalOfGRatingG8 = DB::table('entries')->where('completedR', 1)->pluck('G8');
-        $TotalOfGRatingG9 = DB::table('entries')->where('completedR', 1)->pluck('G9');
-        $TotalOfGRatingG10 = DB::table('entries')->where('completedR', 1)->pluck('G10');
+        $TotalOfGRatingG1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G1');
+        $TotalOfGRatingG2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G2');
+        $TotalOfGRatingG3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G3');
+        $TotalOfGRatingG4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G4');
+        $TotalOfGRatingG5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G5');
+        $TotalOfGRatingG6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G6');
+        $TotalOfGRatingG7 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G7');
+        $TotalOfGRatingG8 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G8');
+        $TotalOfGRatingG9 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G9');
+        $TotalOfGRatingG10 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G10');
 
         $countTotalResponden = count($TotalOfGRatingG1->toArray());
         
@@ -1984,41 +1986,41 @@ class UserController extends Controller
 
     public function calculateTotalH(){
         
-        $TotalOfHRatingH1 = DB::table('entries')->where('completedR', 1)->pluck('H1');
-        $TotalOfHRatingH2 = DB::table('entries')->where('completedR', 1)->pluck('H2');
-        $TotalOfHRatingH3 = DB::table('entries')->where('completedR', 1)->pluck('H3');
-        $TotalOfHRatingH4 = DB::table('entries')->where('completedR', 1)->pluck('H4');
-        $TotalOfHRatingH5 = DB::table('entries')->where('completedR', 1)->pluck('H5');
-        $TotalOfHRatingH6 = DB::table('entries')->where('completedR', 1)->pluck('H6');
-        $TotalOfHRatingH7 = DB::table('entries')->where('completedR', 1)->pluck('H7');
-        $TotalOfHRatingH8 = DB::table('entries')->where('completedR', 1)->pluck('H8');
-        $TotalOfHRatingH9 = DB::table('entries')->where('completedR', 1)->pluck('H9');
-        $TotalOfHRatingH10 = DB::table('entries')->where('completedR', 1)->pluck('H10');
-        $TotalOfHRatingH11 = DB::table('entries')->where('completedR', 1)->pluck('H11');
-        $TotalOfHRatingH12 = DB::table('entries')->where('completedR', 1)->pluck('H12');
-        $TotalOfHRatingH13 = DB::table('entries')->where('completedR', 1)->pluck('H13');
-        $TotalOfHRatingH14 = DB::table('entries')->where('completedR', 1)->pluck('H14');
-        $TotalOfHRatingH15 = DB::table('entries')->where('completedR', 1)->pluck('H15');
-        $TotalOfHRatingH16 = DB::table('entries')->where('completedR', 1)->pluck('H16');
-        $TotalOfHRatingH17 = DB::table('entries')->where('completedR', 1)->pluck('H17');
-        $TotalOfHRatingH18 = DB::table('entries')->where('completedR', 1)->pluck('H18');
-        $TotalOfHRatingH19 = DB::table('entries')->where('completedR', 1)->pluck('H19');
-        $TotalOfHRatingH20 = DB::table('entries')->where('completedR', 1)->pluck('H20');
-        $TotalOfHRatingH21 = DB::table('entries')->where('completedR', 1)->pluck('H21');
-        $TotalOfHRatingH22 = DB::table('entries')->where('completedR', 1)->pluck('H22');
-        $TotalOfHRatingH23 = DB::table('entries')->where('completedR', 1)->pluck('H23');
-        $TotalOfHRatingH24 = DB::table('entries')->where('completedR', 1)->pluck('H24');
-        $TotalOfHRatingH25 = DB::table('entries')->where('completedR', 1)->pluck('H25');
-        $TotalOfHRatingH26 = DB::table('entries')->where('completedR', 1)->pluck('H26');
-        $TotalOfHRatingH27 = DB::table('entries')->where('completedR', 1)->pluck('H27');
-        $TotalOfHRatingH28 = DB::table('entries')->where('completedR', 1)->pluck('H28');
-        $TotalOfHRatingH29 = DB::table('entries')->where('completedR', 1)->pluck('H29');
-        $TotalOfHRatingH30 = DB::table('entries')->where('completedR', 1)->pluck('H30');
-        $TotalOfHRatingH31 = DB::table('entries')->where('completedR', 1)->pluck('H31');
-        $TotalOfHRatingH32 = DB::table('entries')->where('completedR', 1)->pluck('H32');
-        $TotalOfHRatingH33 = DB::table('entries')->where('completedR', 1)->pluck('H33');
-        $TotalOfHRatingH34 = DB::table('entries')->where('completedR', 1)->pluck('H34');
-        $TotalOfHRatingH35 = DB::table('entries')->where('completedR', 1)->pluck('H35');
+        $TotalOfHRatingH1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H1');
+        $TotalOfHRatingH2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H2');
+        $TotalOfHRatingH3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H3');
+        $TotalOfHRatingH4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H4');
+        $TotalOfHRatingH5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H5');
+        $TotalOfHRatingH6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H6');
+        $TotalOfHRatingH7 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H7');
+        $TotalOfHRatingH8 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H8');
+        $TotalOfHRatingH9 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H9');
+        $TotalOfHRatingH10 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H10');
+        $TotalOfHRatingH11 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H11');
+        $TotalOfHRatingH12 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H12');
+        $TotalOfHRatingH13 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H13');
+        $TotalOfHRatingH14 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H14');
+        $TotalOfHRatingH15 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H15');
+        $TotalOfHRatingH16 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H16');
+        $TotalOfHRatingH17 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H17');
+        $TotalOfHRatingH18 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H18');
+        $TotalOfHRatingH19 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H19');
+        $TotalOfHRatingH20 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H20');
+        $TotalOfHRatingH21 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H21');
+        $TotalOfHRatingH22 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H22');
+        $TotalOfHRatingH23 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H23');
+        $TotalOfHRatingH24 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H24');
+        $TotalOfHRatingH25 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H25');
+        $TotalOfHRatingH26 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H26');
+        $TotalOfHRatingH27 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H27');
+        $TotalOfHRatingH28 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H28');
+        $TotalOfHRatingH29 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H29');
+        $TotalOfHRatingH30 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H30');
+        $TotalOfHRatingH31 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H31');
+        $TotalOfHRatingH32 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H32');
+        $TotalOfHRatingH33 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H33');
+        $TotalOfHRatingH34 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H34');
+        $TotalOfHRatingH35 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H35');
         
         $TotalHKP1 = array_sum(array_merge(
             $TotalOfHRatingH1->toArray(),
@@ -2091,9 +2093,9 @@ class UserController extends Controller
     }
 
     public function calculateTotalI(){
-        $TotalOfIRatingI1 = DB::table('entries')->where('completedR', 1)->pluck('I1');
-        $TotalOfIRatingI2 = DB::table('entries')->where('completedR', 1)->pluck('I2');
-        $TotalOfIRatingI3 = DB::table('entries')->where('completedR', 1)->pluck('I3');
+        $TotalOfIRatingI1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('I1');
+        $TotalOfIRatingI2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('I2');
+        $TotalOfIRatingI3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('I3');
         
         $TotalIP = array_sum(array_merge(
             $TotalOfIRatingI1->toArray(),
@@ -2114,16 +2116,16 @@ class UserController extends Controller
 
     public function calculateTotalJ(){
         
-        $TotalOfJRatingJ1 = DB::table('entries')->where('completedR', 1)->pluck('J1');
-        $TotalOfJRatingJ2 = DB::table('entries')->where('completedR', 1)->pluck('J2');
-        $TotalOfJRatingJ3 = DB::table('entries')->where('completedR', 1)->pluck('J3');
-        $TotalOfJRatingJ4 = DB::table('entries')->where('completedR', 1)->pluck('J4');
-        $TotalOfJRatingJ5 = DB::table('entries')->where('completedR', 1)->pluck('J5');
-        $TotalOfJRatingJ6 = DB::table('entries')->where('completedR', 1)->pluck('J6');
-        $TotalOfJRatingJ7 = DB::table('entries')->where('completedR', 1)->pluck('J7');
-        $TotalOfJRatingJ8 = DB::table('entries')->where('completedR', 1)->pluck('J8');
-        $TotalOfJRatingJ9 = DB::table('entries')->where('completedR', 1)->pluck('J9');
-        $TotalOfJRatingJ10 = DB::table('entries')->where('completedR', 1)->pluck('J10');
+        $TotalOfJRatingJ1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J1');
+        $TotalOfJRatingJ2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J2');
+        $TotalOfJRatingJ3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J3');
+        $TotalOfJRatingJ4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J4');
+        $TotalOfJRatingJ5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J5');
+        $TotalOfJRatingJ6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J6');
+        $TotalOfJRatingJ7 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J7');
+        $TotalOfJRatingJ8 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J8');
+        $TotalOfJRatingJ9 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J9');
+        $TotalOfJRatingJ10 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('J10');
         
         $totalPointJ = array_sum(array_merge(
             $TotalOfJRatingJ1->toArray(),
@@ -2150,16 +2152,16 @@ class UserController extends Controller
 
     public function calculateTotalK(){
         
-        $TotalOfKRatingK1 = DB::table('entries')->where('completedR', 1)->pluck('K1');
-        $TotalOfKRatingK2 = DB::table('entries')->where('completedR', 1)->pluck('K2');
-        $TotalOfKRatingK3 = DB::table('entries')->where('completedR', 1)->pluck('K3');
-        $TotalOfKRatingK4 = DB::table('entries')->where('completedR', 1)->pluck('K4');
-        $TotalOfKRatingK5 = DB::table('entries')->where('completedR', 1)->pluck('K5');
-        $TotalOfKRatingK6 = DB::table('entries')->where('completedR', 1)->pluck('K6');
-        $TotalOfKRatingK7 = DB::table('entries')->where('completedR', 1)->pluck('K7');
-        $TotalOfKRatingK8 = DB::table('entries')->where('completedR', 1)->pluck('K8');
-        $TotalOfKRatingK9 = DB::table('entries')->where('completedR', 1)->pluck('K9');
-        $TotalOfKRatingK10 = DB::table('entries')->where('completedR', 1)->pluck('K10');
+        $TotalOfKRatingK1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K1');
+        $TotalOfKRatingK2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K2');
+        $TotalOfKRatingK3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K3');
+        $TotalOfKRatingK4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K4');
+        $TotalOfKRatingK5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K5');
+        $TotalOfKRatingK6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K6');
+        $TotalOfKRatingK7 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K7');
+        $TotalOfKRatingK8 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K8');
+        $TotalOfKRatingK9 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K9');
+        $TotalOfKRatingK10 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('K10');
 
         $TotalPos = array_sum(array_merge(
             $TotalOfKRatingK1->toArray(),
@@ -2189,10 +2191,10 @@ class UserController extends Controller
     }
 
     public function calculateTotalL(){
-        $TotalOfLRatingL1 = DB::table('entries')->where('completedR', 1)->pluck('L1');
-        $TotalOfLRatingL2 = DB::table('entries')->where('completedR', 1)->pluck('L2');
-        $TotalOfLRatingL3 = DB::table('entries')->where('completedR', 1)->pluck('L3');
-        $TotalOfLRatingL4 = DB::table('entries')->where('completedR', 1)->pluck('L4');
+        $TotalOfLRatingL1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('L1');
+        $TotalOfLRatingL2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('L2');
+        $TotalOfLRatingL3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('L3');
+        $TotalOfLRatingL4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('L4');
         
         $TotalLP = array_sum(array_merge(
             $TotalOfLRatingL4->toArray()
@@ -2217,9 +2219,9 @@ class UserController extends Controller
     }
 
     public function calculateTotalM(){
-        $TotalOfMRatingM1 = DB::table('entries')->where('completedR', 1)->pluck('M1');
-        $TotalOfMRatingM2 = DB::table('entries')->where('completedR', 1)->pluck('M2');
-        $TotalOfMRatingM3 = DB::table('entries')->where('completedR', 1)->pluck('M3');
+        $TotalOfMRatingM1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('M1');
+        $TotalOfMRatingM2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('M2');
+        $TotalOfMRatingM3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('M3');
     
         $TotalM = array_sum(array_merge(
             $TotalOfMRatingM1->toArray(),
@@ -2238,10 +2240,10 @@ class UserController extends Controller
     }
 
     public function calculateTotalN(){
-        $TotalOfNRatingN1 = DB::table('entries')->where('completedR', 1)->pluck('N1');
-        $TotalOfNRatingN2 = DB::table('entries')->where('completedR', 1)->pluck('N2');
-        $TotalOfNRatingN3 = DB::table('entries')->where('completedR', 1)->pluck('N3');
-        $TotalOfNRatingN4 = DB::table('entries')->where('completedR', 1)->pluck('N4');
+        $TotalOfNRatingN1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('N1');
+        $TotalOfNRatingN2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('N2');
+        $TotalOfNRatingN3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('N3');
+        $TotalOfNRatingN4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('N4');
     
         $TotalN = array_sum(array_merge(
             $TotalOfNRatingN1->toArray(),
@@ -2261,11 +2263,11 @@ class UserController extends Controller
     }
 
     public function calculateTotalO(){
-        $TotalOfORatingO1 = DB::table('entries')->where('completedR', 1)->pluck('O1');
-        $TotalOfORatingO2 = DB::table('entries')->where('completedR', 1)->pluck('O2');
-        $TotalOfORatingO3 = DB::table('entries')->where('completedR', 1)->pluck('O3');
-        $TotalOfORatingO4 = DB::table('entries')->where('completedR', 1)->pluck('O4');
-        $TotalOfORatingO5 = DB::table('entries')->where('completedR', 1)->pluck('O5');
+        $TotalOfORatingO1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('O1');
+        $TotalOfORatingO2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('O2');
+        $TotalOfORatingO3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('O3');
+        $TotalOfORatingO4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('O4');
+        $TotalOfORatingO5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('O5');
     
         $TotalO = array_sum(array_merge(
             $TotalOfORatingO1->toArray(),
@@ -2286,8 +2288,8 @@ class UserController extends Controller
     }
 
     public function calculateTotalP(){
-        $TotalOfPRatingP1 = DB::table('entries')->where('completedR', 1)->pluck('P1');
-        $TotalOfPRatingP2 = DB::table('entries')->where('completedR', 1)->pluck('P2');
+        $TotalOfPRatingP1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('P1');
+        $TotalOfPRatingP2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('P2');
         
         $TotalP = array_sum(array_merge(
             $TotalOfPRatingP1->toArray(),
@@ -2305,10 +2307,10 @@ class UserController extends Controller
     }
 
     public function calculateTotalQ(){
-        $TotalOfQRatingQ1 = DB::table('entries')->where('completedR', 1)->pluck('Q1');
-        $TotalOfQRatingQ2 = DB::table('entries')->where('completedR', 1)->pluck('Q2');
-        $TotalOfQRatingQ3 = DB::table('entries')->where('completedR', 1)->pluck('Q3');
-        $TotalOfQRatingQ4 = DB::table('entries')->where('completedR', 1)->pluck('Q4');
+        $TotalOfQRatingQ1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('Q1');
+        $TotalOfQRatingQ2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('Q2');
+        $TotalOfQRatingQ3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('Q3');
+        $TotalOfQRatingQ4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('Q4');
     
         $TotalQ = array_sum(array_merge(
             $TotalOfQRatingQ1->toArray(),
@@ -2577,7 +2579,6 @@ class UserController extends Controller
         } 
         $data = array(
             'paymentChoose',
-            'phone',
             'bankCompany',
             'bankAccNo',
             'bankFullName'
@@ -2594,8 +2595,7 @@ class UserController extends Controller
             return redirect('users');
         }
         DB::table('entries')->where('email', $user)->update(array(
-            'paymentChoose' => $request->paymentChoose,
-            'phone' => $request->phone,
+            'paymentChoose' => 'bank',
             'bankCompany' => $request->bankCompany,
             'bankAccNo' => $request->bankAccNo,
             'bankFullName' => $request->bankFullName,

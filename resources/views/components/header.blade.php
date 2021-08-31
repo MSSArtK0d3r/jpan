@@ -397,6 +397,10 @@
       display: inline-block;
    }
 
+   #LainBangsa:checked~#lainBangsaInput {
+      display: inline-block;
+   }
+
    #adaMasalahKesihatanYa:checked~#inputKesihatan {
       display: inline-block;
    }
@@ -671,7 +675,7 @@
 
 
 .bankForm{
-   display: none;
+   display: block;
    background-color: #f7f7f7;
    border-bottom: 1px solid rgb(219, 219, 219);
     border-left: 1px solid rgb(219, 219, 219);
@@ -700,6 +704,21 @@
     background-color: #fbfbfb;
     color: #565555;
     font-size: 11px;
+}
+
+.rewardErr {
+   border: 1px solid red !important;
+}
+
+.rewardErr::placeholder {
+   color: red !important;
+}
+
+.bankPengesahan {
+    padding: 10px 20px;
+    background-color: #4a4af5;
+    border-radius: 4px;
+    color: white;
 }
 
 </style>

@@ -2,7 +2,6 @@
 <div class="contents eight columns">
     <h5 class="title-center">BAHAGIAN R (SOALAN TERBUKA)</h5>
     <x-form-global-error/>
-    {{-- {{route('updateSectionR')}} --}}
     <form method="POST" id="srSumit">
     @csrf
     <div class="introPage" style="margin-bottom: 10px;">

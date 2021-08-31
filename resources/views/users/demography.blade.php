@@ -37,10 +37,24 @@
                         <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('lainAgamaInput')" id="Tiada" name="agama" value="Tiada" {{ $userData[0]->agama == 'Tiada' ? 'checked' : '' }}>
                         <label class="inBlock" for="Tiada">Tidak Menganut Agama</label><br>
                         <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="LainAgama" value="lain-lain" name="agama" {{ $userData[0]->agama == 'lain-lain' ? 'checked' : '' }}>
-                        <label class="inBlock" for="LainAgama">Lain-lain (sila nyatakan) :</label> <input id="lainAgamaInput" class="lain-lain fiftyPercent" name="lainAgamaDetail" value="{{ $userData[0]->agama == 'lain-lain' ? $userData[0]->lainAgamaDetail : '' }}">
-                     </div>
+                        <label class="inBlock" for="LainAgama">Lain-lain (sila nyatakan) :</label> <input id="lainAgamaInput" class="lain-lain fiftyPercent" name="lainAgamaInput" value="{{ $userData[0]->agama == 'lain-lain' ? $userData[0]->lainAgamaDetail : '' }}">
+                  </div>
 
                   <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->bangsa'/>" style="margin-bottom: 10px;">
+                     <label>4. Bangsa :</label><br>
+                        <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('lainBangsaInput')" id="Melayu" name="bangsa" value="Melayu" {{ $userData[0]->bangsa == 'Melayu' ? 'checked' : '' }}>
+                        <label class="inBlock" for="Melayu">Melayu</label><br>
+                        <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('lainBangsaInput')" id="Cina" name="bangsa" value="Cina" {{ $userData[0]->bangsa == 'Cina' ? 'checked' : '' }}>
+                        <label class="inBlock" for="Cina">Cina</label><br>
+                        <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('lainBangsaInput')" id="India" name="bangsa" value="India" {{ $userData[0]->bangsa == 'India' ? 'checked' : '' }}>
+                        <label class="inBlock" for="India">India</label><br>
+                        <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" onclick="clearInput('lainBangsaInput')" id="BumiSabah" name="bangsa" value="Bumiputera Sabah" {{ $userData[0]->bangsa == 'Bumiputera Sabah' ? 'checked' : '' }}>
+                        <label class="inBlock" for="BumiSabah">Bumiputera Sabah</label><br>
+                        <input {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} type="radio" id="LainBangsa" value="lain-lain" name="bangsa" {{ $userData[0]->bangsa == 'lain-lain' ? 'checked' : '' }}>
+                        <label class="inBlock" for="LainBangsa">Lain-lain (sila nyatakan) :</label> <input id="lainBangsaInput" class="lain-lain fiftyPercent" name="lainBangsaDetail" value="{{ $userData[0]->bangsa == 'lain-lain' ? $userData[0]->lainBangsaDetail : '' }}">
+                  </div>
+
+                  {{-- <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->bangsa'/>" style="margin-bottom: 10px;">
                      <label>4. Bangsa : </label>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="bangsa" class="selectBox">
                      @if ($userData[0]->bangsa == NULL)
@@ -59,7 +73,7 @@
                            <option value="Lain-lain">Lain-lain</option>
                      @endif
                      </select>
-                  </div>
+                  </div> --}}
                   <div class="introPage <x-form-validation-error :key='$userData[0]->filledA' :index='$userData[0]->daerahBertugas'/>" style="margin-bottom: 10px;">
                      <label>5. Daerah Bertugas : </label>
                      <select {{$userProgress[0]->completedR == 1 ? 'disabled' : ''}} name="daerahBertugas" class="selectBox">
@@ -72,6 +86,7 @@
                         <option value="Kota Belud">Kota Belud</option>
                         <option value="Kota Kinabalu">Kota Kinabalu</option>
                         <option value="Kota Marudu">Kota Marudu</option>
+                        <option value="Kuala Lumpur">Kuala Lumpur</option>
                         <option value="Kuala Penyu">Kuala Penyu</option>
                         <option value="Kudat">Kudat</option> 
                         <option value="Kunak">Kunak</option>
@@ -101,6 +116,7 @@
                         <option value="Kota Belud">Kota Belud</option>
                         <option value="Kota Kinabalu">Kota Kinabalu</option>
                         <option value="Kota Marudu">Kota Marudu</option>
+                        <option value="Kuala Lumpur">Kuala Lumpur</option>
                         <option value="Kuala Penyu">Kuala Penyu</option>
                         <option value="Kudat">Kudat</option> 
                         <option value="Kunak">Kunak</option>

@@ -1,1 +1,1 @@
-{{ var_dump($data->verified) }}
+{{ var_dump($data) }}
