@@ -62,13 +62,9 @@
 });
 modal.setContent('<span>Sekiranya anda berpuas hati dan membuat pengesahan, pilihan jawapan dalam I-KOBT <strong>TIDAK BOLEH</strong> diubah.</span>');
 modal.addFooterBtn('Saya berpuas hati dan mengesahkan jawapan saya', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {
-    // here goes some logic
-    //document.getElementById("srSumit").submit();
     SaveFormNow();
 });
 modal.addFooterBtn('Saya ingin ubah jawapan', 'tingle-btn tingle-btn--danger tingle-btn--pull-right', function() {
-    // here goes some logic
-    //document.getElementById("srSumit2").submit();
     halfSave();
     modal.close();
 

@@ -105,7 +105,7 @@
 </a>
 <a href="{{$completedO == 1 ? route('sp') : '#'}}">
     <div class="bahagian {{Route::currentRouteName() == 'sp' ? 'activeSection' : ''}}"><span class="topik">Bahagian P<span class="{{$completedP == 1 ? 'completed' : 'notComplete'}}">{{$completedP == 1 ? 'selesai' : 'Belum selesai'}}</span></span><br>
-        <strong>Kindness</strong>
+        <strong>Kebaikan</strong>
     </div>
 </a>
 <a href="{{$completedP == 1 ? route('sq') : '#'}}">

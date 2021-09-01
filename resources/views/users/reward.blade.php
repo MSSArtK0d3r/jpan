@@ -96,11 +96,11 @@
         
     modal.setContent('<span>Saya sahkan bahawa maklumat dan butir-butir mengenai Akaun Bank seperti di bawah adalah benar dan milik sah saya.</span><div class="bankPengesahan"><strong>Bank : ' + bankName + '</strong><br><strong>Akaun Bank : ' + bankAccNo + '</strong><br><strong>Nama Penuh : '+bankFullName+'</strong></div>');
     modal.addFooterBtn('SAYA SAHKAN', 'tingle-btn tingle-btn--default tingle-btn--pull-right', function() {
-        // here goes some logic
+        
         document.getElementById("rewardSumit").submit();
     });
     modal.addFooterBtn('BUAT PEMBETULAN', 'tingle-btn tingle-btn--danger tingle-btn--pull-right', function() {
-        // here goes some logic
+        
         modal.close();
     });
     modal.open();
@@ -109,11 +109,11 @@
             document.getElementById("bankCompany").classList.add("rewardErr");
         }
         else if (bankAccNo =='') {
-            document.getElementById("bankAccNo").placeholder = "Sila isi Akaun Bank";
+            document.getElementById("bankAccNo").placeholder = "Sila isi Nombor Akaun Bank";
             document.getElementById("bankAccNo").classList.add("rewardErr");
         }
         else if (bankFullName =='') {
-            document.getElementById("bankFullName").placeholder = "Sila isi nama penuh anda";
+            document.getElementById("bankFullName").placeholder = "Sila isi Nama Pw3dfenuh anda";
             document.getElementById("bankFullName").classList.add("rewardErr");
         }
     }

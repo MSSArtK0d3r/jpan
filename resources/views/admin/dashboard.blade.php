@@ -59,7 +59,7 @@
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Kepuasan Kerja', 'Kepuasan Hidup', 'Penilaian Hidup', 'Afek Positif', 'Keterlibatan Kerja', 'Prestasi Kerja', 'Organisasi Berprestasi Tinggi', 'Produktiviti', 'Personaliti', 'Kesejahteraan Keluarga', 'Kesejahteraan Kewangan', 'Kesejahteraan Sosial', 'Tujuan', 'Daya Tahan', 'Kindness', 'Altruisme'],
+                labels: ['Kepuasan Kerja', 'Kepuasan Hidup', 'Penilaian Hidup', 'Afek Positif', 'Keterlibatan Kerja', 'Prestasi Kerja', 'Organisasi Berprestasi Tinggi', 'Produktiviti', 'Personaliti', 'Kesejahteraan Keluarga', 'Kesejahteraan Kewangan', 'Kesejahteraan Sosial', 'Tujuan', 'Daya Tahan', 'Kebaikan', 'Altruisme'],
                 datasets: [
                     {
                     label: 'Skor Keseluruhan',

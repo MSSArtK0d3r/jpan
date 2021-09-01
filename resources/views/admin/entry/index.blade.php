@@ -135,42 +135,7 @@
                                         <td>@{{ item.tinggalBersamaDetail }}</td>
                                         <td>@{{ item.kenderaanKerja }}</td>
                                         <td>@{{ item.kenderaanKerjaDetail }}</td>
-                                        {{--<td>@{{ item.B15 }}</td>
-                                        <td>@{{ item.B16 }}</td>
-                                        <td>@{{ item.B17 }}</td>
-                                        <td>@{{ item.B18 }}</td>
-                                        <td>@{{ item.B19 }}</td>
-                                        <td>@{{ item.B20 }}</td>
-                                        <td>@{{ item.B21 }}</td>
-                                        <td>@{{ item.B22 }}</td>
-                                        <td>@{{ item.B23 }}</td>
-                                        <td>@{{ item.B24 }}</td>
-                                        <td>@{{ item.B25 }}</td>
-                                        <td>@{{ item.B26 }}</td>
-                                        <td>@{{ item.B27 }}</td>
-                                        <td>@{{ item.B28 }}</td>
-                                        <td>@{{ item.B29 }}</td>
-                                        <td>@{{ item.B30 }}</td>
-                                        <td>@{{ item.B31 }}</td>
-                                        <td>@{{ item.B32 }}</td>
-                                        <td>@{{ item.B33 }}</td>
-                                        <td>@{{ item.B34 }}</td>
-                                        <td>@{{ item.B35 }}</td>
-                                        <td>@{{ item.B36 }}</td>
-                                        <td>@{{ item.B37 }}</td>
-                                        <td>@{{ item.B38 }}</td>
-                                        <td>@{{ item.B39 }}</td>
-                                        <td>@{{ item.B40 }}</td>
-                                        <td>@{{ item.B41 }}</td>
-                                        <td>@{{ item.B42 }}</td>
-                                        <td>@{{ item.B43 }}</td>
-                                        <td>@{{ item.B44 }}</td>
-                                        <td>@{{ item.B45 }}</td>
-                                        <td>@{{ item.C1 }}</td>
-                                        <td>@{{ item.C2 }}</td>
-                                        <td>@{{ item.C3 }}</td>
-                                        <td>@{{ item.C4 }}</td>
-                                        <td>@{{ item.C5 }}</td> --}}
+                                        
                                         
                                         <td>
                                             <div class="row no-gutters">

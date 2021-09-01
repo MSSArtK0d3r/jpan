@@ -274,7 +274,7 @@ class UserController extends Controller
         );
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
-        //$notCompleted = 
+        
         return view('users.demography', compact('user', 'userData','userProgress'));
     }
 
@@ -353,7 +353,7 @@ class UserController extends Controller
                 'filledA' => $hasFilled,
                 'completedA' => $hasCompleted
             ));
-            //send verification email
+            
             if ($hasCompleted == 1) {
                 return redirect('/users/sb');
             }
@@ -395,26 +395,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'B1' => 'required|numeric',
-            //     'B2' => 'required|numeric',
-            //     'B3' => 'required|numeric',
-            //     'B4' => 'required|numeric',
-            //     'B5' => 'nullable|numeric',
-            //     'B6' => 'required|numeric',
-            //     'B7' => 'required|numeric',
-            //     'B8' => 'required|numeric',
-            //     'B9' => 'required|numeric',
-            //     'B10' => 'required|numeric',
-            //     'B11' => 'required|numeric',
-            //     'B12' => 'required|numeric',
-            //     'B13' => 'required|numeric',
-            //     'B14' => 'required|numeric',
-            //     'B15' => 'required|numeric',
-            //     'B16' => 'required|numeric',
-            //     'B17' => 'required|numeric',
-            //     'B18' => 'required|numeric'
-            // ]);
+            
             $hasCompleted = NULL;
 
             if ( $request->B1 != NULL && $request->B2 != NULL && $request->B3 != NULL && $request->B4 != NULL && $request->B6 != NULL && $request->B7 != NULL && $request->B8 != NULL && $request->B9 != NULL && $request->B10 != NULL && $request->B11 != NULL && $request->B12 != NULL && $request->B13 != NULL && $request->B14 != NULL && $request->B15 != NULL && $request->B16 != NULL && $request->B17 != NULL && $request->B18 != NULL )
@@ -486,10 +467,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'C1' => 'required|numeric',
-            //     'C2' => 'required|numeric',
-            //]);
+            
             $hasCompleted = NULL;
             if ($request->C1 != NULL && $request->C2 != NULL) {
                 $hasCompleted = 1;
@@ -596,14 +574,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'E1' => 'required|numeric',
-            //     'E2' => 'required|numeric',
-            //     'E3' => 'required|numeric',
-            //     'E4' => 'required|numeric',
-            //     'E5' => 'required|numeric',
-            //     'E6' => 'required|numeric'
-            // ]);
+            
             $hasCompleted = NULL;
             if ( $request->E1 != NULL && $request->E2 != NULL && $request->E3 != NULL && $request->E4 != NULL && $request->E5 != NULL && $request->E6 != NULL ){
                 $hasCompleted = 1;
@@ -661,14 +632,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'F1' => 'required|numeric',
-            //     'F2' => 'required|numeric',
-            //     'F3' => 'required|numeric',
-            //     'F4' => 'required|numeric',
-            //     'F5' => 'required|numeric',
-            //     'F6' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if ( $request->F1 != NULL && $request->F2 != NULL && $request->F3 != NULL && $request->F4 != NULL && $request->F5 != NULL && $request->F6 != NULL ){
                 $hasCompleted = 1;
@@ -725,18 +689,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'G1' => 'required|numeric',
-            //     'G2' => 'required|numeric',
-            //     'G3' => 'required|numeric',
-            //     'G4' => 'required|numeric',
-            //     'G5' => 'required|numeric',
-            //     'G6' => 'required|numeric',
-            //     'G7' => 'required|numeric',
-            //     'G8' => 'required|numeric',
-            //     'G9' => 'required|numeric',
-            //     'G10' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if ( $request->G1 != NULL && $request->G2 != NULL && $request->G3 != NULL && $request->G4 != NULL && $request->G5 != NULL && $request->G6 != NULL && $request->G7 != NULL && $request->G8 != NULL && $request->G9 != NULL && $request->G10 != NULL ){
                 $hasCompleted = 1;
@@ -797,20 +750,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'H1' => 'required|numeric',
-            //     'H2' => 'required|numeric',
-            //     'H3' => 'required|numeric',
-            //     'H4' => 'required|numeric',
-            //     'H5' => 'required|numeric',
-            //     'H6' => 'required|numeric',
-            //     'H7' => 'required|numeric',
-            //     'H8' => 'required|numeric',
-            //     'H9' => 'required|numeric',
-            //     'H10' => 'required|numeric',
-            //     'H11' => 'required|numeric',
-            //     'H12' => 'required|numeric'
-            // ]);
+            
             $hasCompleted = NULL;
             if ( $request->H1 != NULL && $request->H2 != NULL && $request->H3 != NULL && $request->H4 != NULL && $request->H5 != NULL && $request->H6 != NULL && $request->H7 != NULL && $request->H8 != NULL && $request->H9 != NULL && $request->H10 != NULL && $request->H11 != NULL && $request->H12 != NULL ){
                 $hasCompleted = 1;
@@ -873,16 +813,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'H13' => 'required|numeric',
-            //     'H14' => 'required|numeric',
-            //     'H15' => 'required|numeric',
-            //     'H16' => 'required|numeric',
-            //     'H17' => 'required|numeric',
-            //     'H18' => 'required|numeric',
-            //     'H19' => 'required|numeric',
-            //     'H20' => 'required|numeric'
-            // ]);
+            
             $hasCompleted = NULL;
             if (
                 $request->H13 != NULL &&
@@ -948,17 +879,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'H21' => 'required|numeric',
-            //     'H22' => 'required|numeric',
-            //     'H23' => 'required|numeric',
-            //     'H24' => 'required|numeric',
-            //     'H25' => 'required|numeric',
-            //     'H26' => 'required|numeric',
-            //     'H27' => 'required|numeric',
-            //     'H28' => 'required|numeric',
-            //     'H29' => 'required|numeric'
-            // ]);
+            
             $hasCompleted = NULL;
             if (
                 $request->H21 != NULL &&
@@ -1026,14 +947,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'H30' => 'required|numeric',
-            //     'H31' => 'required|numeric',
-            //     'H32' => 'required|numeric',
-            //     'H33' => 'required|numeric',
-            //     'H34' => 'required|numeric',
-            //     'H35' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if (
                 $request->H30 != NULL &&
@@ -1093,11 +1007,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'I1' => 'required|numeric',
-            //     'I2' => 'required|numeric',
-            //     'I3' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if (
                 $request->I1 != NULL &&
@@ -1151,18 +1061,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'J1' => 'required|numeric',
-            //     'J2' => 'required|numeric',
-            //     'J3' => 'required|numeric',
-            //     'J4' => 'required|numeric',
-            //     'J5' => 'required|numeric',
-            //     'J6' => 'required|numeric',
-            //     'J7' => 'required|numeric',
-            //     'J8' => 'required|numeric',
-            //     'J9' => 'required|numeric',
-            //     'J10' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if (
                 $request->J1 != NULL &&
@@ -1230,18 +1129,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'K1' => 'required|numeric',
-            //     'K2' => 'required|numeric',
-            //     'K3' => 'required|numeric',
-            //     'K4' => 'required|numeric',
-            //     'K5' => 'required|numeric',
-            //     'K6' => 'required|numeric',
-            //     'K7' => 'required|numeric',
-            //     'K8' => 'required|numeric',
-            //     'K9' => 'required|numeric',
-            //     'K10' => 'required|numeric'
-            // ]);
+            
             $hasCompleted = NULL;
             if (
                 $request->K1 != NULL &&
@@ -1309,12 +1197,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'L1' => 'required|numeric',
-            //     'L2' => 'required|numeric',
-            //     'L3' => 'required|numeric',
-            //     'L4' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if (
                 $request->L1 != NULL &&
@@ -1370,11 +1253,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'M1' => 'required|numeric',
-            //     'M2' => 'required|numeric',
-            //     'M3' => 'required|numeric',
-            // ]);
+            
             $hasCompleted = NULL;
             if (
                 $request->M1 != NULL &&
@@ -1428,12 +1307,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'N1' => 'required|numeric',
-            //     'N2' => 'required|numeric',
-            //     'N3' => 'required|numeric',
-            //     'N4' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if (
                 $request->N1 != NULL &&
@@ -1489,13 +1363,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'O1' => 'required|numeric',
-            //     'O2' => 'required|numeric',
-            //     'O3' => 'required|numeric',
-            //     'O4' => 'required|numeric',
-            //     'O5' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if (
                 $request->O1 != NULL &&
@@ -1553,10 +1421,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'P1' => 'required|numeric',
-            //     'P2' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if (
                 $request->P1 != NULL &&
@@ -1608,12 +1473,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            // $validateData = $request->validate([
-            //     'Q1' => 'required|numeric',
-            //     'Q2' => 'required|numeric',
-            //     'Q3' => 'required|numeric',
-            //     'Q4' => 'required|numeric'
-            // ]);
+           
             $hasCompleted = NULL;
             if (
                 $request->Q1 != NULL &&
@@ -1666,7 +1526,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
 
-        //$hasCompleted = NULL;
+        
         if ( $user != NULL ){
 
             $validateData = $request->validate([
@@ -1674,7 +1534,7 @@ class UserController extends Controller
             ]);
             
             if ($request->saguhati == 0){
-                //$hasCompleted = 1;
+                
             
             DB::table('entries')->where('email', $user)->update(array(
                 'komen' => $request->komen,
@@ -1708,7 +1568,7 @@ class UserController extends Controller
         
         $user = $this->getUser($request);
 
-        //$hasCompleted = NULL;
+        
         if ( $user != NULL ){
                 
                 DB::table('entries')->where('email', $user)->update(array(
@@ -2479,7 +2339,7 @@ class UserController extends Controller
     }
 
     public function calculateSubDimensionEAfek($e1,$e2){
-        //$dimensi = round(($e1 + $e2) / 200 * 100, 2);
+        
         $dimensi = round(($e1 + $e2) / 200 * 100, 2);
         return $dimensi;
     }

@@ -200,7 +200,7 @@
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">P</span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Kindness</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Kebaikan</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span class="dimensipercent">{{$subDimension['subDimensionP']}}%<x-dimensi-info-point-p :userPoints="$subDimension['subDimensionP']"/></span></p></div>
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
@@ -255,7 +255,7 @@
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Kepuasan Kerja', 'Kepuasan Hidup', 'Penilaian Hidup', 'Afek Positif', 'Keterlibatan Kerja', 'Prestasi Kerja', 'Organisasi Berprestasi Tinggi', 'Produktiviti', 'Personaliti', 'Kesejahteraan Keluarga', 'Kesejahteraan Kewangan', 'Kesejahteraan Sosial', 'Tujuan', 'Daya Tahan', 'Kindness', 'Altruisme'],
+            labels: ['Kepuasan Kerja', 'Kepuasan Hidup', 'Penilaian Hidup', 'Afek Positif', 'Keterlibatan Kerja', 'Prestasi Kerja', 'Organisasi Berprestasi Tinggi', 'Produktiviti', 'Personaliti', 'Kesejahteraan Keluarga', 'Kesejahteraan Kewangan', 'Kesejahteraan Sosial', 'Tujuan', 'Daya Tahan', 'Kebaikan', 'Altruisme'],
             datasets: [
               {
                 label: 'Skor Anda',
