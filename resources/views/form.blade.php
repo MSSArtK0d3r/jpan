@@ -6544,8 +6544,8 @@
                <div class="tab">
                   <div class="titleCategory introPage">
                      <span>
-                        <h5 class="title-center">BAHAGIAN P: KINDNESS</h5>
-                        <span>Sila TANDAKAN (/) pada skala yang menunjukkan persetujuan anda mengenai <i>kindness</i> di tempat kerja.<br>
+                        <h5 class="title-center">BAHAGIAN P: KEBAIKAN</h5>
+                        <span>Sila TANDAKAN (/) pada skala yang menunjukkan persetujuan anda mengenai <i>kebaikan</i> di tempat kerja.<br>
                         Skala 0 menunjukkan anda ‘Sangat Tidak Bersetuju’ dengan pernyataan tersebut, manakala Skala 10 menunjukkan anda ‘Sangat Bersetuju’ dengan pernyataan tersebut.</span>
                         </span>
                   </div>
