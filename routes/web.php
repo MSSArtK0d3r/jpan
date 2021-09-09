@@ -154,6 +154,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/bulk-destroy',                                'EntriesController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{entry}',                                     'EntriesController@update')->name('update');
             Route::delete('/{entry}',                                   'EntriesController@destroy')->name('destroy');
+            Route::get('/export',                                       'EntriesController@export')->name('exportEntry');
         });
     });
 });

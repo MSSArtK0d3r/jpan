@@ -14,6 +14,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.entry.actions.index') }}
+                        <a class="btn btn-primary btn-sm pull-right ml-2" href="{{ url('admin/entries/export') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.entry.actions.export') }}</a>
                         <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/entries/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.entry.actions.create') }}</a>
                     </div>
                     <div class="card-body" v-cloak style="overflow-x:auto;">

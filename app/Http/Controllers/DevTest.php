@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Entry;
-use Maatwebsite\Excel\Concerns\ToArray;
-use Webpatser\Uuid\Uuid;
+
 
 class DevTest extends Controller {
 

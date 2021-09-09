@@ -21,6 +21,9 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use App\Http\Controllers\ThankYouResult;
+// use Maatwebsite\Excel\Excel;
+use App\Exports\EntryExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EntriesController extends Controller
 {
@@ -360,5 +363,11 @@ class EntriesController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+    public function export() 
+    {
+        $headers = array('id','uuid');
+        return Excel::download(new EntryExport, 'responden.xlsx', null, $headers);
     }
 }

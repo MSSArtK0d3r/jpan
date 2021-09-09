@@ -58,6 +58,7 @@ return [
             'index' => 'Entries',
             'create' => 'New Entry',
             'edit' => 'Edit :name',
+            'export' => 'Export to Excel'
         ],
 
         'columns' => [
