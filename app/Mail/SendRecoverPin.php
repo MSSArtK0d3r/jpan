@@ -30,7 +30,7 @@ class SendRecoverPin extends Mailable
     {
         //return $this->from('digitalisation@sabah.gov.my', 'PIN Keselamatan anda')
         return $this->from('it@borneocode.com', 'Pengesahan I-KOBT')
-        ->subject('PIN Keselamatan anda')
+        ->subject('PIN Keselamatan I-KOBT anda')
         ->view('mail.mailpin', ['mail_data' => $this->data]);
     }
 }
