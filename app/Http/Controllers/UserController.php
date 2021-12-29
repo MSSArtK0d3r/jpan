@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendRecoverPin;
 
 class UserController extends Controller
 {
@@ -259,9 +262,12 @@ class UserController extends Controller
                     'uuid' => $uuid,
                     'pin' => $temporaryPin
                 ]);
+
+                $data = ['pin' => $temporaryPin ];
+                Mail::to($request->email)->send(new SendRecoverPin($data));
                 //$request->session()->put('identity', $request->email);
                 //email account creation
-                return redirect()->route('createpinpage');
+                return redirect()->route('home');
         }
 
         $userPin = DB::table('entries')->select('pin')->where('email', $request->email)->first();
