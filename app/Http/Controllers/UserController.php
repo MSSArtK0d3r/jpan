@@ -273,9 +273,9 @@ class UserController extends Controller
         $userPin = DB::table('entries')->select('pin')->where('email', $request->email)->first();
         
         if ($userPin->pin == NULL) {
-            $request->session()->put('identity', $request->email);
+            //$request->session()->put('identity', $request->email);
             $temporaryPin = rand(100000,999999);
-            DB::table('entries')->where('email',$request->email)->insert([
+            DB::table('entries')->where('email',$request->email)->update([
                 'pin' => $temporaryPin
             ]);
             $data = ['pin' => $temporaryPin ];
