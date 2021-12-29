@@ -9,14 +9,13 @@
             </div>
             <div> <input type="password" name="pin" style="width: 100%">
             <br>
-            <a href="#" style="font-size: 12px">Lupa PIN keselamatan</a>
+            <a href="{{ route('forgetpin') }}" style="font-size: 12px">Lupa PIN keselamatan</a>
             </div>
             @if ($errors->any())
                 <span style="color: red">{{ $errors->first() }}</span>
             @endif
             <div>
-                <button class="subBtn verifyBtn" type="submit"><a href="{{ route('logout') }}"
-                        style="color:white;text-decoration:none;">Log Masuk</a></button>
+                <button class="subBtn verifyBtn" type="submit">Log Masuk</button>
             </div>
         </form>
     </div>

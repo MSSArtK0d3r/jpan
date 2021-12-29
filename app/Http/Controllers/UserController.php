@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RecoverPin;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
@@ -297,10 +298,10 @@ class UserController extends Controller
         $user = $this->getUser($request);
         $userPin = DB::table('entries')->select('pin')->where('email', $user)->first();
         if ($userPin->pin != NULL) {
-            if ($userPin->pin == $request->pin){
-                //$request->session()->put('identity', $user);
+            if ($userPin->pin === $request->pin){
+                //$request->session()->push('identity', $user);
                 $request->session()->push('verifiedAccount', 1);
-                return redirect()->route('demograph');
+                return redirect()->route('home');
             }else{
                 return back()->withErrors(['PIN tidak sah!!!']);
             }
@@ -323,6 +324,13 @@ class UserController extends Controller
             'pin' => $request->pin
         ]);
         return redirect()->route('verifypinpage');
+    }
+
+    public function recoverPin(Request $request){
+        $data = DB::table('entries')->select('pin')->where('email', $request->email);
+        Mail::to($request->email)->send(new RecoverPin($data));
+
+        return redirect()->route('pinrecovered');
     }
 
     public function clearSession(Request $request){

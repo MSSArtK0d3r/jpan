@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="{{ url('css/normalize.css') }}">
 <link rel="stylesheet" href="{{ url('css/skeleton.css') }}">
 <link rel="stylesheet" href="{{ url('css/tingle.min.css') }}">
+<link rel="stylesheet" href="{{ url('css/app.css') }}">
 <style>
    * {
       box-sizing: border-box;

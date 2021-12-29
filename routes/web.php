@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminPage;
 use App\Http\Controllers\Mail\SendVerification;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyAccount;
+use App\Http\Controllers\ChangePin;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +100,12 @@ Route::post('/users/sr2', [UserController::class, 'storeSectionR2'])->name('upda
 Route::get('/users/reward', [UserController::class, 'getReward'])->name('reward');
 Route::post('/users/reward', [UserController::class, 'storeReward'])->name('storeReward');
 Route::get('/verify/{uuid}', [VerifyAccount::class, 'index'])->name('verify');
+Route::get('/change-pin', [ChangePin::class, 'index'])->name('changepin');
+Route::post('/change-pin-now', [ChangePin::class, 'changePin'])->name('changepinnow');
+Route::get('/forgetpin', function(){
+    return view('users.forgetpin');
+})->name('forgetpin');
+Route::post('/recover-pin', [UserController::class, 'recoverPin'])->name('pinrecovered');
 
 Route::get('/invalid', function(){
     return view('invalid');
@@ -114,6 +121,7 @@ Route::get('/done', function(){
 
 Route::get('/send-verify', [SendVerification::class, 'SendEmailVerify'])->name('send-verification');
 Route::get('/send-password', [SendVerification::class, 'sendPasswordToEmail'])->name('send-password');
+
 
 Route::get('/updateku', function(){
     \Artisan::call('migrate');

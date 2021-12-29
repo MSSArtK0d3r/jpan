@@ -1,8 +1,8 @@
-<a href="#">
+<a href="{{ route('changepin') }}">
     <div class="bahagian">
         <span>Selamat datang,<br>
             <strong>{{ $user }}</strong><br>
-            {{-- <a href="{{url('/users/logout')}}"><span class="btnLogout">Log keluar</span></a> --}}
+            <sup>Tukar Pin Keselamatan</sup>
         </span>
     </div>
 </a>
