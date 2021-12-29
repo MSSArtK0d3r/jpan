@@ -327,7 +327,8 @@ class UserController extends Controller
     }
 
     public function recoverPin(Request $request){
-        $data = DB::table('entries')->select('pin')->where('email', $request->email);
+        $email = DB::table('entries')->select('pin')->where('email', $request->email)->get();
+        $data = $email[0]->pin;
         Mail::to($request->email)->send(new RecoverPin($data));
 
         return redirect()->route('pinrecovered');

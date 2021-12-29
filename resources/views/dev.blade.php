@@ -1,1 +1,1 @@
-{{ var_dump($data) }}
+{{ dd($data[0]->pin) }}
