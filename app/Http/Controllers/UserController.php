@@ -268,12 +268,15 @@ class UserController extends Controller
                 Mail::to($request->email)->send(new SendRecoverPin($data));
                 //$request->session()->put('identity', $request->email);
                 //email account creation
-                return redirect()->route('home');
+                return redirect()->route('createpinpage');
         }
 
         $userPin = DB::table('entries')->select('pin')->where('email', $request->email)->first();
         if ($userPin->pin == NULL) {
             $request->session()->put('identity', $request->email);
+            $temporaryPin = rand(100000,999999);
+            $data = ['pin' => $temporaryPin ];
+            Mail::to($request->email)->send(new SendRecoverPin($data));
             return redirect()->route('createpinpage');
         }
         $request->session()->put('identity', $request->email);
