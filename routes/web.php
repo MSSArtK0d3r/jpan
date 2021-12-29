@@ -115,7 +115,10 @@ Route::get('/done', function(){
 Route::get('/send-verify', [SendVerification::class, 'SendEmailVerify'])->name('send-verification');
 Route::get('/send-password', [SendVerification::class, 'sendPasswordToEmail'])->name('send-password');
 
-
+Route::get('/updateku', function(){
+    \Artisan::call('migrate');
+    dd('migrated!');
+});
 
 Route::post('/submit' , [EntriesController::class,'storeForm']);
 
