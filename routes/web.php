@@ -105,6 +105,9 @@ Route::post('/change-pin-now', [ChangePin::class, 'changePin'])->name('changepin
 Route::get('/forgetpin', function(){
     return view('users.forgetpin');
 })->name('forgetpin');
+Route::get('/recovered-page', function(){
+    return view('users.recoveredpage');
+})->name('donerecovered');
 Route::post('/recover-pin', [UserController::class, 'recoverPin'])->name('pinrecovered');
 
 Route::get('/invalid', function(){
@@ -122,11 +125,11 @@ Route::get('/done', function(){
 Route::get('/send-verify', [SendVerification::class, 'SendEmailVerify'])->name('send-verification');
 Route::get('/send-password', [SendVerification::class, 'sendPasswordToEmail'])->name('send-password');
 
-
-Route::get('/updateku', function(){
-    \Artisan::call('migrate');
-    dd('migrated!');
-});
+//update purpose
+// Route::get('/updateku', function(){
+//     \Artisan::call('migrate');
+//     dd('migrated!');
+// });
 
 Route::post('/submit' , [EntriesController::class,'storeForm']);
 
@@ -184,7 +187,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Dev Router */
 Route::get('/dev', [DevTest::class, 'index']);
-
+Route::post('/dev', [DevTest::class, 'getParam'])->name('getParamData');
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {

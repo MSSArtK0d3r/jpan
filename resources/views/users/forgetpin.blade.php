@@ -11,4 +11,5 @@
     </form>
     <div class="title-center"><a href="{{route('home')}}"><span>balik ke laman utama</span></a></div>
 </div>
+
 <x-footer/>

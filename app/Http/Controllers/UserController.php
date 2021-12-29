@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\RecoverPin;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +9,7 @@ use Webpatser\Uuid\Uuid;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendRecoverPin;
+use App\Mail\RecoverPin;
 
 class UserController extends Controller
 {
@@ -327,11 +327,12 @@ class UserController extends Controller
     }
 
     public function recoverPin(Request $request){
-        $email = DB::table('entries')->select('pin')->where('email', $request->email)->get();
+        $emailReq = $request->email;
+        $email = DB::table('entries')->select('pin')->where('email', $emailReq)->get();
         $data = $email[0]->pin;
-        Mail::to($request->email)->send(new RecoverPin($data));
+        Mail::to($emailReq)->send(new RecoverPin($data));
 
-        return redirect()->route('pinrecovered');
+        return redirect()->route('donerecovered');
     }
 
     public function clearSession(Request $request){
