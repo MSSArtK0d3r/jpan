@@ -266,23 +266,26 @@ class UserController extends Controller
 
                 $data = ['pin' => $temporaryPin ];
                 Mail::to($request->email)->send(new SendRecoverPin($data));
-                //$request->session()->put('identity', $request->email);
-                //email account creation
+
                 return redirect()->route('createpinpage');
         }
 
         $userPin = DB::table('entries')->select('pin')->where('email', $request->email)->first();
+        
         if ($userPin->pin == NULL) {
             $request->session()->put('identity', $request->email);
             $temporaryPin = rand(100000,999999);
-            DB::table('entries')->insert([
+            DB::table('entries')->where('email',$request->email)->insert([
                 'pin' => $temporaryPin
             ]);
             $data = ['pin' => $temporaryPin ];
             Mail::to($request->email)->send(new SendRecoverPin($data));
+            
             return redirect()->route('createpinpage');
         }
+
         $request->session()->put('identity', $request->email);
+        
         return redirect()->route('verifypinpage');
         }
     
