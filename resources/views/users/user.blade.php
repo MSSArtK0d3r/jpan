@@ -1,7 +1,7 @@
 <x-header/>
 <div class="contents {{ $user == NULL ? '' : 'eight columns'}}">
  <h5 class="title-center" style="font-size: 1.3em">SOAL SELIDIK<br>INDEKS-KEGEMBIRAAN ORGANISASI BERPRESTASI TINGGI<br>(I-KOBT)</h5>
-@if ( $user == NULL )
+ @if ( $user == NULL )
     <x-context-main/>
     <form class="title-center" action="{{route('storeMyForm')}}" method="POST">
         @csrf
@@ -20,12 +20,12 @@
     <div class="widgetContainer twelve columns">
         <div class="widgetIndex six columns">
             <span>Indeks Kegembiraan</span>
-            <h4 class="noMargin">{{$indexKegembiraan}}%</h4>
+            <h4 class="noMargin">{{$subDimension['subDimensionIKB']}}%</h4>
             <hr>
         </div>
         <div class="widgetIndex six columns">
             <span>Indeks OBT</span>
-            <h4 class="noMargin">{{$indexOBT}}%</h4>
+            <h4 class="noMargin">{{$subDimension['subDimensionHOBT']}}%</h4>
             <hr>
         </div>
     </div>
@@ -130,7 +130,7 @@
     </div>
     <div class="widgetContainerDimensi twevle columns noMargin">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px"></span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">SUB-DIMENSI</span><br><span>Tingkah laku kerja tidak produktif</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">SUB-DIMENSI</span><br><span>Tingkah laku kerja produktif</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span style="text-align: end;font-size:20px;">{{$subDimension['subDimensionGTingkahLakuKerjaTidakProduktif']}}%</span></p></div>
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
@@ -170,7 +170,7 @@
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">
         <div class="dimensiSection"><p class="noMargin"><span style="font-size: 30px">J</span></p></div>
-        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Personaliti</span></p></div>
+        <div class="dimensiSubject"><p class="noMargin"><span style="font-size: 11px">DIMENSI</span><br><span>Personaliti Jenis B</span></p></div>
         <div style="width: 45%;text-align:end;"><p class="noMargin"><span class="dimensipercent">{{$subDimension['subDimensionJ']}}%<x-dimensi-info-point-j :userPoints="$subDimension['subDimensionJ']"/></span></p></div>
     </div>
     <div class="widgetContainerDimensi twelve columns dimensiLine">

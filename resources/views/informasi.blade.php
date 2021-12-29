@@ -34,7 +34,7 @@
                     <ol style="list-style-type: lower-roman">
                         <li>Prestasi Tugas</li>
                         <li>Prestasi Kontekstual</li>
-                        <li>Tingkah Laku Kerja Tidak Produktif</li>
+                        <li>Tingkah Laku Kerja Produktif</li>
                     </ol>
                 </li>
             </ol>

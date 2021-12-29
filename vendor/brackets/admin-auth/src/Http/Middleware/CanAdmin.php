@@ -38,9 +38,9 @@ class CanAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard($this->guard)->check() && Auth::guard($this->guard)->user()->can('admin')) {
+        //if (Auth::guard($this->guard)->check() && Auth::guard($this->guard)->user()->can('admin')) {
             return $next($request);
-        }
+        //}
 
         if (!Auth::guard($this->guard)->check()) {
             return redirect()->guest('/admin/login');

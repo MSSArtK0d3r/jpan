@@ -6,10 +6,17 @@
     <x-form-global-error/>
     <form action="{{route('updateSectionK')}}" method="POST">
     @csrf
+    @if ($statusPerkahwinan[0]->status == 'Berkahwin')
     <div class="introPage <x-form-validation-error :key='$userData[0]->filledK' :index='$userData[0]->K1'/>" style="margin-bottom: 10px;">
         <p>1. Secara keseluruhannya, saya berpuas hati dengan hubungan saya bersama pasangan saya.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="1" sectionQuestion="K" :userData="$userData[0]->K1"/>
      </div>
+     @else
+     <div class="introPage" style="margin-bottom: 10px;">
+      <p>1. Secara keseluruhannya, saya berpuas hati dengan hubungan saya bersama pasangan saya.</p>
+      <span style="font-style: italic;font-size:12px;">Soalan ini hanya dijawab oleh responden yang telah berkahwin sahaja. Sila jawap soalan seterusnya</span>
+   </div>
+     @endif
      <div class="introPage <x-form-validation-error :key='$userData[0]->filledK' :index='$userData[0]->K2'/>" style="margin-bottom: 10px;">
         <p>2. Secara keseluruhannya, saya berpuas hati dengan hubungan kekeluargaan saya.</p>
         <x-ratings-components initialQuestion="0"  questionNumber="2" sectionQuestion="K" :userData="$userData[0]->K2"/>

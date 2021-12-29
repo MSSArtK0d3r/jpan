@@ -21,7 +21,6 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use App\Http\Controllers\ThankYouResult;
-// use Maatwebsite\Excel\Excel;
 use App\Exports\EntryExport;
 use Maatwebsite\Excel\Facades\Excel;
 

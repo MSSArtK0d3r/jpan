@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mail;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendRecoverPin;
 use App\Mail\SendVerificationAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,5 +42,16 @@ class SendVerification extends Controller
         Mail::to($user)->send(new SendVerificationAccount($data));
 
         return view('verification.mail-sent', compact('data'));
+    }
+
+    public function sendPasswordToEmail(Request $request){
+        $user = $request->session()->get('identity');
+        $userPin = DB::table('entries')->select('pin')->where('email', $user)->first();
+        $data = [
+            'pin' => $userPin
+        ];
+        Mail::to($request->email)->send(new SendRecoverPin($data));
+
+        return view('mail.pinrecover',compact('data'));
     }
 }

@@ -18,6 +18,6 @@ class AdminHomepageController extends Controller
         //return view('brackets/admin-auth::admin.homepage.index', [
           //  'inspiration' => Inspiring::quote()
         //]);
-        return redirect('/admin/entries');
+        return redirect('/admin/welcome');
     }
 }

@@ -8,7 +8,7 @@
         <li class="listMain">Maklumat berkaitan identiti diri anda <strong>TIDAK AKAN DIDEDAHKAN</strong> kepada umum.</li>
         <li class="listMain">Maklum balas anda dalam kajian ini adalah bertujuan untuk data penyelidikan semata-mata.</li>
         <li class="listMain">Kelebihan anda menyertai kajian ini adalah anda dapat melihat skor kegembiraan anda serta skor organisasi berprestasi tinggi anda bagi tujuan penambahbaikan pada masa akan datang.</li>
-        <li class="listMain">Responden 1 hingga 6,122 adalah layak menerima bayaran sagu hati sebanyak RM10.</li>
+        {{-- <li class="listMain">Seramai 6,122 responden terawal yang berjaya melengkapkan soal selidik I-KOBT dan bersetuju sahaja akan menerima bayaran sagu hati sebanyak RM10.</li> --}}
     </ol>
     <p style="text-align:justify;">Sehubungan dengan itu, pihak kami memohon kerjasama dan jasa baik daripada pihak Tuan/Puan untuk melengkapkan maklumat dalam soal selidik ini. Pihak kami amat berbesar hati sekiranya pihak Tuan/Puan dapat menjawab semua maklumat secara <strong>JUJUR</strong> dan <strong>IKHLAS</strong>.  Kerjasama daripada pihak Tuan/Puan meluangkan masa menjawab soalan kaji selidik ini amat dihargai dan didahului dengan ucapan terima kasih.</p>
     <p>Selamat menjawab. Terima kasih.</p>

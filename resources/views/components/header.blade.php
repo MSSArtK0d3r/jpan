@@ -721,6 +721,19 @@
     color: white;
 }
 
+.verifyBtn {
+   width: 100%
+}
+
+.user-login{
+   text-align: center;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background-color: #540b88;
+    color: white;
+}
+
 </style>
 
 <body>

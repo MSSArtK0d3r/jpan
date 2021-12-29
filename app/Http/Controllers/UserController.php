@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Webpatser\Uuid\Uuid;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function getUser(Request $request){
         $user = NULL;
-        if ( $request->session()->exists('identity') ) {
+        if ( $request->session()->has('identity') ) {
             $user = $request->session()->get('identity');
             return $user;
         }
@@ -50,15 +51,56 @@ class UserController extends Controller
 
     public function adminDashboard(){
 
+            if ( Auth::id() != 1 ) {
+                abort(403, 'Unauthorized action.');
+            }
+
             $notZero = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->first();
             if (is_null($notZero) == false){
-            $data['totalRatingB'] = $this->calculateTotalB();
+            //$data['totalRatingB'] = $this->calculateTotalB();
+            $data['totalRatingB'] = round(($this->calculateTotalBGaji() + $this->calculateTotalBPangkat() + $this->calculateTotalBKetua() + $this->calculateTotalBProsedurOperasi() + $this->calculateTotalBRakanSekerja() + $this->calculateTotalBSifatKerja() + $this->calculateTotalBKomunikasi() + $this->calculateTotalBPersekitaran()) / 800 * 100, 2);
+            $data['totalRatingBMale'] = round(($this->calculateTotalBGajiMale() + $this->calculateTotalBPangkatMale() + $this->calculateTotalBKetuaMale() + $this->calculateTotalBProsedurOperasiMale() + $this->calculateTotalBRakanSekerjaMale() + $this->calculateTotalBSifatKerjaMale() + $this->calculateTotalBKomunikasiMale() + $this->calculateTotalBPersekitaranMale()) / 800 * 100, 2);
+            $data['demo'] = $this->calculateTotalBPersekitaranMale();
+            $data['totalRatingBFemale'] = round(($this->calculateTotalBGajiFemale() + $this->calculateTotalBPangkatFemale() + $this->calculateTotalBKetuaFemale() + $this->calculateTotalBProsedurOperasiFemale() + $this->calculateTotalBRakanSekerjaFemale() + $this->calculateTotalBSifatKerjaFemale() + $this->calculateTotalBKomunikasiFemale() + $this->calculateTotalBPersekitaranFemale()) / 800 * 100, 2);
+            $data['totalRatingBGaji'] = $this->calculateTotalBGaji();
+            $data['totalRatingBPangkat'] = $this->calculateTotalBPangkat();
+            $data['totalRatingBKetua'] = $this->calculateTotalBKetua();
+            $data['totalRatingBProsedurOperasi'] = $this->calculateTotalBProsedurOperasi();
+            $data['totalRatingBRakanSekerja'] = $this->calculateTotalBRakanSekerja();
+            $data['totalRatingBSifatKerja'] = $this->calculateTotalBSifatKerja();
+            $data['totalRatingBKomunikasi'] = $this->calculateTotalBKomunikasi();
+            $data['totalRatingBPersekitaran'] = $this->calculateTotalBPersekitaran();
+            $data['totalRatingBMale'] = $this->calculateTotalBMale();
+            $data['totalRatingBFemale'] = $this->calculateTotalBFemale();
             $data['totalRatingC'] = $this->calculateTotalC();
+            $data['totalRatingCMale'] = $this->calculateTotalCMale();
+            $data['totalRatingCFemale'] = $this->calculateTotalCFemale();
             $data['totalRatingD'] = $this->calculateTotalD();
+            $data['totalRatingDMale'] = $this->calculateTotalDMale();
+            $data['totalRatingDFemale'] = $this->calculateTotalDFemale();
             $data['totalRatingE'] = $this->calculateTotalE();
+            $data['totalRatingEMale'] = $this->calculateTotalEMale();
+            $data['totalRatingEFemale'] = $this->calculateTotalEFemale();
             $data['totalRatingF'] = $this->calculateTotalF();
+            $data['totalRatingFMale'] = $this->calculateTotalFMale();
+            $data['totalRatingFFemale'] = $this->calculateTotalFFemale();
+            $data['totalRatingFSemangat'] = $this->calculateTotalFSemangat();
+            $data['totalRatingFDedikasi'] = $this->calculateTotalFDedikasi();
+            $data['totalRatingFKesungguhan'] = $this->calculateTotalFKesungguhan();
             $data['totalRatingG'] = $this->calculateTotalG();
+            $data['totalRatingGMale'] = $this->calculateTotalGMale();
+            $data['totalRatingGFemale'] = $this->calculateTotalGFemale();
+            $data['totalRatingGPrestasiTugas'] = $this->calculateTotalGPrestasiTugas();
+            $data['totalRatingGPrestasiKontekstual'] = $this->calculateTotalGPrestasiKontekstual();
+            $data['totalRatingGTingkahLakuKerjaTidakProduktif'] = $this->calculateTotalGTingkahLakuKerjaTidakProduktif();
             $data['totalRatingH'] = $this->calculateTotalH();
+            $data['totalRatingHMale'] = $this->calculateTotalHMale();
+            $data['totalRatingHFemale'] = $this->calculateTotalHFemale();
+            $data['totalRatingHKualitiPengurusan'] = $this->calculateTotalHKualitiPengurusan();
+            $data['totalRatingHPPB'] = $this->calculateTotalHPPB();
+            $data['totalRatingHOJP'] = $this->calculateTotalHOJP();
+            $data['totalRatingHKP2'] = $this->calculateTotalHKP2();
+            $data['totalRatingHKOT'] = $this->calculateTotalHKOT();
             $data['totalRatingI'] = $this->calculateTotalI();
             $data['totalRatingJ'] = $this->calculateTotalJ();
             $data['totalRatingK'] = $this->calculateTotalK();
@@ -69,8 +111,12 @@ class UserController extends Controller
             $data['totalRatingP'] = $this->calculateTotalP();
             $data['totalRatingQ'] = $this->calculateTotalQ();
 
-            $data['IndeksKegembiraanKeseluruhan'] = round(($this->calculateTotalB() + $this->calculateTotalC() + $this->calculateTotalD() + $this->calculateTotalE() + $this->calculateTotalF() + $this->calculateTotalG()) / 600 * 100, 2);
+            $data['IndeksKegembiraanKeseluruhan'] = round(($data['totalRatingB'] + $this->calculateTotalC() + $this->calculateTotalD() + $this->calculateTotalE() + $this->calculateTotalF() + $this->calculateTotalG()) / 600 * 100, 2);
             $data['IndeksOBTKeseluruhan'] = $this->calculateTotalH();
+            $data['IndeksKegembiraanKeseluruhanMale'] = round(($data['totalRatingBMale'] + $this->calculateTotalCMale() + $this->calculateTotalDMale() + $this->calculateTotalEMale() + $this->calculateTotalFMale() + $this->calculateTotalGMale()) / 600 * 100, 2);
+            $data['IndeksKegembiraanKeseluruhanFemale'] = round(($data['totalRatingBFemale'] + $this->calculateTotalCFemale() + $this->calculateTotalDFemale() + $this->calculateTotalEFemale() + $this->calculateTotalFFemale() + $this->calculateTotalGFemale()) / 600 * 100, 2);
+            $data['IndeksOBTKeseluruhanMale'] = $this->calculateTotalHMale();
+            $data['IndeksOBTKeseluruhanFemale'] = $this->calculateTotalHFemale();
             $totalResponden = DB::table('entries')
                 ->where('completedR','=', '1')
                 ->count();
@@ -81,10 +127,13 @@ class UserController extends Controller
     }
 
     public function index(Request $request){
-        $user = $this->getUser($request);
         
+        $user = $this->getUser($request);
 
         if ($user != NULL) {
+            if ($request->session()->get('verifiedAccount') == NULL){
+                return redirect()->route('verifypinpage');
+            }
             $accountStatus = DB::table('entries')->select('verified')->where('email', $user)->first();
             if($accountStatus->verified == 'pending'){
                 return redirect()->route('send-verification');
@@ -136,17 +185,6 @@ class UserController extends Controller
             $data['totalRatingO'] = $this->calculateTotalO();
             $data['totalRatingP'] = $this->calculateTotalP();
             $data['totalRatingQ'] = $this->calculateTotalQ();
-            
-            //Index Data
-            $totalIndex['indexB'] = $this->calculateIndexB($user);
-            $totalIndex['indexC'] = $this->calculateIndexC($user);
-            $totalIndex['indexD'] = $this->calculateIndexD($entry->D1);
-            $totalIndex['indexE'] = $this->calculateIndexE($user);
-            $totalIndex['indexF'] = $this->calculateIndexF($user);
-            $totalIndex['indexG'] = $this->calculateIndexG($user);
-
-            $indexKegembiraan = $this->calculateTotalIndexKegembiraan($totalIndex['indexB'],$totalIndex['indexC'],$totalIndex['indexD'],$totalIndex['indexE'],$totalIndex['indexF'],$totalIndex['indexG']);
-            $indexOBT = $this->calculateIndexH($user);
 
             //Calculate Sub Dimension
             $subDimension['subDimensionBGaji'] = $this->calculateSubDimensionBGaji($entry->B1,$entry->B2);
@@ -161,8 +199,6 @@ class UserController extends Controller
 
             $subDimension['subDimensionCKepuasanHidup'] = $this->calculateIndexC($user);
             $subDimension['subDimensionDPenilaianHidup'] = $this->calculateIndexD($entry->D1);
-
-
             
             $subDimension['subDimensionEAfekPositif'] = $this->calculateSubDimensionEAfekPositif($entry->E1, $entry->E2, $entry->E3);
             $subDimension['subDimensionEAfekNegatif'] = $this->calculateSubDimensionEAfekNegatif($entry->E4, $entry->E5, $entry->E6);
@@ -178,11 +214,15 @@ class UserController extends Controller
             $subDimension['subDimensionGTingkahLakuKerjaTidakProduktif'] = $this->calculateSubDimensionGTingkahLakuKerjaTidakProduktif($entry->G9, $entry->G10);
             $subDimension['subDimensionGPrestasiKerja'] = $this->calculateSubDimensionGPrestasiKerja($subDimension['subDimensionGPrestasiTugas'], $subDimension['subDimensionGPrestasiKontekstual'], $subDimension['subDimensionGTingkahLakuKerjaTidakProduktif']);
 
+            
+            
             $subDimension['subDimensionHKualitiPengurusan'] = $this->calculateSubDimensionHKualitiPengurusan($entry->H1, $entry->H2, $entry->H3, $entry->H4, $entry->H5, $entry->H6, $entry->H7, $entry->H8, $entry->H9, $entry->H10, $entry->H11, $entry->H12);
             $subDimension['subDimensionHPenambahbaikanDanPembaharuanBerterusan'] = $this->calculateSubDimensionHPenambahbaikanDanPembaharuanBerterusan($entry->H13, $entry->H14, $entry->H15, $entry->H16, $entry->H17, $entry->H18, $entry->H19, $entry->H20);
             $subDimension['subDimensionHOrientasiJangkaPanjang'] = $this->calculateSubDimensionHOrientasiJangkaPanjang($entry->H21, $entry->H22, $entry->H23, $entry->H24, $entry->H25);
             $subDimension['subDimensionHKualitiPekerja'] = $this->calculateSubDimensionHKualitiPekerja($entry->H26, $entry->H27, $entry->H28, $entry->H29);
             $subDimension['subDimensionHKeterbukaanDanOrientasiTindakan'] = $this->calculateSubDimensionHKeterbukaanDanOrientasiTindakan($entry->H30, $entry->H31, $entry->H32, $entry->H33, $entry->H34, $entry->H35);
+            
+            $subDimension['subDimensionIKB'] = round(($subDimension['subDimensionBKepuasanKerja'] + $subDimension['subDimensionCKepuasanHidup'] + $subDimension['subDimensionDPenilaianHidup'] + $subDimension['subDimensionEAfek'] + $subDimension['subDimensionFKeterlibatanKerja'] + $subDimension['subDimensionGPrestasiKerja']) / 600 * 100, 2);
             $subDimension['subDimensionHOBT'] = $this->calculateSubDimensionHOBT($subDimension['subDimensionHKualitiPengurusan'], $subDimension['subDimensionHPenambahbaikanDanPembaharuanBerterusan'], $subDimension['subDimensionHOrientasiJangkaPanjang'], $subDimension['subDimensionHKualitiPekerja'], $subDimension['subDimensionHKeterbukaanDanOrientasiTindakan']);
 
             $subDimension['subDimensionI'] = $this->calculateIndexI($entry->I1, $entry->I2, $entry->I3); 
@@ -195,7 +235,7 @@ class UserController extends Controller
             $subDimension['subDimensionP'] = $this->calculateIndexP($entry->P1, $entry->P2);
             $subDimension['subDimensionQ'] = $this->calculateIndexQ($entry->Q1, $entry->Q2, $entry->Q3, $entry->Q4);
             
-            return view('users.user', compact('user', 'data', 'hasCompleted', 'userProgress', 'totalIndex', 'indexKegembiraan', 'indexOBT', 'subDimension', 'notZero','accountStatus'));
+            return view('users.user', compact('user', 'data', 'hasCompleted', 'userProgress', 'subDimension', 'notZero','accountStatus'));
             
             
         }
@@ -203,38 +243,96 @@ class UserController extends Controller
     }
 
     public function storeData(Request $request){
+        
         $request->validate([
             'email' => 'required|email',
             //'email' => 'required|email|regex:/(.*)sabah\.gov\.my$/i',
         ]);
+        
         $userData = DB::table('entries')->where('email', $request->email)->first();
-            
         if ($userData == NULL) {
             $uuid = Uuid::generate();
+            $temporaryPin = rand(100000,999999);
                 DB::table('entries')->insert([
                     'email' => $request->email,
                     'start_at' => now(+8),
-                    'uuid' => $uuid
+                    'uuid' => $uuid,
+                    'pin' => $temporaryPin
                 ]);
-                $request->session()->put('identity', $request->email);
-                return redirect('users/demografi');
-        }
-        $request->session()->put('identity', $request->email);
-        return redirect('/users');
+                //$request->session()->put('identity', $request->email);
+                //email account creation
+                return redirect()->route('createpinpage');
         }
 
+        $userPin = DB::table('entries')->select('pin')->where('email', $request->email)->first();
+        if ($userPin->pin == NULL) {
+            $request->session()->put('identity', $request->email);
+            return redirect()->route('createpinpage');
+        }
+        $request->session()->put('identity', $request->email);
+        return redirect()->route('verifypinpage');
+        }
+    
+    public function verifyPinPage(Request $request){
+        $user = $this->getUser($request);
+        $userPin = DB::table('entries')->select('pin')->where('email', $user)->first();
+        if ($userPin->pin == NULL) {
+            return redirect()->route('createpinpage');
+        }
+        // $userPin = DB::table('entries')->select('pin')->where('email', $user)->first();
+        // if ($userPin == NULL) {
+        //     return redirect()->route('createpinpage');
+        // }
+        return view('users.verifipin', compact('user'));
+
+    }
+
+    public function verifyPin(Request $request){
+        $user = $this->getUser($request);
+        $userPin = DB::table('entries')->select('pin')->where('email', $user)->first();
+        if ($userPin->pin != NULL) {
+            if ($userPin->pin == $request->pin){
+                //$request->session()->put('identity', $user);
+                $request->session()->push('verifiedAccount', 1);
+                return redirect()->route('demograph');
+            }else{
+                return back()->withErrors(['PIN tidak sah!!!']);
+            }
+        } else {
+            return redirect()->route('createpinpage');
+        }
+    }
+
+    public function newPinPage(Request $request){
+        $user = $this->getUser($request);
+        return view('users.createpin', compact('user'));
+    }
+
+    public function createPin(Request $request){
+        $user = $this->getUser($request);
+        $request->validate([
+            'pin' => 'digits:6'
+        ]);
+        DB::table('entries')->where('email', $user)->update([
+            'pin' => $request->pin
+        ]);
+        return redirect()->route('verifypinpage');
+    }
+
     public function clearSession(Request $request){
-        $request->session()->forget('identity');
+        $request->session()->flush();
         return redirect('users');
     }
 
     public function demoGraphy(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
         }
-        
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
+        }
         $data = array(
         'umur',
         'jantina',
@@ -367,8 +465,11 @@ class UserController extends Controller
     public function sectionB(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
         
         $hasCompleted = DB::table('entries')->select('completedA')->where('email', '=', $user)->get()->toArray();
@@ -441,9 +542,13 @@ class UserController extends Controller
     public function sectionC(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
         }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
+        }
+
         $hasCompleted = DB::table('entries')->select('completedB')->where('email', '=', $user)->get()->toArray();
         
         if ($hasCompleted[0]->completedB == NULL) {
@@ -494,8 +599,11 @@ class UserController extends Controller
     public function sectionD(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedC')->where('email', '=', $user)->get()->toArray();
@@ -547,8 +655,11 @@ class UserController extends Controller
     public function sectionE(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
         
         $hasCompleted = DB::table('entries')->select('completedD')->where('email', '=', $user)->get()->toArray();
@@ -605,8 +716,11 @@ class UserController extends Controller
     public function sectionF(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedE')->where('email', '=', $user)->get()->toArray();
@@ -662,8 +776,11 @@ class UserController extends Controller
     public function sectionG(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
         
         $hasCompleted = DB::table('entries')->select('completedF')->where('email', '=', $user)->get()->toArray();
@@ -723,8 +840,11 @@ class UserController extends Controller
     public function sectionH1(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedG')->where('email', '=', $user)->get()->toArray();
@@ -786,8 +906,11 @@ class UserController extends Controller
     public function sectionH2(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedH1')->where('email', '=', $user)->get()->toArray();
@@ -852,8 +975,11 @@ class UserController extends Controller
     public function sectionH3(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedH2')->where('email', '=', $user)->get()->toArray();
@@ -920,8 +1046,11 @@ class UserController extends Controller
     public function sectionH4(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedH3')->where('email', '=', $user)->get()->toArray();
@@ -980,8 +1109,11 @@ class UserController extends Controller
     public function sectionI(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedH4')->where('email', '=', $user)->get()->toArray();
@@ -1034,8 +1166,11 @@ class UserController extends Controller
     public function sectionJ(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedI')->where('email', '=', $user)->get()->toArray();
@@ -1102,8 +1237,11 @@ class UserController extends Controller
     public function sectionK(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedJ')->where('email', '=', $user)->get()->toArray();
@@ -1122,43 +1260,30 @@ class UserController extends Controller
         array_push($data, $extra);
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
-        return view('users.sk', compact('user', 'userData', 'userProgress'));
+        $statusPerkahwinan = DB::table('entries')->select('status')->where('email', '=', $user)->get();
+        return view('users.sk', compact('user', 'userData', 'userProgress','statusPerkahwinan'));
     }
 
     public function storeSectionK(Request $request){
         
         $user = $this->getUser($request);
         if ( $user != NULL ){
-            
+            $statusPerkahwinan = DB::table('entries')->select('status')->where('email', '=', $user)->get();
             $hasCompleted = NULL;
-            if (
-                $request->K1 != NULL &&
-                $request->K2 != NULL &&
-                $request->K3 != NULL &&
-                $request->K4 != NULL &&
-                $request->K5 != NULL &&
-                $request->K6 != NULL &&
-                $request->K7 != NULL &&
-                $request->K8 != NULL &&
-                $request->K9 != NULL &&
-                $request->K10 != NULL
-            ){
-                $hasCompleted = 1;
+            if ($statusPerkahwinan[0]->status =='Berkahwin'){
+                if ( $request->K1 != NULL && $request->K2 != NULL && $request->K3 != NULL && $request->K4 != NULL && $request->K5 != NULL && $request->K6 != NULL && $request->K7 != NULL && $request->K8 != NULL && $request->K9 != NULL && $request->K10 != NULL )
+                {
+                    $hasCompleted = 1;
+                }
+                DB::table('entries')->where('email', $user)->update(array( 'K1' => $request->K1, 'K2' => $request->K2, 'K3' => $request->K3, 'K4' => $request->K4, 'K5' => $request->K5, 'K6' => $request->K6, 'K7' => $request->K7, 'K8' => $request->K8, 'K9' => $request->K9, 'K10' => $request->K10, 'filledK' => 1, 'completedK' => $hasCompleted ));
+                } else {
+                if ( $request->K2 != NULL && $request->K3 != NULL && $request->K4 != NULL && $request->K5 != NULL && $request->K6 != NULL && $request->K7 != NULL && $request->K8 != NULL && $request->K9 != NULL && $request->K10 != NULL )
+                {
+                    $hasCompleted = 1;
+                }
+                DB::table('entries')->where('email', $user)->update(array( 'K1' => 0, 'K2' => $request->K2, 'K3' => $request->K3, 'K4' => $request->K4, 'K5' => $request->K5, 'K6' => $request->K6, 'K7' => $request->K7, 'K8' => $request->K8, 'K9' => $request->K9, 'K10' => $request->K10, 'filledK' => 1, 'completedK' => $hasCompleted ));
+            
             }
-            DB::table('entries')->where('email', $user)->update(array(
-                'K1' => $request->K1,
-                'K2' => $request->K2,
-                'K3' => $request->K3,
-                'K4' => $request->K4,
-                'K5' => $request->K5,
-                'K6' => $request->K6,
-                'K7' => $request->K7,
-                'K8' => $request->K8,
-                'K9' => $request->K9,
-                'K10' => $request->K10,
-                'filledK' => 1,
-                'completedK' => $hasCompleted
-            ));
             if ($hasCompleted == 1) {
                 return redirect('/users/sl');
             }
@@ -1170,8 +1295,11 @@ class UserController extends Controller
     public function sectionL(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedK')->where('email', '=', $user)->get()->toArray();
@@ -1226,8 +1354,11 @@ class UserController extends Controller
     public function sectionM(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedL')->where('email', '=', $user)->get()->toArray();
@@ -1280,8 +1411,11 @@ class UserController extends Controller
     public function sectionN(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedM')->where('email', '=', $user)->get()->toArray();
@@ -1336,8 +1470,11 @@ class UserController extends Controller
     public function sectionO(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedN')->where('email', '=', $user)->get()->toArray();
@@ -1394,8 +1531,11 @@ class UserController extends Controller
     public function sectionP(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedO')->where('email', '=', $user)->get()->toArray();
@@ -1446,8 +1586,11 @@ class UserController extends Controller
     public function sectionQ(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedP')->where('email', '=', $user)->get()->toArray();
@@ -1502,8 +1645,11 @@ class UserController extends Controller
     public function sectionR(Request $request){
         
         $user = $this->getUser($request);
-        if ( !$user ){
-            return redirect('users');
+        if ( $user == NULL ){
+            return redirect()->route('home');
+        }
+        if ($request->session()->get('verifiedAccount') == NULL){
+            return redirect()->route('verifypinpage');
         }
 
         $hasCompleted = DB::table('entries')->select('completedQ')->where('email', '=', $user)->get()->toArray();
@@ -1519,7 +1665,8 @@ class UserController extends Controller
         );
         $userProgress = $this->getUserProgress($request);
         $userData = DB::table('entries')->select($data)->where('email', '=', $user)->get();
-        return view('users.sr', compact('user', 'userData', 'userProgress'));
+        $totalRespondedWithReward = $users = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->where('saguhati',1)->count();
+        return view('users.sr', compact('user', 'userData', 'userProgress','totalRespondedWithReward'));
     }
 
     public function storeSectionR(Request $request){
@@ -1683,8 +1830,788 @@ class UserController extends Controller
         $MaxPointRespondenPersekitaran = $TotalResponden * 20;
         $TotalPersekitaranPercentage = $TotalPersekitaran / $MaxPointRespondenPersekitaran * 100;
 
-        $totalB = ($TotalGajiPercentage + $TotalPangkatPercentage + $TotalPOPercentage + $TotalKetuaPercentage + $TotalRSPercent + $TotalSKPercentage + $TotalKomPercentage + $TotalPersekitaranPercentage) / 800 * 100;
+        $totalB = round(($TotalGajiPercentage + $TotalPangkatPercentage + $TotalPOPercentage + $TotalKetuaPercentage + $TotalRSPercent + $TotalSKPercentage + $TotalKomPercentage + $TotalPersekitaranPercentage) / 800 * 100, 2);
 
+        return $totalB;
+    }
+
+    public function calculateTotalBGaji(){
+        
+        $TotalOfBRatingB1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B1');
+        $TotalOfBRatingB2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B2');
+
+        $TotalResponden = count($TotalOfBRatingB1->toArray());
+        
+        $TotalGaji = array_sum(array_merge(
+            $TotalOfBRatingB1->toArray(),
+            $TotalOfBRatingB2->toArray()
+        ));
+
+        $MaxPointRespondenGaji = $TotalResponden * 20;
+        $TotalGajiPercentage = $TotalGaji / $MaxPointRespondenGaji * 100;
+
+        $totalBGaji = $TotalGajiPercentage / 100 * 100;
+
+        return round($totalBGaji,2);
+
+    }
+
+    public function calculateTotalBGajiMale(){
+        
+        $TotalOfBRatingB1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B1');
+        $TotalOfBRatingB2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B2');
+
+        $TotalResponden = count($TotalOfBRatingB1->toArray());
+        
+        $TotalGaji = array_sum(array_merge(
+            $TotalOfBRatingB1->toArray(),
+            $TotalOfBRatingB2->toArray()
+        ));
+
+        $MaxPointRespondenGaji = $TotalResponden * 20;
+        $TotalGajiPercentage = $TotalGaji / $MaxPointRespondenGaji * 100;
+
+        $totalBGaji = $TotalGajiPercentage / 100 * 100;
+
+        return round($totalBGaji,2);
+
+    }
+
+    public function calculateTotalBGajiFemale(){
+        
+        $TotalOfBRatingB1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B1');
+        $TotalOfBRatingB2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B2');
+
+        $TotalResponden = count($TotalOfBRatingB1->toArray());
+        
+        $TotalGaji = array_sum(array_merge(
+            $TotalOfBRatingB1->toArray(),
+            $TotalOfBRatingB2->toArray()
+        ));
+
+        $MaxPointRespondenGaji = $TotalResponden * 20;
+        $TotalGajiPercentage = $TotalGaji / $MaxPointRespondenGaji * 100;
+
+        $totalBGaji = $TotalGajiPercentage / 100 * 100;
+
+        return round($totalBGaji,2);
+
+    }
+
+    public function calculateTotalBPangkat(){
+        
+        $TotalOfBRatingB3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B3');
+
+        $TotalResponden = count($TotalOfBRatingB3->toArray());
+        
+
+        $TotalPangkat = array_sum(array_merge(
+            $TotalOfBRatingB3->toArray()
+        ));
+
+        $MaxPointRespondenPangkat = $TotalResponden * 10;
+        $TotalPangkatPercentage = $TotalPangkat / $MaxPointRespondenPangkat * 100;
+
+
+        $totalB = $TotalPangkatPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBPangkatMale(){
+        
+        $TotalOfBRatingB3 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B3');
+
+        $TotalResponden = count($TotalOfBRatingB3->toArray());
+        
+
+        $TotalPangkat = array_sum(array_merge(
+            $TotalOfBRatingB3->toArray()
+        ));
+
+        $MaxPointRespondenPangkat = $TotalResponden * 10;
+        $TotalPangkatPercentage = $TotalPangkat / $MaxPointRespondenPangkat * 100;
+
+
+        $totalB = $TotalPangkatPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBPangkatFemale(){
+        
+        $TotalOfBRatingB3 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B3');
+
+        $TotalResponden = count($TotalOfBRatingB3->toArray());
+        
+
+        $TotalPangkat = array_sum(array_merge(
+            $TotalOfBRatingB3->toArray()
+        ));
+
+        $MaxPointRespondenPangkat = $TotalResponden * 10;
+        $TotalPangkatPercentage = $TotalPangkat / $MaxPointRespondenPangkat * 100;
+
+
+        $totalB = $TotalPangkatPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBKetua(){
+        
+        $TotalOfBRatingB4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B4');
+        $TotalOfBRatingB5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B5');
+
+        $TotalResponden = count($TotalOfBRatingB4->toArray());
+
+        $TotalKetua = array_sum(array_merge(
+            $TotalOfBRatingB4->toArray(),
+            $TotalOfBRatingB5->toArray()
+        ));
+
+        $MaxPointRespondenKetua = $TotalResponden * 20;
+        $TotalKetuaPercentage = $TotalKetua / $MaxPointRespondenKetua * 100;
+
+        $totalB = $TotalKetuaPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBKetuaMale(){
+        
+        $TotalOfBRatingB4 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B4');
+        $TotalOfBRatingB5 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B5');
+
+        $TotalResponden = count($TotalOfBRatingB4->toArray());
+
+        $TotalKetua = array_sum(array_merge(
+            $TotalOfBRatingB4->toArray(),
+            $TotalOfBRatingB5->toArray()
+        ));
+
+        $MaxPointRespondenKetua = $TotalResponden * 20;
+        $TotalKetuaPercentage = $TotalKetua / $MaxPointRespondenKetua * 100;
+
+        $totalB = $TotalKetuaPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBKetuaFemale(){
+        
+        $TotalOfBRatingB4 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B4');
+        $TotalOfBRatingB5 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B5');
+
+        $TotalResponden = count($TotalOfBRatingB4->toArray());
+
+        $TotalKetua = array_sum(array_merge(
+            $TotalOfBRatingB4->toArray(),
+            $TotalOfBRatingB5->toArray()
+        ));
+
+        $MaxPointRespondenKetua = $TotalResponden * 20;
+        $TotalKetuaPercentage = $TotalKetua / $MaxPointRespondenKetua * 100;
+
+        $totalB = $TotalKetuaPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBProsedurOperasi(){
+        
+        $TotalOfBRatingB6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B6');
+        $TotalOfBRatingB7 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B7');
+        $TotalOfBRatingB8 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B8');
+        
+        $TotalResponden = count($TotalOfBRatingB6->toArray());
+        
+
+        $TotalProsedurOperasiPositif = array_sum(array_merge($TotalOfBRatingB7->toArray()));
+        
+        $TotalProsedurOperasiNegatif = array_sum(array_merge(
+          $TotalOfBRatingB6->toArray(),
+          $TotalOfBRatingB8->toArray()
+          ));
+
+        $MaxPointRespondenProsedurOperasi = $TotalResponden * 30;
+        $MaxTotalPONeg = $TotalResponden * 20;
+        $TotalPONeg = $MaxTotalPONeg - $TotalProsedurOperasiNegatif;
+        $TotalPOPercentage = ($TotalProsedurOperasiPositif + $TotalPONeg) / $MaxPointRespondenProsedurOperasi * 100;
+
+        $totalB = $TotalPOPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBProsedurOperasiMale(){
+        
+        $TotalOfBRatingB6 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B6');
+        $TotalOfBRatingB7 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B7');
+        $TotalOfBRatingB8 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B8');
+        
+        $TotalResponden = count($TotalOfBRatingB6->toArray());
+        
+
+        $TotalProsedurOperasiPositif = array_sum(array_merge($TotalOfBRatingB7->toArray()));
+        
+        $TotalProsedurOperasiNegatif = array_sum(array_merge(
+          $TotalOfBRatingB6->toArray(),
+          $TotalOfBRatingB8->toArray()
+          ));
+
+        $MaxPointRespondenProsedurOperasi = $TotalResponden * 30;
+        $MaxTotalPONeg = $TotalResponden * 20;
+        $TotalPONeg = $MaxTotalPONeg - $TotalProsedurOperasiNegatif;
+        $TotalPOPercentage = ($TotalProsedurOperasiPositif + $TotalPONeg) / $MaxPointRespondenProsedurOperasi * 100;
+
+        $totalB = $TotalPOPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBProsedurOperasiFemale(){
+        
+        $TotalOfBRatingB6 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B6');
+        $TotalOfBRatingB7 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B7');
+        $TotalOfBRatingB8 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B8');
+        
+        $TotalResponden = count($TotalOfBRatingB6->toArray());
+        
+
+        $TotalProsedurOperasiPositif = array_sum(array_merge($TotalOfBRatingB7->toArray()));
+        
+        $TotalProsedurOperasiNegatif = array_sum(array_merge(
+          $TotalOfBRatingB6->toArray(),
+          $TotalOfBRatingB8->toArray()
+          ));
+
+        $MaxPointRespondenProsedurOperasi = $TotalResponden * 30;
+        $MaxTotalPONeg = $TotalResponden * 20;
+        $TotalPONeg = $MaxTotalPONeg - $TotalProsedurOperasiNegatif;
+        $TotalPOPercentage = ($TotalProsedurOperasiPositif + $TotalPONeg) / $MaxPointRespondenProsedurOperasi * 100;
+
+        $totalB = $TotalPOPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBRakanSekerja(){
+        
+        $TotalOfBRatingB9 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B9');
+        $TotalOfBRatingB10 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B10');
+        
+        $TotalResponden = count($TotalOfBRatingB9->toArray());
+        
+        $TotalRakanSekerja = array_sum(array_merge(
+            $TotalOfBRatingB9->toArray(),
+            $TotalOfBRatingB10->toArray()
+        ));
+
+        $MaxPointRS = $TotalResponden * 20;
+        $TotalRSPercent = ($MaxPointRS - $TotalRakanSekerja)  / $MaxPointRS * 100;
+        
+        $totalB = $TotalRSPercent / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBRakanSekerjaMale(){
+        
+        $TotalOfBRatingB9 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B9');
+        $TotalOfBRatingB10 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B10');
+        
+        $TotalResponden = count($TotalOfBRatingB9->toArray());
+        
+        $TotalRakanSekerja = array_sum(array_merge(
+            $TotalOfBRatingB9->toArray(),
+            $TotalOfBRatingB10->toArray()
+        ));
+
+        $MaxPointRS = $TotalResponden * 20;
+        $TotalRSPercent = ($MaxPointRS - $TotalRakanSekerja)  / $MaxPointRS * 100;
+        
+        $totalB = $TotalRSPercent / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBRakanSekerjaFemale(){
+        
+        $TotalOfBRatingB9 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B9');
+        $TotalOfBRatingB10 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B10');
+        
+        $TotalResponden = count($TotalOfBRatingB9->toArray());
+        
+        $TotalRakanSekerja = array_sum(array_merge(
+            $TotalOfBRatingB9->toArray(),
+            $TotalOfBRatingB10->toArray()
+        ));
+
+        $MaxPointRS = $TotalResponden * 20;
+        $TotalRSPercent = ($MaxPointRS - $TotalRakanSekerja)  / $MaxPointRS * 100;
+        
+        $totalB = $TotalRSPercent / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBSifatKerja(){
+        
+        $TotalOfBRatingB11 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B11');
+        $TotalOfBRatingB12 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B12');
+        $TotalOfBRatingB13 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B13');
+
+        $TotalResponden = count($TotalOfBRatingB11->toArray());
+        
+
+        $TotalSifatKerjaPositif = array_sum(array_merge(
+            $TotalOfBRatingB12->toArray(),
+            $TotalOfBRatingB13->toArray()
+        ));
+       
+        $TotalSifatKerjaNegatif = array_sum(array_merge(
+            $TotalOfBRatingB11->toArray()
+        ));
+
+        $MaxPointRespondenSifatKerja = $TotalResponden * 30; 
+        $MaxPSKNeg = $TotalResponden * 10;
+        $TotalSKNeg = $MaxPSKNeg - $TotalSifatKerjaNegatif;
+        $TotalSKPercentage = ($TotalSifatKerjaPositif + $TotalSKNeg) / $MaxPointRespondenSifatKerja * 100;
+        
+        $totalB = $TotalSKPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBSifatKerjaMale(){
+        
+        $TotalOfBRatingB11 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B11');
+        $TotalOfBRatingB12 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B12');
+        $TotalOfBRatingB13 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B13');
+
+        $TotalResponden = count($TotalOfBRatingB11->toArray());
+        
+
+        $TotalSifatKerjaPositif = array_sum(array_merge(
+            $TotalOfBRatingB12->toArray(),
+            $TotalOfBRatingB13->toArray()
+        ));
+       
+        $TotalSifatKerjaNegatif = array_sum(array_merge(
+            $TotalOfBRatingB11->toArray()
+        ));
+
+        $MaxPointRespondenSifatKerja = $TotalResponden * 30; 
+        $MaxPSKNeg = $TotalResponden * 10;
+        $TotalSKNeg = $MaxPSKNeg - $TotalSifatKerjaNegatif;
+        $TotalSKPercentage = ($TotalSifatKerjaPositif + $TotalSKNeg) / $MaxPointRespondenSifatKerja * 100;
+        
+        $totalB = $TotalSKPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBSifatKerjaFemale(){
+        
+        $TotalOfBRatingB11 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B11');
+        $TotalOfBRatingB12 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B12');
+        $TotalOfBRatingB13 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B13');
+
+        $TotalResponden = count($TotalOfBRatingB11->toArray());
+        
+
+        $TotalSifatKerjaPositif = array_sum(array_merge(
+            $TotalOfBRatingB12->toArray(),
+            $TotalOfBRatingB13->toArray()
+        ));
+       
+        $TotalSifatKerjaNegatif = array_sum(array_merge(
+            $TotalOfBRatingB11->toArray()
+        ));
+
+        $MaxPointRespondenSifatKerja = $TotalResponden * 30; 
+        $MaxPSKNeg = $TotalResponden * 10;
+        $TotalSKNeg = $MaxPSKNeg - $TotalSifatKerjaNegatif;
+        $TotalSKPercentage = ($TotalSifatKerjaPositif + $TotalSKNeg) / $MaxPointRespondenSifatKerja * 100;
+        
+        $totalB = $TotalSKPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBKomunikasi(){
+        
+        $TotalOfBRatingB14 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B14');
+        $TotalOfBRatingB15 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B15');
+        $TotalOfBRatingB16 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B16');
+        
+        $TotalResponden = count($TotalOfBRatingB14->toArray());
+
+        $TotalKomunikasiPositif = array_sum(array_merge(
+            $TotalOfBRatingB14->toArray()
+        ));
+
+        $TotalKomunikasiNegatif = array_sum(array_merge(
+            $TotalOfBRatingB15->toArray(),
+            $TotalOfBRatingB16->toArray()
+        ));
+
+        $MaxPointRespondenKom = $TotalResponden * 30; 
+        $MaxPKomNeg = $TotalResponden * 20;
+        $TotalKomNeg = $MaxPKomNeg - $TotalKomunikasiNegatif;
+        $TotalKomPercentage = ($TotalKomunikasiPositif + $TotalKomNeg) / $MaxPointRespondenKom * 100;
+
+        $totalB = $TotalKomPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBKomunikasiMale(){
+        
+        $TotalOfBRatingB14 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B14');
+        $TotalOfBRatingB15 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B15');
+        $TotalOfBRatingB16 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B16');
+        
+        $TotalResponden = count($TotalOfBRatingB14->toArray());
+
+        $TotalKomunikasiPositif = array_sum(array_merge(
+            $TotalOfBRatingB14->toArray()
+        ));
+
+        $TotalKomunikasiNegatif = array_sum(array_merge(
+            $TotalOfBRatingB15->toArray(),
+            $TotalOfBRatingB16->toArray()
+        ));
+
+        $MaxPointRespondenKom = $TotalResponden * 30; 
+        $MaxPKomNeg = $TotalResponden * 20;
+        $TotalKomNeg = $MaxPKomNeg - $TotalKomunikasiNegatif;
+        $TotalKomPercentage = ($TotalKomunikasiPositif + $TotalKomNeg) / $MaxPointRespondenKom * 100;
+
+        $totalB = $TotalKomPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBKomunikasiFemale(){
+        
+        $TotalOfBRatingB14 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B14');
+        $TotalOfBRatingB15 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B15');
+        $TotalOfBRatingB16 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B16');
+        
+        $TotalResponden = count($TotalOfBRatingB14->toArray());
+
+        $TotalKomunikasiPositif = array_sum(array_merge(
+            $TotalOfBRatingB14->toArray()
+        ));
+
+        $TotalKomunikasiNegatif = array_sum(array_merge(
+            $TotalOfBRatingB15->toArray(),
+            $TotalOfBRatingB16->toArray()
+        ));
+
+        $MaxPointRespondenKom = $TotalResponden * 30; 
+        $MaxPKomNeg = $TotalResponden * 20;
+        $TotalKomNeg = $MaxPKomNeg - $TotalKomunikasiNegatif;
+        $TotalKomPercentage = ($TotalKomunikasiPositif + $TotalKomNeg) / $MaxPointRespondenKom * 100;
+
+        $totalB = $TotalKomPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBPersekitaran(){
+        
+        $TotalOfBRatingB17 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B17');
+        $TotalOfBRatingB18 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('B18');
+
+        $TotalResponden = count($TotalOfBRatingB17->toArray());
+        
+        $TotalPersekitaran = array_sum(array_merge(
+            $TotalOfBRatingB17->toArray(),
+            $TotalOfBRatingB18->toArray()
+        ));
+
+        $MaxPointRespondenPersekitaran = $TotalResponden * 20;
+        $TotalPersekitaranPercentage = $TotalPersekitaran / $MaxPointRespondenPersekitaran * 100;
+
+        $totalB = $TotalPersekitaranPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBPersekitaranMale(){
+        
+        $TotalOfBRatingB17 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B17');
+        $TotalOfBRatingB18 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('B18');
+
+        $TotalResponden = count($TotalOfBRatingB17->toArray());
+        
+        $TotalPersekitaran = array_sum(array_merge(
+            $TotalOfBRatingB17->toArray(),
+            $TotalOfBRatingB18->toArray()
+        ));
+
+        $MaxPointRespondenPersekitaran = $TotalResponden * 20;
+        $TotalPersekitaranPercentage = $TotalPersekitaran / $MaxPointRespondenPersekitaran * 100;
+
+        $totalB = $TotalPersekitaranPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBPersekitaranFemale(){
+        
+        $TotalOfBRatingB17 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B17');
+        $TotalOfBRatingB18 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('B18');
+
+        $TotalResponden = count($TotalOfBRatingB17->toArray());
+        
+        $TotalPersekitaran = array_sum(array_merge(
+            $TotalOfBRatingB17->toArray(),
+            $TotalOfBRatingB18->toArray()
+        ));
+
+        $MaxPointRespondenPersekitaran = $TotalResponden * 20;
+        $TotalPersekitaranPercentage = $TotalPersekitaran / $MaxPointRespondenPersekitaran * 100;
+
+        $totalB = $TotalPersekitaranPercentage / 100 * 100;
+
+        return round($totalB,2);
+
+    }
+
+    public function calculateTotalBMale(){
+        
+        $TotalOfBRatingB1 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B1');
+        $TotalOfBRatingB2 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B2');
+        $TotalOfBRatingB3 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B3');
+        $TotalOfBRatingB4 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B4');
+        $TotalOfBRatingB5 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B5');
+        $TotalOfBRatingB6 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B6');
+        $TotalOfBRatingB7 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B7');
+        $TotalOfBRatingB8 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B8');
+        $TotalOfBRatingB9 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B9');
+        $TotalOfBRatingB10 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B10');
+        $TotalOfBRatingB11 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B11');
+        $TotalOfBRatingB12 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B12');
+        $TotalOfBRatingB13 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B13');
+        $TotalOfBRatingB14 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B14');
+        $TotalOfBRatingB15 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B15');
+        $TotalOfBRatingB16 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B16');
+        $TotalOfBRatingB17 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B17');
+        $TotalOfBRatingB18 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('B18');
+
+        $TotalResponden = count($TotalOfBRatingB1->toArray());
+        
+        $TotalGaji = array_sum(array_merge(
+            $TotalOfBRatingB1->toArray(),
+            $TotalOfBRatingB2->toArray()
+        ));
+
+        $TotalPangkat = array_sum(array_merge(
+            $TotalOfBRatingB3->toArray()
+        ));
+
+        $TotalKetua = array_sum(array_merge(
+            $TotalOfBRatingB4->toArray(),
+            $TotalOfBRatingB5->toArray()
+        ));
+
+        $TotalProsedurOperasiPositif = array_sum(array_merge($TotalOfBRatingB7->toArray()));
+        $TotalProsedurOperasiNegatif = array_sum(array_merge(
+          $TotalOfBRatingB6->toArray(),
+          $TotalOfBRatingB8->toArray()
+          ));
+
+        $TotalRakanSekerja = array_sum(array_merge(
+            $TotalOfBRatingB9->toArray(),
+            $TotalOfBRatingB10->toArray()
+        ));
+
+        $TotalSifatKerjaPositif = array_sum(array_merge(
+            $TotalOfBRatingB12->toArray(),
+            $TotalOfBRatingB13->toArray()
+        ));
+       
+        $TotalSifatKerjaNegatif = array_sum(array_merge(
+            $TotalOfBRatingB11->toArray()
+        ));
+
+        $TotalKomunikasiPositif = array_sum(array_merge(
+            $TotalOfBRatingB14->toArray()
+        ));
+
+        $TotalKomunikasiNegatif = array_sum(array_merge(
+            $TotalOfBRatingB15->toArray(),
+            $TotalOfBRatingB16->toArray()
+        ));
+
+        $TotalPersekitaran = array_sum(array_merge(
+            $TotalOfBRatingB17->toArray(),
+            $TotalOfBRatingB18->toArray()
+        ));
+
+        $MaxPointRespondenGaji = $TotalResponden * 20;
+        $TotalGajiPercentage = $TotalGaji / $MaxPointRespondenGaji * 100;
+
+        $MaxPointRespondenPangkat = $TotalResponden * 10;
+        $TotalPangkatPercentage = $TotalPangkat / $MaxPointRespondenPangkat * 100;
+
+        $MaxPointRespondenKetua = $TotalResponden * 20;
+        $TotalKetuaPercentage = $TotalKetua / $MaxPointRespondenKetua * 100;
+
+        $MaxPointRespondenProsedurOperasi = $TotalResponden * 30;
+        $MaxTotalPONeg = $TotalResponden * 20;
+        $TotalPONeg = $MaxTotalPONeg - $TotalProsedurOperasiNegatif;
+        $TotalPOPercentage = ($TotalProsedurOperasiPositif + $TotalPONeg) / $MaxPointRespondenProsedurOperasi * 100;
+
+        $MaxPointRS = $TotalResponden * 20;
+        $TotalRSPercent = ($MaxPointRS - $TotalRakanSekerja)  / $MaxPointRS * 100;
+        
+        $MaxPointRespondenSifatKerja = $TotalResponden * 30; 
+        $MaxPSKNeg = $TotalResponden * 10;
+        $TotalSKNeg = $MaxPSKNeg - $TotalSifatKerjaNegatif;
+        $TotalSKPercentage = ($TotalSifatKerjaPositif + $TotalSKNeg) / $MaxPointRespondenSifatKerja * 100;
+        
+        $MaxPointRespondenKom = $TotalResponden * 30; 
+        $MaxPKomNeg = $TotalResponden * 20;
+        $TotalKomNeg = $MaxPKomNeg - $TotalKomunikasiNegatif;
+        $TotalKomPercentage = ($TotalKomunikasiPositif + $TotalKomNeg) / $MaxPointRespondenKom * 100;
+
+        $MaxPointRespondenPersekitaran = $TotalResponden * 20;
+        $TotalPersekitaranPercentage = $TotalPersekitaran / $MaxPointRespondenPersekitaran * 100;
+
+        $totalB = round(($TotalGajiPercentage + $TotalPangkatPercentage + $TotalPOPercentage + $TotalKetuaPercentage + $TotalRSPercent + $TotalSKPercentage + $TotalKomPercentage + $TotalPersekitaranPercentage) / 800 * 100, 2);
+
+        return $totalB;
+
+    }
+
+    public function calculateTotalBFemale(){
+        
+        $TotalOfBRatingB1 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B1');
+        $TotalOfBRatingB2 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B2');
+        $TotalOfBRatingB3 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B3');
+        $TotalOfBRatingB4 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B4');
+        $TotalOfBRatingB5 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B5');
+        $TotalOfBRatingB6 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B6');
+        $TotalOfBRatingB7 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B7');
+        $TotalOfBRatingB8 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B8');
+        $TotalOfBRatingB9 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B9');
+        $TotalOfBRatingB10 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B10');
+        $TotalOfBRatingB11 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B11');
+        $TotalOfBRatingB12 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B12');
+        $TotalOfBRatingB13 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B13');
+        $TotalOfBRatingB14 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B14');
+        $TotalOfBRatingB15 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B15');
+        $TotalOfBRatingB16 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B16');
+        $TotalOfBRatingB17 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B17');
+        $TotalOfBRatingB18 = DB::table('entries')->where('completedR', 1)->where('jantina','Perempuan')->where('verified', 'verified')->pluck('B18');
+
+        $TotalResponden = count($TotalOfBRatingB1->toArray());
+        
+        $TotalGaji = array_sum(array_merge(
+            $TotalOfBRatingB1->toArray(),
+            $TotalOfBRatingB2->toArray()
+        ));
+
+        $TotalPangkat = array_sum(array_merge(
+            $TotalOfBRatingB3->toArray()
+        ));
+
+        $TotalKetua = array_sum(array_merge(
+            $TotalOfBRatingB4->toArray(),
+            $TotalOfBRatingB5->toArray()
+        ));
+
+        $TotalProsedurOperasiPositif = array_sum(array_merge($TotalOfBRatingB7->toArray()));
+        $TotalProsedurOperasiNegatif = array_sum(array_merge(
+          $TotalOfBRatingB6->toArray(),
+          $TotalOfBRatingB8->toArray()
+          ));
+
+        $TotalRakanSekerja = array_sum(array_merge(
+            $TotalOfBRatingB9->toArray(),
+            $TotalOfBRatingB10->toArray()
+        ));
+
+        $TotalSifatKerjaPositif = array_sum(array_merge(
+            $TotalOfBRatingB12->toArray(),
+            $TotalOfBRatingB13->toArray()
+        ));
+       
+        $TotalSifatKerjaNegatif = array_sum(array_merge(
+            $TotalOfBRatingB11->toArray()
+        ));
+
+        $TotalKomunikasiPositif = array_sum(array_merge(
+            $TotalOfBRatingB14->toArray()
+        ));
+
+        $TotalKomunikasiNegatif = array_sum(array_merge(
+            $TotalOfBRatingB15->toArray(),
+            $TotalOfBRatingB16->toArray()
+        ));
+
+        $TotalPersekitaran = array_sum(array_merge(
+            $TotalOfBRatingB17->toArray(),
+            $TotalOfBRatingB18->toArray()
+        ));
+
+        $MaxPointRespondenGaji = $TotalResponden * 20;
+        $TotalGajiPercentage = $TotalGaji / $MaxPointRespondenGaji * 100;
+
+        $MaxPointRespondenPangkat = $TotalResponden * 10;
+        $TotalPangkatPercentage = $TotalPangkat / $MaxPointRespondenPangkat * 100;
+
+        $MaxPointRespondenKetua = $TotalResponden * 20;
+        $TotalKetuaPercentage = $TotalKetua / $MaxPointRespondenKetua * 100;
+
+        $MaxPointRespondenProsedurOperasi = $TotalResponden * 30;
+        $MaxTotalPONeg = $TotalResponden * 20;
+        $TotalPONeg = $MaxTotalPONeg - $TotalProsedurOperasiNegatif;
+        $TotalPOPercentage = ($TotalProsedurOperasiPositif + $TotalPONeg) / $MaxPointRespondenProsedurOperasi * 100;
+
+        $MaxPointRS = $TotalResponden * 20;
+        $TotalRSPercent = ($MaxPointRS - $TotalRakanSekerja)  / $MaxPointRS * 100;
+        
+        $MaxPointRespondenSifatKerja = $TotalResponden * 30; 
+        $MaxPSKNeg = $TotalResponden * 10;
+        $TotalSKNeg = $MaxPSKNeg - $TotalSifatKerjaNegatif;
+        $TotalSKPercentage = ($TotalSifatKerjaPositif + $TotalSKNeg) / $MaxPointRespondenSifatKerja * 100;
+        
+        $MaxPointRespondenKom = $TotalResponden * 30; 
+        $MaxPKomNeg = $TotalResponden * 20;
+        $TotalKomNeg = $MaxPKomNeg - $TotalKomunikasiNegatif;
+        $TotalKomPercentage = ($TotalKomunikasiPositif + $TotalKomNeg) / $MaxPointRespondenKom * 100;
+
+        $MaxPointRespondenPersekitaran = $TotalResponden * 20;
+        $TotalPersekitaranPercentage = $TotalPersekitaran / $MaxPointRespondenPersekitaran * 100;
+
+        $totalB = round(($TotalGajiPercentage + $TotalPangkatPercentage + $TotalPOPercentage + $TotalKetuaPercentage + $TotalRSPercent + $TotalSKPercentage + $TotalKomPercentage + $TotalPersekitaranPercentage) / 800 * 100, 2);
+        
         return $totalB;
 
     }
@@ -1692,6 +2619,42 @@ class UserController extends Controller
     public function calculateTotalC(){
         $TotalOfCRatingC1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('C1');
         $TotalOfCRatingC2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('C2');
+        
+        $totalC = array_merge(
+            $TotalOfCRatingC1->toArray(),
+            $TotalOfCRatingC2->toArray(),
+        );
+        
+        $countTotalC = count($TotalOfCRatingC1->toArray());
+        $totalC = array_sum($totalC);
+        $totalPointsC = $countTotalC * 2 * 10;
+        $totalC = ($totalC * 100) / $totalPointsC;
+        $totalC = round($totalC, 2);
+
+        return $totalC;
+    }
+
+    public function calculateTotalCMale(){
+        $TotalOfCRatingC1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('C1');
+        $TotalOfCRatingC2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('C2');
+        
+        $totalC = array_merge(
+            $TotalOfCRatingC1->toArray(),
+            $TotalOfCRatingC2->toArray(),
+        );
+        
+        $countTotalC = count($TotalOfCRatingC1->toArray());
+        $totalC = array_sum($totalC);
+        $totalPointsC = $countTotalC * 2 * 10;
+        $totalC = ($totalC * 100) / $totalPointsC;
+        $totalC = round($totalC, 2);
+
+        return $totalC;
+    }
+
+    public function calculateTotalCFemale(){
+        $TotalOfCRatingC1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('C1');
+        $TotalOfCRatingC2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('C2');
         
         $totalC = array_merge(
             $TotalOfCRatingC1->toArray(),
@@ -1723,6 +2686,38 @@ class UserController extends Controller
         return $totalD;
     }
 
+    public function calculateTotalDMale(){
+        $TotalOfDRatingD1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('D1');
+        
+        $totalD = array_merge(
+            $TotalOfDRatingD1->toArray(),
+        );
+
+        $countTotalD = count($TotalOfDRatingD1->toArray());
+        $totalD = array_sum($totalD);
+        $totalPointsD = $countTotalD * 1 * 10;
+        $totalD = ($totalD * 100) / $totalPointsD;
+        $totalD = round($totalD, 2);
+
+        return $totalD;
+    }
+
+    public function calculateTotalDFemale(){
+        $TotalOfDRatingD1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('D1');
+        
+        $totalD = array_merge(
+            $TotalOfDRatingD1->toArray(),
+        );
+
+        $countTotalD = count($TotalOfDRatingD1->toArray());
+        $totalD = array_sum($totalD);
+        $totalPointsD = $countTotalD * 1 * 10;
+        $totalD = ($totalD * 100) / $totalPointsD;
+        $totalD = round($totalD, 2);
+
+        return $totalD;
+    }
+
     public function calculateTotalE(){
         $TotalOfERatingE1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E1');
         $TotalOfERatingE2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E2');
@@ -1730,6 +2725,74 @@ class UserController extends Controller
         $TotalOfERatingE4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E4');
         $TotalOfERatingE5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E5');
         $TotalOfERatingE6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('E6');
+        
+        $TotalResponden = count($TotalOfERatingE1->toArray());
+
+        $TotalAP = array_sum(array_merge(
+            $TotalOfERatingE1->toArray(),
+            $TotalOfERatingE2->toArray(),
+            $TotalOfERatingE3->toArray()
+        ));
+
+        $TotalAN = array_sum(array_merge(
+            $TotalOfERatingE4->toArray(),
+            $TotalOfERatingE5->toArray(),
+            $TotalOfERatingE6->toArray()
+        ));
+
+        $MaxPointsAP = $TotalResponden * 30;
+        $TotalAPPercent = $TotalAP / $MaxPointsAP * 100;
+
+        $MaxPointsAN = $TotalResponden * 30; 
+        $TotalANPercent = ($MaxPointsAN - $TotalAN) / $MaxPointsAN * 100;        
+        
+        $totalE = round(($TotalAPPercent + $TotalANPercent) / 200 * 100, 2);
+        
+
+        return $totalE;
+    }
+
+    public function calculateTotalEMale(){
+        $TotalOfERatingE1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('E1');
+        $TotalOfERatingE2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('E2');
+        $TotalOfERatingE3 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('E3');
+        $TotalOfERatingE4 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('E4');
+        $TotalOfERatingE5 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('E5');
+        $TotalOfERatingE6 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('E6');
+        
+        $TotalResponden = count($TotalOfERatingE1->toArray());
+
+        $TotalAP = array_sum(array_merge(
+            $TotalOfERatingE1->toArray(),
+            $TotalOfERatingE2->toArray(),
+            $TotalOfERatingE3->toArray()
+        ));
+
+        $TotalAN = array_sum(array_merge(
+            $TotalOfERatingE4->toArray(),
+            $TotalOfERatingE5->toArray(),
+            $TotalOfERatingE6->toArray()
+        ));
+
+        $MaxPointsAP = $TotalResponden * 30;
+        $TotalAPPercent = $TotalAP / $MaxPointsAP * 100;
+
+        $MaxPointsAN = $TotalResponden * 30; 
+        $TotalANPercent = ($MaxPointsAN - $TotalAN) / $MaxPointsAN * 100;        
+        
+        $totalE = round(($TotalAPPercent + $TotalANPercent) / 200 * 100, 2);
+        
+
+        return $totalE;
+    }
+
+    public function calculateTotalEFemale(){
+        $TotalOfERatingE1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('E1');
+        $TotalOfERatingE2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('E2');
+        $TotalOfERatingE3 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('E3');
+        $TotalOfERatingE4 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('E4');
+        $TotalOfERatingE5 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('E5');
+        $TotalOfERatingE6 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('E6');
         
         $TotalResponden = count($TotalOfERatingE1->toArray());
 
@@ -1794,6 +2857,136 @@ class UserController extends Controller
         return $totalF;
     }
 
+    public function calculateTotalFMale(){
+        $TotalOfFRatingF1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('F1');
+        $TotalOfFRatingF2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('F2');
+        $TotalOfFRatingF3 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('F3');
+        $TotalOfFRatingF4 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('F4');
+        $TotalOfFRatingF5 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('F5');
+        $TotalOfFRatingF6 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('F6');
+        
+        $totalFS = array_sum(array_merge(
+            $TotalOfFRatingF1->toArray(),
+            $TotalOfFRatingF2->toArray(),
+        ));
+        $totalFD = array_sum(array_merge(
+            $TotalOfFRatingF3->toArray(),
+            $TotalOfFRatingF4->toArray(),
+        ));
+        $totalFK = array_sum(array_merge(
+            $TotalOfFRatingF5->toArray(),
+            $TotalOfFRatingF6->toArray(),
+        ));
+
+        $TotalResponden = count($TotalOfFRatingF1->toArray());
+        
+        $MaxPointFS = $TotalResponden * 20;
+        $TotalFSPercent = $totalFS / $MaxPointFS * 100;
+        
+        $MaxPointFD = $TotalResponden * 20;
+        $TotalFDPercent = $totalFD / $MaxPointFD * 100;
+        
+        $MaxPointFK = $TotalResponden * 20;
+        $TotalFKPercent = $totalFK / $MaxPointFK * 100;
+
+        $totalF = round(($TotalFSPercent + $TotalFDPercent + $TotalFKPercent) / 300 * 100, 2);
+
+        return $totalF;
+    }
+
+    public function calculateTotalFFemale(){
+        $TotalOfFRatingF1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('F1');
+        $TotalOfFRatingF2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('F2');
+        $TotalOfFRatingF3 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('F3');
+        $TotalOfFRatingF4 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('F4');
+        $TotalOfFRatingF5 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('F5');
+        $TotalOfFRatingF6 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('F6');
+        
+        $totalFS = array_sum(array_merge(
+            $TotalOfFRatingF1->toArray(),
+            $TotalOfFRatingF2->toArray(),
+        ));
+        $totalFD = array_sum(array_merge(
+            $TotalOfFRatingF3->toArray(),
+            $TotalOfFRatingF4->toArray(),
+        ));
+        $totalFK = array_sum(array_merge(
+            $TotalOfFRatingF5->toArray(),
+            $TotalOfFRatingF6->toArray(),
+        ));
+
+        $TotalResponden = count($TotalOfFRatingF1->toArray());
+        
+        $MaxPointFS = $TotalResponden * 20;
+        $TotalFSPercent = $totalFS / $MaxPointFS * 100;
+        
+        $MaxPointFD = $TotalResponden * 20;
+        $TotalFDPercent = $totalFD / $MaxPointFD * 100;
+        
+        $MaxPointFK = $TotalResponden * 20;
+        $TotalFKPercent = $totalFK / $MaxPointFK * 100;
+
+        $totalF = round(($TotalFSPercent + $TotalFDPercent + $TotalFKPercent) / 300 * 100, 2);
+
+        return $totalF;
+    }
+
+
+    public function calculateTotalFSemangat(){
+        $TotalOfFRatingF1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F1');
+        $TotalOfFRatingF2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F2');
+        
+        $totalFS = array_sum(array_merge(
+            $TotalOfFRatingF1->toArray(),
+            $TotalOfFRatingF2->toArray(),
+        ));
+
+        $TotalResponden = count($TotalOfFRatingF1->toArray());
+        
+        $MaxPointFS = $TotalResponden * 20;
+        $TotalFSPercent = $totalFS / $MaxPointFS * 100;
+
+        $totalF = round($TotalFSPercent / 100 * 100, 2);
+
+        return $totalF;
+    }
+    public function calculateTotalFDedikasi(){
+        $TotalOfFRatingF3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F3');
+        $TotalOfFRatingF4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F4');
+        
+        $totalFD = array_sum(array_merge(
+            $TotalOfFRatingF3->toArray(),
+            $TotalOfFRatingF4->toArray(),
+        ));
+
+        $TotalResponden = count($TotalOfFRatingF3->toArray());
+        
+        $MaxPointFD = $TotalResponden * 20;
+        $TotalFDPercent = $totalFD / $MaxPointFD * 100;
+        
+        $totalF = round($TotalFDPercent / 100 * 100, 2);
+
+        return $totalF;
+    }
+    public function calculateTotalFKesungguhan(){
+        $TotalOfFRatingF5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F5');
+        $TotalOfFRatingF6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('F6');
+        
+        $totalFK = array_sum(array_merge(
+            $TotalOfFRatingF5->toArray(),
+            $TotalOfFRatingF6->toArray(),
+        ));
+
+        $TotalResponden = count($TotalOfFRatingF5->toArray());
+        
+        $MaxPointFK = $TotalResponden * 20;
+        $TotalFKPercent = $totalFK / $MaxPointFK * 100;
+
+        $totalF = round($TotalFKPercent / 100 * 100, 2);
+
+        return $totalF;
+    }
+
     public function calculateTotalG(){
         
         $TotalOfGRatingG1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G1');
@@ -1838,6 +3031,180 @@ class UserController extends Controller
         $TotalTingkahLakuKerjaTidakProduktifPercentage = round(($MaxPointsTingkahLakuKerjaTidakProduktif - $TotalTingkahLakuKerjaTidakProduktif) / $MaxPointsTingkahLakuKerjaTidakProduktif * 100,2);
         
         $totalG = ($TotalPrestasiTugasPercentage + $TotalPrestasiKontekstualPercentage + $TotalTingkahLakuKerjaTidakProduktifPercentage) / 300 * 100;
+        $totalG = round($totalG, 2);
+
+        return $totalG;
+
+    }
+
+    public function calculateTotalGMale(){
+        
+        $TotalOfGRatingG1 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G1');
+        $TotalOfGRatingG2 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G2');
+        $TotalOfGRatingG3 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G3');
+        $TotalOfGRatingG4 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G4');
+        $TotalOfGRatingG5 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G5');
+        $TotalOfGRatingG6 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G6');
+        $TotalOfGRatingG7 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G7');
+        $TotalOfGRatingG8 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G8');
+        $TotalOfGRatingG9 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G9');
+        $TotalOfGRatingG10 = DB::table('entries')->where('completedR', 1)->where('jantina','Lelaki')->where('verified', 'verified')->pluck('G10');
+
+        $countTotalResponden = count($TotalOfGRatingG1->toArray());
+        
+        $TotalPrestasiTugas = array_sum(array_merge(
+            $TotalOfGRatingG1->toArray(),
+            $TotalOfGRatingG2->toArray(),
+            $TotalOfGRatingG3->toArray()
+        ));
+
+        $TotalPrestasiKontekstual = array_sum(array_merge(
+            $TotalOfGRatingG4->toArray(),
+            $TotalOfGRatingG5->toArray(),
+            $TotalOfGRatingG6->toArray(),
+            $TotalOfGRatingG7->toArray(),
+            $TotalOfGRatingG8->toArray()
+        ));
+
+        $TotalTingkahLakuKerjaTidakProduktif = array_sum(array_merge(
+            $TotalOfGRatingG9->toArray(),
+            $TotalOfGRatingG10->toArray()
+        ));
+        
+        $MaxPointsRespondenPrestasiTugas = $countTotalResponden * 30;
+        $TotalPrestasiTugasPercentage = round($TotalPrestasiTugas / $MaxPointsRespondenPrestasiTugas * 100, 2);
+
+        $MaxPointsRespondenPrestasiKontekstual = $countTotalResponden * 50;
+        $TotalPrestasiKontekstualPercentage = round($TotalPrestasiKontekstual / $MaxPointsRespondenPrestasiKontekstual * 100, 2);
+        
+        $MaxPointsTingkahLakuKerjaTidakProduktif = $countTotalResponden * 20;
+        $TotalTingkahLakuKerjaTidakProduktifPercentage = round(($MaxPointsTingkahLakuKerjaTidakProduktif - $TotalTingkahLakuKerjaTidakProduktif) / $MaxPointsTingkahLakuKerjaTidakProduktif * 100,2);
+        
+        $totalG = ($TotalPrestasiTugasPercentage + $TotalPrestasiKontekstualPercentage + $TotalTingkahLakuKerjaTidakProduktifPercentage) / 300 * 100;
+        $totalG = round($totalG, 2);
+
+        return $totalG;
+
+    }
+
+    public function calculateTotalGFemale(){
+        
+        $TotalOfGRatingG1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G1');
+        $TotalOfGRatingG2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G2');
+        $TotalOfGRatingG3 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G3');
+        $TotalOfGRatingG4 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G4');
+        $TotalOfGRatingG5 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G5');
+        $TotalOfGRatingG6 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G6');
+        $TotalOfGRatingG7 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G7');
+        $TotalOfGRatingG8 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G8');
+        $TotalOfGRatingG9 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G9');
+        $TotalOfGRatingG10 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('G10');
+
+        $countTotalResponden = count($TotalOfGRatingG1->toArray());
+        
+        $TotalPrestasiTugas = array_sum(array_merge(
+            $TotalOfGRatingG1->toArray(),
+            $TotalOfGRatingG2->toArray(),
+            $TotalOfGRatingG3->toArray()
+        ));
+
+        $TotalPrestasiKontekstual = array_sum(array_merge(
+            $TotalOfGRatingG4->toArray(),
+            $TotalOfGRatingG5->toArray(),
+            $TotalOfGRatingG6->toArray(),
+            $TotalOfGRatingG7->toArray(),
+            $TotalOfGRatingG8->toArray()
+        ));
+
+        $TotalTingkahLakuKerjaTidakProduktif = array_sum(array_merge(
+            $TotalOfGRatingG9->toArray(),
+            $TotalOfGRatingG10->toArray()
+        ));
+        
+        $MaxPointsRespondenPrestasiTugas = $countTotalResponden * 30;
+        $TotalPrestasiTugasPercentage = round($TotalPrestasiTugas / $MaxPointsRespondenPrestasiTugas * 100, 2);
+
+        $MaxPointsRespondenPrestasiKontekstual = $countTotalResponden * 50;
+        $TotalPrestasiKontekstualPercentage = round($TotalPrestasiKontekstual / $MaxPointsRespondenPrestasiKontekstual * 100, 2);
+        
+        $MaxPointsTingkahLakuKerjaTidakProduktif = $countTotalResponden * 20;
+        $TotalTingkahLakuKerjaTidakProduktifPercentage = round(($MaxPointsTingkahLakuKerjaTidakProduktif - $TotalTingkahLakuKerjaTidakProduktif) / $MaxPointsTingkahLakuKerjaTidakProduktif * 100,2);
+        
+        $totalG = ($TotalPrestasiTugasPercentage + $TotalPrestasiKontekstualPercentage + $TotalTingkahLakuKerjaTidakProduktifPercentage) / 300 * 100;
+        $totalG = round($totalG, 2);
+
+        return $totalG;
+
+    }
+
+    public function calculateTotalGPrestasiTugas(){
+        
+        $TotalOfGRatingG1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G1');
+        $TotalOfGRatingG2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G2');
+        $TotalOfGRatingG3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G3');
+        
+        $countTotalResponden = count($TotalOfGRatingG1->toArray());
+        
+        $TotalPrestasiTugas = array_sum(array_merge(
+            $TotalOfGRatingG1->toArray(),
+            $TotalOfGRatingG2->toArray(),
+            $TotalOfGRatingG3->toArray()
+        ));
+        
+        $MaxPointsRespondenPrestasiTugas = $countTotalResponden * 30;
+        $TotalPrestasiTugasPercentage = round($TotalPrestasiTugas / $MaxPointsRespondenPrestasiTugas * 100, 2);
+
+        $totalG = $TotalPrestasiTugasPercentage / 100 * 100;
+        $totalG = round($totalG, 2);
+
+        return $totalG;
+
+    }
+
+    public function calculateTotalGPrestasiKontekstual(){
+        
+        $TotalOfGRatingG4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G4');
+        $TotalOfGRatingG5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G5');
+        $TotalOfGRatingG6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G6');
+        $TotalOfGRatingG7 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G7');
+        $TotalOfGRatingG8 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G8');
+        
+        $countTotalResponden = count($TotalOfGRatingG4->toArray());
+
+        $TotalPrestasiKontekstual = array_sum(array_merge(
+            $TotalOfGRatingG4->toArray(),
+            $TotalOfGRatingG5->toArray(),
+            $TotalOfGRatingG6->toArray(),
+            $TotalOfGRatingG7->toArray(),
+            $TotalOfGRatingG8->toArray()
+        ));
+        
+        $MaxPointsRespondenPrestasiKontekstual = $countTotalResponden * 50;
+        $TotalPrestasiKontekstualPercentage = round($TotalPrestasiKontekstual / $MaxPointsRespondenPrestasiKontekstual * 100, 2);
+        
+        $totalG = $TotalPrestasiKontekstualPercentage / 100 * 100;
+        $totalG = round($totalG, 2);
+
+        return $totalG;
+
+    }
+
+    public function calculateTotalGTingkahLakuKerjaTidakProduktif(){
+        
+        $TotalOfGRatingG9 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G9');
+        $TotalOfGRatingG10 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('G10');
+
+        $countTotalResponden = count($TotalOfGRatingG9->toArray());
+
+        $TotalTingkahLakuKerjaTidakProduktif = array_sum(array_merge(
+            $TotalOfGRatingG9->toArray(),
+            $TotalOfGRatingG10->toArray()
+        ));
+        
+        $MaxPointsTingkahLakuKerjaTidakProduktif = $countTotalResponden * 20;
+        $TotalTingkahLakuKerjaTidakProduktifPercentage = round(($MaxPointsTingkahLakuKerjaTidakProduktif - $TotalTingkahLakuKerjaTidakProduktif) / $MaxPointsTingkahLakuKerjaTidakProduktif * 100,2);
+        
+        $totalG = $TotalTingkahLakuKerjaTidakProduktifPercentage / 100 * 100;
         $totalG = round($totalG, 2);
 
         return $totalG;
@@ -1952,6 +3319,377 @@ class UserController extends Controller
 
     }
 
+    public function calculateTotalHMale(){
+        
+        $TotalOfHRatingH1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H1');
+        $TotalOfHRatingH2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H2');
+        $TotalOfHRatingH3 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H3');
+        $TotalOfHRatingH4 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H4');
+        $TotalOfHRatingH5 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H5');
+        $TotalOfHRatingH6 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H6');
+        $TotalOfHRatingH7 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H7');
+        $TotalOfHRatingH8 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H8');
+        $TotalOfHRatingH9 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H9');
+        $TotalOfHRatingH10 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H10');
+        $TotalOfHRatingH11 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H11');
+        $TotalOfHRatingH12 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H12');
+        $TotalOfHRatingH13 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H13');
+        $TotalOfHRatingH14 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H14');
+        $TotalOfHRatingH15 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H15');
+        $TotalOfHRatingH16 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H16');
+        $TotalOfHRatingH17 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H17');
+        $TotalOfHRatingH18 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H18');
+        $TotalOfHRatingH19 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H19');
+        $TotalOfHRatingH20 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H20');
+        $TotalOfHRatingH21 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H21');
+        $TotalOfHRatingH22 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H22');
+        $TotalOfHRatingH23 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H23');
+        $TotalOfHRatingH24 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H24');
+        $TotalOfHRatingH25 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H25');
+        $TotalOfHRatingH26 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H26');
+        $TotalOfHRatingH27 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H27');
+        $TotalOfHRatingH28 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H28');
+        $TotalOfHRatingH29 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H29');
+        $TotalOfHRatingH30 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H30');
+        $TotalOfHRatingH31 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H31');
+        $TotalOfHRatingH32 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H32');
+        $TotalOfHRatingH33 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H33');
+        $TotalOfHRatingH34 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H34');
+        $TotalOfHRatingH35 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Lelaki')->where('verified', 'verified')->pluck('H35');
+        
+        $TotalHKP1 = array_sum(array_merge(
+            $TotalOfHRatingH1->toArray(),
+            $TotalOfHRatingH2->toArray(),
+            $TotalOfHRatingH3->toArray(),
+            $TotalOfHRatingH4->toArray(),
+            $TotalOfHRatingH5->toArray(),
+            $TotalOfHRatingH6->toArray(),
+            $TotalOfHRatingH7->toArray(),
+            $TotalOfHRatingH8->toArray(),
+            $TotalOfHRatingH9->toArray(),
+            $TotalOfHRatingH10->toArray(),
+            $TotalOfHRatingH11->toArray(),
+            $TotalOfHRatingH12->toArray()
+        ));
+
+        $TotalHPPB = array_sum(array_merge(
+            $TotalOfHRatingH13->toArray(),
+            $TotalOfHRatingH14->toArray(),
+            $TotalOfHRatingH15->toArray(),
+            $TotalOfHRatingH16->toArray(),
+            $TotalOfHRatingH17->toArray(),
+            $TotalOfHRatingH18->toArray(),
+            $TotalOfHRatingH19->toArray(),
+            $TotalOfHRatingH20->toArray()
+        )); 
+        $TotalHOJP = array_sum(array_merge(
+            $TotalOfHRatingH21->toArray(),
+            $TotalOfHRatingH22->toArray(),
+            $TotalOfHRatingH23->toArray(),
+            $TotalOfHRatingH24->toArray(),
+            $TotalOfHRatingH25->toArray()
+        ));
+        $TotalHKP2 = array_sum(array_merge(
+            $TotalOfHRatingH26->toArray(),
+            $TotalOfHRatingH27->toArray(),
+            $TotalOfHRatingH28->toArray(),
+            $TotalOfHRatingH29->toArray()
+        ));
+        $TotalHKOT = array_sum(array_merge(
+            $TotalOfHRatingH30->toArray(),
+            $TotalOfHRatingH31->toArray(),
+            $TotalOfHRatingH32->toArray(),
+            $TotalOfHRatingH33->toArray(),
+            $TotalOfHRatingH34->toArray(),
+            $TotalOfHRatingH35->toArray()
+        ));
+
+        $TotalResponden = count($TotalOfHRatingH1->toArray());
+
+        $MaxPointHKP1 = $TotalResponden * 120;
+        $TotalHKP1Percent = $TotalHKP1 / $MaxPointHKP1 * 100;
+
+        $MaxPointHPPB = $TotalResponden * 80;
+        $TotalHPPBPercent = $TotalHPPB / $MaxPointHPPB * 100;
+
+        $MaxPointHOJP = $TotalResponden * 50;
+        $TotalHOJPPercent = $TotalHOJP / $MaxPointHOJP * 100;
+
+        $MaxPointHKP2 = $TotalResponden * 40;
+        $TotalHKP2Percent = $TotalHKP2 / $MaxPointHKP2 * 100;
+
+        $MaxPointHKOT = $TotalResponden * 60;
+        $TotalHKOTPercent = $TotalHKOT / $MaxPointHKOT * 100;
+
+        $totalH = round(($TotalHKP1Percent + $TotalHPPBPercent + $TotalHOJPPercent + $TotalHKP2Percent + $TotalHKOTPercent) / 500 * 100, 2);
+
+        return $totalH;
+
+    }
+
+    public function calculateTotalHFemale(){
+        
+        $TotalOfHRatingH1 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H1');
+        $TotalOfHRatingH2 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H2');
+        $TotalOfHRatingH3 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H3');
+        $TotalOfHRatingH4 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H4');
+        $TotalOfHRatingH5 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H5');
+        $TotalOfHRatingH6 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H6');
+        $TotalOfHRatingH7 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H7');
+        $TotalOfHRatingH8 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H8');
+        $TotalOfHRatingH9 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H9');
+        $TotalOfHRatingH10 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H10');
+        $TotalOfHRatingH11 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H11');
+        $TotalOfHRatingH12 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H12');
+        $TotalOfHRatingH13 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H13');
+        $TotalOfHRatingH14 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H14');
+        $TotalOfHRatingH15 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H15');
+        $TotalOfHRatingH16 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H16');
+        $TotalOfHRatingH17 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H17');
+        $TotalOfHRatingH18 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H18');
+        $TotalOfHRatingH19 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H19');
+        $TotalOfHRatingH20 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H20');
+        $TotalOfHRatingH21 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H21');
+        $TotalOfHRatingH22 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H22');
+        $TotalOfHRatingH23 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H23');
+        $TotalOfHRatingH24 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H24');
+        $TotalOfHRatingH25 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H25');
+        $TotalOfHRatingH26 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H26');
+        $TotalOfHRatingH27 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H27');
+        $TotalOfHRatingH28 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H28');
+        $TotalOfHRatingH29 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H29');
+        $TotalOfHRatingH30 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H30');
+        $TotalOfHRatingH31 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H31');
+        $TotalOfHRatingH32 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H32');
+        $TotalOfHRatingH33 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H33');
+        $TotalOfHRatingH34 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H34');
+        $TotalOfHRatingH35 = DB::table('entries')->where('completedR', 1)->where('jantina', 'Perempuan')->where('verified', 'verified')->pluck('H35');
+        
+        $TotalHKP1 = array_sum(array_merge(
+            $TotalOfHRatingH1->toArray(),
+            $TotalOfHRatingH2->toArray(),
+            $TotalOfHRatingH3->toArray(),
+            $TotalOfHRatingH4->toArray(),
+            $TotalOfHRatingH5->toArray(),
+            $TotalOfHRatingH6->toArray(),
+            $TotalOfHRatingH7->toArray(),
+            $TotalOfHRatingH8->toArray(),
+            $TotalOfHRatingH9->toArray(),
+            $TotalOfHRatingH10->toArray(),
+            $TotalOfHRatingH11->toArray(),
+            $TotalOfHRatingH12->toArray()
+        ));
+
+        $TotalHPPB = array_sum(array_merge(
+            $TotalOfHRatingH13->toArray(),
+            $TotalOfHRatingH14->toArray(),
+            $TotalOfHRatingH15->toArray(),
+            $TotalOfHRatingH16->toArray(),
+            $TotalOfHRatingH17->toArray(),
+            $TotalOfHRatingH18->toArray(),
+            $TotalOfHRatingH19->toArray(),
+            $TotalOfHRatingH20->toArray()
+        )); 
+        $TotalHOJP = array_sum(array_merge(
+            $TotalOfHRatingH21->toArray(),
+            $TotalOfHRatingH22->toArray(),
+            $TotalOfHRatingH23->toArray(),
+            $TotalOfHRatingH24->toArray(),
+            $TotalOfHRatingH25->toArray()
+        ));
+        $TotalHKP2 = array_sum(array_merge(
+            $TotalOfHRatingH26->toArray(),
+            $TotalOfHRatingH27->toArray(),
+            $TotalOfHRatingH28->toArray(),
+            $TotalOfHRatingH29->toArray()
+        ));
+        $TotalHKOT = array_sum(array_merge(
+            $TotalOfHRatingH30->toArray(),
+            $TotalOfHRatingH31->toArray(),
+            $TotalOfHRatingH32->toArray(),
+            $TotalOfHRatingH33->toArray(),
+            $TotalOfHRatingH34->toArray(),
+            $TotalOfHRatingH35->toArray()
+        ));
+
+        $TotalResponden = count($TotalOfHRatingH1->toArray());
+
+        $MaxPointHKP1 = $TotalResponden * 120;
+        $TotalHKP1Percent = $TotalHKP1 / $MaxPointHKP1 * 100;
+
+        $MaxPointHPPB = $TotalResponden * 80;
+        $TotalHPPBPercent = $TotalHPPB / $MaxPointHPPB * 100;
+
+        $MaxPointHOJP = $TotalResponden * 50;
+        $TotalHOJPPercent = $TotalHOJP / $MaxPointHOJP * 100;
+
+        $MaxPointHKP2 = $TotalResponden * 40;
+        $TotalHKP2Percent = $TotalHKP2 / $MaxPointHKP2 * 100;
+
+        $MaxPointHKOT = $TotalResponden * 60;
+        $TotalHKOTPercent = $TotalHKOT / $MaxPointHKOT * 100;
+
+        $totalH = round(($TotalHKP1Percent + $TotalHPPBPercent + $TotalHOJPPercent + $TotalHKP2Percent + $TotalHKOTPercent) / 500 * 100, 2);
+
+        return $totalH;
+
+    }
+
+    public function calculateTotalHKualitiPengurusan(){
+        
+        $TotalOfHRatingH1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H1');
+        $TotalOfHRatingH2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H2');
+        $TotalOfHRatingH3 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H3');
+        $TotalOfHRatingH4 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H4');
+        $TotalOfHRatingH5 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H5');
+        $TotalOfHRatingH6 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H6');
+        $TotalOfHRatingH7 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H7');
+        $TotalOfHRatingH8 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H8');
+        $TotalOfHRatingH9 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H9');
+        $TotalOfHRatingH10 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H10');
+        $TotalOfHRatingH11 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H11');
+        $TotalOfHRatingH12 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H12');
+        
+        $TotalHKP1 = array_sum(array_merge(
+            $TotalOfHRatingH1->toArray(),
+            $TotalOfHRatingH2->toArray(),
+            $TotalOfHRatingH3->toArray(),
+            $TotalOfHRatingH4->toArray(),
+            $TotalOfHRatingH5->toArray(),
+            $TotalOfHRatingH6->toArray(),
+            $TotalOfHRatingH7->toArray(),
+            $TotalOfHRatingH8->toArray(),
+            $TotalOfHRatingH9->toArray(),
+            $TotalOfHRatingH10->toArray(),
+            $TotalOfHRatingH11->toArray(),
+            $TotalOfHRatingH12->toArray()
+        ));
+
+        $TotalResponden = count($TotalOfHRatingH1->toArray());
+
+        $MaxPointHKP1 = $TotalResponden * 120;
+        $TotalHKP1Percent = $TotalHKP1 / $MaxPointHKP1 * 100;
+
+        $totalH = round($TotalHKP1Percent / 100 * 100, 2);
+
+        return $totalH;
+
+    }
+
+    public function calculateTotalHPPB(){
+        
+        $TotalOfHRatingH13 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H13');
+        $TotalOfHRatingH14 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H14');
+        $TotalOfHRatingH15 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H15');
+        $TotalOfHRatingH16 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H16');
+        $TotalOfHRatingH17 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H17');
+        $TotalOfHRatingH18 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H18');
+        $TotalOfHRatingH19 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H19');
+        $TotalOfHRatingH20 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H20');
+
+        $TotalHPPB = array_sum(array_merge(
+            $TotalOfHRatingH13->toArray(),
+            $TotalOfHRatingH14->toArray(),
+            $TotalOfHRatingH15->toArray(),
+            $TotalOfHRatingH16->toArray(),
+            $TotalOfHRatingH17->toArray(),
+            $TotalOfHRatingH18->toArray(),
+            $TotalOfHRatingH19->toArray(),
+            $TotalOfHRatingH20->toArray()
+        )); 
+
+        $TotalResponden = count($TotalOfHRatingH13->toArray());
+
+        $MaxPointHPPB = $TotalResponden * 80;
+        $TotalHPPBPercent = $TotalHPPB / $MaxPointHPPB * 100;
+        
+        $totalH = round($TotalHPPBPercent / 100 * 100, 2);
+
+        return $totalH;
+
+    }
+
+    public function calculateTotalHOJP(){
+        
+        $TotalOfHRatingH21 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H21');
+        $TotalOfHRatingH22 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H22');
+        $TotalOfHRatingH23 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H23');
+        $TotalOfHRatingH24 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H24');
+        $TotalOfHRatingH25 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H25');
+        
+        $TotalHOJP = array_sum(array_merge(
+            $TotalOfHRatingH21->toArray(),
+            $TotalOfHRatingH22->toArray(),
+            $TotalOfHRatingH23->toArray(),
+            $TotalOfHRatingH24->toArray(),
+            $TotalOfHRatingH25->toArray()
+        ));
+
+        $TotalResponden = count($TotalOfHRatingH21->toArray());
+
+        $MaxPointHOJP = $TotalResponden * 50;
+        $TotalHOJPPercent = $TotalHOJP / $MaxPointHOJP * 100;
+
+        $totalH = round($TotalHOJPPercent / 100 * 100, 2);
+
+        return $totalH;
+
+    }
+
+    public function calculateTotalHKP2(){
+        
+        $TotalOfHRatingH26 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H26');
+        $TotalOfHRatingH27 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H27');
+        $TotalOfHRatingH28 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H28');
+        $TotalOfHRatingH29 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H29');
+        
+        $TotalHKP2 = array_sum(array_merge(
+            $TotalOfHRatingH26->toArray(),
+            $TotalOfHRatingH27->toArray(),
+            $TotalOfHRatingH28->toArray(),
+            $TotalOfHRatingH29->toArray()
+        ));
+
+        $TotalResponden = count($TotalOfHRatingH26->toArray());
+
+        $MaxPointHKP2 = $TotalResponden * 40;
+        $TotalHKP2Percent = $TotalHKP2 / $MaxPointHKP2 * 100;
+
+        $totalH = round($TotalHKP2Percent / 100 * 100, 2);
+
+        return $totalH;
+
+    }
+
+    public function calculateTotalHKOT(){
+        
+        $TotalOfHRatingH30 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H30');
+        $TotalOfHRatingH31 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H31');
+        $TotalOfHRatingH32 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H32');
+        $TotalOfHRatingH33 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H33');
+        $TotalOfHRatingH34 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H34');
+        $TotalOfHRatingH35 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('H35');
+        
+        $TotalHKOT = array_sum(array_merge(
+            $TotalOfHRatingH30->toArray(),
+            $TotalOfHRatingH31->toArray(),
+            $TotalOfHRatingH32->toArray(),
+            $TotalOfHRatingH33->toArray(),
+            $TotalOfHRatingH34->toArray(),
+            $TotalOfHRatingH35->toArray()
+        ));
+
+        $TotalResponden = count($TotalOfHRatingH30->toArray());
+
+        $MaxPointHKOT = $TotalResponden * 60;
+        $TotalHKOTPercent = $TotalHKOT / $MaxPointHKOT * 100;
+
+        $totalH = round($TotalHKOTPercent / 100 * 100, 2);
+
+        return $totalH;
+
+    }
+
     public function calculateTotalI(){
         $TotalOfIRatingI1 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('I1');
         $TotalOfIRatingI2 = DB::table('entries')->where('completedR', 1)->where('verified', 'verified')->pluck('I2');
@@ -2044,7 +3782,7 @@ class UserController extends Controller
         $MaxKPontNeg = $TotalResponden * 10;
         $TotalPointKNeg = $MaxKPontNeg - $TotalKNeg;
         
-        $totalK = ($TotalPos + $TotalPointKNeg) / $MaxPointsK * 100;
+        $totalK = round(($TotalPos + $TotalPointKNeg) / $MaxPointsK * 100,2);
 
         return $totalK;
 
@@ -2463,6 +4201,10 @@ class UserController extends Controller
             'completedR' => 1
         ));
         return redirect()->route('home');
+    }
+
+    public function sendPinToEmail(){
+        return redirect()->route('send-password');
     }
 
 

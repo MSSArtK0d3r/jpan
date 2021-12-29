@@ -182,7 +182,9 @@ class EntryExport implements FromCollection, WithHeadings
         'bankCompany',
         'bankAccNo',
         'bankFullName'
-        )->get();
+        )->where('completedR', 1)
+        ->where('verified', 'verified')
+        ->get();
     }
 
     public function headings(): array

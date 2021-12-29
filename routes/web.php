@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EntriesController;
 use App\Http\Controllers\ThankYouResult;
 use App\Http\Controllers\DevTest;
+use App\Http\Controllers\AgensiController;
 use App\Http\Controllers\DevAdmin;
+use App\Http\Controllers\AdminPage;
 use App\Http\Controllers\Mail\SendVerification;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyAccount;
@@ -46,6 +48,10 @@ Route::get('/hubungi', function(){
 // Users Route
 Route::get('/', [UserController::class,'index'])->name('home');
 Route::post('/users', [UserController::class, 'storeData'])->name('storeMyForm');
+Route::get('/users/verify', [UserController::class, 'verifyPinPage'])->name('verifypinpage');
+Route::post('/users/verifypin', [UserController::class, 'verifyPin'])->name('verifypin');
+Route::get('/users/makenewpin', [UserController::class, 'newPinPage'])->name('createpinpage');
+Route::post('/users/createpin', [UserController::class, 'createPin'])->name('createpin');
 Route::get('/users/logout', [UserController::class, 'clearSession'])->name('logout');
 Route::get('/users/demografi', [UserController::class, 'demoGraphy'])->name('demograph');
 Route::post('/users/demografi', [UserController::class, 'storeDataDemografi'])->name('updateDemografi');
@@ -107,6 +113,8 @@ Route::get('/done', function(){
 })->name('doneverify');
 
 Route::get('/send-verify', [SendVerification::class, 'SendEmailVerify'])->name('send-verification');
+Route::get('/send-password', [SendVerification::class, 'sendPasswordToEmail'])->name('send-password');
+
 
 
 Route::post('/submit' , [EntriesController::class,'storeForm']);
@@ -138,10 +146,14 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
     });
 });
 
+
+//** Custom Roles */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
     Route::get('/admin/dashboard', [UserController::class,'adminDashboard']);
+    Route::get('/admin/dev', [AdminPage::class, 'index']);
+    Route::get('/admin/welcome', [AdminPage::class, 'welcome']);
+    Route::get('/admin/mydashboard', [AgensiController::class, 'mydashboard']);
 });
-
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
@@ -161,4 +173,19 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Dev Router */
 Route::get('/dev', [DevTest::class, 'index']);
-Route::get('/admin/dev', [DevAdmin::class, 'index']);
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('roles')->name('roles/')->group(static function() {
+            Route::get('/',                                             'RolesController@index')->name('index');
+            Route::get('/create',                                       'RolesController@create')->name('create');
+            Route::post('/',                                            'RolesController@store')->name('store');
+            Route::get('/{role}/edit',                                  'RolesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'RolesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{role}',                                      'RolesController@update')->name('update');
+            Route::delete('/{role}',                                    'RolesController@destroy')->name('destroy');
+        });
+    });
+});
