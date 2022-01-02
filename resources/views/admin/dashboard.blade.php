@@ -27,7 +27,7 @@
                 <div class="card text-white bg-spotify">
                     <div class="card-body">
                         <div class="h4 m-0">{{ $data['IndeksOBTKeseluruhan'] }}%</div>
-                        <div>Indeks OBT</div>
+                        <div>Indeks Organisasi Berprestasi Tinggi</div>
                         <div class="progress-xs my-3 mb-0 progress progress-white">
                             <div role="progressbar" aria-valuemin="0" aria-valuemax="100"
                                 aria-valuenow="{{ $data['IndeksOBTKeseluruhan'] }}" class="progress-bar"
@@ -62,7 +62,7 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0 black">Indeks Berdasarkan Jantina</h5>
+                <h5 class="card-title mb-0 black">Indeks KOBT Berdasarkan Jantina</h5>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -103,7 +103,7 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <h5>ORGANISASI BERPRESTASI TINGGI</h5>
+                                <h5>INDEKS ORGANISASI BERPRESTASI TINGGI</h5>
                                 <hr class="mt-0">
                                 <div class="progress-group">
                                     <div class="progress-group-header">
@@ -170,7 +170,7 @@
                                 </div>
                                 <div class="progress-group">
                                     <div class="progress-group-header">
-                                        <div>PANGKAT</div>
+                                        <div>KENAIKAN PANGKAT</div>
                                         <div class="mfs-auto font-weight-bold">
                                             {{ $data['totalRatingBPangkat'] }}%</div>
                                     </div>
@@ -185,7 +185,7 @@
                                 </div>
                                 <div class="progress-group">
                                     <div class="progress-group-header">
-                                        <div>KETUA</div>
+                                        <div>PENYELIAAN</div>
                                         <div class="mfs-auto font-weight-bold">
                                             {{ $data['totalRatingBKetua'] }}%</div>
                                     </div>
@@ -285,7 +285,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h5>Dimensi dan Sub-Dimensi KETERLIBATAN PEKERJA</h5>
+                <h5>Dimensi dan Sub-Dimensi KETERLIBATAN KERJA</h5>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -311,7 +311,7 @@
                                 </div>
                                 <div class="progress-group">
                                     <div class="progress-group-header">
-                                        <div>DEDKASI</div>
+                                        <div>DEDIKASI</div>
                                         <div class="mfs-auto font-weight-bold">
                                             {{ $data['totalRatingFDedikasi'] }}%</div>
                                     </div>
@@ -522,7 +522,7 @@
                         data: {
                             labels: ['Kepuasan Kerja', 'Kepuasan Hidup', 'Penilaian Hidup', 'Afek Positif',
                                 'Keterlibatan Kerja', 'Prestasi Kerja', 'Organisasi Berprestasi Tinggi',
-                                'Produktiviti', 'Personaliti', 'Kesejahteraan Keluarga',
+                                'Produktiviti', 'Personaliti Jenis B', 'Kesejahteraan Keluarga',
                                 'Kesejahteraan Kewangan', 'Kesejahteraan Sosial', 'Tujuan', 'Daya Tahan',
                                 'Kebaikan', 'Altruisme'
                             ],
@@ -579,8 +579,8 @@
                     new Chart(ctx, {
                         type: 'polarArea',
                         data: {
-                            labels: ['Gaji', 'Pangkat', 'Ketua', 'Prosedur Operasi', 'Rakan Sekerja',
-                                'Sifat Sekerja', 'Komunikasi', 'Persekitaran'
+                            labels: ['Gaji', 'Kenaikan Pangkat', 'Penyeliaan', 'Prosedur Operasi', 'Rakan Sekerja',
+                                'Sifat Kerja', 'Komunikasi', 'Persekitaran'
                             ],
                             datasets: [{
                                 label: 'Kepuasan Kerja',
@@ -699,7 +699,7 @@
                     new Chart(ctx, {
                         type: 'polarArea',
                         data: {
-                            labels: ['Prestasi Kerja', 'Prestasi Kontekstual', 'Tingkah Laku Kerja Tidak Produktif'],
+                            labels: ['Prestasi Kerja', 'Prestasi Kontekstual', 'Tingkah Laku Kerja Produktif'],
                             datasets: [{
                                 label: 'Prestasi Kerja',
                                 data: [

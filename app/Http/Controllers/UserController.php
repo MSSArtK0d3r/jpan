@@ -249,8 +249,8 @@ class UserController extends Controller
     public function storeData(Request $request){
         
         $request->validate([
-            'email' => 'required|email',
-            //'email' => 'required|email|regex:/(.*)sabah\.gov\.my$/i',
+            //'email' => 'required|email',
+            'email' => 'required|email|regex:/(.*)sabah\.gov\.my$/i',
         ]);
         
         $userData = DB::table('entries')->where('email', $request->email)->first();
@@ -261,7 +261,8 @@ class UserController extends Controller
                     'email' => $request->email,
                     'start_at' => now(+8),
                     'uuid' => $uuid,
-                    'pin' => $temporaryPin
+                    'pin' => $temporaryPin,
+                    'verified' => 'verified'
                 ]);
 
                 $data = ['pin' => $temporaryPin ];
@@ -276,7 +277,8 @@ class UserController extends Controller
             //$request->session()->put('identity', $request->email);
             $temporaryPin = rand(100000,999999);
             DB::table('entries')->where('email',$request->email)->update([
-                'pin' => $temporaryPin
+                'pin' => $temporaryPin,
+                'verified' => 'verified'
             ]);
             $data = ['pin' => $temporaryPin ];
             Mail::to($request->email)->send(new SendRecoverPin($data));
